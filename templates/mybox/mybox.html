@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block extra_head %}
+ 
+
+
+{% endblock %}
+
+{% block featureBox %}
+    <h1>MyBox ({{num_tx}}):</h1>
+    {% if user.is_authenticated %}
+    
+     <table border="1">
+   
+      <tr>
+	<td><b>Sender</b></td>
+	<td><b>Receiver</b></td>
+	<td><b>Type</b></td>
+	<td><b>Text</b></td>
+	<td><b>URI</b></td>
+	<td><b>References Tx</b></td>
+        <td><b>Event Datetime</b></td>
+        <td><b>Transaction Datetime</b></td>
+
+      </tr>
+      
+      {%for t in txlist%}
+        <tr>
+            <td>{{t.sndr}}</td>
+            <td>{{t.rcvr}}</td>
+            <td>{{t.ttype}}</td>
+            <td>{{t.texti}}</td>
+            <td>{{t.urli}}</td>
+            <td>{{t.idr}}</td>
+            <td>{{t.ev_dt}}{{t.ev_tz}}</td>
+	    <td>{{t.tx_dt}}{{t.tx_tz}}</td>
+         </tr>   
+        {% endfor %}
+    </table>
+    
+    
+    {% endif %} 
+    	
+{% endblock %}
+
+
+
+
+

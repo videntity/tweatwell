@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block extra_head %}
+
+
+{% endblock %}
+
+{% block featureBox %}
+     <h2>Transmit:</h2>
+     <p>Easily send your health information to others.READ THE DISCLAIMER*</p>
+     
+    {% if user.is_authenticated %}
+    
+
+    <h3>Transmit Everything:</h3>
+    <ul>
+     <li><a href=/transmist/all/email/>Via Email (Comming Soon)</a></li>
+     <li><a href=/transmist/all/fax/>Via Fax Machine(Comming Soon)</a></li>
+     <li><a href=/transmist/all/sms/>Via SMS (Secure Mobile Text message containing a secret web link)(Coming Soon)</a></li>
+     <li><a href=/transmist/all/twitterdm/>Via Twitter (Direct Message)(Coming Soon)</a></li>
+     <li><a href=/transmist/all/healthvault/>Via Microsoft HealthVault(Coming Soon)</a></li>
+    </ul>
+    
+    <h3>Transmit Specific Items:</h3>
+        <ul>
+	  <li>Comming Soon!</li>
+	</ul>
+    
+    <p>
+    <i>*DISCLAIMER: By using these tools you acknowledge that you understand and
+    accept any potential security risks associated with these various
+    means of transport (i.e. Email, SMS, Twitter, Fax, etc.)
+    To put this in practical terms, we believe that most of the time people
+    are more concerned with transporting their data, than making sure its at a security
+    level suitable for the NSA.
+    
+    Unlike most doctors, hospitals, and medical practices, we believe your medical
+    information and you can do with it what you will.  (If your doctor is
+    using tweatwell he or she probably part of the rare breed that believes in
+    full and transparent patient access to his or her information.)
+    If you choose to fax it to someone, then we are here to help you accomplish this mission.
+    
+    Transmitting personal health information over email, for example, is a small security risk
+    because standard email is not encrypted. By using these tools you are accepting this
+    risk because you are more interested in getting your information to someone than making sure its
+    not intercepted by your employer, the Pavarotti, the KGB, or some mass government
+    conspiracy is intercepting your medical information to use against you later.
+    If you don't agree, then don't use these features or tweatwell.</i> 
+    </p>
+    
+    {% endif %} 
+    	
+{% endblock %}

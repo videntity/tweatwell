@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+{% block extra_head %}
+
+<script type='text/javascript' src='http://www.google.com/jsapi'></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['gauge']});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Label');
+        data.addColumn('number', 'Value');
+        data.addRows(1);
+        data.setValue(0, 0, 'Weight');
+        data.setValue(0, 1, {{latest_wt.wt_numeric}});
+        var chart = new google.visualization.Gauge(document.getElementById('weight_div'));
+        var options = {min: {{guage_min}},
+                       max: {{guage_max}},
+                       width: 400, height: 120,
+                        greenFrom: {{ideal_low}}, greenTo: {{ideal_high}},
+                        redFrom: {{ideal_high}}, redTo: {{guage_max}},
+                        yellowFrom:60, yellowTo: {{ideal_low}},
+                        minorTicks: 5};
+        chart.draw(data, options);
+      }
+    </script>
+    
+    <script type='text/javascript' src='http://www.google.com/jsapi'></script>
+    <script type='text/javascript'>
+      
+      google.load('visualization', '1', {packages:['gauge']});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        
+        var guage_min = {{latest_wt.wt_numeric}} - 50
+        var guage_max = {{latest_wt.wt_numeric}} + 50
+        var goal_high = {{weight_goal}} + 3
+        var goal_low = {{weight_goal}} - 3
+        
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Label');
+        data.addColumn('number', 'Value');
+        data.addRows(1);
+        data.setValue(0, 0, 'Weight');
+        data.setValue(0, 1, {{latest_wt.wt_numeric}});
+        var chart = new google.visualization.Gauge(document.getElementById('weightgoal_div'));
+        var options = {min: guage_min,
+                       max: guage_max,
+                       width: 400, height: 120,
+                        greenFrom: goal_low, greenTo: goal_high,
+                        redFrom: goal_high, redTo: guage_max,
+                        yellowFrom:guage_min, yellowTo: goal_low,
+                        minorTicks: 5};
+        chart.draw(data, options);
+      }
+    </script>
+    
+    
+    
+    <script type='text/javascript' src='http://www.google.com/jsapi'></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['gauge']});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Label');
+        data.addColumn('number', 'Value');
+        data.addRows(1);
+        data.setValue(0, 0, 'BMI');
+        data.setValue(0, 1, {{all.bmi}});
+        var chart = new google.visualization.Gauge(document.getElementById('bmi_div'));
+        var options = {min: 10,
+                       max: 40,
+                       width: 400, height: 120,
+                       greenFrom: 18.6, greenTo: 24.9,
+                       redFrom: 25, redTo: 40,
+                       yellowFrom:10, yellowTo: 18.5,
+                       minorTicks: 2};
+        chart.draw(data, options);
+      }
+    </script>
+
+
+
+{% endblock %}
+
+{% block featureBox %}
+    
+    {% if user.is_authenticated %}
+    {% load avatar_tags %}
+    <div id="avatar">
+    {% avatar user %}
+    </div><!-- avatar -->
+    
+    <div id="status">
+    Status: 
+    <i>{{all.status}}</i>
+    </div><!-- status -->
+    
+    <div id="checkin">
+  
+      <form enctype="multipart/form-data" action="/upload/ci/{{user.username}}/" method="POST">
+    <label for="id_ci">Update your activity:</label> <input type="text" name="ci" id="id_ci" /></p>
+
+        <input type="submit" value="Check In" />
+        </form>
+      </div><!-- checkin -->
+    
+    
+    <div id="dashboard">
+    Dashboard:
+    <ul>
+    <li>Checkins: {{all.checkins}}</li>
+    <li>Points: {{all.points}} </li>
+    <li>Goal Weight: <div id='weightgoal_div'></div></li>
+    <li>Ideal Weight based on BMI:<div id='weight_div'></div></li>
+    <li>BMI:<div id='bmi_div'></div></li>
+
+    <li>Percent Body Fat: {{all.pbf_numeric}}</li>    
+    
+    
+
+    
+    <li>
+    <form enctype="multipart/form-data" action="/upload/wt/{{user.username}}/" method="POST">
+    <label for="id_wt">Enter Weight:</label> <input type="text" name="wt" id="id_wt" />
+        <input type="submit" value="Check In" />
+    </form>
+    </li>
+    
+    <li>
+    <form enctype="multipart/form-data" action="/upload/pbf/{{user.username}}/" method="POST">
+    <label for="id_pbf">Enter Percent Body Fat:</label> <input type="text" name="pbf" id="id_pbf" />
+        <input type="submit" value="Check In" />
+    </form>
+    </li>
+    
+    
+    
+    </ul>
+    </div><!-- dashboard -->
+     
+    </div><!-- left -->
+    
+    <div id="middle">
+    
+
+    
+    <h1>
+    Frequently Asked Questions:
+    </h1>
+    
+    </div><!-- middle -->
+    
+    {% endif %}
+    
+    
+    
+{% endblock %}

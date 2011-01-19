@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% block extra_head %}
+
+
+ <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      var fatdelta = {{first_wt}} - {{first_fm}}
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Fat');
+        data.addColumn('number', 'Not Fat');
+        data.addRows(2);
+        data.setValue(0, 0, 'Fat');
+        data.setValue(0, 1, {{first_fm}});
+        data.setValue(1, 0, 'Not Fat');
+        data.setValue(1, 1, fatdelta);
+
+
+        var chart = new google.visualization.PieChart(document.getElementById('initial_pie_div'));
+        chart.draw(data, {width: 450, height: 300, title: 'Initial Body Composition'});
+      }
+    </script>
+
+    <script type="text/javascript">
+      var fatdelta = {{last_wt}} - {{last_fm}}
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Fat');
+        data.addColumn('number', 'Not Fat');
+        data.addRows(2);
+        data.setValue(0, 0, 'Fat');
+        data.setValue(0, 1, {{last_fm}});
+        data.setValue(1, 0, 'Not Fat');
+        data.setValue(1, 1, fatdelta);
+
+
+        var chart = new google.visualization.PieChart(document.getElementById('latest_pie_div'));
+        chart.draw(data, {width: 450, height: 300, title: 'Latest Body Composition'});
+      }
+    </script>
+
+    <script type='text/javascript'>
+     
+     google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Day');
+        data.addColumn('number', 'Goal');
+        data.addColumn('number', 'Weight');
+        
+	{% for i in wtlist %}
+	    var counter = String({{forloop.counter0}})
+	    data.addRows( [ [counter, {{weight_goal}}, {{i.wt_numeric}}] ]);
+	{% endfor %}
+
+        var chart = new google.visualization.AreaChart(document.getElementById('wt_chart_div'));
+        chart.draw(data, {width: 450, height: 300, title: 'Weight in lbs',
+                          hAxis: {title: 'Weight-In', titleTextStyle: {color: '#FF0000'}}
+                         });
+      }
+      </script>
+    
+    <script type='text/javascript'>
+     
+     google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Day');
+        data.addColumn('number', 'Fat Mass');
+        
+	{% for i in fmlist %}
+	    var counter = String({{forloop.counter0}})
+	    data.addRows( [ [counter, {{i.fm_numeric}}] ]);
+	{% endfor %}
+
+        var chart = new google.visualization.AreaChart(document.getElementById('fm_chart_div'));
+        chart.draw(data, {width: 450, height: 300, title: 'Fat Mass in lbs.',
+                          hAxis: {title: 'Body Composition Scan', titleTextStyle: {color: '#FF0000'}}
+                         });
+      }
+      </script>
+    
+{% endblock %}
+
+{% block left %}
+
+<h2>Where You Are</h2>
+
+<div class="dashboard">    
+    
+    	<ul class="dashboardul">
+			<li><h3>{{ percentchangebodyfat }}&#37; </h3><p>Change in Body Fat</p></li>
+			<li><h3>{{last_wt}}lbs</h3> <p>Current</p></li>
+			<li><h3>{{last_fm}}lbs</h3> <p>Fat Mass</p></li>
+			<li><h3>{{ last_percent_bodyfat }}&#37; </h3><p>Body Fat</p></li>
+        </ul>
+        
+</div><!-- dashboard -->
+        
+<h2>Where You Were</h2>
+
+<div class="dashboard">
+
+        <ul class="dashboardul">
+			<li><h3>{{first_wt}}lbs</h3><p> Starting Weight</p></li>
+			<li><h3>{{first_fm}}lbs</h3><p> Starting Fat Mass</p></li>
+			<li><h3>{{ initial_percent_bodyfat}}&#37; </h3><p>Starting Body Fat</p></li>
+        </ul>
+        
+</div><!-- dashboard -->
+
+{% endblock %}
+
+{% block middle %}
+{% if not enough_data %}
+	      <h1>You do not have the minimum number of weight and fat mass readings to display your statistics correctly.
+	      You need at least two body composition scans before this page will display properly.
+	      </h1>
+{% endif %}
+	{% if user.is_authenticated %}
+
+		<h3>Your History</h3>
+        
+	    <div id="latest_pie_div"></div>
+	    
+	    <div id="initial_pie_div"></div>
+	    
+	    <div id="fm_chart_div" ></div>
+        
+	    <div id="wt_chart_div"></div>
+	{% endif %}
+
+{% endblock %}
+
+
+
+
+

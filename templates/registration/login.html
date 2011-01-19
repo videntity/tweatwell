@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block left %}
+  {% if form.errors %}
+    <p class="error">Sorry, that's not a valid username or password</p>
+  {% endif %}
+
+  <form action='.' method='POST'>
+      <label for="username">Username:</label>
+      <input type="text" name="username" value="" id="username">
+      <br>
+      <label for="password">Password:</label>
+      <input type="password" name="password" value="" id="password">
+      <br>
+      <input type="submit" value="login" />
+      <input type="hidden" name="next" value="{{ next|escape }}" />
+  </form>
+  <p>Don't have an acocunt? <a href="/accounts/register/">Register here.</a> A mix.wvu.edu account is required.</p>
+{% endblock %}
+{% block middle %}
+<h4><i>Physique7 is the new take on what was formerly known as Body for Break. This
+revamped body transformation contest is determined to get you pumped up, leaned
+out, and looking good while still encouraging healthy lifestyle choices. Give us
+7 weeks of total dedication and we will give you a new physique to be proud of.</i> </h4>
+
+
+
+{% endblock %}

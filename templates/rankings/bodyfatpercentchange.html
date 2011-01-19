@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block extra_head %}
+<script type='text/javascript' src='https://www.google.com/jsapi'></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['table']});
+      google.setOnLoadCallback(drawTable);
+      function drawTable() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('number', 'Rank');
+        data.addColumn('string', 'Name');
+        data.addColumn('string', 'Percent Change');
+        data.addRows({{malerank_length}});
+        {% for i in malerank %}
+        var counter = {{forloop.counter0}}
+        data.setCell(counter, 0, {{i.rank}}, '{{i.rank}}');
+        {% if i.user.get_profile.annon == "Public" %}
+        data.setCell(counter, 1, '{{i.user.username}}');
+        {% else %}
+        data.setCell(counter, 1, "Anonymous");
+        {% endif %}
+        data.setCell(counter, 2, '{{i.pbfc}}');
+        {% endfor %}
+        
+        var table = new google.visualization.Table(document.getElementById('male_table_div'));
+
+        table.draw(data, {width: 470, showRowNumber: false});
+      }
+    </script>
+    
+    
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['table']});
+      google.setOnLoadCallback(drawTable);
+      function drawTable() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('number', 'Rank');
+        data.addColumn('string', 'Name');
+        data.addColumn('string', 'Percent Change');
+        data.addRows({{femalerank_length}});
+        {% for i in femalerank %}
+        var counter = {{forloop.counter0}}
+        data.setCell(counter, 0, {{i.rank}}, '{{i.rank}}');
+        {% if i.user.get_profile.annon == "Public" %}
+        data.setCell(counter, 1, '{{i.user.username}}');
+        {% else %}
+        data.setCell(counter, 1, "Anonymous");
+        {% endif %}
+        data.setCell(counter, 2, '{{i.pbfc}}');
+        {% endfor %}
+        
+        var table = new google.visualization.Table(document.getElementById('female_table_div'));
+
+        table.draw(data, {width: 470, showRowNumber: false});
+      }
+    </script>
+    
+{% endblock %}
+
+{% block left %}
+<h2>Other Rankings</h2>
+
+<ul>
+    <li><a href="/rankings/coaches/">The Coaches Poll</a></li>
+    <li><a href="/rankings/points/">Ranking by Points</a></li>
+    <li><a href="/rankings/bodyfatpercentchange/">Ranking by &#37; Body Fat Change</a></li>
+</ul>
+{% endblock %}
+
+{%block middle %}
+
+    <h3>Male &#37; Body Fat Change Rank</h3>
+     <div id="male_table_div"></div>
+    <h3>Female &#37; Body Fat Change Rank</h3>
+     <div id="female_table_div"></div>
+
+{% endblock %}

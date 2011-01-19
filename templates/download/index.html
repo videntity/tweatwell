@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block extra_head %}
+
+
+{% endblock %}
+
+{% block featureBox %}
+   
+    <h2>Download:</h2>
+    {% if user.is_authenticated %}
+    <ul>
+    <li><a href=/download/all/download_zip>Download everything as zip file(.zip)</a></li>
+    <li><a href=/download/all/download_tar_gz>Download everything as a gziped tar file. A.k.a 'tarball'(.tar.gz)</a></li>
+    </ul>
+    {% endif %} 
+    	
+{% endblock %}

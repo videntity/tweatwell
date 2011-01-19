@@ -1,0 +1,7 @@
+Your account was created but must be activated with the link below.
+
+Please visit http://127.0.0.1:8000/accounts/activate/{{ activation_key }} to activate your account.
+
+Montani Semper Liberi,
+
+physique7.com

@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+{% block extra_head %}
+
+
+{% endblock %}
+
+{% block featureBox %}
+    
+    {% if user.is_authenticated %}
+    {% load avatar_tags %}
+    <div id="avatar">
+    {% avatar user %}
+    </div><!-- avatar -->
+    
+    <div id="status">
+    Status: 
+    <i>{{all.status}}</i>
+    </div><!-- status -->
+    
+    <div id="checkin">
+  
+    <form enctype="multipart/form-data" action="/upload/ci/{{user.username}}/" method="POST">
+    <label for="id_ci">What did you eat? +2:</label> <input type="text" name="ci" id="id_ci" /></p>
+
+        <input type="submit" value="Check In" />
+        </form>
+      </div><!-- checkin -->
+
+<div id="veggie">
+    <li>
+    <form enctype="multipart/form-data" action="/upload/veg/{{user.username}}/" method="POST">
+    <label for="id_wt">Veggies:+4</label> <input type="text" name="vg" id="id_vg" />
+        <input type="submit" value="Check In" />
+    </form>
+    </li>
+</div><!-- veggie -->
+
+
+<div id="fruit">
+    <li>
+    <form enctype="multipart/form-data" action="/upload/fruit/{{user.username}}/" method="POST">
+    <label for="id_wt">Fruit:+4</label> <input type="text" name="fruit" id="id_fruit" />
+        <input type="submit" value="Check In" />
+    </form>
+    </li>
+</div><!-- fruit -->
+
+
+<div id="water">
+    <li>
+    <form enctype="multipart/form-data" action="/upload/water/{{user.username}}/" method="POST">
+    <label for="id_water">Enter Water:+4</label> <input type="text" name="water" id="id_water" />
+        <input type="submit" value="Check In" />
+    </form>
+    </li>
+</div><!-- water -->
+    
+<div id="beer"> 
+    <li>
+    <form enctype="multipart/form-data" action="/upload/beer/{{user.username}}/" method="POST">
+    <label for="id_beer">Alchohol +1:</label> <input type="text" name="beer" id="id_beer" />
+        <input type="submit" value="Check In" />
+    </form>
+    </li>
+</div><!-- beer -->
+    
+<div id="junk"> 
+    <li>
+    <form enctype="multipart/form-data" action="/upload/junk/{{user.username}}/" method="POST">
+    <label for="id_junk">Junk Food +1:</label> <input type="text" name="junk" id="id_junk" />
+        <input type="submit" value="Check In" />
+    </form>
+    </li>
+</div><!-- junk -->
+    
+    
+    <div id="dashboard">
+    Dashboard:
+    <ul>
+    <li>Checkins: {{all.checkins}}</li>
+    <li>Points: {{all.points}} </li>
+   
+    
+    
+
+    
+
+    
+    <li>
+    <form enctype="multipart/form-data" action="/upload/pbf/{{user.username}}/" method="POST">
+    <label for="id_pbf">Enter Percent Body Fat:</label> <input type="text" name="pbf" id="id_pbf" />
+        <input type="submit" value="Check In" />
+    </form>
+    </li>
+    
+    
+    
+    </ul>
+    </div><!-- dashboard -->
+     
+    </div><!-- left -->
+    
+    <div id="middle">
+    
+    
+    <h1>
+    Rankings:
+    </h1>
+    <ul>
+    
+    <li>Coaches Poll: You are in {{all.coachespoll}} place.</li>
+
+    </ul>
+    
+    <div id="public_feed">
+    
+    <h1>Public Feed:</h1>
+    
+      <ul>
+      {% for i in ci %}
+        {% if i.display_status %}
+         <li> {{i.display_status}} {{i.id}}
+       <i> from {{i.display_name}}</i>
+        <form enctype="multipart/form-data" action="/upload/comment/{{user.username}}/" method="POST">
+        <label for="id_ci">Comment:</label> 
+        <input type="text" name="ci" id="id_ci">
+        <input id="id_idr" name="idr" type="hidden" value={{i.id}} >
+        <input type="submit" value="Comment" >
+    </form>
+      
+      </li>
+      {% endif %}
+      {% endfor %} 
+    </ul>
+  </div><!-- public feed -->
+    {% else%}
+    
+    <div id="public_feed_nologin">
+    <h1>Public Feed:</h1>
+    
+      {% for i in ci %}
+        {% if i.display_status %}
+          {{i.display_status}}
+        {% endif %}
+      - <i>from {{i.subj}}</i><br>
+      {% endfor %} 
+    
+    </div><! -- public_feed_nologin -->
+    {% endif %}
+    
+    
+    
+{% endblock %}

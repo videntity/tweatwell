@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block featureBox %}
+<div id="featureBox">
+	<h2>Register</h2>
+	<p>Registration is temporarily closed</p>
+	{% comment %}
+		<form action="." method="POST">
+			<fieldset>
+				{{ form.as_p }}
+				<input type="submit" value="Register" class="submit" />
+			</fieldset>
+		</form>
+		<p id="warning">
+			NOTICE: tweatwell is in beta and by signing up you
+			are agreeing to the <a HREF=http://videntity.com/tos.html>terms of service</a>.
+	{% endcomment %}
+</div>
+{% endblock %}

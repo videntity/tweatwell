@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block extra_head %}
+
+{% endblock %}
+
+{% block featureBox %}
+    <h2>RawData:</h2>
+    {% if user.is_authenticated %}
+    <ul>
+    <li><a HREF="/rawdata/all/{{ user.username }}/">All</a> The whole enchalada!</li>  
+    <li><a HREF="/rawdata/bp/{{ user.username }}/">Blood Pressure</a></li>
+    <li><a HREF="/rawdata/wt/{{ user.username }}/">Weight</a></li>
+    <li><a HREF="/rawdata/spd/{{ user.username }}/">Steps Per Day</a></li>
+    </ul>
+    <i>Note:  If you just want to download all of your data, then use the
+    <a href=/download/>download<a/> page.
+    You can also query the underlying RESTcat object server directly via its RESTful API.
+    If you're doing research, this is probably what you'll want to do as it will give
+    you more control over the data sets your create. These raw data resources are
+    provided here as a convenience. 
+    </i>
+    {% endif %} 
+    	
+{% endblock %}

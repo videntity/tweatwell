@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block left %}
+
+<p>
+<h3>User: </h3><br></br> <h4> {{ user.username }}</h4>
+</p>
+
+<p>
+<h3>Name: </h3><br></br> <h4> {{ user.first_name }} {{ user.last_name }}</h4>
+</p>
+
+<p>
+<h3>Email: </h3><br></br> <h4> {{ user.email }}</h4>
+</p>
+
+{% endblock %}
+
+{% block middle %}
+
+  {% if updated %}
+  <h3>Account settings updated successfully!</h3>
+  {% endif %}
+  
+  {% if form.errors %}
+      <p class="error">Oops! Please correct the errors in the form below.</p>
+  {% endif %}
+  
+  <form action="." method="POST">
+    {{ form.as_p }}
+    <input type="submit" name="update" />
+  </form>
+
+{% endblock %}

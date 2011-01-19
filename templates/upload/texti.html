@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block extra_head %}
+
+{% endblock %}
+
+{% block middle %}
+
+    <h2>Message:</h2>
+            <form enctype="multipart/form-data" action="." method="POST">
+            
+            {% if form.errors %}
+            <p class="error">Please correct the errors below.</p>
+            {% endif %}
+            
+            {% if error %}
+                <p class="error">ERROR: {{error}}</p>
+            {% endif %}
+            
+            {{ form.as_p }}
+        <input type="submit" value="Share" />
+        </form>
+    
+{% endblock %}
+

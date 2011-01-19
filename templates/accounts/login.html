@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+
+{% block left %}
+<div id="featureBox">
+  {% if form.errors %}
+    <p class="error">Sorry, that's not a valid username or password</p>
+  {% endif %}
+
+  <form action='.' method='POST'>
+      <label for="username">User name:</label>
+      <input type="text" name="username" value="" id="username">
+      <br>
+      <label for="password">Password:</label>
+      <input type="password" name="password" value="" id="password">
+      <br>
+      <input type="submit" value="login" />
+      <input type="hidden" name="next" value="{{ next|escape }}" />
+  </form>
+</div>
+{% endblock %}
+
+{% block middle %}
+<p>A. Physique7 is the new take on what was formerly known as Body for Break. This
+revamped body transformation contest is determined to get you pumped up, leaned
+out, and looking good while still encouraging healthy lifestyle choices. Give us
+7 weeks of total dedication and we will give you a physique to be proud of. </p>
+
+
+
+{% endblock %}

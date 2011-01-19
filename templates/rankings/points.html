@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block extra_head %}
+<script type='text/javascript' src='https://www.google.com/jsapi'></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['table']});
+      google.setOnLoadCallback(drawTable);
+      function drawTable() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('number', 'Rank');
+        data.addColumn('number', 'Points');
+        data.addColumn('string', 'Name');
+        data.addRows({{prlength}});
+        {% for i in pr %}
+        var counter = {{forloop.counter0}}
+        data.setCell(counter, 0, {{i.rank}}, '{{i.rank}}');
+        data.setCell(counter, 1, {{i.points}}, '{{i.points}}');
+        {% if i.user.get_profile.annon == "Public" %}
+        data.setCell(counter, 2, '{{i.user.username}}');
+        {% else %}
+        data.setCell(counter, 2, "Anonymous");
+        {% endif %}
+        {% endfor %}
+        
+        var table = new google.visualization.Table(document.getElementById('pointstable_div'));
+
+        table.draw(data, {width: 470, showRowNumber: false});
+      }
+    </script>
+
+{% endblock %}
+
+{% block left %}
+<h2>Other Rankings</h2>
+
+<ul>
+    <li><a href="/rankings/coaches/">The Coaches Poll</a></li>
+    <li><a href="/rankings/points/">Ranking by Points</a></li>
+    <li><a href="/rankings/bodyfatpercentchange/">Ranking by &#37; Body Fat Change</a></li>
+</ul>
+{% endblock %}
+
+{%block middle %}
+
+    <h3>Rankings by Points</h3>
+    <p>These rankings combine male and female</p>
+
+    <div id="pointstable_div"></div>
+    
+{% endblock %}

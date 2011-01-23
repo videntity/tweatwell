@@ -136,9 +136,9 @@ EMAIL_HOST_PASSWORD='mypassword'
 
 
 #RESTCat Settings
-RESTCAT_SERVER="http://127.0.0.1:8000/"
+RESTCAT_SERVER="http://restcat.tweatwell.com:80/"
 RESTCAT_USER="tweatwellapp"
-RESTCAT_PASS="password"
+RESTCAT_PASS="password1"
 RESTCAT_USER_EMAIL="tweatwellapp@videntity.com"
 DEFAULT_TRANSACTION_TIMEZONE_OFFSET=-5
 

@@ -138,14 +138,12 @@ class AJAXOMHEUploadForm(forms.Form):
     texti = forms.CharField(label="OMHE Message")
      
     def save(self, user):
-        print "here"
         responsedict={}
         omhe_str=self.cleaned_data['texti']
         """ Instantiate an instance of the OMHE class"""
         o = parseomhe()
         """Parse it if valid, otherwise raise the appropriate  error"""
         d=o.parse(omhe_str)
-        print d
         u=User.objects.get(username=user)
         user_email=str(u.email)
         responsedict=uploadOMHE2restcatdict(d, settings.RESTCAT_USER, settings.RESTCAT_PASS, user_email,

@@ -25,7 +25,8 @@ def home_index(request):
          'water': 0,
          'junk': 0,
          'protien': 0,
-         'starch': 0,
+         'drinks': 0,
+         'carb': 0,
          'dairy': 0,
          'pointspoll': 0,
          'coachespoll':0,
@@ -93,14 +94,17 @@ def home_index(request):
                         if j['omhe']=='ptn':	
                             all['protien']=all['protien']+1
                             
-                        if j['omhe']=='sch':	
-                            all['starch']=all['starch']+1
+                        if j['omhe']=='crb':	
+                            all['carb']=all['carb']+1
                             
-                        if j['omhe']=='junk':	
+                        if j['omhe']=='jnk':	
                             all['junk']=all['junk']+1
                             
                         if j['omhe']=='dry':	
                             all['dairy']=all['dairy']+1
+                        
+                        if j['omhe']=='drk':	
+                            all['drinks']=all['drinks']+1
 
                     if j.has_key('points'):
                         all['points']=all['points'] + j['points']

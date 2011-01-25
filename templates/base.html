@@ -18,12 +18,10 @@
 
 <body>
 		
-	<div id="wrapper">
-		
+	<div id="wrapper">		
 		<div id="masthead">
-		<a href="http://www.wvu.edu/" class="wvu"><img src="/site_media/img/wvu_logo.gif" alt="West Virginia University" border="0" /></a>
+			<a href="http://www.wvu.edu/" class="wvu"><img src="/site_media/img/wvu_logo.gif" alt="West Virginia University" border="0" /></a>
 			<ul class="meta">
-
 				<li class="first"><a href="http://www.wvu.edu/SiteIndex/">A-Z Index</a></li>
 				<li><a href="http://www.wvu.edu/CampusMap/">Campus Maps</a></li>
 				<li><a href="http://directory.wvu.edu/">Directory</a></li>
@@ -32,59 +30,56 @@
 			</ul>
 		</div>
 		
-		<div id="header">
-
-		<div id="top-nav">
-            
-            	<ul>
-				   <li class="first"><a href="/">Home</a></li>
-				   <li><a href="/rankings/">Rankings</a></li>
-				   <li><a href="/faq/">FAQs</a></li>
-				   <li><a href="/accounts/profile">Settings</a></li>
-				   <li><a href="/logout">Logout</a></li>
-				</ul>
-                
-			</div><!-- top-nav -->
-
-		</div>
+		<div id="header"><!-- header -->
+			<div class="span-6 first"><!-- header left -->
+		 		<a href="/"><img src="/site_media/img/tweatwell_logo.png" alt="Tweat well" /></a>
+			</div><!-- end of header left -->
+			
+			<div id="headermain"class="span-18 last"><!-- headermain --> 
+				<div id="nav"><!-- nav --> 
+					<ul>
+				   		<li class="first"><a href="/">Home</a></li>
+				   		<li><a href="/rankings/">Rankings</a></li>
+				   		<li><a href="/faq/">FAQs</a></li>
+				   		<li><a href="/accounts/profile">Settings</a></li>
+				   		<li><a href="/logout">Logout</a></li>
+					</ul>
+           		</div><!-- end of nav -->     			
+			</div><!-- end of headermain --> 
+		</div><!-- end of header  -->
 		
         <div id="leftmiddle">
         {% block leftmiddle %}
         {% endblock %}
         </div><!-- leftmiddle -->
         
-		<div id="left">
-		{%  block left  %}
-		{% endblock %}
-		</div><!-- left -->
+		<div id="left" class="span-6 first"><!-- left sidebar -->
+			{%  block left  %}
+			{% endblock %}
+		</div><!-- end of left sidebar-->
 		
-		<div id="middle">
-		{%  block middle  %}
-		{% endblock %}
-        </div><!-- middle -->
+		<div id="middle" class="span-12 " ><!-- middle -->
+			{%  block middle  %}
+			{% endblock %}
+        </div><!-- end of middle -->
 		
-		<div id="right">
-		{%  block right  %}
-            
-
-
-		{% endblock %}
-		</div><!-- right -->
+		<div id="right" class="span-6  last"><!-- right sidebar -->
+			{%  block right  %}
+			{% endblock %}
+		</div><!-- end of right sidebar -->
 	</div><!-- wrapper -->
 	
-	<div id="footer">
-    <div id="footer_nav">
-        <img src="/site_media/img/powered_by.gif" alt="Powered by"><br />
-        <ul>     
-        	<li><a id="restcat" href="http://github.com/aviars/RESTCat">RESTCat: The Enterprise Social Object Server</a></li>     
-            <li id="plus">plus</li>
-            <li><a id="videntity" href="http://www.videntity.com">Videntity Systems, Inc.</a></li>
-        </ul>
-    </div><!-- footer_nav -->
-
-        
+	<div id="footer"><!-- footer -->
+    	<div id="footer_nav"><!-- footer nav-->
+        	<img src="/site_media/img/powered_by.gif" alt="Powered by"><br />
+        	<ul>     
+        		<li><a id="restcat" href="http://github.com/aviars/RESTCat">RESTCat: The Enterprise Social Object Server</a></li>     
+            	<li id="plus">plus</li>
+            	<li><a id="videntity" href="http://www.videntity.com">Videntity Systems, Inc.</a></li>
+        	</ul>
+    	</div><!-- end of footer_nav -->        
 		<p>&#124; &copy;2011 Videntity Systems, Inc. &#124;</p>
-	</div>
+	</div><!-- end of footer -->
 	
 </body>
 </html>

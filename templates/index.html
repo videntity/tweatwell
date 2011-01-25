@@ -192,46 +192,13 @@
   </div>
   
   
-  <h3>Badges:</h3>
-  {% if user.get_profile.badge1 %}
-    badge1
-  {% else %}
-  no badge1
-  {% endif %}
-  
-  {% if user.get_profile.badge2 %}
-    badge2
-  {% else %}
-  no badge2
-  {% endif %}
-  
-    {% if user.get_profile.badge3 %}
-    badge3
-  {% else %}
-  no badge3
-  {% endif %}
-  
-    {% if user.get_profile.badge4 %}
-    badge4
-  {% else %}
-  no badge4
-  {% endif %}
-  
-    {% if user.get_profile.badge5 %}
-    badge5
-  {% else %}
-  no badge5
-  {% endif %}
-    <br>
+      
     
-     <h3>Awards:</h3>
-     {{ user.get_profile.veggie }}
-     {{ user.get_profile.fruit }}
-     {{ user.get_profile.water }}
     
     <div id="public_feed">
     
 <div class="tweatwellform">
+	<h2>What are you eating?</h2>
       <form action="/ajaxupload/omhe/{{user}}/" method="POST">
 	<textarea type="text" class="texti" id="texti" name="texti" style="font-size:10px; width:300px; height:75px; border:1px solid #58A0C8;"></textarea>	
 	    <br />
@@ -239,7 +206,7 @@
 	      </form>
     </div>
 
-<h3>Public Feed:</h3>
+<h3>New Tweats</h3>
     <div id="scroller">
     <ul id="scrollerul">
       {% for i in publicfeed %}
@@ -292,6 +259,46 @@
 
 
 {% block right %}
+
+ <h3>Awards:</h3>
+     {{ user.get_profile.veggie }}
+     {{ user.get_profile.fruit }}
+     {{ user.get_profile.water }}
+     
+     
+ <h3>Badges:</h3>
+  {% if user.get_profile.badge1 %}
+    badge1
+  {% else %}
+  no badge1
+  {% endif %}
+  
+  {% if user.get_profile.badge2 %}
+    badge2
+  {% else %}
+  no badge2
+  {% endif %}
+  
+    {% if user.get_profile.badge3 %}
+    badge3
+  {% else %}
+  no badge3
+  {% endif %}
+  
+    {% if user.get_profile.badge4 %}
+    badge4
+  {% else %}
+  no badge4
+  {% endif %}
+  
+    {% if user.get_profile.badge5 %}
+    badge5
+  {% else %}
+  no badge5
+  {% endif %}
+    <br />
+
+
 <div id="rank">
     <h3>Rankings:</h3>
     
@@ -323,9 +330,9 @@
     </li>
     </ul>
     </div><!-- rank -->
-    <h3>Coaches:</h3>
-            	<img src="/site_media/img/AppleAnnie.png" alt="AppleAnnie.png" />
-        	<img src="/site_media/img/BroccoliBob.png" alt="BroccoliBob.png" />
+    <h3>Judges</h3>
+        <img src="/site_media/img/AppleAnnie.png" alt="AppleAnnie.png" />
+        <img src="/site_media/img/BroccoliBob.png" alt="BroccoliBob.png" />
 		<img src="/site_media/img/DaikonDaisy.png" alt="DaikonDaisy.png" />
 		<img src="/site_media/img/KiwiKim.png" alt="KiwiKim.png" />
 		<img src="/site_media/img/PepperPete.png" alt="PepperPete.png" />

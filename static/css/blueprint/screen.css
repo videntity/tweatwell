@@ -15,7 +15,7 @@
 html {margin:0;padding:0;border:0;}
 body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, dialog, figure, footer, header, hgroup, nav, section {margin:0;padding:0;border:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline;}
 article, aside, dialog, figure, footer, header, hgroup, nav, section {display:block;}
-body {line-height:1.5;background:white;}
+body { background-repeat: repeat-x; line-height:1.5;}
 table {border-collapse:separate;border-spacing:0;}
 caption, th, td {text-align:left;font-weight:normal;float:none !important;}
 table, th, td {vertical-align:middle;}
@@ -31,7 +31,7 @@ h1, h2, h3, h4, h5, h6 {font-weight:normal;color:#111;}
 h1 {font-size:3em;line-height:1;margin-bottom:0.5em;}
 h2 {font-size:2em;margin-bottom:0.75em;}
 h3 {font-size:1.5em;line-height:1;margin-bottom:1em;}
-h4 {font-size:1.2em;line-height:1.25;margin-bottom:1.25em;}
+h4 {font-size:1.2em;line-height:1.25;margin-bottom:0.3em;}
 h5 {font-size:1em;font-weight:bold;margin-bottom:1.5em;}
 h6 {font-size:1em;font-weight:bold;}
 h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {margin:0;}
@@ -40,8 +40,8 @@ p {margin:0 0 1.5em;}
 p .left {margin:1.5em 1.5em 1.5em 0;padding:0;}
 .right {float:right !important;}
 p .right {margin:1.5em 0 1.5em 1.5em;padding:0;}
-a:focus, a:hover {color:#FFFF00;}
-a {color:#FFCC00;text-decoration:underline;}
+a:focus, a:hover {}
+a {}
 blockquote {margin:1.5em;color:#666;font-style:italic;}
 strong, dfn {font-weight:bold;}
 em, dfn {font-style:italic;}
@@ -269,8 +269,6 @@ hr.space {background:#fff;color:#fff;visibility:hidden;}
 
 
 /* Masthead aka WVU Header */
-
-
 #masthead {
 	height: 50px;
 	margin: 0px;
@@ -315,16 +313,15 @@ hr.space {background:#fff;color:#fff;visibility:hidden;}
 	margin-left: auto;
 }
 
-body {
-	background-image: url(/site_media/img/bg.png);
-	background-repeat: repeat-x;
-	background-color: #0f76b1;
+.wrapper-inner {
+	margin-top: -20px;
 }
 #header {
 }
 #headermain{
+	height: 287px;
 	background-position: 0px 0px;
-	background-image: url(/site_media/img/banner.png);
+	background-image: url(/site_media/img/tweatwell_banner.png);
 
 }
 #top-nav {
@@ -361,13 +358,59 @@ body {
 	border-left-style: none;
 }
 #left {
+	padding-bottom: 40px;
 	background-color: #fff;
-	
+	width:240px;
+	-moz-border-radius-topleft: 10px;
+	-moz-border-radius-topright: 0px;
+	-moz-border-radius-bottomright: 0px;
+	-moz-border-radius-bottomleft: 10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+	border-bottom-left-radius: 10px; 	
 }
-#right {
-background-color: #7d9702;
+.left-inner{
+	padding: 10px;
+}
+#middle {
+	padding-bottom: 40px;
+	background-color:#fff;
+	margin-left: 1px;
+	margin-right: 1px;
+	width:478px;
+	-moz-border-radius-topleft: 0px;
+	-moz-border-radius-topright: 0px;
+	-moz-border-radius-bottomright: 10px;
+	-moz-border-radius-bottomleft: 10px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;	
+}
+.middle-inner{
+	padding: 10px;
+}
 
+#right {
+	background-color: #7d9702;
+	color:#fff;
+	width:240px;
+	-moz-border-radius-topleft: 0px;
+	-moz-border-radius-topright: 10px;
+	-moz-border-radius-bottomright: 10px;
+	-moz-border-radius-bottomleft: 0px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 0px;
 	}
+.right-inner{
+	padding: 10px;
+}
+#right h1, #right h2, #right h3, #right h4, #right p{
+	color:#fff;
+}
 #left ul li {
 	list-style-type: none;
 }
@@ -388,7 +431,24 @@ background-color: #7d9702;
 	margin-top: 15px;
 }
 #checkin {
+	margin-bottom: 20px;
 	float: left;
+}
+#userpoints{
+	clear: both;	
+}
+#userpoints ul{
+	padding: 0px;
+	margin: 0px;
+}
+#userpoints ul li{
+	letter-spacing: 1px;
+	padding-bottom: 3px;
+	padding-top: 2px;
+	border-bottom-color: #597300;
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	list-style-type: none;
 }
 #cii, #wtt {
 	height: 25px;
@@ -453,6 +513,16 @@ background-color: #7d9702;
 	margin-bottom: 0px;
 	margin-left: 0px;
 }
+#awards{
+	margin-bottom: 20px;
+	clear: both;
+}
+
+#badges{
+	margin-bottom: 20px;
+	clear: both;
+}
+
 #container {
 	float: left;
 }
@@ -468,9 +538,9 @@ background-color: #7d9702;
 	list-style-type: none;
 	margin-bottom: 15px;
 }
-#middle {
-	background-color: fff;
-	
+#rank{
+	margin-top: 20px;
+	clear: both;
 }
 #rank  ul {
 	margin: 0px;
@@ -478,36 +548,45 @@ background-color: #7d9702;
 	float: left;
 }
 #rank  ul  li {
+	border-color: #476200;
+	border-width: 1px;
+	border-style: solid;
+	margin-right: 10px;
+	height: 98px;
+	width: 98px;
 	list-style-type: none;
 	float: left;
-	height: 150px;
-	width: 150px;
-	background-image: url(/site_media/img/rankbox.png);
-	background-repeat: no-repeat;
 	text-align: center;
 }
-#rank    h4  {
-	font-size: 4em;
-	color: #FFFFFF;
-	font-weight: bold;
-	padding: 0px;
-	margin-top: 25px;
-	margin-right: 0px;
-	margin-bottom: 15px;
-	margin-left: 0px;
-}
+
 #rank a {
+	color: #fce314;
 	text-decoration: none;
 }
-#rank p {
-	width: 120px;
-	padding-right: 15px;
-	padding-left: 15px;
+
+#rank h5{
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 4em;
 }
+
 #rank  ul  li.mid  {
 	margin-right: 10px;
 	margin-left: 10px;
 }
+#judges{
+	padding-top: 20px;
+	margin-bottom: 20px;
+	clear: both;
+}
+
+#judges img{
+	margin-bottom: 3px;
+	margin-right: 5px;
+}
+
 #public_feed {
 	float: left;
 	margin-top: 25px;
@@ -586,7 +665,7 @@ background-color: #7d9702;
 
 
 #scroller {
-	width: 450px;
+	width: 440px;
 	margin-top: 1em;
 	margin-right: 0;
 	margin-bottom: 1em;
@@ -597,28 +676,36 @@ background-color: #7d9702;
 }
 
 #scroller li {
-	margin-top: 0.25em;
-	margin-bottom: 0.25em;
+	border-bottom-color: #e6e6e6;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	margin-top: 0.45em;
+	margin-bottom: 0.45em;
 	padding-top: 0.5em;
 	padding-bottom: 0.5em;
-	width: 450px;
+	width: 440px;
 }
 
 
-.comment-container a { padding:3px; text-decoration:none; }
+.comment-container a { color: #698700; padding:3px; text-decoration:none; }
 .commentscroller {
+	margin-left: 0;
+	margin-right: 0;
 	list-style: none;
-	padding: 1em;
-	margin: 1em 0;
-	border:0 !important;
-	background:#58A0C8;
+	padding: 1em; !important;
 }
 
+.commentlink{
+	display: inline-block;
+	text-align: right;
+}
 .commentscroller li {
+	background-color: #fcffdb;
 	margin: 0 !important;
-	padding: 0 0 3px 1em !important;
-	color:#ddd;
+	padding: 0 0 10px 1em !important;
+	color: #b1b1b1;
 	border:0 !important;
+	 
 }
 
 .commentscroller li span { font-size:9px; }
@@ -627,3 +714,136 @@ background-color: #7d9702;
 #malecoachestable_div, #male_table_div {
 	margin-bottom: 35px;
 }
+
+.what {
+	margin-top: -70px;
+	color: #6a8800;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+}
+
+
+/* Forms
+/-------------------------------------------------------------- */
+/* Typography and backgrounds for all form buttons */
+form input.form-submit {
+  margin: 2px;
+  padding: 3px 5px;
+}
+
+/* Typography, background, borders, padding for form fields */
+input,
+select,
+textarea {
+	padding: 2px;
+	border-width: 1px;
+	border-style: solid;
+	background-color: #fff;
+	border-color: #c0c0c0;
+	-moz-border-radius: 5px;
+    border-radius: 5px; 
+}
+
+input{
+	padding: 2px;
+	border-width: 1px;
+	border-style: solid;
+	background-color: #e4e4e4;
+	border-color: #c0c0c0;
+	-moz-border-radius: 5px;
+    border-radius: 5px; 
+}
+
+
+
+/* Remove backgrounds and border on radios and checkboxes */
+.form-item .form-radio,
+.form-item .form-checkbox {
+  background: none;
+  border: none !important;
+}
+ form .texti{
+ 	background-color: fff;
+ 	width: 440px;
+ 	height:50px; 
+}
+
+
+.status{
+	color: #4c4c4c;
+	font-size: 1.3em;
+}
+
+.tweated{
+	color: #b3b3b3;
+}
+
+body{
+	background-color: #d1b11e;
+	background-repeat: repeat-x;
+	background-image: url(/site_media/img/bg.png);
+}
+.logo{
+	margin-top: 80px;
+}
+.newtweats{
+	border-bottom-color: #ebebeb;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	margin-bottom: 0px;
+	margin-top: 20px;
+	color: #3b3b3b;
+	font-size: 1.5em;
+	font-weight: bold;
+	padding-bottom: 0px;
+}
+
+#nav{
+	width: 240px;
+	margin-top: 265px;
+	margin-left: 479px;
+}
+#nav ul{
+	margin: 0px;
+	padding: 0px;
+}
+#nav ul li{
+	padding-right: 1px;
+	padding-left: 1px;
+	list-style-type: none;
+	float: left;
+	
+}
+
+#nav ul li a:link, #nav ul li a:visited{
+	text-decoration: none;
+	color: #6a8800;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	padding-right: 3px;
+	padding-left: 3px;
+	background-color: white;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	-moz-border-radius-bottomright: 0px;
+	-moz-border-radius-bottomleft: 0px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 0px;
+	border-bottom-left-radius: 0px; 
+}
+
+#nav ul li a:hover, #nav ul li a:active{
+	color: white;
+	background-color: #6a8800;
+}
+
+
+.foodicon{
+	display: inline;
+	float: left;
+	margin-right: 7px;
+	margin-bottom: 7px;
+	cursor: pointer;
+}
+

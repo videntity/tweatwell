@@ -32,13 +32,13 @@
 		
 		<div id="header"><!-- header -->
 			<div class="span-6 first"><!-- header left -->
-		 		<a href="/"><img src="/site_media/img/tweatwell_logo.png" alt="Tweat well" /></a>
+		 		<a href="/"><img src="/site_media/img/tweatwell_logo.png" alt="Tweat well" class="logo"/></a>
 			</div><!-- end of header left -->
 			
 			<div id="headermain"class="span-18 last"><!-- headermain --> 
-				<div id="nav"><!-- nav --> 
+				<div id="nav" class="span-6 first last"><!-- nav --> 
 					<ul>
-				   		<li class="first"><a href="/">Home</a></li>
+				   		<li><a href="/">Home</a></li>
 				   		<li><a href="/rankings/">Rankings</a></li>
 				   		<li><a href="/faq/">FAQs</a></li>
 				   		<li><a href="/accounts/profile">Settings</a></li>
@@ -53,20 +53,28 @@
         {% endblock %}
         </div><!-- leftmiddle -->
         
-		<div id="left" class="span-6 first"><!-- left sidebar -->
-			{%  block left  %}
-			{% endblock %}
-		</div><!-- end of left sidebar-->
-		
-		<div id="middle" class="span-12 " ><!-- middle -->
-			{%  block middle  %}
-			{% endblock %}
-        </div><!-- end of middle -->
-		
-		<div id="right" class="span-6  last"><!-- right sidebar -->
-			{%  block right  %}
-			{% endblock %}
-		</div><!-- end of right sidebar -->
+        <div class="wrapper-inner">        
+			<div id="left" class="span-6 first last"><!-- left sidebar -->
+				<div class="left-inner">
+					{%  block left  %}
+					{% endblock %}
+				</div>
+			</div><!-- end of left sidebar-->
+			
+			<div id="middle" class="span-12 first last" ><!-- middle -->
+				<div class="middle-inner">
+				{%  block middle  %}
+				{% endblock %}
+				</div>
+	        </div><!-- end of middle -->
+			
+			<div id="right" class="span-6 last"><!-- right sidebar -->
+				<div class="middle-inner">
+				{%  block right  %}
+				{% endblock %}
+				</div>
+			</div><!-- end of right sidebar -->
+		</div><!-- end of wrapper-inner -->
 	</div><!-- wrapper -->
 	
 	<div id="footer"><!-- footer -->

@@ -107,10 +107,8 @@
 				
 				return false;
 			});
-                });
-                  
+                });                  
                 
-  
 		</script>
 		
 		<!-- CHRISG: Added as of 01/07/11 -->
@@ -123,218 +121,223 @@
 			<script>
 		    $(document).ready(function(){
 		    	$('.comment-container a').click(function() { 
-		    			$('.commentform',$(this).parent()).fadeIn(600);
-		    			return false;
-				  })
+		    	$('.commentform',$(this).parent()).fadeIn(600);
+		    	return false;
+				})
 		    });
 	    </script>
     <!-- END CHRISG -->    
-{% endblock %}
+	{% endblock %}
     
     {% block left %}    
-    {% load avatar_tags %}
-    <div id="avatar">
-    <a href="http://en.gravatar.com/" style="border-style: none;">{% avatar user %}</a>
-    </div><!-- avatar -->
-    
-    <h3>{{ user.first_name }}</h3><br />
-    <div id="status"><p><i id="statustext">{{all.status}}</i></p></div>
-    
-  <br></br>
-  <br></br>
-  Fruits: {{all.fruit}}</br>
-  Vegetables: {{all.vegatble}}</br>
-  Carbohydrates: {{all.carb}}</br>
-  Dairy: {{all.dairy}}</br>
-  Proteins: {{all.protien}}</br>
-  Alcohol: {{all.alcohol}}</br>
-  Water: {{all.water}}</br>
-  Other Drinks: {{all.drinks}}</br>
-  Junk: {{all.junk}}</br>
-  Points: {{all.points}}</br>  
-    <div id="checkin">
-  <br></br>
-  <br></br> 
-<div id="veggie">
-<img src="/site_media/img/broccoli_small.gif" alt="Broccoli" border="0" />
-</div><!-- veggie -->
+        <div id="checkin">
+	        <h2>Check In</h2>
+				<div id="veggie" class="foodicon">
+					<img src="/site_media/img/broccoli_small.gif" alt="Broccoli" border="0" />
+				</div><!-- veggie -->
+				<div id="fruit" class="foodicon">
+					<img src="/site_media/img/fruit_small.gif" alt="Fruit" border="0" />
+				</div><!-- fruit -->
+				<div id="water" class="foodicon last">
+					<img src="/site_media/img/water_small.gif" alt="Water" border="0" />
+				</div><!-- water -->			  
+				<div id="beer" class="foodicon"> 
+				   <img src="/site_media/img/beer_small.gif" alt="Alcohol" border="0" />
+				</div><!-- beer -->			    
+				<div id="junk" class="foodicon"> 
+				   <img src="/site_media/img/pizza_small.gif" alt="Junk" border="0" />
+				</div><!-- junk -->			
+      	</div><!-- checkin -->
+		<a href="http://sparkpeople.com" target="_blank"><img src="/site_media/img/sparkpeople_logo.png" alt="SparkPeople.com logo" border="0" /></a>
+		<hr />
+		<a href="http://twitter.com/#!/wellwvu" target="_blank"><img src="/site_media/img/twitter.png" alt="Twitter logo" border="0" /></a>
+		<a href="http://well.wvu.edu" target="_blank"><img src="/site_media/img/wellwvu-logo.gif" alt="Well WVU logo" border="0" /></a>
+            
+	{% endblock %} <!-- end left -->
+	
+	{% block middle %}  
+  	<div class="error-container"><!-- error container -->		
+    	<div class="errormessage">
+			<p class="error">Oops! I didn't understand that.</p>
+     	</div>
+  	</div><!-- end error container -->	
 
+    <div id="public_feed">  <!-- public feed -->	  
+		<div class="tweatwellform">
+			<h2 class="what">What are you eating?</h2>
+      		<form action="/ajaxupload/omhe/{{user}}/" method="POST">
+				<textarea type="text" class="texti" id="texti" name="texti" </textarea>	
+	    		<br />
+      			<input type="submit" value="Update" id="submittweatwelltextarea" />
+	      	</form>
+    	</div>
+		<h4 class="newtweats">New Tweats</h4>
+    	<div id="scroller">
+    		<ul id="scrollerul">
+      			{% for i in publicfeed %}
+        		{% if i.showme %}
+	    		<div name="topscroll" id="topscroll"></div>
+   				<li>{% if i.username %}
+					{% avatar i.username 45 %}
+					{% endif %}
+		    		<span class="status">{{i.display_status}} {{i.display_name}} </span> <br />
+		    		<span class="tweated">at {{ i.ev_dt|date:"h:i a D d M Y" }}</span>
+	    		</li>
+	    
+	   			 <div class="comment-container"><!-- comment-container -->	
+					<a href="#">Add Comment</a>
+					<div class="commentform">
+						<form action="/upload/comment/{{user}}/" method="POST">
+							<textarea name="ci"</textarea>
+							<input name="idr" type="hidden" value="{{i.id}}" />
+							<br />
+							<input type="submit" value="Submit Comment" />
+						</form>
+					</div>
 
-<div id="fruit">
-<img src="/site_media/img/fruit_small.gif" alt="Fruit" border="0" />
-</div><!-- fruit -->
-
-
-<div id="water">
-<img src="/site_media/img/water_small.gif" alt="Water" border="0" />
-</div><!-- water -->
-  
-<div id="beer"> 
-   <img src="/site_media/img/beer_small.gif" alt="Alcohol" border="0" />
-</div><!-- beer -->
+				      <ul class="commentscroller">
+						    {% for j in commentslist %}
+									{% if j.idr == i.id %}		    
+				            <li>
+				              {% if j.username %}
+				                {% avatar j.username 35 %}
+				              {% endif %}
+				              
+				              {{j.display_status}} {{i.display_name}} <span>({{ i.ev_dt|date:"h:ia m/d/y" }})</span>
+				              
+				            </li>
+									{% endif %}     
+						    {% endfor %} 
+				      </ul>
+      				</div><!-- end comment-container -->	
     
-<div id="junk"> 
-   <img src="/site_media/img/pizza_small.gif" alt="Junk" border="0" />
-</div><!-- junk -->
-      </div><!-- checkin -->
-
-    
-    
-    
-{% endblock %} <!-- end left -->
-
-{% block middle %}
-  
-  <div class="error-container">		
-      <div class="errormessage">
-	<p class="error">Oops! I didn't understand that.</p>
-      </div>
-  </div>
-  
-  
-      
-    
-    
-    <div id="public_feed">
-    
-<div class="tweatwellform">
-	<h2>What are you eating?</h2>
-      <form action="/ajaxupload/omhe/{{user}}/" method="POST">
-	<textarea type="text" class="texti" id="texti" name="texti" style="font-size:10px; width:300px; height:75px; border:1px solid #58A0C8;"></textarea>	
-	    <br />
-      <input type="submit" value="Post" id="submittweatwelltextarea" />
-	      </form>
-    </div>
-
-<h3>New Tweats</h3>
-    <div id="scroller">
-    <ul id="scrollerul">
-      {% for i in publicfeed %}
-        {% if i.showme %}
-	    <div name="topscroll" id="topscroll"></div>
-    
-	    <li> {% if i.username %}
-		{% avatar i.username 45 %}
-		{% endif %}
-	    {{i.display_status}} {{i.display_name}} {{ i.ev_dt|date:"h:ia D d M Y" }} </i>
-	    <div class="comment-container">
-		    <a href="#">Add Comment</a>
-		
-				<div class="commentform">
-					<form action="/upload/comment/{{user}}/" method="POST">
-					    <textarea name="ci" style="font-size:10px; width:300px; height:75px; border:1px solid #58A0C8;"></textarea>
-						  <input name="idr" type="hidden" value="{{i.id}}" />
-						  <br />
-						  <input type="submit" value="Submit Comment" />
-					</form>
-				</div>
-
-	      <ul class="commentscroller">
-			    {% for j in commentslist %}
-						{% if j.idr == i.id %}		    
-	            <li>
-	              {% if j.username %}
-	                {% avatar j.username 35 %}
-	              {% endif %}
-	              
-	              {{j.display_status}} {{i.display_name}} <span>({{ i.ev_dt|date:"h:ia m/d/y" }})</span>
-	              
-	            </li>
-						{% endif %}     
-			    {% endfor %} 
-	      </ul>
-      </div>
-    
-	  </li>
-	{% endif %}
-      {% endfor %} 
-    </ul>
-    
-
-  </div><!-- scroller -->
+					  </li>
+						{% endif %}
+				      	{% endfor %} 
+				    </ul>		   		
+		  </div><!-- end scroller -->
         
-  </div><!-- public_feed -->
+ 	 </div><!-- public_feed -->
 
-{% endblock %} <! -- end of middle -->
+	{% endblock %} <! -- end of middle -->
 
-
-{% block right %}
-
- <h3>Awards:</h3>
-     {{ user.get_profile.veggie }}
-     {{ user.get_profile.fruit }}
-     {{ user.get_profile.water }}
+	{% block right %}
+	<div id="awards"><!-- awards -->
+		 <h4>Awards:</h4>
+		     {{ user.get_profile.veggie }}
+		     {{ user.get_profile.fruit }}
+		     {{ user.get_profile.water }}
+	</div><!-- end awards -->
      
-     
- <h3>Badges:</h3>
-  {% if user.get_profile.badge1 %}
-    badge1
-  {% else %}
-  no badge1
-  {% endif %}
-  
-  {% if user.get_profile.badge2 %}
-    badge2
-  {% else %}
-  no badge2
-  {% endif %}
-  
-    {% if user.get_profile.badge3 %}
-    badge3
-  {% else %}
-  no badge3
-  {% endif %}
-  
-    {% if user.get_profile.badge4 %}
-    badge4
-  {% else %}
-  no badge4
-  {% endif %}
-  
-    {% if user.get_profile.badge5 %}
-    badge5
-  {% else %}
-  no badge5
-  {% endif %}
-    <br />
-
-
-<div id="rank">
-    <h3>Rankings:</h3>
+     <div id="badges"><!-- badges -->
+		 <h4>Badges:</h4>
+		  {% if user.get_profile.badge1 %}
+		    <img src="/site_media/img/badge1.png" alt="Badge Star" border="0" />
+		  {% else %}
+		  	<img src="/site_media/img/badge1-1.png" alt="Badge Star" border="0" />
+		  {% endif %}
+		  
+		  {% if user.get_profile.badge2 %}
+		    <img src="/site_media/img/badge2.png" alt="Badge 10" border="0" />
+		  {% else %}
+		  	<img src="/site_media/img/badge2-1.png" alt="Badge 10" border="0" />
+		  {% endif %}
+		  
+		  {% if user.get_profile.badge3 %}
+		    <img src="/site_media/img/badge3.png" alt="Badge 25" border="0" />
+		  {% else %}
+		  	<img src="/site_media/img/badge3-1.png" alt="Badge 25" border="0" />
+		  {% endif %}
+		  
+		  {% if user.get_profile.badge4 %}
+		    <img src="/site_media/img/badge4.png" alt="Badge 50" border="0" />
+		  {% else %}
+		  	<img src="/site_media/img/badge4-1.png" alt="Badge 50" border="0" />
+		  {% endif %}
+		  
+		  {% if user.get_profile.badge5 %}
+		    <img src="/site_media/img/badge5.png" alt="Badge Calendar" border="0" />
+		  {% else %}
+		  	<img src="/site_media/img/badge5-1.png" alt="Badge Calendar" border="0" />
+		  {% endif %}
+		  {% if user.get_profile.badge6 %}
+		    <img src="/site_media/img/badge6.png" alt="Badge Flag" border="0" />
+		  {% else %}
+		  	<img src="/site_media/img/badge6-1.png" alt="Badge Flag" border="0" />
+		  {% endif %}
+		  {% if user.get_profile.badge7 %}
+		    <img src="/site_media/img/badge7.png" alt="Badge 7" border="0" />
+		  {% else %}
+		  	<img src="/site_media/img/badge7-1.png" alt="Badge 7" border="0" />
+		  {% endif %}
+		  {% if user.get_profile.badge8 %}
+		    <img src="/site_media/img/badge8.png" alt="Badge 8" border="0" />
+		  {% else %}
+		  	<img src="/site_media/img/badge8-1.png" alt="Badge 8" border="0" />
+		  {% endif %}
+		  
+		</div><!-- end badges -->
     
-    <ul>
-    
-    {% if all.gender = "male" %}
-    <li>
-        {% if all.coachespoll %}
-        <h4><a HREF='/rankings/coaches/'>{{all.coachespoll}}</a></h4>
-                    {% else %}
-                    <h4><a HREF='/rankings/coaches/'>U</a></h4>
-                    {% endif %}
-		    <p>Coaches Poll</p>
-	</li>
-    
+    		
+		    {% load avatar_tags %}
+		    <div id="avatar"><!-- avatar -->
+		    	<a href="http://en.gravatar.com/" style="border-style: none;">{% avatar user %}</a>
+		    </div>	<!-- end avatar -->	    
+		    	<h3>{{ user.first_name }}</h3>
+		    
+		    		    
+		    <div id="status">
+		    	<p><i id="statustext">{{all.status}}</i></p>
+		    </div>
+		    
+		    <div id="userpoints">
+  				<ul>
+				  <li>Fruits: {{all.fruit}}</li>
+				  <li>Vegetables: {{all.vegatble}}</li>
+				  <li>Carbohydrates: {{all.carb}}</li>
+				  <li>Dairy: {{all.dairy}}</li>
+				  <li>Proteins: {{all.protien}}</li>
+				  <li>Alcohol: {{all.alcohol}}</li>
+				  <li>Water: {{all.water}}</li>
+				  <li>Other Drinks: {{all.drinks}}</li>
+				  <li>Junk: {{all.junk}}</li>
+				  <li><strong>Points: {{all.points}} </strong></li>
+			  	</ul>			  
+			 </div> 
 
-    {% endif %}
-    
-
-    <!--Points are not gender specific-->
-    <li>
-    <h4>{% if all.pointspoll %}
-            <a HREF='/rankings/points/'>{{all.pointspoll}}</a></h4>
-                    {% else %}
-                    <h4><a HREF='/rankings/points/'>U</a></h4>
-                    {% endif %}
-		    <p>Points</p>
-
-    </li>
-    </ul>
-    </div><!-- rank -->
-    <h3>Judges</h3>
-        <img src="/site_media/img/AppleAnnie.png" alt="AppleAnnie.png" />
-        <img src="/site_media/img/BroccoliBob.png" alt="BroccoliBob.png" />
-		<img src="/site_media/img/DaikonDaisy.png" alt="DaikonDaisy.png" />
-		<img src="/site_media/img/KiwiKim.png" alt="KiwiKim.png" />
-		<img src="/site_media/img/PepperPete.png" alt="PepperPete.png" />
-		<img src="/site_media/img/WatermelonWendy.png" alt="WatermelonWendy.png" />
-{% endblock %} <! -- end of right-->
+			<div id="rank"><!-- rank -->
+	    		<h4>Rankings:</h4>	    
+	    		<ul>	    
+	    			{% if all.gender = "male" %}
+	    			<li>
+	        		{% if all.coachespoll %}
+	        			<h5><a HREF='/rankings/coaches/'>{{all.coachespoll}}</a></h5>
+	                    {% else %}
+	        			<h5><a HREF='/rankings/coaches/'>U</a></h5>
+	                {% endif %}
+						<p>Coaches Poll</p>
+					</li>
+	    	
+	    			{% endif %}
+	    	
+	    		<!--Points are not gender specific-->
+	    			<li>
+	    				<h5>{% if all.pointspoll %}
+	           			 <a HREF='/rankings/points/'>{{all.pointspoll}}</a></h5>
+	                    {% else %}
+	                    <h5><a HREF='/rankings/points/'>U</a></h5>
+	                    {% endif %}
+			    		<p>Points</p>	
+	    			</li>
+	    		</ul>
+	    	</div><!-- end rank -->
+    		<div id="judges"><!-- judges -->
+    			<h4>Judges</h4>
+		        <img src="/site_media/img/AppleAnnie.png" alt="AppleAnnie.png" />
+		        <img src="/site_media/img/BroccoliBob.png" alt="BroccoliBob.png" />
+				<img src="/site_media/img/DaikonDaisy.png" alt="DaikonDaisy.png" />
+				<img src="/site_media/img/KiwiKim.png" alt="KiwiKim.png" />
+				<img src="/site_media/img/PepperPete.png" alt="PepperPete.png" />
+				<img src="/site_media/img/WatermelonWendy.png" alt="WatermelonWendy.png" />				
+			</div><!-- end judges -->
+	{% endblock %} <! -- end of right-->

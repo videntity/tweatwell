@@ -21,8 +21,6 @@ class RegistrationForm(RegistrationFormUniqueEmail):
     email = forms.EmailField(max_length=75, label="Email*")
     first_name = forms.CharField(max_length=30, label="First Name*")
     last_name = forms.CharField(max_length=30, label="Last Name*")
-    mobile_phone_number = forms.CharField(max_length=15, required=False,
-                            label="Mobile Phone Number")
     gender =forms.TypedChoiceField(widget=forms.RadioSelect, label="Gender*", choices=gender_choices)
     classlevel=forms.TypedChoiceField(widget=forms.RadioSelect, label="Class*", choices=class_choices)
 
@@ -105,37 +103,6 @@ class RegistrationForm(RegistrationFormUniqueEmail):
         # Always return the cleaned data, whether you have changed it or
         # not.
         return data
-    
-    def clean_mobile_phone_number(self):
-        data = self.cleaned_data['mobile_phone_number']
-        newdata=""
-        l=['0','1','2','3','4','5','6','7','8','9']
-        for i in data:
-            if i in l:
-                newdata+=i
-        data=newdata
-        URL="%sapi/accounts/checkmobileexists/%s/" % (settings.RESTCAT_SERVER, data)
-        
-        user_and_pass="%s:%s" % (settings.RESTCAT_USER, settings.RESTCAT_PASS)
-        URL=str(URL)
-    
-        c = pycurl.Curl()
-        c.setopt(pycurl.URL, URL)
-        c.setopt(c.SSL_VERIFYPEER, False)
-        b = StringIO.StringIO()
-        c.setopt(pycurl.WRITEFUNCTION, b.write)
-        c.setopt(pycurl.FOLLOWLOCATION, 1)
-        c.setopt(pycurl.MAXREDIRS, 5)
-        c.setopt(pycurl.HTTPHEADER, ["Accept:"])
-        c.setopt(pycurl.USERPWD, user_and_pass)
-        c.perform()
-        httpcode=c.getinfo(c.HTTP_CODE)
-        if httpcode==200:
-            raise forms.ValidationError("Sorry this mobile phone number is already registered.")
-        
-        # Always return the cleaned data, whether you have changed it or
-        # not.
-        return data
 
     def save(self, profile_callback=None):
         new_user = RegistrationProfile.objects.create_inactive_user(
@@ -163,7 +130,7 @@ class RegistrationForm(RegistrationFormUniqueEmail):
                             gender=self.cleaned_data.get('gender', ""),
                             pin="1111",
                             birthdate="2010-01-01",
-                            mobile_phone_number=self.cleaned_data.get('mobile_phone_number', ""),
+                            mobile_phone_number="",
                             twitter=self.cleaned_data.get('twitter', ""),
                             )
         if r['code']!="200":

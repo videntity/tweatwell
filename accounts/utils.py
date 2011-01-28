@@ -19,7 +19,7 @@ def verify(verification_key):
 
 def create_restcat_user(username, password, first_name, last_name, email, height_in,
                         weight_goal, gender, pin, birthdate, 
-                        mobile_phone_number, twitter):
+                        twitter, mobile_phone_number=None):
     
     URL="%sapi/accounts/create/" % (settings.RESTCAT_SERVER)
     URL=str(URL)
@@ -40,8 +40,9 @@ def create_restcat_user(username, password, first_name, last_name, email, height
     post_dict['gender']=gender
     post_dict['pin']=pin
     post_dict['birthdate']=birthdate
-    post_dict['mobile_phone_number']=mobile_phone_number
     post_dict['twitter']=twitter
+    if mobile_phone_number:
+        post_dict['mobile_phone_number']=mobile_phone_number
 
 
     #print post_dict

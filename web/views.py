@@ -11,12 +11,15 @@ from accounts.models import UserProfile
 from web.utils import handle_uploaded_file, query_restcat
 from web.coachespoll.models import MaleCoachesPoll, FemaleCoachesPoll
 from web.pointsrank.models  import PointsRank
-
+from tweatwell.web.upload.forms import PickFruitForm, PickVeggieForm
 import datetime, os
 import pycurl
 import StringIO, json, types
 
 def home_index(request):
+    commentslist=[]
+    fruitform = PickFruitForm()
+    veggieform = PickVeggieForm()
     all={'checkins': 0,
          'points': 0,
          'fruit': 0,
@@ -176,6 +179,8 @@ def home_index(request):
             'commentslist':commentslist,
             'publicfeed': responsedict['bodylist'],
             'all': all,
+            'veggieform': veggieform,
+            'fruitform': fruitform,
              },
             context_instance = RequestContext(request),)    
         
@@ -183,7 +188,7 @@ def home_index(request):
     except:
         msg="""Something went wrong. HTTP/500."""
         error= msg + str(sys.exc_info())
-        #print error
+        print error
         return render_to_response(
             'index.html',
             {'error':error,

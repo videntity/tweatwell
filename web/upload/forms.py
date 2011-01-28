@@ -3,7 +3,7 @@ from tweatwell import settings
 import pycurl, StringIO
 from omhe.core.parseomhe import parseomhe
 from django.contrib.auth.models import User
-
+from tweatwell.web.upload.models import fruit_list, veg_list
 
 file_types_choices=(("pdf","pdf"),
                   ("ccr","ccr"),
@@ -36,6 +36,7 @@ file_types_choices=(("pdf","pdf"),
                   ("x10","x10"),
                   ("idc", "idc"),)
 
+
 class UploadFileForm(forms.Form):
     title = forms.CharField(max_length=50, label="Name for this File")
     file  = forms.FileField()
@@ -44,7 +45,11 @@ class UploadFileForm(forms.Form):
     tags  = forms.CharField(required=False, max_length=50, label="Tags (Seperated by commas)")
     password = forms.CharField(label='Password',max_length=50,widget=forms.PasswordInput(attrs={'size':'25'}),error_messages={'required': 'Please enter your password'})
     
+class PickFruitForm(forms.Form):
+    fruit = forms.TypedChoiceField(choices=fruit_list, label="Fruit")
 
+class PickVeggieForm(forms.Form):
+    vegetable = forms.TypedChoiceField(choices=veg_list, label="Vegetable")
 
 class BPUploadForm(forms.Form):
     

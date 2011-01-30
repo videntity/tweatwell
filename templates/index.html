@@ -189,9 +189,12 @@
       			{% for i in publicfeed %}
         		{% if i.showme %}
 	    		<div name="topscroll" id="topscroll"></div>
-   				<li>{% if i.username %}
-					{% avatar i.username 45 %}
-					{% endif %}
+   				<li>
+   					<span class="avatar_icon">
+	   					{% if i.username %}
+						{% avatar i.username 45 %}
+						{% endif %}
+					</span>
 		    		<span class="status">{{i.display_status}} {{i.display_name}} </span> <br />
 		    		<span class="tweated">at {{ i.ev_dt|date:"h:i a D d M Y" }}</span>
 	    		</li>
@@ -211,11 +214,13 @@
 						    {% for j in commentslist %}
 									{% if j.idr == i.id %}		    
 				            <li>
+				            <span class="avatar_icon">
 				              {% if j.username %}
 				                {% avatar j.username 35 %}
 				              {% endif %}
+				              </span>
 				              
-				              {{j.display_status}} {{i.display_name}} <span>({{ i.ev_dt|date:"h:ia m/d/y" }})</span>
+				              {{j.display_status}} {{i.display_name}} ({{ i.ev_dt|date:"h:ia m/d/y" }})
 				              
 				            </li>
 									{% endif %}     
@@ -234,59 +239,40 @@
 	{% endblock %} <! -- end of middle -->
 
 	{% block right %}
-	<div id="awards"><!-- awards -->
-		 <h4>Awards:</h4>
-		     {{ user.get_profile.veggie }}
-		     {{ user.get_profile.fruit }}
-		     {{ user.get_profile.water }}
-	</div><!-- end awards -->
+	
      
      <div id="badges"><!-- badges -->
 		 <h4>Badges:</h4>
 		  {% if user.get_profile.badge1 %}
-		    <img src="/site_media/img/badge1.png" alt="Badge Star" border="0" />
+		    <img src="/site_media/img/dean.png" alt="Dean" border="0" />
 		  {% else %}
-		  	<img src="/site_media/img/badge1-1.png" alt="Badge Star" border="0" />
+		  	<img src="/site_media/img/dean1.png" alt="Dean" border="0" />
 		  {% endif %}
 		  
 		  {% if user.get_profile.badge2 %}
-		    <img src="/site_media/img/badge2.png" alt="Badge 10" border="0" />
+		    <img src="/site_media/img/professor.png" alt="Professor" border="0" />
 		  {% else %}
-		  	<img src="/site_media/img/badge2-1.png" alt="Badge 10" border="0" />
+		  	<img src="/site_media/img/professor1.png" alt="Professor" border="0" />
 		  {% endif %}
 		  
 		  {% if user.get_profile.badge3 %}
-		    <img src="/site_media/img/badge3.png" alt="Badge 25" border="0" />
+		    <img src="/site_media/img/president.png" alt="President" border="0" />
 		  {% else %}
-		  	<img src="/site_media/img/badge3-1.png" alt="Badge 25" border="0" />
+		  	<img src="/site_media/img/president1.png" alt="President" border="0" />
 		  {% endif %}
 		  
 		  {% if user.get_profile.badge4 %}
-		    <img src="/site_media/img/badge4.png" alt="Badge 50" border="0" />
+		    <img src="/site_media/img/event.png" alt="Event" border="0" />
 		  {% else %}
-		  	<img src="/site_media/img/badge4-1.png" alt="Badge 50" border="0" />
+		  	<img src="/site_media/img/event1.png" alt="Event" border="0" />
 		  {% endif %}
 		  
 		  {% if user.get_profile.badge5 %}
-		    <img src="/site_media/img/badge5.png" alt="Badge Calendar" border="0" />
+		    <img src="/site_media/img/sparkpeople.png" alt="Spark People" border="0" />
 		  {% else %}
-		  	<img src="/site_media/img/badge5-1.png" alt="Badge Calendar" border="0" />
+		  	<img src="/site_media/img/sparkpeople1.png" alt="Spark People" border="0" />
 		  {% endif %}
-		  {% if user.get_profile.badge6 %}
-		    <img src="/site_media/img/badge6.png" alt="Badge Flag" border="0" />
-		  {% else %}
-		  	<img src="/site_media/img/badge6-1.png" alt="Badge Flag" border="0" />
-		  {% endif %}
-		  {% if user.get_profile.badge7 %}
-		    <img src="/site_media/img/badge7.png" alt="Badge 7" border="0" />
-		  {% else %}
-		  	<img src="/site_media/img/badge7-1.png" alt="Badge 7" border="0" />
-		  {% endif %}
-		  {% if user.get_profile.badge8 %}
-		    <img src="/site_media/img/badge8.png" alt="Badge 8" border="0" />
-		  {% else %}
-		  	<img src="/site_media/img/badge8-1.png" alt="Badge 8" border="0" />
-		  {% endif %}
+		 
 		  
 		</div><!-- end badges -->
     
@@ -304,52 +290,21 @@
 		    
 		    <div id="userpoints">
   				<ul>
-				  <li>Fruits: {{all.fruit}}</li>
-				  <li>Vegetables: {{all.vegatble}}</li>
-				  <li>Carbohydrates: {{all.carb}}</li>
-				  <li>Dairy: {{all.dairy}}</li>
-				  <li>Proteins: {{all.protien}}</li>
-				  <li>Alcohol: {{all.alcohol}}</li>
-				  <li>Water: {{all.water}}</li>
-				  <li>Other Drinks: {{all.drinks}}</li>
-				  <li>Junk: {{all.junk}}</li>
-				  <li><strong>Points: {{all.points}} </strong></li>
+				  <li>FRUITS: {{all.fruit}}</li>
+				  <li>VEGETABLES: {{all.vegatble}}</li>
+				  <li>WATER: {{all.water}}</li>
+				  <li>JUNK: {{all.junk}}</li>
+				  <li class="points"><strong>POINTS: {{all.points}} </strong></li>
 			  	</ul>			  
 			 </div> 
 
-			<div id="rank"><!-- rank -->
-	    		<h4>Rankings:</h4>	    
-	    		<ul>	    
-	    			{% if all.gender = "male" %}
-	    			<li>
-	        		{% if all.coachespoll %}
-	        			<h5><a HREF='/rankings/coaches/'>{{all.coachespoll}}</a></h5>
-	                    {% else %}
-	        			<h5><a HREF='/rankings/coaches/'>U</a></h5>
-	                {% endif %}
-						<p>Coaches Poll</p>
-					</li>
-	    	
-	    			{% endif %}
-	    	
-	    		<!--Points are not gender specific-->
-	    			<li>
-	    				<h5>{% if all.pointspoll %}
-	           			 <a HREF='/rankings/points/'>{{all.pointspoll}}</a></h5>
-	                    {% else %}
-	                    <h5><a HREF='/rankings/points/'>U</a></h5>
-	                    {% endif %}
-			    		<p>Points</p>	
-	    			</li>
-	    		</ul>
-	    	</div><!-- end rank -->
     		<div id="judges"><!-- judges -->
     			<h4>Judges</h4>
-		        <img src="/site_media/img/AppleAnnie.png" alt="AppleAnnie.png" />
-		        <img src="/site_media/img/BroccoliBob.png" alt="BroccoliBob.png" />
-				<img src="/site_media/img/DaikonDaisy.png" alt="DaikonDaisy.png" />
-				<img src="/site_media/img/KiwiKim.png" alt="KiwiKim.png" />
-				<img src="/site_media/img/PepperPete.png" alt="PepperPete.png" />
-				<img src="/site_media/img/WatermelonWendy.png" alt="WatermelonWendy.png" />				
+		        <img src="/site_media/img/judge_kiwi.gif" alt="Kiwi" />
+		        <img src="/site_media/img/judge_pepper.gif" alt="Pepper" />
+				<img src="/site_media/img/judge_apple.gif" alt="Apple" />
+				<img src="/site_media/img/judge_daikon.gif" alt="Daikon" />
+				<img src="/site_media/img/judge_gala.gif" alt="Gala" />
+				<img src="/site_media/img/judge_cherry.gif" alt="Cherry" />				
 			</div><!-- end judges -->
 	{% endblock %} <! -- end of right-->

@@ -675,7 +675,8 @@ hr.space {background:#fff;color:#fff;visibility:hidden;}
 	list-style-type: none;
 }
 
-#scroller li {
+#scroller ul li {
+	display: block;
 	border-bottom-color: #e6e6e6;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
@@ -683,32 +684,46 @@ hr.space {background:#fff;color:#fff;visibility:hidden;}
 	margin-bottom: 0.45em;
 	padding-top: 0.5em;
 	padding-bottom: 0.5em;
-	width: 440px;
 }
 
 
-.comment-container a { color: #698700; padding:3px; text-decoration:none; }
+.commentform li{
+}
+
+.commentform textarea{
+	width: 440px;
+	height: 50px;
+}
+
+.comment-container a { margin-top: -6px; display: inline-block; line-height: 10px; border-right-color: #dddddd; border-left-color: #dedede; border-bottom-color: #dfdfdf; border-right-width: 1px; border-right-style: solid; border-left-style: solid; border-bottom-style: solid; border-bottom-width: 1px; border-left-width: 1px; font-size: 11px; text-decoration: none; color: #698700; padding:3px; }
+
 .commentscroller {
 	margin-left: 0;
 	margin-right: 0;
 	list-style: none;
 	padding: 1em; !important;
+	width: 440px;
 }
 
 .commentlink{
 	display: inline-block;
 	text-align: right;
 }
-.commentscroller li {
-	background-color: #fcffdb;
-	margin: 0 !important;
-	padding: 0 0 10px 1em !important;
-	color: #b1b1b1;
-	border:0 !important;
-	 
+ul .commentscroller {
+	display: block;
 }
 
-.commentscroller li span { font-size:9px; }
+ul .commentscroller li{
+	width: 410px;
+	clear: both;
+	background-position: 0;
+	background-color: #fdffe1;
+	color: #8d8d8d;
+	padding-left: 30px;
+	display: block;
+	
+}
+
 .small-tab { width:80px; height:5px;padding:1px; background:#58A0C8; }
 
 #malecoachestable_div, #male_table_div {
@@ -751,7 +766,8 @@ input{
 	background-color: #e4e4e4;
 	border-color: #c0c0c0;
 	-moz-border-radius: 5px;
-    border-radius: 5px; 
+    border-radius: 5px;
+    cursor: pointer; 
 }
 
 
@@ -845,5 +861,17 @@ body{
 	margin-right: 7px;
 	margin-bottom: 7px;
 	cursor: pointer;
+}
+
+#topscroll li{
+	width: 410px;
+}
+
+.points{
+	color: #f7ec31;
+}
+
+.avataricon{
+	margin-right: 10px;
 }
 

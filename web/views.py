@@ -17,7 +17,7 @@ import pycurl
 import StringIO, json, types
 
 def home_index(request):
-   responsedict={}
+    responsedict={}
     commentslist=[]
     fruitform = PickFruitForm()
     veggieform = PickVeggieForm()

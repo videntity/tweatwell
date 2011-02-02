@@ -117,7 +117,8 @@
 	    		<div name="topscroll" id="topscroll"></div>
    				<li>
    					<span class="avatar_icon">
-	   					{% if i.username %}
+	   					{% load avatar_tags %}
+						{% if i.username %}
 						  {% avatar i.username 45 %}
 						{% endif %}
 					</span>

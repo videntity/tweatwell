@@ -97,6 +97,8 @@ urlpatterns = patterns('',
     url(r'^tupload/(?P<omheprefix>\w+)/(?P<user>\w+)/$', upload_texti, name="upload_texti"),
     url(r'^upload/ci/(?P<user>\w+)/$', upload_ci, name="upload_ci"),
     url(r'^ajaxupload/omhe/(?P<user>\w+)/$', upload_omhe_ajax, name="upload_omhe_ajax"),
+    url(r'^upload/omhe/(?P<user>\w+)/$', upload_omhe, name="upload_omhe"),
+    
     url(r'^upload/comment/(?P<user>\w+)/$', upload_comment, name="upload_comment"),
 
     url(r'^upload/error/(?P<code>\w+)/$', upload_error, name="upload_error"),

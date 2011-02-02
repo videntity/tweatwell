@@ -140,7 +140,7 @@ class AJAXWTUploadForm(forms.Form):
     
 class AJAXOMHEUploadForm(forms.Form):
     
-    texti = forms.CharField(label="OMHE Message")
+    texti = forms.CharField(label="texti")
      
     def save(self, user):
         responsedict={}
@@ -154,7 +154,7 @@ class AJAXOMHEUploadForm(forms.Form):
         responsedict=uploadOMHE2restcatdict(d, settings.RESTCAT_USER, settings.RESTCAT_PASS, user_email,
                                   settings.RESTCAT_USER_EMAIL,
                                   user_email, 2)
-        #print responsedict
+        print responsedict
         
         return responsedict
     
@@ -250,6 +250,27 @@ class CIUploadForm(forms.Form):
         ci=self.cleaned_data['ci']
         
         omhe_str="ci=%s" % (ci)
+        """ Instantiate an instance of the OMHE class"""
+        o = parseomhe()
+        """Parse it if valid, otherwise raise the appropriate  error"""
+        d=o.parse(omhe_str)
+        u=User.objects.get(username=user)
+        user_email=str(u.email)
+
+        responsedict=uploadOMHE2restcatdict(d, settings.RESTCAT_USER, settings.RESTCAT_PASS, user_email,
+                                  settings.RESTCAT_USER,
+                                  user_email, 3)
+        return responsedict
+
+
+
+class OMHEUploadForm(forms.Form):
+    texti = forms.CharField(label="texti")
+    
+    def save(self, user):
+        texti=self.cleaned_data['texti']
+        
+        omhe_str= texti
         """ Instantiate an instance of the OMHE class"""
         o = parseomhe()
         """Parse it if valid, otherwise raise the appropriate  error"""

@@ -34,80 +34,7 @@
 		$('#fruit').click(function() {
 		  $('#texti').val("fruit=1 #I ate ");
 		});
-		
-		
-		$('#submittweatwelltextarea').click(function() {
-		  var texti = $('#texti').val();
-		  console.log(texti);
-		  $.ajax({
-			  url: '/ajaxupload/omhe/{{user.username}}/',
-				      type: 'POST',
-				      data: {'texti': texti},
-				      error: function(result) {
-					      console.log("error");
-					      $('#loadingci').fadeOut(500, function() {
-						      $(this).remove();
-						      });
-					      $('.errormessage').fadeIn(600);
-					      return false;
-					      },
-				      success: function(result) {
-					      $('.errormessage').fadeOut(200);
-					      $('#loadingci').fadeOut(500, function() {
-						      $(this).remove();
-						      });
-					      var newupdate='{% load avatar_tags %}<li>{% avatar user 45 %}' + texti + ' {{ user.username }} - just now</i></li>';
-					      $('#texti').val("");
-						  
-					      //$('#scroller').prepend(newupdate);
-					      $('#topscroll').hide();
-					      $('#topscroll').prepend(newupdate).slideDown(700);
-
-					}
-				});
-				return false;
-		  
-		  
-                });
-		
-		
-		$('#submitci').click(function() {
-			$('#checkin').append('<img src="/site_media/img/loading.gif" alt="...Uploading" id="loadingci" />');
-			$('#statustext').remove();
-				var ci = $('#cii').val();
-				$.ajax({
-					url: '/ajaxupload/ci/{{user.username}}/',
-					type: 'POST',
-					data: 'ci=' + ci,
-					error: function(result) {
-						$('#cii').val("");
-						$('#loadingci').fadeOut(500, function() {
-							$(this).remove();
-							});
-						},
-					success: function(result) {
-						
-			    			$('#loadingci').fadeOut(500, function() {
-							$(this).remove();
-							});
-						var newupdate='{% load avatar_tags %}<li>{% avatar user 45 %} {{ user.username }} says:' + ci + '-  just now</i><form enctype=\"multipart/form-data\" action=\"/upload/comment/{{user.username}}\" method=\"POST\"><label for=\"id_ci\">Comment:</label> <input type=\"text\" name=\"ci\" id=\"id_ci\"><input id=\"id_idr\" name=\"idr\" type=\"hidden\" value=\"{{i.id}}\" ><input type=\"submit\" value=\"Comment\" ></form></li>';
-						$('#cii').val("");
-						    
-						
-						$('#statustext').remove();
-						$('#status').append('<i id="statustext">' + ci + '</i>');
-						
-						
-						//$('#scroller').prepend(newupdate);
-						$('#topscroll').hide();
-						$('#topscroll').prepend(newupdate).slideDown(700);
-
-					}
-				});
-				
-				return false;
-			});
-                });                  
+		           
                 
 		</script>
 		
@@ -175,15 +102,14 @@
   	</div><!-- end error container -->	
 
     <div id="public_feed">  <!-- public feed -->	  
-		<div class="tweatwellform">
+		<div action="/upload/omhe/{{user}}" method="POST" class="tweatwellform">
 			<h2 class="what">What are you eating?</h2>
-      		<form action="/ajaxupload/omhe/{{user}}/" method="POST">
-				<textarea type="text" class="texti" id="texti" name="texti" </textarea>	
-	    		<br />
-      			<input type="submit" value="Update" id="submittweatwelltextarea" />
+			<form id="submittweat">
+				<input type="text" class="texti" id="texti" name="texti" >
+      			<input type="submit" value="Update"  />
 	      	</form>
     	</div>
-		<h4 class="newtweats">New Tweats</h4>
+		<h4 class="newtweats">New Tweats:</h4>
     	<div id="scroller">
     		<ul id="scrollerul">
       			{% for i in publicfeed %}
@@ -192,7 +118,7 @@
    				<li>
    					<span class="avatar_icon">
 	   					{% if i.username %}
-						{% avatar i.username 45 %}
+						  {% avatar i.username 45 %}
 						{% endif %}
 					</span>
 		    		<span class="status">{{i.display_status}} {{i.display_name}} </span> <br />
@@ -202,17 +128,17 @@
 	   			 <div class="comment-container"><!-- comment-container -->	
 					<a href="#">Add Comment</a>
 					<div class="commentform">
-						<form action="/upload/comment/{{user}}/" method="POST">
+						<form action="/ajaxupload/comment/{{user}}/" method="POST">
 							<textarea name="ci"</textarea>
 							<input name="idr" type="hidden" value="{{i.id}}" />
-							<br />
-							<input type="submit" value="Submit Comment" />
+							<input type="submit" id="submitcomment" value="Submit Comment" />
 						</form>
 					</div>
+				 
 
 				      <ul class="commentscroller">
-						    {% for j in commentslist %}
-									{% if j.idr == i.id %}		    
+					{% for j in commentslist %}
+					  {% if j.idr == i.id %}		    
 				            <li>
 				            <span class="avatar_icon">
 				              {% if j.username %}
@@ -223,8 +149,8 @@
 				              {{j.display_status}} {{i.display_name}} ({{ i.ev_dt|date:"h:ia m/d/y" }})
 				              
 				            </li>
-									{% endif %}     
-						    {% endfor %} 
+					    {% endif %}     
+					{% endfor %} 
 				      </ul>
       				</div><!-- end comment-container -->	
     

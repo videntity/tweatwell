@@ -14,7 +14,7 @@ from tweatwell import settings
 import pycurl, StringIO
 
 class RegistrationForm(RegistrationFormUniqueEmail):
-    twitter = forms.CharField(max_length=100, label="Twitter ID*")
+    twitter = forms.CharField(max_length=100, required=False, label="Twitter ID")
     username = forms.CharField(max_length=30, label="Username*")
     password1 = forms.CharField(widget=forms.PasswordInput, max_length=30, label="Password*")
     password2 = forms.CharField(widget=forms.PasswordInput, max_length=30, label="Password (again) *")

@@ -69,6 +69,28 @@ def upload_wt(request, user):
                               context_instance = RequestContext(request),)
 
 
+
+@login_required
+def upload_omhe(request, user):
+    if request.method == 'POST':
+        form = OMHEUploadForm(request.POST)
+        if form.is_valid():            
+            responsedict=form.save(user)
+            if responsedict['code']==200:
+                return HttpResponseRedirect(reverse('home_index',
+                                            kwargs={'user': user}))
+            else:
+                return HttpResponseRedirect(reverse('upload_error',
+                                            kwargs={'code': code}))
+    else:
+        form = OMHEUploadForm()
+    return render_to_response('upload/texti.html', {'form': form},
+                              context_instance = RequestContext(request),)
+
+
+
+
+
 @login_required
 def upload_wt_ajax(request, user):
     if not request.is_ajax():
@@ -100,37 +122,16 @@ def upload_wt_ajax(request, user):
 
 @login_required
 def upload_omhe_ajax(request, user):
+    print "here"
     if not request.is_ajax():
-        pass
-        msg="Fobbidden: Not AJAX"
-        print msg
+        print "not AJAX"
+        return HttpResponse("OK", status=200)
+    else:
+        print "Hello AJAX"
         #return HttpResponse(msg, status=401)
-    
-    if request.method == 'POST':
-        form = AJAXOMHEUploadForm(request.POST)
-        for attr in request.POST:
-            print "%s=%s" % (attr,request.POST[attr])
-        if form.is_valid():            
-            responsedict=form.save(user)
-            if responsedict['code']==200:
-                return HttpResponse(responsedict['body'],
-                                    mimetype="application/json",
-                                    content_type='application/json',
-                                    status=200)
-            else:
-                #print "Weight Update Failed." % (code)
-                msg="I didn't understand that. Your message did not go through. Error: %s" % (code)
-                return HttpResponse(msg, status=code)
-        else:
-            msg="The form was invalid"
-            print msg
-            return HttpResponse(msg, status=400)
+
+        return HttpResponse("OK", status=200)
             
-    return render_to_response('upload/texti.html', {'form': form},
-                              context_instance = RequestContext(request),)
-
-
-
 @login_required
 def upload_ci_ajax(request, user):
     

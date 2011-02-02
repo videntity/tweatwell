@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-import settings
+import tweatwell.settings
 from accounts.models import UserProfile
 from web.utils import handle_uploaded_file, query_restcat
 from web.coachespoll.models import MaleCoachesPoll, FemaleCoachesPoll

@@ -7,10 +7,10 @@ from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 import tweatwell.settings
-from accounts.models import UserProfile
-from web.utils import handle_uploaded_file, query_restcat
-from web.coachespoll.models import MaleCoachesPoll, FemaleCoachesPoll
-from web.pointsrank.models  import PointsRank
+from tweatwell.accounts.models import UserProfile
+from tweatwell.web.utils import handle_uploaded_file, query_restcat
+from tweatwell.web.coachespoll.models import MaleCoachesPoll, FemaleCoachesPoll
+from tweatwell.web.pointsrank.models  import PointsRank
 from tweatwell.web.upload.forms import PickFruitForm, PickVeggieForm
 import datetime, os
 import pycurl

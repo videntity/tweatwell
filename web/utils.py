@@ -2,7 +2,7 @@ from django.core.mail import send_mail
 from datetime import datetime, timedelta
 import os, uuid
 import pycurl, json, StringIO
-import tweatwell.settings
+from tweatwell import settings
 from operator import itemgetter, attrgetter
 
 def RESTCatdt2pydt(in_string, tzo_string=None):

@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-import settings
+from tweatwell import settings
 from tweatwell.accounts.models import UserProfile
 from tweatwell.web.utils import handle_uploaded_file, query_restcat
 
@@ -180,7 +180,7 @@ def home_index(request):
     except:
         msg="""Something went wrong. HTTP/500."""
         error= msg + str(sys.exc_info())
-        print error
+        #print error
         return render_to_response(
             'index.html',
             {'error':error,

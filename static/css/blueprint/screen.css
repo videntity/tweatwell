@@ -414,8 +414,12 @@ hr.space {background:#fff;color:#fff;visibility:hidden;}
 #left ul li {
 	list-style-type: none;
 }
-#left h2 {
+#left h2, #right h2 {
 	font-size: 1.5em;
+	margin-bottom: 8px;
+}
+#left h2{
+	color: #6a8800;
 }
 #left h3 {
 	font-size: 1.5em;

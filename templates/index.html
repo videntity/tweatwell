@@ -71,6 +71,9 @@
 				<div id="junk" class="foodicon"> 
 				   <img src="/site_media/img/pizza_small.gif" alt="Junk" border="0" />
 				</div><!-- junk -->
+				<div id="junk" class="foodicon"> 
+				   <img src="/site_media/img/question_small.gif" alt="Question" border="0" />
+				</div><!-- question -->
 				
 				<div id="fruitform" class="fruitform"> 
 				  {{ fruitform.as_p }}
@@ -80,6 +83,12 @@
 				  {{ veggieform.as_p }}
 				</div><!-- fruitform -->
 				
+				<h2>Question of the day</h2> 
+				
+	    		<h5 class="bottom">{{qt.question}} </h5> 
+	    		<p class="small">Click on the question icon above to post answer</p>  
+	    		
+				
 
 				
 				
@@ -88,9 +97,7 @@
 		<hr />
 		<a href="http://twitter.com/#!/wellwvu" target="_blank"><img src="/site_media/img/twitter.png" alt="Twitter logo" border="0" /></a>
 		<a href="http://well.wvu.edu" target="_blank"><img src="/site_media/img/wellwvu-logo.gif" alt="Well WVU logo" border="0" /></a>
-            
-	  <p>{{qt.question}} </p> 
-	    <p>{{qt.tip}}</p>
+       
 	    
 	{% endblock %} <!-- end left -->
 	
@@ -242,4 +249,7 @@
 				<img src="/site_media/img/judge_gala.gif" alt="Gala" />
 				<img src="/site_media/img/judge_cherry.gif" alt="Cherry" />				
 			</div><!-- end judges -->
+			
+			 <h2>Tip of the week</h2>
+	    	<p>{{qt.tip}}</p>
 	{% endblock %} <! -- end of right-->

@@ -111,6 +111,8 @@ INSTALLED_APPS = (
     'tweatwell.web.twitbot',
     'tweatwell.web.coachespoll',
     'tweatwell.web.pointsrank',
+    'tweatwell.web.awards',
+    'tweatwell.web.questionstips',
     'tweatwell.accounts',
     'registration',
     'avatar',
@@ -124,8 +126,9 @@ ACCOUNT_ACTIVATION_DAYS = 2
 RESTRICT_REG_DOMAIN_TO=None
 MIN_PASSWORD_LEN=8
 
-#Twitter Hash Tag
-TWITTERHASH="wvu7"
+#Twitter Hash Tag.  Setting this gets only tweats with this hash.
+#To turn off set yo None: TWITTERHASH=None
+TWITTERHASH="#wvu5"
 
 
 EMAIL_HOST='smtp.bizmail.yahoo.com'

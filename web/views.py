@@ -9,8 +9,11 @@ from django.core.urlresolvers import reverse
 import settings
 from tweatwell.accounts.models import UserProfile
 from tweatwell.web.utils import handle_uploaded_file, query_restcat
-from tweatwell.web.coachespoll.models import MaleCoachesPoll, FemaleCoachesPoll
+
 from tweatwell.web.pointsrank.models  import PointsRank
+
+from tweatwell.web.questionstips.models  import QuestionTips
+from tweatwell.web.awards.models  import Award
 from tweatwell.web.upload.forms import PickFruitForm, PickVeggieForm
 import datetime, os
 import pycurl
@@ -36,9 +39,12 @@ def home_index(request):
          'coachespoll':0,
          'gender': 0}
     
+    
+    qt=QuestionTips.objects.get(pk=1)
 
     try:
         u=User.objects.get(username=request.user)
+        awards =Award.objects.filter(user=u)
     except(User.DoesNotExist):
         return HttpResponseRedirect('/login')
     try:    
@@ -163,6 +169,8 @@ def home_index(request):
             'commentslist':commentslist,
             'publicfeed': responsedict['bodylist'],
             'all': all,
+            'qt': qt,
+            'awards': awards,
             'veggieform': veggieform,
             'fruitform': fruitform,
              },

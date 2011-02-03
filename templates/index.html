@@ -89,6 +89,9 @@
 		<a href="http://twitter.com/#!/wellwvu" target="_blank"><img src="/site_media/img/twitter.png" alt="Twitter logo" border="0" /></a>
 		<a href="http://well.wvu.edu" target="_blank"><img src="/site_media/img/wellwvu-logo.gif" alt="Well WVU logo" border="0" /></a>
             
+	  <p>{{qt.question}} </p> 
+	    <p>{{qt.tip}}</p>
+	    
 	{% endblock %} <!-- end left -->
 	
 	{% block middle %}  
@@ -167,6 +170,14 @@
      
      <div id="badges"><!-- badges -->
 		 <h4>Badges:</h4>
+
+		{% for a in awards %}
+		 {{a.award_class}}  {{a.freggie}}
+		{% endfor %}
+		  
+		 
+		 
+		 
 		  {% if user.get_profile.badge1 %}
 		    <img src="/site_media/img/dean.png" alt="Dean" border="0" />
 		  {% else %}

@@ -5,12 +5,9 @@
 		
 		
 	    $(document).ready(function () {
-	      $('.cii').focus(function() {
+	      $('#texti').focus(function() {
 		$(this).val("");
 	      });
-	      
-
-	      
 	    });
 
 		$(function() {
@@ -34,7 +31,7 @@
 		$('#fruit').click(function() {
 		  $('#texti').val("fruit=1 #I ate ");
 		});
-		           
+		});          
                 
 		</script>
 		
@@ -102,9 +99,9 @@
   	</div><!-- end error container -->	
 
     <div id="public_feed">  <!-- public feed -->	  
-		<div action="/upload/omhe/{{user}}" method="POST" class="tweatwellform">
+		<div  class="tweatwellform">
 			<h2 class="what">What are you eating?</h2>
-			<form id="submittweat">
+			<form id="submittweat" action="/upload/omhe/{{user}}/" method="POST">
 				<input type="text" class="texti" id="texti" name="texti" >
       			<input type="submit" value="Update"  />
 	      	</form>

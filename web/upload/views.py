@@ -80,7 +80,7 @@ def upload_omhe(request, user):
                 return HttpResponseRedirect(reverse('home_index'))
             else:
                 return HttpResponseRedirect(reverse('upload_error',
-                                            kwargs={'code': code}))
+                                            kwargs={'code': responsedict['code']}))
     else:
         form = OMHEUploadForm()
     return render_to_response('upload/texti.html', {'form': form},

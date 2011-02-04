@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from tweatwell.web.upload.models import fruit_list, veg_list
 award_choices=(
         ('President','President'), ('Dean','Dean'), ('Professor','Professor'),
-        ('Funniest','Funniest'),
+        ('Event','Event'), ('Sparkpeople','Sparkpeople'),
         )
 freggie_choices=fruit_list + veg_list
 

@@ -45,6 +45,25 @@ def home_index(request):
     try:
         u=User.objects.get(username=request.user)
         awards =Award.objects.filter(user=u)
+        
+        PresidentAward=False
+        ProfessorAward=False
+        DeanAward=False
+        SparkpeopleAward=False
+        EventAward=False
+        for a in awards:
+            if a.award_class=="President":
+                PresidentAward=True
+            if a.award_class=="Dean":
+                DeanAward=True
+            if a.award_class=="Professor":
+                ProfessorAward=True    
+            if a.award_class=="Sparkpeople":
+                SparkpeoplePresidAward=True    
+            if a.award_class=="Event":
+                EventAward=True
+        
+        
     except(User.DoesNotExist):
         return HttpResponseRedirect('/login')
     try:    
@@ -166,6 +185,11 @@ def home_index(request):
         return render_to_response(
             'index.html',
             {
+            'PresidentAward':PresidentAward,
+            'ProfessorAward': ProfessorAward,
+            'DeanAward': DeanAward,
+            'SparkpeopleAward': SparkpeopleAward,
+            'EventAward': EventAward,
             'commentslist':commentslist,
             'publicfeed': responsedict['bodylist'],
             'all': all,
@@ -180,7 +204,7 @@ def home_index(request):
     except:
         msg="""Something went wrong. HTTP/500."""
         error= msg + str(sys.exc_info())
-        #print error
+        print error
         return render_to_response(
             'index.html',
             {'error':error,

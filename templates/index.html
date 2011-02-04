@@ -12,24 +12,35 @@
 
 		$(function() {
                 
+		
+		$('.veggieform').change(function() {
+		var s = "vegetable=" + $('.veggieform option:selected').text();
+		$('#texti').val(s);
+		});
+		
+		$('.fruitform').change(function() {
+		var s = "fruit=" + $('.fruitform option:selected').text();
+		$('#texti').val(s);
+		});
+		
 		$('#beer').click(function() {
-		$('#texti').val("alcohol=1 #I drank 1 ");
+		$('#texti').val("alcohol=1 ");
 		});
 		
 		$('#junk').click(function() {
-		$('#texti').val("junk=1 #I ate ");
+		$('#texti').val("junk=1 ");
 		});
 		
 		$('#water').click(function() {
-		$('#texti').val("water=1 #I drank water ");
+		$('#texti').val("water=1 ");
 		});
 		
 		$('#veggie').click(function() {
-		$('#texti').val("vegetable=1 #I ate ");
+		$('#texti').val("vegetable=1 ");
 		});
 		
 		$('#fruit').click(function() {
-		  $('#texti').val("fruit=1 #I ate ");
+		  $('#texti').val("fruit=1 ");
 		});
 		});          
                 
@@ -124,8 +135,9 @@
 	    		<div name="topscroll" id="topscroll"></div>
    				<li>
    					<span class="avatar_icon">
-	   					{% load avatar_tags %}
+	   					
 						{% if i.username %}
+						{% load avatar_tags %}
 						  {% avatar i.username 45 %}
 						{% endif %}
 					</span>
@@ -136,7 +148,7 @@
 	   			 <div class="comment-container"><!-- comment-container -->	
 					<a href="#">Add Comment</a>
 					<div class="commentform">
-						<form action="/ajaxupload/comment/{{user}}/" method="POST">
+						<form action="/upload/comment/{{user}}/" method="POST">
 							<textarea name="ci"</textarea>
 							<input name="idr" type="hidden" value="{{i.id}}" />
 							<input type="submit" id="submitcomment" value="Submit Comment" />
@@ -149,8 +161,10 @@
 					  {% if j.idr == i.id %}		    
 				            <li>
 				            <span class="avatar_icon">
-				              {% if j.username %}
-				                {% avatar j.username 35 %}
+				              
+					      {% if j.username %}
+				               {% load avatar_tags %}
+					        {% avatar j.username 35 %}
 				              {% endif %}
 				              </span>
 				              
@@ -178,43 +192,57 @@
      <div id="badges"><!-- badges -->
 		 <h4>Badges:</h4>
 
-		{% for a in awards %}
-		 {{a.award_class}}  {{a.freggie}}
+		{% for a in awards %}  
+		  {% if a.award_class = "Dean" %}
+		    <img src="/site_media/img/dean.png" alt="Dean" border="0" />
+		    {{a.freggie}}
+		  {% endif %}
+		  
+		  {% if a.award_class = "President" %}
+		    <img src="/site_media/img/president.png" alt="President" border="0" />
+		    {{a.freggie}}
+		  {% endif %}
+		  
+		  {% if a.award_class = "Professor" %}
+		    <img src="/site_media/img/professor.png" alt="Professor" border="0" />
+		    {{a.freggie}}
+		  {% endif %}
+		  
+		  {% if a.award_class = "Event" %}
+		    <img src="/site_media/img/event.png" alt="Event" border="0" />
+		    {{a.freggie}}
+		  {% endif %}
+		
+		  {% if a.award_class = "SparkPeople" %}
+		    <img src="/site_media/img/sparkpeople.png" alt="SparkPeople" border="0" />
+		    {{a.freggie}}
+		  {% endif %}
+		
 		{% endfor %}
 		  
+
 		 
-		 
-		 
-		  {% if user.get_profile.badge1 %}
-		    <img src="/site_media/img/dean.png" alt="Dean" border="0" />
-		  {% else %}
-		  	<img src="/site_media/img/dean1.png" alt="Dean" border="0" />
+		  {% if not DeanAward %}
+		    <img src="/site_media/img/dean.png1" alt="Dean" border="0" />
+
 		  {% endif %}
 		  
-		  {% if user.get_profile.badge2 %}
-		    <img src="/site_media/img/professor.png" alt="Professor" border="0" />
-		  {% else %}
-		  	<img src="/site_media/img/professor1.png" alt="Professor" border="0" />
+		  
+		 {% if not ProfessorAward %}
+		    <img src="/site_media/img/professor1.png" alt="Professor" border="0" />
 		  {% endif %}
 		  
-		  {% if user.get_profile.badge3 %}
-		    <img src="/site_media/img/president.png" alt="President" border="0" />
-		  {% else %}
-		  	<img src="/site_media/img/president1.png" alt="President" border="0" />
+		  {% if not PresidentAward %}
+		    <img src="/site_media/img/president1.png" alt="President" border="0" />
 		  {% endif %}
 		  
-		  {% if user.get_profile.badge4 %}
-		    <img src="/site_media/img/event.png" alt="Event" border="0" />
-		  {% else %}
-		  	<img src="/site_media/img/event1.png" alt="Event" border="0" />
+		  {% if not EventAward %}
+		    <img src="/site_media/img/event1.png" alt="Event" border="0" />
 		  {% endif %}
 		  
-		  {% if user.get_profile.badge5 %}
-		    <img src="/site_media/img/sparkpeople.png" alt="Spark People" border="0" />
-		  {% else %}
-		  	<img src="/site_media/img/sparkpeople1.png" alt="Spark People" border="0" />
+		  {% if not SparkpeopleAward %}
+		    <img src="/site_media/img/sparkpeople1.png" alt="Spark People" border="0" />
 		  {% endif %}
-		 
 		  
 		</div><!-- end badges -->
     

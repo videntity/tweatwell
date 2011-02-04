@@ -94,6 +94,7 @@ urlpatterns = patterns('',
     #Upload
     url(r'^ajaxupload/wt/(?P<user>\w+)/$', upload_wt_ajax, name="upload_wt_ajax"),
     url(r'^ajaxupload/ci/(?P<user>\w+)/$', upload_ci_ajax, name="upload_ci_ajax"),
+    
     url(r'^tupload/(?P<omheprefix>\w+)/(?P<user>\w+)/$', upload_texti, name="upload_texti"),
     url(r'^upload/ci/(?P<user>\w+)/$', upload_ci, name="upload_ci"),
     url(r'^ajaxupload/omhe/(?P<user>\w+)/$', upload_omhe_ajax, name="upload_omhe_ajax"),

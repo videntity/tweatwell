@@ -11,7 +11,6 @@
 	    });
 
 		$(function() {
-                
 		
 		$('.veggieform').change(function() {
 		var s = "vegetable=" + $('.veggieform option:selected').text();
@@ -22,25 +21,25 @@
 		var s = "fruit=" + $('.fruitform option:selected').text();
 		$('#texti').val(s);
 		});
-		
+                
 		$('#beer').click(function() {
-		$('#texti').val("alcohol=1 ");
+		$('#texti').val("alcohol=1 #I drank 1 ");
 		});
 		
 		$('#junk').click(function() {
-		$('#texti').val("junk=1 ");
+		$('#texti').val("junk=1 #I ate ");
 		});
 		
 		$('#water').click(function() {
-		$('#texti').val("water=1 ");
+		$('#texti').val("water=1 #I drank water ");
 		});
 		
 		$('#veggie').click(function() {
-		$('#texti').val("vegetable=1 ");
+		$('#texti').val("vegetable=1 #I ate ");
 		});
 		
 		$('#fruit').click(function() {
-		  $('#texti').val("fruit=1 ");
+		  $('#texti').val("fruit=1 #I ate ");
 		});
 		});          
                 
@@ -135,9 +134,8 @@
 	    		<div name="topscroll" id="topscroll"></div>
    				<li>
    					<span class="avatar_icon">
-	   					
+	   					{% load avatar_tags %}
 						{% if i.username %}
-						{% load avatar_tags %}
 						  {% avatar i.username 45 %}
 						{% endif %}
 					</span>
@@ -148,7 +146,7 @@
 	   			 <div class="comment-container"><!-- comment-container -->	
 					<a href="#">Add Comment</a>
 					<div class="commentform">
-						<form action="/upload/comment/{{user}}/" method="POST">
+						<form action="/ajaxupload/comment/{{user}}/" method="POST">
 							<textarea name="ci"</textarea>
 							<input name="idr" type="hidden" value="{{i.id}}" />
 							<input type="submit" id="submitcomment" value="Submit Comment" />
@@ -161,10 +159,8 @@
 					  {% if j.idr == i.id %}		    
 				            <li>
 				            <span class="avatar_icon">
-				              
-					      {% if j.username %}
-				               {% load avatar_tags %}
-					        {% avatar j.username 35 %}
+				              {% if j.username %}
+				                {% avatar j.username 35 %}
 				              {% endif %}
 				              </span>
 				              
@@ -243,6 +239,7 @@
 		  {% if not SparkpeopleAward %}
 		    <img src="/site_media/img/sparkpeople1.png" alt="Spark People" border="0" />
 		  {% endif %}
+
 		  
 		</div><!-- end badges -->
     
@@ -265,7 +262,9 @@
 				  <li>WATER: {{all.water}}</li>
 				  <li>JUNK: {{all.junk}}</li>
 				  <li class="points"><strong>POINTS: {{all.points}} </strong></li>
-			  	</ul>			  
+			  	</ul>
+			  	<img src="/site_media/img/freggie.png" alt="Freggie" border="0" class="freggie"/>
+			  				  
 			 </div> 
 
     		<div id="judges"><!-- judges -->

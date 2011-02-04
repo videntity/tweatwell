@@ -8,7 +8,7 @@ award_choices=(
 freggie_choices=fruit_list + veg_list
 
 class Award(models.Model):
-    user  = models.ForeignKey(User, unique=True)
+    user  = models.ForeignKey(User)
     award_class = models.CharField(max_length=15, choices=award_choices)
     freggie = models.CharField(max_length=40, choices=freggie_choices)
     comments = models.CharField(max_length=140, blank=True)

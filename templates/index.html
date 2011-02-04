@@ -52,15 +52,32 @@
       <style>
         .errormessage { display:none; }
       </style>
+      <style>
+        .fruitform { display:none; }
+		  </style>
+      <style>
+      	.veggieform { display:none; }
+      </style>
 			<script>
 		    $(document).ready(function(){
 		    	$('.comment-container a').click(function() { 
 		    	$('.commentform',$(this).parent()).fadeIn(600);
 		    	return false;
 				})
+				
+				$('#veggie').click(function() {
+  				$('.veggieform').toggle('slow', function() {
+				  });
+				});
+				
+				$('#fruit').click(function() {
+  				$('.fruitform').toggle('slow', function() {				   
+				  });
+				});								
 		    });
 	    </script>
-    <!-- END CHRISG -->    
+    <!-- END CHRISG -->  
+        
 	{% endblock %}
     
     {% block left %}    
@@ -68,6 +85,7 @@
 	        <h2>Check In</h2>
 				<div id="veggie" class="foodicon">
 					<img src="/site_media/img/broccoli_small.gif" alt="Broccoli" border="0" />
+						
 				</div><!-- veggie -->
 				<div id="fruit" class="foodicon">
 					<img src="/site_media/img/fruit_small.gif" alt="Fruit" border="0" />
@@ -85,13 +103,14 @@
 				   <img src="/site_media/img/question_small.gif" alt="Question" border="0" />
 				</div><!-- question -->
 				
+				<div id="veggieform" class="veggieform"> 
+					{{ veggieform.as_p }}
+				</div><!-- veggieform -->
 				<div id="fruitform" class="fruitform"> 
-				  {{ fruitform.as_p }}
+					{{ fruitform.as_p }}
 				</div><!-- fruitform -->
 				
-				<div id="veggieform" class="veggieform"> 
-				  {{ veggieform.as_p }}
-				</div><!-- fruitform -->
+				
 				
 				<h2>Question of the day</h2> 
 				
@@ -186,86 +205,90 @@
 	
      
      <div id="badges"><!-- badges -->
-		 <h4>Badges:</h4>
-
-		{% for a in awards %}  
-		  {% if a.award_class = "Dean" %}
-		    <img src="/site_media/img/dean.png" alt="Dean" border="0" />
-		    {{a.freggie}}
-		  {% endif %}
-		  
-		  {% if a.award_class = "President" %}
-		    <img src="/site_media/img/president.png" alt="President" border="0" />
-		    {{a.freggie}}
-		  {% endif %}
-		  
-		  {% if a.award_class = "Professor" %}
-		    <img src="/site_media/img/professor.png" alt="Professor" border="0" />
-		    {{a.freggie}}
-		  {% endif %}
-		  
-		  {% if a.award_class = "Event" %}
-		    <img src="/site_media/img/event.png" alt="Event" border="0" />
-		    {{a.freggie}}
-		  {% endif %}
-		
-		  {% if a.award_class = "SparkPeople" %}
-		    <img src="/site_media/img/sparkpeople.png" alt="SparkPeople" border="0" />
-		    {{a.freggie}}
-		  {% endif %}
-		
-		{% endfor %}
-		  
-
-		 
-		  {% if not DeanAward %}
-		    <img src="/site_media/img/dean.png1" alt="Dean" border="0" />
-
-		  {% endif %}
-		  
-		  
-		 {% if not ProfessorAward %}
-		    <img src="/site_media/img/professor1.png" alt="Professor" border="0" />
-		  {% endif %}
-		  
-		  {% if not PresidentAward %}
-		    <img src="/site_media/img/president1.png" alt="President" border="0" />
-		  {% endif %}
-		  
-		  {% if not EventAward %}
-		    <img src="/site_media/img/event1.png" alt="Event" border="0" />
-		  {% endif %}
-		  
-		  {% if not SparkpeopleAward %}
-		    <img src="/site_media/img/sparkpeople1.png" alt="Spark People" border="0" />
-		  {% endif %}
+		 <h4>Badges</h4>
+			<div class="small">
+			{% for a in awards %}  
+			  {% if a.award_class = "Dean" %}
+			    <span class="badge"><img src="/site_media/img/dean.png" alt="Dean" border="0" /><br />
+			    {{a.freggie}}
+			    </span>
+			  {% endif %}
+			  
+			  {% if a.award_class = "President" %}
+			    <span class="badge"><img src="/site_media/img/president.png" alt="President" border="0" /><br />
+			    {{a.freggie}}
+			    </span>
+			  {% endif %}
+			  
+			  {% if a.award_class = "Professor" %}
+			    <span class="badge"><img src="/site_media/img/professor.png" alt="Professor" border="0" /><br />
+			    {{a.freggie}}
+			    </span>
+			  {% endif %}
+			  
+			  {% if a.award_class = "Event" %}
+			    <span class="badge"><img src="/site_media/img/event.png" alt="Event" border="0" /><br />
+			    {{a.freggie}}
+			    </span>
+			  {% endif %}
+			
+			  {% if a.award_class = "SparkPeople" %}
+			    <span class="badge"><img src="/site_media/img/sparkpeople.png" alt="SparkPeople" border="0" /><br />
+			    {{a.freggie}}
+			    </span>
+			  {% endif %}			
+			{% endfor %}
+			  	
+			 
+			  {% if not DeanAward %}
+			    <span class="badge"><img src="/site_media/img/dean1.png" alt="Dean" border="0" /></span>	
+			  {% endif %}
+	  
+			 {% if not ProfessorAward %}
+			    <span class="badge"><img src="/site_media/img/professor1.png" alt="Professor" border="0" /></span>
+			  {% endif %}
+			  
+			  {% if not PresidentAward %}
+			    <span class="badge"><img src="/site_media/img/president1.png" alt="President" border="0" /></span>
+			  {% endif %}
+			  
+			  {% if not EventAward %}
+			    <span class="badge"><img src="/site_media/img/event1.png" alt="Event" border="0" /></span>
+			  {% endif %}
+			  
+			  {% if not SparkpeopleAward %}
+			    <span class="badge"><img src="/site_media/img/sparkpeople1.png" alt="Spark People" border="0" /></span>
+			  {% endif %}
+		  </div>
 
 		  
 		</div><!-- end badges -->
     
     		
 		    {% load avatar_tags %}
-		    <div id="avatar"><!-- avatar -->
-		    	<a href="http://en.gravatar.com/" style="border-style: none;">{% avatar user %}</a>
-		    </div>	<!-- end avatar -->	    
-		    	<h3>{{ user.first_name }}</h3>
-		    
-		    		    
-		    <div id="status">
-		    	<p><i id="statustext">{{all.status}}</i></p>
-		    </div>
-		    
-		    <div id="userpoints">
-  				<ul>
-				  <li>FRUITS: {{all.fruit}}</li>
-				  <li>VEGETABLES: {{all.vegatble}}</li>
-				  <li>WATER: {{all.water}}</li>
-				  <li>JUNK: {{all.junk}}</li>
-				  <li class="points"><strong>POINTS: {{all.points}} </strong></li>
-			  	</ul>
-			  	<img src="/site_media/img/freggie.png" alt="Freggie" border="0" class="freggie"/>
-			  				  
-			 </div> 
+		    <div id="profile"><!-- profile -->
+			    <div id="avatar"><!-- avatar -->
+			    	<a href="http://en.gravatar.com/" style="border-style: none;">{% avatar user %}</a>
+			    </div>	<!-- end avatar -->	    
+			    	<h3>{{ user.first_name }}</h3>
+			    
+			    		    
+			    <div id="status">
+			    	<p><i id="statustext">{{all.status}}</i></p>
+			    </div>
+			    
+			    <div id="userpoints">
+	  				<ul>
+					  <li>FRUITS: {{all.fruit}}</li>
+					  <li>VEGETABLES: {{all.vegatble}}</li>
+					  <li>WATER: {{all.water}}</li>
+					  <li>JUNK: {{all.junk}}</li>
+					  <li class="points"><strong>POINTS: {{all.points}} </strong></li>
+				  	</ul>
+				  	<img src="/site_media/img/freggie.png" alt="Freggie" border="0" class="freggie"/>
+				  				  
+				 </div>
+			</div> <!-- end of profile -->
 
     		<div id="judges"><!-- judges -->
     			<h4>Judges</h4>

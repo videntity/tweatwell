@@ -882,6 +882,15 @@ body{
 .freggie{
 	margin-left: 25px;
 	margin-top: 10px;
-
-
+}
+.badge{
+	width: 55px;
+	height: 55px;
+	float:left;
+	text-align: center;
+	padding-bottom: 5px;
+}
+#profile{
+	clear: both;
+	display: block;
 }

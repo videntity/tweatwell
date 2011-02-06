@@ -2,17 +2,13 @@
 
 {% block left %}
 
-<p>
-<h3>User: </h3><br></br> <h4> {{ user.username }}</h4>
-</p>
 
-<p>
-<h3>Name: </h3><br></br> <h4> {{ user.first_name }} {{ user.last_name }}</h4>
-</p>
+<p><strong>User:</strong> {{ user.username }}</p>
 
-<p>
-<h3>Email: </h3><br></br> <h4> {{ user.email }}</h4>
-</p>
+<p><strong>Name:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+
+<p><strong>Email:</strong> {{ user.email }}</p>
+
 
 {% endblock %}
 

@@ -894,3 +894,35 @@ body{
 	clear: both;
 	display: block;
 }
+.faqcontent p{
+	padding-left: 25px;
+}
+
+.faqcontent h3{
+	margin-bottom: 5px;
+	color: #6a8800;
+}
+
+.faqcontent ul{
+	margin-left: 35px;
+}
+
+.nobullet ul li{
+	list-style-position: outside;
+	list-style-type: none;
+}
+
+.questions li{
+	margin-left: 10px;
+	list-style-position: outside;
+	text-decoration: none;
+	padding-bottom: 5px;
+	border-bottom-color: #d0d0d0;
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+}
+
+.questions a:link{
+	color: #757800;
+	text-decoration: none;
+}

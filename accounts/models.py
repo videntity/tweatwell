@@ -43,7 +43,7 @@ class UserProfile(models.Model):
     #display_name = models.CharField(max_length=30, blank=True)
     coach = models.BooleanField(default=False)
     studentid = models.CharField(max_length=20, blank=True)
-    classlevel = models.CharField(max_length=10, choices=class_choices)
+    classlevel = models.CharField(max_length=15, choices=class_choices)
     gender = models.CharField(max_length=40, choices=gender_choices)
     pin = models.IntegerField(max_length=4, default=1234)
     birthdate = models.DateField(default=date.today())

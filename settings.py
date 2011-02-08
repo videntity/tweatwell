@@ -113,6 +113,7 @@ INSTALLED_APPS = (
     'tweatwell.web.pointsrank',
     'tweatwell.web.awards',
     'tweatwell.web.questionstips',
+    'tweatwell.web.foodreport',
     'tweatwell.accounts',
     'registration',
     'avatar',
@@ -139,7 +140,7 @@ EMAIL_HOST_PASSWORD='mypassword'
 
 
 #RESTCat Settings
-RESTCAT_SERVER="http://restcat.tweatwell.com:80/"
+RESTCAT_SERVER="http://127.0.0.1:8000/"
 RESTCAT_USER="tweatwellapp"
 RESTCAT_PASS="password1"
 RESTCAT_USER_EMAIL="tweatwellapp@videntity.com"

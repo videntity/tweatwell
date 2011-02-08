@@ -19,7 +19,7 @@ import datetime, os
 import pycurl
 import StringIO, json, types
 
-def home_index(request):
+def home_index(request, error=None):
     responsedict={'code': 500, 'bodylist':[]}
     commentslist=[]
     fruitform = PickFruitForm()

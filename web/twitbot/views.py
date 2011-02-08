@@ -8,6 +8,7 @@ from tweatwell.web.twitbot.models import TwitBot
 from tweatwell.web.twitbot.utils import twitbotsearch
 from tweatwell.web.pointsrank.models import PointsRank
 from tweatwell.web.upload.forms import TwitBotCIUploadForm
+from tweatwell.web.foodreport.models import FoodReport, UserStatusReport
 from tweatwell import settings
 from tweatwell.web.utils import *
 from django import forms
@@ -64,12 +65,54 @@ def buildpointsrank(request):
     for i in ul:
         points=0
         rankdict['points']=0
+        rankdict['alc']=0
+        rankdict['wtr']=0
+        rankdict['frt']=0
+        rankdict['veg']=0
+        rankdict['crb']=0
+        rankdict['pro']=0
+        rankdict['dry']=0
+        rankdict['ans']=0
         rankdict['user']=i
         rankdict['username']=i.username
         rankdict['email']=i.email
         for j in l:
+
             if j.has_key('points') and str(j['subj'])==str(i.email):
                 points=points + j['points']
+
+            if j.has_key('omhe') and str(j['subj'])==str(i.email):
+                if j['omhe']=="alc":
+                    rankdict['alc']=rankdict['alc']+1
+            
+            if j.has_key('omhe') and str(j['subj'])==str(i.email):
+                if j['omhe']=="wtr":
+                    rankdict['wtr']=rankdict['wtr']+1
+            
+            if j.has_key('omhe') and str(j['subj'])==str(i.email):
+                if j['omhe']=="frt":
+                    rankdict['frt']=rankdict['frt']+1
+                
+            if j.has_key('omhe') and str(j['subj'])==str(i.email):
+                if j['omhe']=="veg":
+                    rankdict['veg']=rankdict['veg']+1
+                
+            if j.has_key('omhe') and str(j['subj'])==str(i.email):
+                if j['omhe']=="crb":
+                    rankdict['crb']=rankdict['crb']+1
+                
+            if j.has_key('omhe') and str(j['subj'])==str(i.email):
+                if j['omhe']=="pro":
+                    rankdict['pro']=rankdict['pro']+1
+            
+            if j.has_key('omhe') and str(j['subj'])==str(i.email):
+                if j['omhe']=="dry":
+                    rankdict['dry']=rankdict['dry']+1
+
+            if j.has_key('omhe') and str(j['subj'])==str(i.email):
+                if j['omhe']=="ans":
+                    rankdict['ans']=rankdict['ans']+1
+        
         rankdict['points']=points
         ranklist.append(rankdict)
         rankdict={}
@@ -77,6 +120,7 @@ def buildpointsrank(request):
     newranksort = sorted(ranklist, key=itemgetter('points'), reverse=True)
     rank=0
     all=PointsRank.objects.all().delete()
+    fr=FoodReport.objects.all().delete()
     for i in newranksort:
         rank+=1
         
@@ -88,13 +132,35 @@ def buildpointsrank(request):
                 pr=PointsRank.objects.get(user=i['user'])
                 pr.rank=rank
                 pr.save()
+                
+                
             except(PointsRank.DoesNotExist):
                 pr=PointsRank.objects.create(user=i['user'],
                                              rank=rank, points=i['points'])
                 pr.save()
                 #print sys.exc_info()
+                
+            
+            fr=FoodReport.objects.create(
+                            user=i['user'],
+                            points=i['points'],
+                            alcohol=i['alc'],
+                            fruits=i['frt'],
+                            veggies=i['veg'],
+                            water=i['wtr'],
+                            answers=i['ans'],)
+            fr.save()    
+            
+            
         except(UserProfile.DoesNotExist):
             pass
-    
+        
+    #build a report to send to judges
+    fr=FoodReport.objects.all()
+    r="user|points|alcohol|fruits|veggies|water|answers\n"
+    for f in fr:
+        l="%s|%s|%s|%s|%s|%s|%s\n" % (f.user, f.points, f.alcohol, f.fruits,
+                                      f.veggies, f.water, f.answers)
+        r="%s%s" %(r,l)
+    print r
     return HttpResponse("OK")
-    

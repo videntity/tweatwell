@@ -57,6 +57,7 @@ def upload_wt(request, user):
         form = WTUploadForm(request.POST)
         if form.is_valid():            
             code=form.save(user)
+            
             if code==200:
                 return HttpResponseRedirect(reverse('stats_wt',
                                             kwargs={'user': user}))
@@ -75,12 +76,17 @@ def upload_omhe(request, user):
     if request.method == 'POST':
         form = OMHEUploadForm(request.POST)
         if form.is_valid():            
-            responsedict=form.save(user)
-            if responsedict['code']==200:
-                return HttpResponseRedirect(reverse('home_index'))
-            else:
-                return HttpResponseRedirect(reverse('upload_error',
-                                            kwargs={'code': responsedict['code']}))
+            try:
+                responsedict=form.save(user)
+                if responsedict['code']==200:
+                    return HttpResponseRedirect(reverse('home_index'))
+                else:
+                    return HttpResponseRedirect(reverse('upload_error',
+                                                kwargs={'code': responsedict['code']}))
+                    
+            except(KeyError):
+                return HttpResponseRedirect(reverse('home_index_error',
+                                            kwargs={'error': "Oops! I didn't understand that."}))
     else:
         form = OMHEUploadForm()
     return render_to_response('upload/texti.html', {'form': form},

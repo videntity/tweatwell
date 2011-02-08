@@ -67,6 +67,7 @@ urlpatterns = patterns('',
     
     #application specific urls -------------------------------------------------
     url(r'^$', home_index, name="home_index"),
+    
     url(r'^download/$', 'django.views.generic.simple.direct_to_template', {'template': 'download/index.html'}, name="download"),
     url(r'^upload/$', 'django.views.generic.simple.direct_to_template', {'template': 'upload/index.html'}, name="upload"),
     url(r'^transmit/$', 'django.views.generic.simple.direct_to_template', {'template': 'transmit/index.html'}, name="transmist"),

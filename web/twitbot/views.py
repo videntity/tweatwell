@@ -41,6 +41,10 @@ def executetwitsearchbot(request):
     return HttpResponse("OK")
     
 def buildpointsrank(request):
+    """Build points rankk"""
+    usr=UserStatusReport.objects.all().delete()
+    
+    
     #"read from restcat"
     URL="%sapi/population/omhe/all/" % (settings.RESTCAT_SERVER)
     user_and_pass="%s:%s" % (settings.RESTCAT_USER, settings.RESTCAT_PASS)
@@ -77,6 +81,10 @@ def buildpointsrank(request):
         rankdict['username']=i.username
         rankdict['email']=i.email
         for j in l:
+
+            if j.has_key('omhe') and j.has_key('texti') and str(j['subj'])==str(i.email):    
+                print j
+                UserStatusReport.objects.create(user=i, status=j['texti'])
 
             if j.has_key('points') and str(j['subj'])==str(i.email):
                 points=points + j['points']

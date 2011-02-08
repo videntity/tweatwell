@@ -3,13 +3,6 @@
             <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 	    <script type="text/javascript">
 		
-		
-	    $(document).ready(function () {
-	      $('#texti').focus(function() {
-		$(this).val("");
-	      });
-	    });
-
 		$(function() {
 		
 		$('.veggieform').change(function() {
@@ -23,24 +16,29 @@
 		});
                 
 		$('#beer').click(function() {
-		$('#texti').val("alcohol=1 #I drank 1 ");
+		$('#texti').val("alcohol=1 I drank ");
 		});
 		
 		$('#junk').click(function() {
-		$('#texti').val("junk=1 #I ate ");
+		$('#texti').val("junk=1 I ate ");
 		});
 		
 		$('#water').click(function() {
-		$('#texti').val("water=1 #I drank water ");
+		$('#texti').val("water=1 I drank water ");
 		});
 		
 		$('#veggie').click(function() {
-		$('#texti').val("vegetable=1 #I ate ");
+		$('#texti').val("vegetable=1 I ate ");
 		});
 		
 		$('#fruit').click(function() {
 		  $('#texti').val("fruit=1 #I ate ");
 		});
+		
+		$('#question').click(function() {
+		$('#texti').val("answer=");
+		});
+		
 		});          
                 
 		</script>
@@ -84,7 +82,7 @@
         <div id="checkin">
 	        <h2>Check In</h2>
 				<div id="veggie" class="foodicon">
-					<img src="/site_media/img/broccoli_small.gif" alt="Broccoli" border="0" />
+				<img src="/site_media/img/broccoli_small.gif" alt="Broccoli" border="0" />
 						
 				</div><!-- veggie -->
 				<div id="fruit" class="foodicon">
@@ -99,7 +97,7 @@
 				<div id="junk" class="foodicon"> 
 				   <img src="/site_media/img/pizza_small.gif" alt="Junk" border="0" />
 				</div><!-- junk -->
-				<div id="junk" class="foodicon"> 
+				<div id="question" class="foodicon"> 
 				   <img src="/site_media/img/question_small.gif" alt="Question" border="0" />
 				</div><!-- question -->
 				

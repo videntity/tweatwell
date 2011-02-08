@@ -173,7 +173,7 @@ def home_index(request):
                     commentslist.append(i)
                     i['showme']=False
                     
-                display_commands=['frt', 'ptn', 'veg', 'wtr', 'alc', 'jnk']    
+                display_commands=['frt', 'ptn', 'veg', 'wtr', 'alc', 'jnk', 'ans']    
                 if (display_commands.__contains__(i['omhe'])) and (not i.has_key('idr')):
                     i['showme']=True
                     ds="%s." % (i['texti'])

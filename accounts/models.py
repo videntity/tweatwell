@@ -8,7 +8,7 @@ gender_choices=(
         )
 
 class_choices=(
-        ('freshman','freshan'),
+        ('freshman','freshman'),
         ('sophomore','sophomore'),
         ('junior','junior'),
         ('senior','senior'),

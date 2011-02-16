@@ -525,6 +525,7 @@ hr.space {background:#fff;color:#fff;visibility:hidden;}
 #badges{
 	margin-bottom: 20px;
 	clear: both;
+	
 }
 
 #container {
@@ -884,7 +885,7 @@ body{
 	margin-top: 10px;
 }
 .badge{
-	width: 55px;
+	width: 72px;
 	height: 55px;
 	float:left;
 	text-align: center;

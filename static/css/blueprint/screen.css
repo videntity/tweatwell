@@ -360,7 +360,7 @@ hr.space {background:#fff;color:#fff;visibility:hidden;}
 #left {
 	padding-bottom: 40px;
 	background-color: #fff;
-	width:240px;
+	width:230px;
 	-moz-border-radius-topleft: 10px;
 	-moz-border-radius-topright: 0px;
 	-moz-border-radius-bottomright: 0px;
@@ -368,10 +368,13 @@ hr.space {background:#fff;color:#fff;visibility:hidden;}
 	border-top-left-radius: 10px;
 	border-top-right-radius: 0px;
 	border-bottom-right-radius: 0px;
-	border-bottom-left-radius: 10px; 	
+	border-bottom-left-radius: 10px;
+	padding-left: 10px; 	
 }
 .left-inner{
-	padding: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+
 }
 #middle {
 	padding-bottom: 40px;

@@ -204,7 +204,6 @@ def home_index(request, error=None):
     except:
         msg="""Something went wrong. HTTP/500."""
         error= msg + str(sys.exc_info())
-        print error
         return render_to_response(
             'index.html',
             {'error':error,

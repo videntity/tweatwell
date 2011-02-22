@@ -9,15 +9,15 @@ from django.core.urlresolvers import reverse
 from tweatwell import settings
 from tweatwell.accounts.models import UserProfile
 from tweatwell.web.utils import handle_uploaded_file, query_restcat
-
 from tweatwell.web.pointsrank.models  import PointsRank
-
 from tweatwell.web.questionstips.models  import QuestionTips
 from tweatwell.web.awards.models  import Award
 from tweatwell.web.upload.forms import PickFruitForm, PickVeggieForm
 import datetime, os
 import pycurl
 import StringIO, json, types
+from operator import itemgetter, attrgetter
+
 
 def home_index(request, error=None):
     responsedict={'code': 500, 'bodylist':[]}
@@ -69,9 +69,7 @@ def home_index(request, error=None):
     try:    
         p=u.get_profile()
     except(UserProfile.DoesNotExist):
-        return HttpResponseRedirect('/login')
-
-    all['gender']=p.gender   
+        return HttpResponseRedirect('/login')  
         
     try:
         pr=PointsRank.objects.get(user=u)
@@ -143,7 +141,6 @@ def home_index(request, error=None):
             commentsguidlist=[]
             for i in responsedict['bodylist']:
                 i['comments']=[]
-                i['comments']=[]
                 i['display_status']=None
                 i['id']=i['_id']
                 del i['_id']
@@ -178,6 +175,9 @@ def home_index(request, error=None):
                     i['showme']=True
                     ds="%s." % (i['texti'])
                     i['display_status']=ds
+                
+                
+            responsedict['bodylist']= sorted(responsedict['bodylist'], key=itemgetter('sinceid'), reverse=True)
                 
         else:
             responsedict['bodylist']=None

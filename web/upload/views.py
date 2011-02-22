@@ -78,7 +78,9 @@ def upload_omhe(request, user):
         if form.is_valid():            
             try:
                 responsedict=form.save(user)
+                print responsedict
                 if responsedict['code']==200:
+                    
                     return HttpResponseRedirect(reverse('home_index'))
                 else:
                     return HttpResponseRedirect(reverse('upload_error',

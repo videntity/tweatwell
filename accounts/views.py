@@ -23,7 +23,6 @@ def account_settings(request):
             
             data = form.cleaned_data
             profile.twitter = data['twitter']
-            profile.gender= data['gender'] 
             request.user.save()
             profile.save()
             #Add RESTCat Update Here
@@ -45,7 +44,6 @@ def account_settings(request):
             'email': request.user.email,
             'first_name': request.user.first_name,
             'last_name': request.user.last_name,
-            'gender': profile.gender,
             'twitter': profile.twitter,
         })
 

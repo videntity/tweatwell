@@ -134,15 +134,15 @@ TWITTERHASH="#wvu5"
 
 EMAIL_HOST='smtp.bizmail.yahoo.com'
 EMAIL_PORT=587 #25 by default
-EMAIL_HOST_USER='no-reply@videntity.com'
-EMAIL_HOST_PASSWORD='mypassword'
+EMAIL_HOST_USER='tweatwell@videntity.com'
+EMAIL_HOST_PASSWORD='password22'
 
 
 
 #RESTCat Settings
 RESTCAT_SERVER="http://127.0.0.1:8000/"
-RESTCAT_USER="tweatwellapp"
-RESTCAT_PASS="password1"
+RESTCAT_USER="tweatwell"
+RESTCAT_PASS="password"
 RESTCAT_USER_EMAIL="tweatwellapp@videntity.com"
 DEFAULT_TRANSACTION_TIMEZONE_OFFSET=-5
 

@@ -21,7 +21,6 @@ class RegistrationForm(RegistrationFormUniqueEmail):
     email = forms.EmailField(max_length=75, label="Email*")
     first_name = forms.CharField(max_length=30, label="First Name*")
     last_name = forms.CharField(max_length=30, label="Last Name*")
-    gender =forms.TypedChoiceField(widget=forms.RadioSelect, label="Gender*", choices=gender_choices)
     classlevel=forms.TypedChoiceField(widget=forms.RadioSelect, label="Class*", choices=class_choices)
 
     def clean_password2(self):
@@ -115,7 +114,6 @@ class RegistrationForm(RegistrationFormUniqueEmail):
         new_user.save()
         UserProfile.objects.create(
             user=new_user,
-            gender=self.cleaned_data.get('gender', ""),
             classlevel=self.cleaned_data.get('classlevel', ""),
             mobile_phone_number=self.cleaned_data.get('mobile_phone_number', ""),
             twitter=self.cleaned_data.get('twitter', ""),
@@ -127,7 +125,7 @@ class RegistrationForm(RegistrationFormUniqueEmail):
                             email=self.cleaned_data['email'],
                             height_in="30",
                             weight_goal="100",
-                            gender=self.cleaned_data.get('gender', ""),
+                            gender=self.cleaned_data.get('gender', "male"),
                             pin="1111",
                             birthdate="2010-01-01",
                             mobile_phone_number="",
@@ -146,6 +144,5 @@ class RegistrationForm(RegistrationFormUniqueEmail):
             return new_user
 
 class AccountSettingsForm(forms.Form):
-    gender =forms.TypedChoiceField(widget=forms.RadioSelect, label="Gender*", choices=gender_choices)
     twitter = forms.CharField(max_length=100, required=False, label="Twitter ID")
     

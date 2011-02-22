@@ -157,7 +157,7 @@
 						{% endif %}
 					</span>
 		    		<span class="status">{{i.display_status}} {{i.display_name}} </span> <br />
-		    		<span class="tweated">at {{ i.ev_dt|date:"h:i a D d M Y" }}</span>
+		    		<span class="tweated">at {{ i.ev_dt|date:"h:ia D d M Y" }}</span>
 	    		</li>
 	    
 	   			 <div class="comment-container"><!-- comment-container -->	
@@ -181,7 +181,7 @@
 				              {% endif %}
 				              </span>
 				              
-				              {{j.display_status}} {{i.display_name}} ({{ i.ev_dt|date:"h:ia m/d/y" }})
+				              {{j.display_status}} {{i.display_name}}  {{ i.ev_dt|date:"h:ia D d M Y" }}
 				              
 				            </li>
 					    {% endif %}     

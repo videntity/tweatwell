@@ -15,7 +15,7 @@ def send_reply_email(request, post, form):
 
     email = EmailMessage(subject=subject,
                          body=body,
-                         from_email='physique7@videntity.com',
+                         from_email='application@videntity.com',
                          to=to,
                          headers=headers)
     email.send()

@@ -86,6 +86,7 @@ def home_index(request, error=None):
         if responsedict['code']==200:
             num_transactions=len(responsedict['bodylist'])
             all['checkins']=num_transactions
+            print "numtx=",num_transactions
             for j in reversed(responsedict['bodylist']):
                 if type(j)==dict:
                     if j.has_key('omhe'):
@@ -117,8 +118,7 @@ def home_index(request, error=None):
                             all['drinks']=all['drinks']+1
 
                     if j.has_key('points'):
-                        all['points']=all['points'] + j['points']
-                        
+                        all['points']=int(all['points']) + int(j['points'])
                             
                     #if j.has_key('pbf_numeric'):
                     #    all['pbf_numeric']=j['pbf_numeric']
@@ -126,6 +126,9 @@ def home_index(request, error=None):
                     
                     if j.has_key('ci_payload') and not j.has_key('idr'):
                         all['status']=j['ci_payload']
+                        
+                    if j.has_key('omhe') and not j.has_key('idr'):
+                        all['status']=j['texti']  
  
         else:
             msg="Error Fetching your data: HTTPCODE=%s %s" % (
@@ -173,9 +176,8 @@ def home_index(request, error=None):
                 display_commands=['frt', 'ptn', 'veg', 'wtr', 'alc', 'jnk', 'ans']    
                 if (display_commands.__contains__(i['omhe'])) and (not i.has_key('idr')):
                     i['showme']=True
-                    ds="%s." % (i['texti'])
+                    ds="%s" % (i['texti'])
                     i['display_status']=ds
-                
                 
             responsedict['bodylist']= sorted(responsedict['bodylist'], key=itemgetter('sinceid'), reverse=True)
                 
@@ -204,6 +206,7 @@ def home_index(request, error=None):
     except:
         msg="""Something went wrong. HTTP/500."""
         error= msg + str(sys.exc_info())
+        #print error
         return render_to_response(
             'index.html',
             {'error':error,

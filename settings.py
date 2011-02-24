@@ -29,7 +29,7 @@ DATABASE_PORT = ''             # Set to empty string for default. Not used with 
 # although not all choices may be available on all operating systems.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'EST'
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
@@ -114,6 +114,7 @@ INSTALLED_APPS = (
     'tweatwell.web.awards',
     'tweatwell.web.questionstips',
     'tweatwell.web.foodreport',
+    'tweatwell.web.givepoints',
     'tweatwell.accounts',
     'registration',
     'avatar',
@@ -129,13 +130,13 @@ MIN_PASSWORD_LEN=8
 
 #Twitter Hash Tag.  Setting this gets only tweats with this hash.
 #To turn off set yo None: TWITTERHASH=None
-TWITTERHASH="#wvu5"
+TWITTERHASH="wvu5"
 
 
 EMAIL_HOST='smtp.bizmail.yahoo.com'
 EMAIL_PORT=587 #25 by default
-EMAIL_HOST_USER='tweatwell@videntity.com'
-EMAIL_HOST_PASSWORD='password22'
+EMAIL_HOST_USER='application@videntity.com'
+EMAIL_HOST_PASSWORD='passwordtw'
 
 
 

@@ -156,8 +156,8 @@
 						  {% avatar i.username 45 %}
 						{% endif %}
 					</span>
-		    		<span class="status">{{i.display_status}} {{i.display_name}} </span> <br />
-		    		<span class="tweated">at {{ i.ev_dt|date:"h:ia D d M Y" }}</span>
+		    		<span class="status">{{i.display_status}} {{i.display_name}} </span> <br/>
+		    		<span class="tweated"> {{ i.ev_dt|timesince }} ago </span>
 	    		</li>
 	    
 	   			 <div class="comment-container"><!-- comment-container -->	
@@ -181,7 +181,7 @@
 				              {% endif %}
 				              </span>
 				              
-				              {{j.display_status}} {{i.display_name}}  {{ i.ev_dt|date:"h:ia D d M Y" }}
+				              {{j.display_status}} {{i.display_name}}  {{ i.ev_dt|timesince:i.ev_dt }} ago 
 				              
 				            </li>
 					    {% endif %}     

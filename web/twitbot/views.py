@@ -27,31 +27,33 @@ def executetwitsearchbot(request):
         x=dict(json.loads(jsonstr))
         #if the from_user is in our DB, then create a RESTCAT transaction. 
         #print x['text'], x['from_user'], x['id']
-        try:
-            up=UserProfile.objects.get(twitter=x['from_user'])
-            #print "process"
-            #print up.user
-            
-            omhe_str= x['text']
-            """ Instantiate an instance of the OMHE class"""
-            o = parseomhe()
-            """Parse it if valid, otherwise raise the appropriate  error"""
-            d=o.parse(omhe_str)
-            u=User.objects.get(username=up.user)
-            user_email=str(u.email)
-
-            responsedict=uploadOMHE2restcatdict(d, settings.RESTCAT_USER, settings.RESTCAT_PASS, user_email,
-                                  settings.RESTCAT_USER,
-                                  user_email, 3)
-        
-        except(UserProfile.DoesNotExist):
-            pass
-        except:
-            pass
-            #print str(sys.exc_info())
-            
-            #return HttpResponse(str(sys.exc_info()), status=500)
+        if  int(tb.since_id) <= int(x['id']):
+            try:
+                up=UserProfile.objects.get(twitter=x['from_user'])
+                #print "process"
+                #print up.user
+                
+                omhe_str= x['text']
+                """ Instantiate an instance of the OMHE class"""
+                o = parseomhe()
+                """Parse it if valid, otherwise raise the appropriate  error"""
+                d=o.parse(omhe_str)
+                u=User.objects.get(username=up.user)
+                user_email=str(u.email)
     
+                responsedict=uploadOMHE2restcatdict(d, settings.RESTCAT_USER, settings.RESTCAT_PASS, user_email,
+                                      settings.RESTCAT_USER,
+                                      user_email, 3)
+                tb.since_id=x['id']
+                tb.save()
+            
+            except(UserProfile.DoesNotExist):
+                pass
+            except:
+                print str(sys.exc_info())
+                pass
+                #return HttpResponse(str(sys.exc_info()), status=500)
+        
     return HttpResponse("OK")
     
 def buildpointsrank(request):

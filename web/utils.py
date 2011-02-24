@@ -171,7 +171,7 @@ def sendmail_for_comment(username, text ,idr):
     r=query_restcat(URL)
     body="Just a heads up that %s just commented on your status.\n %s \n --Tweatwell" % (username, text)
     emailsubjectline="%s" % ("Tweatwell: Someone commented on your status.")
-    send_mail(emailsubjectline, body, 'physique7@videntity.com',
+    send_mail(emailsubjectline, body, 'application@videntity.com',
                     [r['bodylist'][0]['subj']], fail_silently=False)
     
 

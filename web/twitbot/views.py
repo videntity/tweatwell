@@ -7,13 +7,15 @@ from tweatwell.accounts.models import UserProfile
 from tweatwell.web.twitbot.models import TwitBot
 from tweatwell.web.twitbot.utils import twitbotsearch
 from tweatwell.web.pointsrank.models import PointsRank
-from tweatwell.web.upload.forms import TwitBotCIUploadForm
+from tweatwell.web.upload.forms import OMHEUploadForm
 from tweatwell.web.foodreport.models import FoodReport, UserStatusReport
 from tweatwell import settings
 from tweatwell.web.utils import *
+from tweatwell.web.upload.forms import uploadOMHE2restcatdict
 from django import forms
 from operator import itemgetter, attrgetter
 import json, sys, StringIO, pycurl
+from omhe.core.parseomhe import parseomhe
 
 def executetwitsearchbot(request):
     #get the most recent since_id from db
@@ -29,14 +31,26 @@ def executetwitsearchbot(request):
             up=UserProfile.objects.get(twitter=x['from_user'])
             #print "process"
             #print up.user
-            f=TwitBotCIUploadForm()
-            f.save(up.user, x['text'])
-            tb.since_id=x['id']
-            tb.save()
+            
+            omhe_str= x['text']
+            """ Instantiate an instance of the OMHE class"""
+            o = parseomhe()
+            """Parse it if valid, otherwise raise the appropriate  error"""
+            d=o.parse(omhe_str)
+            u=User.objects.get(username=up.user)
+            user_email=str(u.email)
+
+            responsedict=uploadOMHE2restcatdict(d, settings.RESTCAT_USER, settings.RESTCAT_PASS, user_email,
+                                  settings.RESTCAT_USER,
+                                  user_email, 3)
+        
         except(UserProfile.DoesNotExist):
             pass
         except:
-            return HttpResponse(str(sys.exc_info()), status=500)
+            pass
+            #print str(sys.exc_info())
+            
+            #return HttpResponse(str(sys.exc_info()), status=500)
     
     return HttpResponse("OK")
     
@@ -87,8 +101,7 @@ def buildpointsrank(request):
                 UserStatusReport.objects.create(user=i, status=j['texti'])
 
             if j.has_key('points') and str(j['subj'])==str(i.email):
-                points=points + j['points']
-
+                points=int(points) + int(j['points'])
             if j.has_key('omhe') and str(j['subj'])==str(i.email):
                 if j['omhe']=="alc":
                     rankdict['alc']=rankdict['alc']+1
@@ -171,4 +184,16 @@ def buildpointsrank(request):
                                       f.veggies, f.water, f.answers)
         r="%s%s" %(r,l)
     print r
+    
+    
+    try:
+        up=UserProfile.objects.filter(coach=True)
+    
+        el=[]
+        for u in up:
+            el.append(u.user.email)
+        from django.core.mail import send_mail
+        send_mail("Tweatwell Report", r, settings.EMAIL_HOST_USER, el)
+    except(UserProfile.DoesNotExist):
+        pass
     return HttpResponse("OK")

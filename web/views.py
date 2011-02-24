@@ -86,7 +86,7 @@ def home_index(request, error=None):
         if responsedict['code']==200:
             num_transactions=len(responsedict['bodylist'])
             all['checkins']=num_transactions
-            print "numtx=",num_transactions
+            #print "numtx=",num_transactions
             for j in reversed(responsedict['bodylist']):
                 if type(j)==dict:
                     if j.has_key('omhe'):

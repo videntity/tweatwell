@@ -99,7 +99,7 @@ def buildpointsrank(request):
         for j in l:
 
             if j.has_key('omhe') and j.has_key('texti') and str(j['subj'])==str(i.email):    
-                print j
+                #print j
                 UserStatusReport.objects.create(user=i, status=j['texti'])
 
             if j.has_key('points') and str(j['subj'])==str(i.email):

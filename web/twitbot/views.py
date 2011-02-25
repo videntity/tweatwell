@@ -50,7 +50,7 @@ def executetwitsearchbot(request):
             except(UserProfile.DoesNotExist):
                 pass
             except:
-                print str(sys.exc_info())
+                #print str(sys.exc_info())
                 pass
                 #return HttpResponse(str(sys.exc_info()), status=500)
         
@@ -185,7 +185,7 @@ def buildpointsrank(request):
         l="%s|%s|%s|%s|%s|%s|%s\n" % (f.user, f.points, f.alcohol, f.fruits,
                                       f.veggies, f.water, f.answers)
         r="%s%s" %(r,l)
-    print r
+    #print r
     
     
     try:

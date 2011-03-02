@@ -21,7 +21,7 @@ class FoodReport(models.Model):
        						self.points)
 class UserStatusReport(models.Model):
     user  =     models.ForeignKey(User)
-    status =    models.CharField(max_length=140)
+    status =    models.CharField(max_length=300)
     
     def __unicode__(self):
         return '%s  - %s' % (self.user.username, self.status)

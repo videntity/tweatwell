@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from web.upload.forms import uploadOMHE2restcat
+from ..upload.forms import uploadOMHE2restcat
 from omhe.core.parseomhe import parseomhe
 from tweatwell import settings
 # Create your models here.

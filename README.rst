@@ -9,6 +9,7 @@ uses OMHE Microsyntax to encode food entry. You can tweat what you eat
 and Tweatwell will automatically capture this information and add it to your food
 blog. Tweatwell only reads tweets with a specific has tag definwed in the
 settings file. The basic commands supported by tweatwell are as follows:
+
 ======= ============================    =========================
 COMMAND ALIASES                         ACCEPTABLE VALUES
 ======= ============================    =========================
@@ -53,7 +54,7 @@ some of these dependencies may already be installed. Tweatwell dependicies are
 as follows:
 
 * Python 2.6
-* Django 1.2 - http://djangoproject.org
+* Django 1.3.1 - http://djangoproject.org
 * RESTCat* - http://github.com/aviars/RESTCat
 * python-omhe: (Commercially supported Open Source software by Videntity)
 * django-registration version 0.7
@@ -82,6 +83,16 @@ Running the Development Server:
 
 Here's how to create the database and start the Django's devlopment server environment.
 ::
+    sudo apt-get install git-core python-imaging build-essential python-setuptools memcached libmemcached-dev
+
+::
+    sudo easy_install pip
+
+::
+    cd config
+    sudo pip install -r requirements.txt
+
+::
     cd tweatwell
     python manage.py syncdb
     python manage.py runserver
@@ -98,15 +109,13 @@ WITHOUT SSL/HTTPS YOU DO SO AT YOUR OWN RISK!
 
 
 You may use any database that is supported by Django.  These include PostgreSQL,
-MySQL, SQLite, and Oracle.
+MySQL, SQLite, and Oracle.  the default is SQLite
 
 License:
 ========
 Tweatwell is avaliable under a dual license.You may use either GPL or a
-commercial license.  You may use this software for
-free under the GPL for educational and non-profit activities only.  If you want
+commercial license.  You may use this software for free under the GPL for 
+educational and non-profit activities only.  If you want
 to use this software, its direvative works, for commercial purposes you must
-use thecommercial license agreement.  The commercial license comes with support
-and allows greater freedoms than the GPL.  In other words, use the commercial
-license if you want to incorporate this software into your products and
-services.
+use the commercial license agreement.  The commercial license comes with support
+and allows greater freedoms than the GPL.

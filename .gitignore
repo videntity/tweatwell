@@ -1,6 +1,5 @@
 *.pyc
 *.pyo
-db
 media/*
 *.db
 *.kpf

@@ -61,8 +61,8 @@ AUTHENTICATION_BACKENDS = (
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = 'https://videntitystatic.s3.amazonaws.com/admin/media/'
 
+ADMIN_MEDIA_PREFIX = 'http://cegdjadmin.s3.amazonaws.com/'
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
@@ -92,6 +92,15 @@ AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 LOGIN_URL = '/login'
 LOGOUT_URL = '/logout'
 LOGIN_REDIRECT_URL = '/'
+
+
+LOGIN_URL='/accounts/login'
+AUTHENTICATION_BACKENDS = ('tweatwell.web.accounts.auth.HTTPAuthBackend',
+                           'tweatwell.web.accounts.auth.EmailBackend',
+                           'django.contrib.auth.backends.ModelBackend',
+                           )
+
+
 
 
 ROOT_URLCONF = 'tweatwell.urls'
@@ -126,6 +135,7 @@ INSTALLED_APPS = (
     'tweatwell.web.questionstips',
     'tweatwell.web.foodreport',
     'tweatwell.web.givepoints',
+    'tweatwell.web.accounts',
     'tweatwell.accounts',
     'registration',
     'avatar',

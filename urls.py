@@ -34,8 +34,7 @@ urlpatterns = patterns('',
     url(r'^logout/', logout_then_login),
 
     ##account urls -------------------------------------------------------------
-    
-    url(r'^accounts/register/$', 'registration.views.register', {'form_class': RegistrationForm}, name="request_account"),
+    url(r'^accounts/', include('tweatwell.web.accounts.urls')),  
 
     (r'^avatar/', include('avatar.urls')),
     

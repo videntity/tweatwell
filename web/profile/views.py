@@ -1,21 +1,19 @@
-# Create your views here.
-
-import sys, types
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# vim: ai ts=4 sts=4 et sw=4
+from django.conf import settings
 from django.http import HttpResponse, Http404,HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.contrib.auth.models import User
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-from tweatwell import settings
-from tweatwell.accounts.models import UserProfile
-from tweatwell.web.utils import handle_uploaded_file, query_restcat
-from tweatwell.web.coachespoll.models import MaleCoachesPoll, FemaleCoachesPoll
-from tweatwell.web.pointsrank.models  import PointsRank
-
-import datetime, os
+from ..accounts.models import UserProfile
+from ..utils import handle_uploaded_file, query_restcat
+from ..coachespoll.models import MaleCoachesPoll, FemaleCoachesPoll
+from ..pointsrank.models  import PointsRank
+import StringIO, json, types, sys, datetime, os
 import pycurl
-import StringIO, json, types
 
 
 def profiles(request):

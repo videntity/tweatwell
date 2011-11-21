@@ -5,10 +5,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="description" content="Seven."/>
 
-	<link rel="stylesheet" href="/site_media/css/blueprint/screen.css" type="text/css" media="screen, projection">
-        <link rel="stylesheet" href="/site_media/css/blueprint/print.css" type="text/css" media="print">	
+	<link rel="stylesheet" href="{{ STATIC_URL }}/css/blueprint/screen.css" type="text/css" media="screen, projection">
+        <link rel="stylesheet" href="{{ STATIC_URL }}/css/blueprint/print.css" type="text/css" media="print">	
         <!--[if lt IE 8]>
-	<link rel="stylesheet" href="/site_media/css/blueprint/ie.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="{{ STATIC_URL }}/css/blueprint/ie.css" type="text/css" media="screen, projection">
 	<![endif]-->
 	<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
 	{% endblock %}
@@ -20,7 +20,7 @@
 		
 	<div id="wrapper">		
 		<div id="masthead">
-			<a href="http://www.wvu.edu/" class="wvu"><img src="/site_media/img/wvu_logo.gif" alt="West Virginia University" border="0" /></a>
+			<a href="http://www.wvu.edu/" class="wvu"><img src="{{ STATIC_URL }}/img/wvu_logo.gif" alt="West Virginia University" border="0" /></a>
 			<ul class="meta">
 				<li class="first"><a href="http://www.wvu.edu/SiteIndex/">A-Z Index</a></li>
 				<li><a href="http://www.wvu.edu/CampusMap/">Campus Maps</a></li>
@@ -32,7 +32,7 @@
 		
 		<div id="header"><!-- header -->
 			<div class="span-6 first"><!-- header left -->
-		 		<a href="/"><img src="/site_media/img/tweatwell_logo.png" alt="Tweat well" class="logo"/></a>
+		 		<a href="/"><img src="{{ STATIC_URL }}/img/tweatwell_logo.png" alt="Tweat well" class="logo"/></a>
 			</div><!-- end of header left -->
 			
 			<div id="headermain"class="span-18 last"><!-- headermain --> 
@@ -79,7 +79,7 @@
 	
 	<div id="footer"><!-- footer -->
     	<div id="footer_nav"><!-- footer nav-->
-        	<img src="/site_media/img/powered_by.gif" alt="Powered by"><br />
+        	<img src="{{ STATIC_URL }}/img/powered_by.gif" alt="Powered by"><br />
         	<ul>     
         		<li><a id="restcat" href="http://github.com/aviars/RESTCat">RESTCat: The Enterprise Social Object Server</a></li>     
             	<li id="plus">plus</li>

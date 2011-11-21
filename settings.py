@@ -73,9 +73,29 @@ SITE_ID = 1
 # to load the internationalization machinery.
 USE_I18N = True
 
-
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'cw87b^k4+bl#-jj#gf3)%&!^k@fr_j4#p8g@uoyn!ijzmnce1i'
+
+
+# Absolute path to the directory that holds media.
+# Example: "/home/media/media.lawrence.com/"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = '/static'
+# URL that handles the media served from MEDIA_ROOT. Make sure to use a
+# trailing slash if there is a path component (optional in other cases).
+# Examples: "http://media.lawrence.com", "http://example.com/media/"
+#MEDIA_URL = 'http://physique7.s3.amazonaws.com/media/'
+#http://physique7.s3.amazonaws.com/
+MEDIA_URL = '/media'
+MAIN_STATIC_ROOT = os.path.join(BASE_DIR, 'mainstatic')
+
+STATICFILES_DIRS = (
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    MAIN_STATIC_ROOT,
+    )
 
 
 MIDDLEWARE_CLASSES = (
@@ -114,12 +134,27 @@ TEMPLATE_DIRS = (
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.load_template_source',
-    'django.template.loaders.app_directories.load_template_source',
-    'django.template.loaders.eggs.load_template_source',
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+#
 )
 
-TEMPLATE_CONTEXT_PROCESSORS = ('django.core.context_processors.auth',)
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.contrib.auth.context_processors.auth',
+    'django.contrib.messages.context_processors.messages',
+)
+
+# Twilio SMS Login Settings ---------------------------------------------------
+TWILIO_DEFAULT_FROM = "+12024992459"
+TWILIO_API_BASE = "https://api.twilio.com/2010-04-01"
+TWILIO_SID = "AC4d3f4dcee199445c45faa797c5c97898"
+TWILIO_AUTH_TOKEN = "d623565a60e77bb5902e1971948c6f17"
+TWILIO_API_VERSION = '2010-04-01'
+SMS_LOGIN_TIMEOUT_MIN = 10
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -127,6 +162,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admin',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
     'tweatwell.web',
     'tweatwell.web.twitbot',
     'tweatwell.web.coachespoll',
@@ -136,7 +173,6 @@ INSTALLED_APPS = (
     'tweatwell.web.foodreport',
     'tweatwell.web.givepoints',
     'tweatwell.web.accounts',
-    'tweatwell.accounts',
     'registration',
     'avatar',
     'django_ses',

@@ -1,21 +1,20 @@
-# Create your views here.
-import sys, types
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# vim: ai ts=4 sts=4 et sw=4
+from django.conf import settings
 from django.http import HttpResponse, Http404,HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.contrib.auth.models import User
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-from tweatwell import settings
-from tweatwell.accounts.models import UserProfile
-from tweatwell.web.utils import handle_uploaded_file, query_restcat
-from tweatwell.web.pointsrank.models  import PointsRank
-from tweatwell.web.questionstips.models  import QuestionTips
-from tweatwell.web.awards.models  import Award
-from tweatwell.web.upload.forms import PickFruitForm, PickVeggieForm
-import datetime, os
-import pycurl
-import StringIO, json, types
+from ..accounts.models import UserProfile
+from ..utils import handle_uploaded_file, query_restcat
+from ..pointsrank.models  import PointsRank
+from ..questionstips.models  import QuestionTips
+from ..awards.models  import Award
+from ..upload.forms import PickFruitForm, PickVeggieForm
+import datetime, os, pycurl, StringIO, json, types, sys
 from operator import itemgetter, attrgetter
 
 
@@ -37,7 +36,8 @@ def home_index(request, error=None):
          'dairy': 0,
          'pointspoll': 0,
          'coachespoll':0,
-         'gender': 0}
+         'gender': 0,
+         }
     
     
     qt=QuestionTips.objects.get(pk=1)
@@ -62,7 +62,6 @@ def home_index(request, error=None):
                 SparkpeoplePresidAward=True    
             if a.award_class=="Event":
                 EventAward=True
-        
         
     except(User.DoesNotExist):
         return HttpResponseRedirect('/login')
@@ -122,7 +121,6 @@ def home_index(request, error=None):
                             
                     #if j.has_key('pbf_numeric'):
                     #    all['pbf_numeric']=j['pbf_numeric']
- 
                     
                     if j.has_key('ci_payload') and not j.has_key('idr'):
                         all['status']=j['ci_payload']
@@ -201,8 +199,7 @@ def home_index(request, error=None):
             'fruitform': fruitform,
              },
             context_instance = RequestContext(request),)    
-        
-
+    
     except:
         msg="""Something went wrong. HTTP/500."""
         error= msg + str(sys.exc_info())

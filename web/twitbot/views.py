@@ -1,15 +1,17 @@
-# Create your views here.
-from django.http import HttpResponse, Http404,HttpResponseRedirect, HttpResponse
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# vim: ai ts=4 sts=4 et sw=4
+from django.conf import settings
+from django.http import HttpResponse, Http404,HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib.auth.models import User
-from tweatwell.accounts.models import UserProfile
-from tweatwell.web.twitbot.models import TwitBot
-from tweatwell.web.twitbot.utils import twitbotsearch
-from tweatwell.web.pointsrank.models import PointsRank
-from tweatwell.web.upload.forms import OMHEUploadForm
-from tweatwell.web.foodreport.models import FoodReport, UserStatusReport
-from tweatwell import settings
+from ..accounts.models import UserProfile
+from models import TwitBot
+from utils import twitbotsearch
+from ..pointsrank.models import PointsRank
+from ..upload.forms import OMHEUploadForm
+from ..foodreport.models import FoodReport, UserStatusReport
 from tweatwell.web.utils import *
 from tweatwell.web.upload.forms import uploadOMHE2restcatdict
 from django import forms

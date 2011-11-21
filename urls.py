@@ -1,8 +1,6 @@
 from django.conf.urls.defaults import *
 from django.views.generic.simple import direct_to_template
-from tweatwell.accounts.forms import RegistrationForm
-from django.contrib.auth.forms import AuthenticationForm
-from tweatwell.web.views import *
+from tweatwell.web.home.views import *
 from tweatwell.web.stats.views import *
 from tweatwell.web.rawdata.views import *
 from tweatwell.web.upload.views import *
@@ -11,23 +9,15 @@ from tweatwell.web.twitbot.views import *
 from tweatwell.web.pointsrank.views import *
 from tweatwell.web.coachespoll.views import *
 from tweatwell.web.profile.views import *
-from tweatwell.accounts.views import *
-from settings import BASE_DIR
+from tweatwell.web.accounts.views import *
 from django.contrib.auth.views import login, logout, logout_then_login, password_change
-from django.contrib.auth.forms import AuthenticationForm
+
 #from registration.backends.default import DefaultBackend
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-
 
 urlpatterns = patterns('',
-    #serve static content		
-    (r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
-        {'document_root': STATIC_ROOT}),
-
 
     ##login urls ---------------------------------------------------------------
     url(r'^login/', login, { 'template_name': 'registration/login.html' }),
@@ -40,7 +30,7 @@ urlpatterns = patterns('',
     
     url(r'^faq/$', direct_to_template,
            {'template': 'faq.html'},
-           name='faq.html'),
+           name='faq'),
 
     url(r'^tos/$', direct_to_template,
            {'template': 'tos.html'},
@@ -50,19 +40,9 @@ urlpatterns = patterns('',
            {'template': 'privacy.html'},
            name='privacy'),
 
-
-
-    url(r'^accounts/profile/$', 'tweatwell.accounts.views.account_settings', name="account_settings"),
-    url(r'^accounts/register/complete/$', direct_to_template,
-           {'template': 'registration/registration_complete.html'},
-           name='registration_complete'),
-    url(r'^accounts/activate/(?P<activation_key>\w+)/$',
-        'registration.views.activate',
-        {'extra_context': {'auth_form': AuthenticationForm()}},
-        name='registration_activate'),
     
 
-    url(r'^accounts/', include('django.contrib.auth.urls')),
+    #url(r'^accounts/', include('django.contrib.auth.urls')),
     
     #application specific urls -------------------------------------------------
     url(r'^$', home_index, name="home_index"),

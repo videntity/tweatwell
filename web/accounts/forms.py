@@ -5,8 +5,6 @@ from  models import *
 from django.contrib.auth.models import User
 from django.forms.util import ErrorList
 from django.contrib.localflavor.us.forms import *
-from registration.forms import RegistrationFormUniqueEmail
-from registration.models import RegistrationProfile
 from django.conf import settings
 
 
@@ -44,7 +42,7 @@ class SMSCodeForm(forms.Form):
 
 
 
-class RegistrationForm(RegistrationFormUniqueEmail):
+class RegistrationForm(forms.Form):
     username = forms.CharField(max_length=30, label="Username*")
     password1 = forms.CharField(widget=forms.PasswordInput, max_length=30, label="Password*")
     password2 = forms.CharField(widget=forms.PasswordInput, max_length=30, label="Password (again)*")
@@ -68,7 +66,7 @@ class RegistrationForm(RegistrationFormUniqueEmail):
 
 
     def save(self, profile_callback=None):
-        new_user = RegistrationProfile.objects.create_inactive_user(
+        new_user = User.objects.create_inactive_user(
                         username=self.cleaned_data['username'],
                         password=self.cleaned_data['password1'],
                         email=self.cleaned_data['email'],

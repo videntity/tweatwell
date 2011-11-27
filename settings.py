@@ -173,7 +173,6 @@ INSTALLED_APPS = (
     'tweatwell.web.foodreport',
     'tweatwell.web.givepoints',
     'tweatwell.web.accounts',
-    'registration',
     'avatar',
     'django_ses',
 )

@@ -2,8 +2,8 @@
 @import "compass";
 @import "blueprint/form";
 
-@include global-reset;
-@include blueprint-form;
+/*@include global-reset;*/
+/*@include blueprint-form;*/
 
 // Theme Globals
 /*@import "base/theme";*/
@@ -19,6 +19,9 @@
 /*@import "partials/footer";*/
 /*@import "partials/login";*/
 /*@import "partials/messages";*/
+
+/* delete */
+@import "partials/legacy";
 
 //Image Sprites
 /*@import "icon*//*.png"; */

@@ -1,20 +1,15 @@
-<html>
+{#<!doctype html>#}
+<html class="no-js" lang="en">
 <head>
-	{% block head %}
-	<title>Tweatwell - (WVU Private BETA)</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="description" content="Seven."/>
+    <meta charset="utf-8">
+    {% block head %}
+        {% include "include/head.html" %}
+    {% endblock %}
 
-	<link rel="stylesheet" href="{{ STATIC_URL }}/css/blueprint/screen.css" type="text/css" media="screen, projection">
-        <link rel="stylesheet" href="{{ STATIC_URL }}/css/blueprint/print.css" type="text/css" media="print">	
-        <!--[if lt IE 8]>
-	<link rel="stylesheet" href="{{ STATIC_URL }}/css/blueprint/ie.css" type="text/css" media="screen, projection">
-	<![endif]-->
-	<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
-	{% endblock %}
-	
-	{% block extra_head %}{% endblock %}
+    {% block extra_head %}
+    {% endblock %}
 </head>
+
 
 <body>
 		

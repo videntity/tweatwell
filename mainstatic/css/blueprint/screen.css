@@ -287,7 +287,7 @@ hr.space {background:#fff;color:#fff;visibility:hidden;}
 
 #masthead ul.meta li {
 	float: left;
-	background: url(/site_media/img/bullet.gif) no-repeat left center;
+	background: url(/static/img/bullet.gif) no-repeat left center;
 	padding-left: 10px;
 	list-style-type: none;
 }
@@ -321,7 +321,7 @@ hr.space {background:#fff;color:#fff;visibility:hidden;}
 #headermain{
 	height: 287px;
 	background-position: 0px 0px;
-	background-image: url(/site_media/img/tweatwell_banner.png);
+	background-image: url(/static/img/tweatwell_banner.png);
 
 }
 #top-nav {
@@ -340,7 +340,7 @@ hr.space {background:#fff;color:#fff;visibility:hidden;}
 	height: 35px;
 	width: 160px;
 	text-align: center;
-	background-image: url(/site_media/img/nav_bg.gif);
+	background-image: url(/static/img/nav_bg.gif);
 	background-repeat: no-repeat;
 	background-position: bottom;
 	padding-top: 15px;
@@ -651,20 +651,20 @@ hr.space {background:#fff;color:#fff;visibility:hidden;}
 	background-position: 0px 0px !important;	
 }
 #restcat {
-	background-image: url(/site_media/img/restcat.jpg);
+	background-image: url(/static/img/restcat.jpg);
 	height: 73px;
 	width: 202px;
 	background-position: bottom;
 }
 
 #videntity {
-	background-image: url(/site_media/img/videntity.jpg);
+	background-image: url(/static/img/videntity.jpg);
 	height: 73px;
 	width: 202px;
 	background-position: bottom;
 }
 #plus {
-	background-image: url(/site_media/img/plus.gif);
+	background-image: url(/static/img/plus.gif);
 	height: 73px;
 	width: 33px;
 	float: left;
@@ -805,7 +805,7 @@ input{
 body{
 	background-color: #d1b11e;
 	background-repeat: repeat-x;
-	background-image: url(/site_media/img/bg.png);
+	background-image: url(/static/img/bg.png);
 }
 .logo{
 	margin-top: 80px;

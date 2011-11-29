@@ -1,8 +1,12 @@
 $max-width: 980px !default;
 
+html {
+    background-color: #5fa1c8;
+}
+
 body {
     -webkit-text-size-adjust: none;
-    position: relative;
+    position:relative;
 }
 
 #main {
@@ -13,5 +17,5 @@ body {
     @include pie-clearfix; 
     max-width: $max-width;
     margin: 0px auto 0px auto;
-    height:400px;
+    padding-bottom:25px;
 }

@@ -1,0 +1,44 @@
+@mixin footer-image {
+    display:block;
+    height: 73px;
+    width: 202px;
+    background-position: bottom;
+    float:left;
+}
+
+
+#footer {
+    background-color: #5fa1c8;
+    padding-top: 25px;
+    div {
+        width: 438px;
+        margin:0 auto 0 auto;
+        color:#ffffff;
+        text-align:center;
+        @include pie-clearfix;
+    }
+    p {
+        clear:both;
+        padding-top:8px;
+    }
+    .restcat {
+        @include footer-image;
+        background-image: url(/static/img/restcat.jpg);
+    }
+    .restcat:hover {background-position: top;}
+
+    .videntity {
+        @include footer-image;
+        background-image: url(/static/img/videntity.jpg);
+    }
+    .videntity:hover:hover {background-position: top;}
+    
+    .plus {
+        display:block;
+        background-image: url(/static/img/plus.gif);
+        height: 73px;
+        width: 33px;
+        float: left;
+        background-position: bottom;
+    }
+}

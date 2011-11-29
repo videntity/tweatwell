@@ -262,11 +262,7 @@ hr.space {background:#fff;color:#fff;visibility:hidden;}
 	margin-left: auto;
 }
 
-.wrapper-inner {
-	margin-top: -20px;
-}
-#header {
-}
+
 #headermain{
 	height: 287px;
 	background-position: 0px 0px;
@@ -558,67 +554,7 @@ hr.space {background:#fff;color:#fff;visibility:hidden;}
 	list-style-type: none;
 }
 
-#footer {
-	height: 150px;
-	width: 100%;
-	float: left;
-	text-align: center;
-	background-color: #58a0c8;
-	margin-top: 25px;
-	padding-top: 25px;
-	color: #FFFFFF;
-}
 
-#footer_nav {
-	overflow: hidden;
-	clear: right;
-	width: 438px;
-	margin-right: auto;
-	margin-left: auto;
-	height: 100px;
-}
-
-#footer_nav ul {
-	list-style-type: none;
-	height: 73px;
-	width: 438px;
-	margin: 0px;
-	padding: 0px;
-}
-#footer_nav ul li {
-	overflow: hidden;
-	line-height: 6px;
-	text-indent: -3000px;
-	margin: 0px;
-	padding: 0px;
-	float: left;
-}
-#footer_nav ul li a {
-	display: block;
-}
-#footer_nav ul li a:hover, #footer_nav ul li a:active {
-	background-position: 0px 0px !important;
-}
-#restcat {
-	background-image: url(/static/img/restcat.jpg);
-	height: 73px;
-	width: 202px;
-	background-position: bottom;
-}
-
-#videntity {
-	background-image: url(/static/img/videntity.jpg);
-	height: 73px;
-	width: 202px;
-	background-position: bottom;
-}
-#plus {
-	background-image: url(/static/img/plus.gif);
-	height: 73px;
-	width: 33px;
-	float: left;
-	background-position: bottom;
-}
 
 
 #scroller {

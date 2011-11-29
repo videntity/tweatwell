@@ -21,23 +21,9 @@
 <div id="main">
     <div id="content">
 
-		<div id="header"><!-- header -->
-			<div class="span-6 first"><!-- header left -->
-		 		<a href="/"><img src="{{ STATIC_URL }}/img/tweatwell_logo.png" alt="Tweat well" class="logo"/></a>
-			</div><!-- end of header left -->
+    {% include "include/header.html" %}
 
-			<div id="headermain"class="span-18 last"><!-- headermain -->
-				<div id="nav" class="span-6 first last"><!-- nav -->
-					<ul>
-				   		<li><a href="/">Home</a></li>
-				   		<li><a href="/rankings/">Rankings</a></li>
-				   		<li><a href="/faq/">FAQs</a></li>
-				   		<li><a href="/accounts/profile">Settings</a></li>
-				   		<li><a href="/logout">Logout</a></li>
-					</ul>
-           		</div><!-- end of nav -->
-			</div><!-- end of headermain -->
-		</div><!-- end of header  -->
+    {% include "include/top-nav.html" %}
 
         <div id="leftmiddle">
         {% block leftmiddle %}

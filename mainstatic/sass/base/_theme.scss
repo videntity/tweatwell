@@ -1,8 +1,0 @@
-$max-width: 980px !default;
-
-$text-color :#333333 !default;
-
-$link-color: lighten(#0000EE,3);
-$link-color-hover: adjust-color($link-color, $lightness: 10, $saturation: 25) !default;
-$link-color-visited: adjust-color($link-color, $hue: 80, $lightness: -4) !default;
-$link-color-active: adjust-color($link-color-hover, $lightness: -15) !default;

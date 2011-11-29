@@ -6,16 +6,15 @@
 @include blueprint-form;
 
 // Theme Globals
-@import "base/theme";
-@import "base/typography";
 @import "base/layout";
+@import "base/typography";
 
 // Theme Partials
 @import "partials/wvubanner";
 @import "partials/footer";
 
 
-/* delete */
+/* TODO: delete as soon as */
 @import "partials/legacy";
 
 //Image Sprites

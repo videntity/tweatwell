@@ -1,8 +1,9 @@
-a {
-  @include link-colors($link-color, $hover: $link-color-hover, $focus: $link-color-hover, $visited: $link-color-visited, $active: $link-color-active);
-  @include transition(color .3s);
-  @include hover-link;
-}
+$text-color :#333333 !default;
+
+$link-color: lighten(#0000EE,3);
+$link-color-hover: adjust-color($link-color, $lightness: 10, $saturation: 25) !default;
+$link-color-visited: adjust-color($link-color, $hue: 80, $lightness: -4) !default;
+$link-color-active: adjust-color($link-color-hover, $lightness: -15) !default;
 
 .sans { font-family: "Helvetica Neue",Helvetica,Arial,sans-serif }
 .serif { font-family: "PT Serif", Georgia, Times, "Times New Roman", serif; }
@@ -14,4 +15,10 @@ body {
     @extend .sans;
     font-size:75%;
     line-height:1em;
+}
+
+a {
+  @include link-colors($link-color, $hover: $link-color-hover, $focus: $link-color-hover, $visited: $link-color-visited, $active: $link-color-active);
+  @include transition(color .3s);
+  @include hover-link;
 }

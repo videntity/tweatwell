@@ -1,6 +1,15 @@
-
 body {
-    /*background: $body-bg $body-tile top left;*/
     -webkit-text-size-adjust: none;
     position: relative;
+}
+
+#main {
+    background:#d1b11e image-url('page-bgrd.png') repeat-x;
+}
+
+#content {
+    @include pie-clearfix; 
+    max-width: $max-width;
+    margin: 0px auto 0px auto;
+    height:400px;
 }

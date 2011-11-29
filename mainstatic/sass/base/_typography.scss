@@ -3,4 +3,15 @@ a {
   @include transition(color .3s);
   @include hover-link;
 }
- 
+
+.sans { font-family: "Helvetica Neue",Helvetica,Arial,sans-serif }
+.serif { font-family: "PT Serif", Georgia, Times, "Times New Roman", serif; }
+em {font-style:italic;}
+strong {font-weight:bold;}
+
+body {
+    color: $text-color;
+    @extend .sans;
+    font-size:75%;
+    line-height:1em;
+}

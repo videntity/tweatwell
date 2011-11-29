@@ -1,0 +1,24 @@
+#wvubanner-wrapper {
+    height:49px;
+    background: image-url('wvbanner-bgrd.png') repeat-x;
+    .wvubanner {
+        width: $max-width;
+        position:relative;
+        margin: 0 auto 0 auto;
+        img {margin-top: 10px;}
+        ul {
+            @include horizontal-list;
+            position:absolute;
+            top:10px;
+            right:0px;
+            font-size:10px;
+        }
+        a {
+            color:#ffffff;
+        }
+        li:last-child a{
+            color:#FFCC00;
+        }
+
+    }
+}

@@ -1,5 +1,5 @@
-{#<!doctype html>#}
-<html class="no-js" lang="en">
+<!doctype html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     {% block head %}
@@ -12,19 +12,19 @@
 
 
 <body>
+
+{% include "include/wvu-banner.html" %}
+
+
+
+
+
+
+
+
 		
 	<div id="wrapper">		
-		<div id="masthead">
-			<a href="http://www.wvu.edu/" class="wvu"><img src="{{ STATIC_URL }}/img/wvu_logo.gif" alt="West Virginia University" border="0" /></a>
-			<ul class="meta">
-				<li class="first"><a href="http://www.wvu.edu/SiteIndex/">A-Z Index</a></li>
-				<li><a href="http://www.wvu.edu/CampusMap/">Campus Maps</a></li>
-				<li><a href="http://directory.wvu.edu/">Directory</a></li>
-				<li><a href="mailto:wvubi@mail.wvu.edu">Contact Us</a></li>
-				<li class="last"><a href="http://www.wvu.edu/">WVU Home</a></li>
-			</ul>
-		</div>
-		
+
 		<div id="header"><!-- header -->
 			<div class="span-6 first"><!-- header left -->
 		 		<a href="/"><img src="{{ STATIC_URL }}/img/tweatwell_logo.png" alt="Tweat well" class="logo"/></a>
@@ -71,18 +71,12 @@
 			</div><!-- end of right sidebar -->
 		</div><!-- end of wrapper-inner -->
 	</div><!-- wrapper -->
-	
-	<div id="footer"><!-- footer -->
-    	<div id="footer_nav"><!-- footer nav-->
-        	<img src="{{ STATIC_URL }}/img/powered_by.gif" alt="Powered by"><br />
-        	<ul>     
-        		<li><a id="restcat" href="http://github.com/aviars/RESTCat">RESTCat: The Enterprise Social Object Server</a></li>     
-            	<li id="plus">plus</li>
-            	<li><a id="videntity" href="http://www.videntity.com">Videntity Systems, Inc.</a></li>
-        	</ul>
-    	</div><!-- end of footer_nav -->        
-		<p>&#124; &copy;2011 Videntity Systems, Inc. &#124;</p>
-	</div><!-- end of footer -->
+
+{% include "include/footer.html" %}
+
+{% block footer_js %}
+{% endblock %}
+
 	
 </body>
 </html>

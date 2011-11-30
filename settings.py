@@ -42,15 +42,45 @@ DATABASES = {
 # system time zone.
 TIME_ZONE = 'America/New_York'
 
+
+
+
+
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-#MEDIA_URL = 'http://tweatwell.s3.amazonaws.com/media/'
-MEDIA_URL = 'http://127.0.0.1/media/'
+#MEDIA_URL = 'http://127.0.0.1:8000/media/'
+MEDIA_URL = '/media/'
+
+# Absolute path to the directory static files should be collected to.
+# Don't put anything in this directory yourself; store your static files
+# in apps' "static/" subdirectories and in STATICFILES_DIRS.
+# Example: "/home/media/media.lawrence.com/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# URL prefix for static files.
+# Example: "http://media.lawrence.com/static/"
+STATIC_URL = '/static/'
+
+#STATIC_URL="https://statichive.s3.amazonaws.com/"
+# URL prefix for admin static files -- CSS, JavaScript and images.
+# Make sure to use a trailing slash.
+# Examples: "http://foo.com/static/admin/", "/static/admin/".
+#ADMIN_MEDIA_PREFIX = '/static/admin'
+ADMIN_MEDIA_PREFIX = 'https://cegdjadmin.s3.amazonaws.com/'
+MAIN_STATIC_ROOT = os.path.join(BASE_DIR, 'mainstatic')
+# Additional locations of static files
+STATICFILES_DIRS = (
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    MAIN_STATIC_ROOT,
+    )
+
 
 #Use a custom authentication backend to allow login with username or email.
 AUTHENTICATION_BACKENDS = (
@@ -104,17 +134,17 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.doc.XViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.middleware.csrf.CsrfResponseMiddleware',
 )
 
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 
-LOGOUT_URL = 'acciunts/logout'
+LOGOUT_URL = '/accounts/logout'
+LOGIN_URL='/accounts/login'
 LOGIN_REDIRECT_URL = '/'
 
 
-LOGIN_URL='/accounts/login'
-AUTHENTICATION_BACKENDS = ('tweatwell.web.janrain.backends.JanrainBackend',
+
+AUTHENTICATION_BACKENDS = (#'tweatwell.apps.janrain.backends.JanrainBackend',
                            'django.contrib.auth.backends.ModelBackend',
                            )
 
@@ -160,16 +190,16 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tweatwell.web',
-    'tweatwell.web.twitbot',
-    'tweatwell.web.coachespoll',
-    'tweatwell.web.pointsrank',
-    'tweatwell.web.awards',
-    'tweatwell.web.questionstips',
-    'tweatwell.web.foodreport',
-    'tweatwell.web.givepoints',
-    'tweatwell.web.accounts',
-    'tweatwell.web.janrain',
+    'tweatwell.apps',
+    'tweatwell.apps.twitbot',
+    'tweatwell.apps.coachespoll',
+    'tweatwell.apps.pointsrank',
+    'tweatwell.apps.awards',
+    'tweatwell.apps.questionstips',
+    'tweatwell.apps.foodreport',
+    'tweatwell.apps.givepoints',
+    'tweatwell.apps.accounts',
+    #'tweatwell.apps.janrain',
     'avatar',
     'django_ses',
 )

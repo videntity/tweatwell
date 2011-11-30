@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+
+
+
+{% block middle %}
+
+<form action='.' method='POST'>
+	{{form}}
+	<input type="submit" value="Signup" />
+	<input type="hidden" name="next" value="{{ next|escape }}" />
+</form>
+
+
+
+
+{% endblock %}

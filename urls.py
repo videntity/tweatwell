@@ -1,15 +1,15 @@
 from django.conf.urls.defaults import *
 from django.views.generic.simple import direct_to_template
-from tweatwell.web.home.views import *
-from tweatwell.web.stats.views import *
-from tweatwell.web.rawdata.views import *
-from tweatwell.web.upload.views import *
-from tweatwell.web.mybox.views import *
-from tweatwell.web.twitbot.views import *
-from tweatwell.web.pointsrank.views import *
-from tweatwell.web.coachespoll.views import *
-from tweatwell.web.profile.views import *
-from tweatwell.web.accounts.views import *
+from tweatwell.apps.home.views import *
+from tweatwell.apps.stats.views import *
+from tweatwell.apps.rawdata.views import *
+from tweatwell.apps.upload.views import *
+from tweatwell.apps.mybox.views import *
+from tweatwell.apps.twitbot.views import *
+from tweatwell.apps.pointsrank.views import *
+from tweatwell.apps.coachespoll.views import *
+from tweatwell.apps.profile.views import *
+from tweatwell.apps.accounts.views import *
 from django.contrib.auth.views import login, logout, logout_then_login, password_change
 
 #from registration.backends.default import DefaultBackend
@@ -20,9 +20,16 @@ admin.autodiscover()
 urlpatterns = patterns('',
 
     # login urls ---------------------------------------------------------------
-    (r'^janrain/', include('tweatwell.web.janrain.urls')),
+    #(r'^janrain/', include('tweatwell.apps.janrain.urls')),
     # account urls -------------------------------------------------------------
-    url(r'^accounts/', include('tweatwell.web.accounts.urls')),  
+    
+     # Media and Static -  comment out for production config! -------------
+    url(r'^media/(?P<path>.*)$', 'django.views.static.serve',
+                {'document_root': settings.MEDIA_ROOT}),
+    url(r'^static/(?P<path>.*)$', 'django.views.static.serve',
+                {'document_root': settings.STATIC_ROOT}),
+    
+    url(r'^accounts/', include('tweatwell.apps.accounts.urls')),  
 
     (r'^avatar/', include('avatar.urls')),
     

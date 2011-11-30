@@ -61,47 +61,25 @@ class ValidPasswordResetKey(models.Model):
         x=send_password_reset_url_via_email(self.user, self.reset_password_key)
         super(ValidPasswordResetKey, self).save(**kwargs)
 
-USER_TYPE_CHOICES =          ( ('member',  'Member'),
-                             ('organization',  'Organization'),)
-
-ORGANIZATION_CHOICES= ( ('non-profit',  'Non-Profit'),
-                         ('for-profit',  'For Profit'),
-                         ('individual',  'Individual'))
-
 APPROVAL_CHOICES =( ('pending',  'Pending'),
-                         ('approved',  'Approved'),
-                         ('rejected',  'rejected'))
+                    ('approved',  'Approved'),
+                    ('rejected',  'rejected'))
 
-SECURITY_CHOICES = (('1',  '1'),
-                    ('2',  '2'),
-                    ('3',  '3'),
-                    ('4',  '4'),
+
+
+USER_CHOICES     = ( ('player',  'player'),
+                    ('admin',  'admin'),
                     )
 
-# Security Choice   1 = Member      - Standard Account
-#                   2 = Delegate    - Limited rights given by Owner to manage organization account
-#                   3 = Owner       - Organization Account Owner
-#                   4 = Staff       - Site Staff Admin - delegated by Site Super Admin
-#                   5 = SuperAdmin  - Site Super Admin
-
-
 class UserProfile(models.Model):
-    user_type       = models.CharField(default="member", max_length=10,
-                                               choices=USER_TYPE_CHOICES)
+    user = models.ForeignKey(User, unique=True)
     url             = models.URLField(blank = True)
-    security_level  = models.CharField(default='1',
-                                       choices=SECURITY_CHOICES,
-                                       max_length=1)
-    approval_status = models.CharField(max_length=10,
-                                       choices=APPROVAL_CHOICES,
-                                       default='pending')
-    phone_number     = PhoneNumberField(blank = True, max_length=15)
-    twitter          = models.CharField(blank = True, max_length=15)
-    notes            = models.CharField(blank = True, max_length=250)
-    user = models.ForeignKey(User, unique=True,)
-
-    # user = models.ForeignKey(User, unique=True, edit_inline=models.TABULAR, num_in_admin=1,
-    #                           min_num_in_admin=1, max_num_in_admin=1,num_extra_on_change=0)
+    user_type       = models.CharField(default='player',
+                                       choices=USER_CHOICES,
+                                       max_length=6)
+    mobile_phone_number     = PhoneNumberField(blank = True, max_length=15)
+    twitter                 = models.CharField(blank = True, max_length=15)
+    notes                   = models.TextField(blank = True, max_length=250)
 
     def __unicode__(self):
         return '%s %s is a %s and their status is %s' % (self.user.first_name,
@@ -111,25 +89,35 @@ class UserProfile(models.Model):
     class Meta:
         unique_together = (("user", "user_type"),)
 
-# Now, in views.py, to access a user's profile, you only need two lines:
-# user = User.objects.get(pk = user_id)
-# user.userprofile = get_or_create_profile(user)
-#
-# And, say if you wanted to change a value:
-# user.userprofile.security_level = '1'
-# user.userprofile.save()
+
+
+class ValidPasswordResetKey(models.Model):
+    user               = models.ForeignKey(User)
+    reset_password_key = models.CharField(max_length=50, blank=True)
+    expires            = models.DateTimeField(default=datetime.now)
+                           
+
+    def __unicode__(self):
+        return '%s for user %s expires at %s' % (self.reset_password_key,
+                                                 self.user.username,
+                                                 self.expires)
+        
+    def save(self, **kwargs):
+        
+        self.reset_password_key=str(uuid.uuid4())
+        now = datetime.now()
+        expires=now+timedelta(minutes=settings.SMS_LOGIN_TIMEOUT_MIN)
+        self.expires=expires
+        
+        #send an email with reset url
+        x=send_password_reset_url_via_email(self.user, self.reset_password_key)
+        super(ValidPasswordResetKey, self).save(**kwargs)
 
 
 
-
-
-
-permission_choices=(    ('provider',  'provider'),
-                        ('tester',  'tester'),
-                        ('outreach',    'outreach'),
-                        ('member_navigator',  'member_navigator'),
+permission_choices=(    ('player',  'player'),
                         ('admin',  'admin'),
-                        ('reporter',  'reporter'),
+
 
                     )
 

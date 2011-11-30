@@ -19,11 +19,9 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 
-    ##login urls ---------------------------------------------------------------
-    url(r'^login/', login, { 'template_name': 'registration/login.html' }),
-    url(r'^logout/', logout_then_login),
-
-    ##account urls -------------------------------------------------------------
+    # login urls ---------------------------------------------------------------
+    (r'^janrain/', include('tweatwell.web.janrain.urls')),
+    # account urls -------------------------------------------------------------
     url(r'^accounts/', include('tweatwell.web.accounts.urls')),  
 
     (r'^avatar/', include('avatar.urls')),
@@ -40,9 +38,6 @@ urlpatterns = patterns('',
            {'template': 'privacy.html'},
            name='privacy'),
 
-    
-
-    #url(r'^accounts/', include('django.contrib.auth.urls')),
     
     #application specific urls -------------------------------------------------
     url(r'^$', home_index, name="home_index"),

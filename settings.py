@@ -109,18 +109,14 @@ MIDDLEWARE_CLASSES = (
 
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 
-LOGIN_URL = '/login'
-LOGOUT_URL = '/logout'
+LOGOUT_URL = 'acciunts/logout'
 LOGIN_REDIRECT_URL = '/'
 
 
 LOGIN_URL='/accounts/login'
-AUTHENTICATION_BACKENDS = ('tweatwell.web.accounts.auth.HTTPAuthBackend',
-                           'tweatwell.web.accounts.auth.EmailBackend',
+AUTHENTICATION_BACKENDS = ('tweatwell.web.janrain.backends.JanrainBackend',
                            'django.contrib.auth.backends.ModelBackend',
                            )
-
-
 
 
 ROOT_URLCONF = 'tweatwell.urls'
@@ -173,6 +169,7 @@ INSTALLED_APPS = (
     'tweatwell.web.foodreport',
     'tweatwell.web.givepoints',
     'tweatwell.web.accounts',
+    'tweatwell.web.janrain',
     'avatar',
     'django_ses',
 )
@@ -241,4 +238,4 @@ RESTCAT_PASS="tweatwellpass"
 RESTCAT_USER_EMAIL="tweatwellapp@videntity.com"
 DEFAULT_TRANSACTION_TIMEZONE_OFFSET=-5
 
-
+JANRAIN_RPX_API_KEY = "29141158497f97547cba22785170a0326bec2851"

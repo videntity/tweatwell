@@ -1,0 +1,36 @@
+@mixin nav-tab-active {
+    color:#6A8800;
+    background-color:#ffffff;
+    text-shadow: 0 1px 1px #fffdc3;
+}
+
+#topnav{
+    @include horizontal-list;
+    margin:100px 0 0 10px;
+    li {
+        overflow:hide;
+    }
+    a {
+        display:block;
+        font-size:16px;
+        background:#6A8800;
+        color:#FFFFFF;
+        padding:10px 15px 8px 15px;
+        @include border-top-radius(5px);
+        text-decoration:none;
+        text-shadow: 0 1px 1px #666666;
+        @include transition(.2s);
+
+    }
+    a:hover {
+        @include nav-tab-active;
+    }
+
+}
+
+/* todo add on states */
+body.home-active,{
+    #topnav a.nav-home-tab {
+        @include nav-tab-active;
+    }
+}

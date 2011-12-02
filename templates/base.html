@@ -14,7 +14,7 @@
 </head>
 
 
-<body>
+<body class="{% block active_nav_tab %}{% endblock %}">
 
 {% include "include/wvu-banner.html" %}
 
@@ -24,6 +24,7 @@
     {% include "include/header.html" %}
 
     {% include "include/top-nav.html" %}
+
 
         <div id="leftmiddle">
         {% block leftmiddle %}

@@ -18,7 +18,8 @@ import datetime, os, pycurl, StringIO, json, types, sys
 from operator import itemgetter, attrgetter
 
 def anon_home_index(request):
-    return HttpResponse("anon. we'll do this at near the end")
+    print ("anon. we'll do this at near the end. for now redirect to login/signup")
+    return HttpResponseRedirect(reverse('simple_login'))
 
 def home(request):
     error=None

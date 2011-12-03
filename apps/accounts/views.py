@@ -136,6 +136,7 @@ def password_reset_request(request):
 
 
 
+
 @login_required
 def account_settings(request):
 
@@ -145,28 +146,34 @@ def account_settings(request):
         form = AccountSettingsForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
+            #update the user info
+            request.user.username= data['username']
             request.user.first_name= data['first_name']
             request.user.last_name= data['last_name']  
             request.user.save()
+            #update the user profile
             up.twitter = data['twitter']
-            up.mobile_phone_number= data['phone_number']
+            up.mobile_phone_number= data['mobile_phone_number']
             up.save()
             messages.success(request,'Your account settings have been updated.')  
             return render_to_response('accounts/account_settings.html',
                             {'form': form,},
                             RequestContext(request))
         else:
-            messages.success(request,'Oops.  Please correct the errors below.')
+            #the form had errors
             return render_to_response('accounts/account_settings.html',
                             {'form': form,},
                             RequestContext(request))
-            
-                
-                
+               
 
     #this is an HTTP GET        
     return render_to_response('accounts/account_settings.html',
-                              {'form': AccountSettingsForm()},
+        {'form': AccountSettingsForm(initial={ 'username':request.user.username,
+                                'last_name':request.user.last_name,
+                                'first_name':request.user.first_name,
+                                'twitter':up.twitter,
+                                'mobile_phone_number':up.mobile_phone_number,
+                                })},
                               RequestContext(request))
 
 

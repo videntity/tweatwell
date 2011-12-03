@@ -77,10 +77,15 @@ class SignupForm(forms.Form):
         return new_user
 
 class AccountSettingsForm(forms.Form):
+    username = forms.CharField(max_length=30, label="Userame")
     first_name = forms.CharField(max_length=30, label="First Name")
     last_name = forms.CharField(max_length=60, label="Last Name")
-    phone_number = forms.CharField(max_length=15, label="Phone Number")
-    email = forms.EmailField(max_length=75, label="Email*")
+    mobile_phone_number = forms.CharField(max_length=15, label="Phone Number")
     twitter = forms.CharField(max_length=15, label="Twitter")
      
-    
+    def clean_twitter(self):
+        twitter = self.cleaned_data.get("twitter", "")
+        if twitter!="":
+            if twitter[0:1]=="@":
+                twitter=twitter[1:]
+        return twitter

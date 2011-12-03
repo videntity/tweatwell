@@ -7,21 +7,23 @@
     <p class="error">Sorry, that's not a valid username or password</p>
   {% endif %}
 
-  <form action='.' method='POST'>
-      <label for="username">User name:</label>
-      <input type="text" name="username" value="" id="username">
-      <br>
-      <label for="password">Password:</label>
-      <input type="password" name="password" value="" id="password">
-      <br>
+  <form action='/accounts/login/' method='POST'>
+      {{form}}
+      {% csrf_token %}
       <input type="submit" value="login" />
-      <input type="hidden" name="next" value="{{ next|escape }}" />
+      
   </form>
 </div>
 {% endblock %}
 
 {% block middle %}
-<p>Welcome to tweatWELL! tweatWELL is a pilot program with the goal of creating behavior change utilizing a social network. It is a unique point-based social network with the purpose of providing a fun way for WVU students to increase their intake of Freggies (fruits and vegetables). Please read the FAQs to the right, which includes information on using Mozilla Firefox as your internet browser during the program. New to tweatWELL? <a href="http://www.tweatwell.com/accounts/register/">Register</a> to get started.</p>
+<p>Welcome to tweatWELL! tweatWELL is a pilot program with the goal of creating
+behavior change utilizing a social network. It is a unique point-based
+social network with the purpose of providing a fun way for WVU students
+to increase their intake of Freggies (fruits and vegetables).
+Please read the FAQs to the right, which includes information on using
+Mozilla Firefox as your internet browser during the program.
+New to tweatWELL? <a href="http://www.tweatwell.com/accounts/signup">Signup</a> to get started.</p>
 
 <iframe title="YouTube video player" class="youtube-player" type="text/html" 
 width="458" height="279" src="http://www.youtube.com/embed/cKnhLy7oQ14"

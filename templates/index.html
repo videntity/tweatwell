@@ -82,23 +82,23 @@
         <div id="checkin">
 	        <h2>Check In</h2>
 				<div id="veggie" class="foodicon">
-				<img src="/site_media/img/broccoli_small.gif" alt="Broccoli" border="0" />
+				<img src="{{ STATIC_URL }}img/broccoli_small.gif" alt="Broccoli" border="0" />
 						
 				</div><!-- veggie -->
 				<div id="fruit" class="foodicon">
-					<img src="/site_media/img/fruit_small.gif" alt="Fruit" border="0" />
+					<img src="{{ STATIC_URL }}img/fruit_small.gif" alt="Fruit" border="0" />
 				</div><!-- fruit -->
 				<div id="water" class="foodicon last">
-					<img src="/site_media/img/water_small.gif" alt="Water" border="0" />
+					<img src="{{ STATIC_URL }}img/water_small.gif" alt="Water" border="0" />
 				</div><!-- water -->			  
 				<div id="beer" class="foodicon"> 
-				   <img src="/site_media/img/beer_small.gif" alt="Alcohol" border="0" />
+				   <img src="{{ STATIC_URL }}img/beer_small.gif" alt="Alcohol" border="0" />
 				</div><!-- beer -->			    
 				<div id="junk" class="foodicon"> 
-				   <img src="/site_media/img/pizza_small.gif" alt="Junk" border="0" />
+				   <img src="{{ STATIC_URL }}img/pizza_small.gif" alt="Junk" border="0" />
 				</div><!-- junk -->
 				<div id="question" class="foodicon"> 
-				   <img src="/site_media/img/question_small.gif" alt="Question" border="0" />
+				   <img src="{{ STATIC_URL }}img/question_small.gif" alt="Question" border="0" />
 				</div><!-- question -->
 				
 				<div id="veggieform" class="veggieform"> 
@@ -120,10 +120,10 @@
 				
 				
       	</div><!-- checkin -->
-		<a href="http://sparkpeople.com" target="_blank"><img src="/site_media/img/sparkpeople_logo.png" alt="SparkPeople.com logo" border="0" /></a>
+		<a href="http://sparkpeople.com" target="_blank"><img src="{{ STATIC_URL }}img/sparkpeople_logo.png" alt="SparkPeople.com logo" border="0" /></a>
 		<hr />
-		<a href="http://twitter.com/#!/wellwvu" target="_blank"><img src="/site_media/img/twitter.png" alt="Twitter logo" border="0" /></a>
-		<a href="http://well.wvu.edu" target="_blank"><img src="/site_media/img/wellwvu-logo.gif" alt="Well WVU logo" border="0" /></a>
+		<a href="http://twitter.com/#!/wellwvu" target="_blank"><img src="{{ STATIC_URL }}img/twitter.png" alt="Twitter logo" border="0" /></a>
+		<a href="http://well.wvu.edu" target="_blank"><img src="{{ STATIC_URL }}img/wellwvu-logo.gif" alt="Well WVU logo" border="0" /></a>
        
 	    
 	{% endblock %} <!-- end left -->
@@ -207,31 +207,31 @@
 			<div class="small">
 			{% for a in awards %}  
 			  {% if a.award_class = "Dean" %}
-			    <span class="badge"><img src="/site_media/img/DEAN.png" alt="Dean" border="0" /><br />
+			    <span class="badge"><img src="{{ STATIC_URL }}img/DEAN.png" alt="Dean" border="0" /><br />
 			    {{a.freggie}}
 			    </span>
 			  {% endif %}
 			  
 			  {% if a.award_class = "President" %}
-			    <span class="badge"><img src="/site_media/img/PRESIDENT.png" alt="President" border="0" /><br />
+			    <span class="badge"><img src="{{ STATIC_URL }}img/PRESIDENT.png" alt="President" border="0" /><br />
 			    {{a.freggie}}
 			    </span>
 			  {% endif %}
 			  
 			  {% if a.award_class = "Professor" %}
-			    <span class="badge"><img src="/site_media/img/PROFESSOR.png" alt="Professor" border="0" /><br />
+			    <span class="badge"><img src="{{ STATIC_URL }}img/PROFESSOR.png" alt="Professor" border="0" /><br />
 			    {{a.freggie}}
 			    </span>
 			  {% endif %}
 			  
 			  {% if a.award_class = "Event" %}
-			    <span class="badge"><img src="/site_media/img/event.png" alt="Event" border="0" /><br />
+			    <span class="badge"><img src="{{ STATIC_URL }}img/event.png" alt="Event" border="0" /><br />
 			    {{a.freggie}}
 			    </span>
 			  {% endif %}
 			
 			  {% if a.award_class = "Sparkpeople" %}
-			    <span class="badge"><img src="/site_media/img/sparkpeople.png" alt="SparkPeople" border="0" /><br />
+			    <span class="badge"><img src="{{ STATIC_URL }}img/sparkpeople.png" alt="SparkPeople" border="0" /><br />
 			    {{a.freggie}}
 			    </span>
 			  {% endif %}			
@@ -239,23 +239,23 @@
 			  	
 			 
 			  {% if not DeanAward %}
-			    <span class="badge"><img src="/site_media/img/DEAN1.png" alt="Dean" border="0" /></span>	
+			    <span class="badge"><img src="{{ STATIC_URL }}img/DEAN1.png" alt="Dean" border="0" /></span>	
 			  {% endif %}
 	  
 			 {% if not ProfessorAward %}
-			    <span class="badge"><img src="/site_media/img/PROFESSOR1.png" alt="Professor" border="0" /></span>
+			    <span class="badge"><img src="{{ STATIC_URL }}img/PROFESSOR1.png" alt="Professor" border="0" /></span>
 			  {% endif %}
 			  
 			  {% if not PresidentAward %}
-			    <span class="badge"><img src="/site_media/img/PRESIDENT1.png" alt="President" border="0" /></span>
+			    <span class="badge"><img src="{{ STATIC_URL }}img/PRESIDENT1.png" alt="President" border="0" /></span>
 			  {% endif %}
 			  
 			  {% if not EventAward %}
-			    <span class="badge"><img src="/site_media/img/event1.png" alt="Event" border="0" /></span>
+			    <span class="badge"><img src="{{ STATIC_URL }}img/event1.png" alt="Event" border="0" /></span>
 			  {% endif %}
 			  
 			  {% if not SparkpeopleAward %}
-			    <span class="badge"><img src="/site_media/img/sparkpeople1.png" alt="Spark People" border="0" /></span>
+			    <span class="badge"><img src="{{ STATIC_URL }}img/sparkpeople1.png" alt="Spark People" border="0" /></span>
 			  {% endif %}
 		  </div>
 
@@ -283,19 +283,19 @@
 					  <li>JUNK: {{all.junk}}</li>
 					  <li class="points"><strong>POINTS: {{all.points}} </strong></li>
 				  	</ul>
-				  	<img src="/site_media/img/freggie.png" alt="Freggie" border="0" class="freggie"/>
+				  	<img src="{{ STATIC_URL }}img/freggie.png" alt="Freggie" border="0" class="freggie"/>
 				  				  
 				 </div>
 			</div> <!-- end of profile -->
 
     		<div id="judges"><!-- judges -->
     			<h4>Judges</h4>
-		        <img src="/site_media/img/judge_kiwi.gif" alt="Kiwi" />
-		        <img src="/site_media/img/judge_pepper.gif" alt="Pepper" />
-				<img src="/site_media/img/judge_apple.gif" alt="Apple" />
-				<img src="/site_media/img/judge_daikon.gif" alt="Daikon" />
-				<img src="/site_media/img/judge_gala.gif" alt="Gala" />
-				<img src="/site_media/img/judge_cherry.gif" alt="Cherry" />				
+		        <img src="{{ STATIC_URL }}img/judge_kiwi.gif" alt="Kiwi" />
+		        <img src="{{ STATIC_URL }}img/judge_pepper.gif" alt="Pepper" />
+				<img src="{{ STATIC_URL }}img/judge_apple.gif" alt="Apple" />
+				<img src="{{ STATIC_URL }}img/judge_daikon.gif" alt="Daikon" />
+				<img src="{{ STATIC_URL }}img/judge_gala.gif" alt="Gala" />
+				<img src="{{ STATIC_URL }}img/judge_cherry.gif" alt="Cherry" />				
 			</div><!-- end judges -->
 			
 			 <h2>Tip of the Day</h2>

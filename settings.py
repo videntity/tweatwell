@@ -134,6 +134,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.doc.XViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
 )
 
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
@@ -238,22 +239,26 @@ CACHES = {
 
 # Email Settings --------------------------------------------------------------
 
-EMAIL_HOST_USER = 'hive@videntity.com'
+EMAIL_HOST_USER = 'tweatwell@videntity.com'
 HOSTNAME_URL = 'http://tweatwell.com'
+HOSTNAME_URL = 'http://127.0.0.1:8000'
 EMAIL_BACKEND = 'django_ses.SESBackend'
-AWS_ACCESS_KEY_ID = 'AKIAIE5XDCZ5PNK4RGOQ'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = 'AKIAIU6C5F7PYXMGXKWA'
+AWS_SECRET_ACCESS_KEY = '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'
 
 
 
 
 #Registration Settings
-ACCOUNT_ACTIVATION_DAYS = 2
+
 #Only allow a person to registeration from this domain
-#Set to None to allow any downa
+#Set to None to allow any
 #RESTRICT_REG_DOMAIN_TO="mix.wvu.edu"
 RESTRICT_REG_DOMAIN_TO=None
 MIN_PASSWORD_LEN=8
+SIGNUP_TIMEOUT_DAYS = 7
+ORGANIZATION_NAME = "WVU:Tweatwell"
+
 
 #Twitter Hash Tag.  Setting this gets only tweats with this hash.
 #To turn off set yo None: TWITTERHASH=None

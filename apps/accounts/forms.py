@@ -26,19 +26,13 @@ class PasswordResetForm(forms.Form):
         return password2
 
 
+
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=30, label="Username")
     password = forms.CharField(widget=forms.PasswordInput, max_length=30, label="Password")
-    smscode  = forms.CharField(widget=forms.PasswordInput, max_length=5, label="SMS Code")
 
 
-class SimpleLoginForm(forms.Form):
-    username = forms.CharField(max_length=30, label="Username")
-    password = forms.CharField(widget=forms.PasswordInput, max_length=30, label="Password")
 
-
-class SMSCodeForm(forms.Form):
-    username= forms.CharField(max_length=30, label="Username")
 
 
 
@@ -78,7 +72,8 @@ class SignupForm(forms.Form):
             twitter=self.cleaned_data.get('twitter', ""),
             mobile_phone_number=self.cleaned_data.get('mobile_phone_number', ""),
             )
-        #print send an email confimation.
+        v=ValidSignupKey(user=new_user)
+        v.save()
         return new_user
 
 class AccountSettingsForm(forms.Form):

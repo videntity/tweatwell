@@ -45,4 +45,25 @@ def send_password_reset_url_via_email(user, reset_key):
     msg = EmailMultiAlternatives(subject, text_content, from_email, [to,])
     msg.attach_alternative(html_content, "text/html")
     msg.send()
+    
+def send_signup_key_via_email(user, signup_key):
+    subject = "%s - Verify your email to get started." % (settings.ORGANIZATION_NAME)    
+    from_email = settings.EMAIL_HOST_USER
+    to = user.email
+    headers = {'Reply-To': from_email}
+    
+    html_content = """"
+    <P>
+    You're almost done.  Please click the link to activate your account.<br>
+    <a HREF="%s/accounts/signup-verify/%s">%s/accounts/signup-verify/%s</a>
+    </P>
+    """ % (settings.HOSTNAME_URL , signup_key, settings.HOSTNAME_URL, signup_key)
+   
+    text_content="""
+    You're almost done.  Please click the link to activate your account.
+    %s/accounts/signup-verify/%
+    """
+    msg = EmailMultiAlternatives(subject, text_content, from_email, [to,])
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()
 

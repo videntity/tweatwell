@@ -8,7 +8,6 @@ from views import *
 urlpatterns = patterns('',
 
     url(r'login/', simple_login,  name='simple_login'),
-    url(r'register/', register,  name='register'),
     url(r'logout/', mylogout, name='mylogout'),
     url(r'password-reset-request/', password_reset_request,
         name='password_reset_request'),     
@@ -18,5 +17,8 @@ urlpatterns = patterns('',
     url(r'profile/', account_settings, name='account_settings'),
     url(r'reset-password/(?P<reset_password_key>[^/]+)/$', reset_password,
         name='password_reset_request'),
+
+    url(r'signup-verify/(?P<signup_key>[^/]+)/$', signup_verify,
+        name='signup_verify'),
     
     )

@@ -17,9 +17,17 @@ from ..upload.forms import PickFruitForm, PickVeggieForm
 import datetime, os, pycurl, StringIO, json, types, sys
 from operator import itemgetter, attrgetter
 
-@login_required
-def home_index(request, error=None):
+def anon_home_index(request):
+    return HttpResponse("anon. we'll do this at near the end")
+
+def home(request):
+    error=None
     print "main page"
+    #if the user is logged in, display
+    if request.user.is_anonymous()==True:
+        return anon_home_index(request)
+    #Otherwise lets display everything.
+    
     responsedict={'code': 500, 'bodylist':[]}
     commentslist=[]
     fruitform = PickFruitForm()
@@ -42,11 +50,10 @@ def home_index(request, error=None):
     
     
     qt=QuestionTips.objects.get(pk=1)
-
-
-    u=get_object_or_404(User,username=request.user)
+    u=User.objects.get(username=request.user)
+    p=u.get_profile()
     awards =Award.objects.filter(user=u)
-    
+
     PresidentAward=False
     ProfessorAward=False
     DeanAward=False
@@ -64,7 +71,7 @@ def home_index(request, error=None):
         if a.award_class=="Event":
             EventAward=True
         
-    p=get_object_or_404(user=u)
+    p=get_object_or_404(UserProfile, user=u)
         
     try:
         pr=PointsRank.objects.get(user=u)
@@ -72,7 +79,6 @@ def home_index(request, error=None):
     except(PointsRank.DoesNotExist):
         all['pointspoll']=0
         
-         
     try:
         #get every transaction for this user
         URL="%sapi/omhe/all/%s/" % (settings.RESTCAT_SERVER, u.email)

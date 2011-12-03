@@ -2,11 +2,28 @@
 # -*- coding: utf-8 -*-
 # vim: ai ts=4 sts=4 et sw=4
 from django.conf import settings
-import json
 from django.contrib.auth import login, authenticate
 from httpauth import HttpBasicAuthentication
 from django.http import HttpResponse
-from models import Permission
+from models import Permission, ValidSignupKey
+from django.contrib.auth.models import User
+from datetime import datetime
+
+def validate_signup(signup_key):
+    try:
+        vc=ValidSignupKey.objects.get(signup_key=signup_key)
+        now=datetime.now()
+    
+        if vc.expires < now:
+            vc.delete()
+            return False   
+    except(ValidSignupKey.DoesNotExist):
+        return False  
+    u=vc.user
+    u.is_active=True
+    u.save()
+    vc.delete()
+    return True
 
 
 def user_permissions(request):
@@ -34,15 +51,5 @@ def authorize(request):
             auth=False
     return auth
 
-def unauthorized_json_response(additional_info=None):
-    body={"status": 401, "message": "Unauthorized - Your account credentials were invalid.", "num_results":0, "results": ()}
-    if additional_info:
-        body['message']="%s %s" % (body['message'], additional_info)
-    body=json.dumps(body, indent=4)
-    return body
-
-
-def verify(verification_key):
-    return False
 
 

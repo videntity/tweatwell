@@ -11,7 +11,7 @@ from sms_utils import send_sms_twilio
 import string
 import random
 import uuid
-from emails import send_password_reset_url_via_email
+from emails import send_password_reset_url_via_email, send_signup_key_via_email
 from django.utils.safestring import mark_safe
 
 class ValidSMSCode(models.Model):
@@ -60,6 +60,31 @@ class ValidPasswordResetKey(models.Model):
         #send an email with reset url
         x=send_password_reset_url_via_email(self.user, self.reset_password_key)
         super(ValidPasswordResetKey, self).save(**kwargs)
+
+
+class ValidSignupKey(models.Model):
+    user                 = models.ForeignKey(User)
+    signup_key           = models.CharField(max_length=50, blank=True,
+                                            unique=True)
+    expires              = models.DateTimeField(default=datetime.now)
+                           
+
+    def __unicode__(self):
+        return '%s for user %s expires at %s' % (self.signup_key,
+                                                 self.user.username,
+                                                 self.expires)
+        
+    def save(self, **kwargs):
+        
+        self.signup_key=str(uuid.uuid4())
+        now = datetime.now()
+        expires=now+timedelta(days=settings.SIGNUP_TIMEOUT_DAYS)
+        self.expires=expires
+        
+        #send an email with reset url
+        x=send_signup_key_via_email(self.user, self.signup_key)
+        super(ValidSignupKey, self).save(**kwargs)
+
 
 APPROVAL_CHOICES =( ('pending',  'Pending'),
                     ('approved',  'Approved'),

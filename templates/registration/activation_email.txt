@@ -1,5 +1,0 @@
-Please visit http://www.tweatwell.com/accounts/activate/{{ activation_key }} to activate your account.
-
-Montani Semper Liberi,
-
---tweatwell.com

@@ -21,38 +21,11 @@
 <div id="main">
     <div id="content">
 
-    {% include "include/header.html" %}
+        {% include "include/header.html" %}
 
-    {% include "include/top-nav.html" %}
+        {% include "include/top-nav.html" %}
 
-
-        <div id="leftmiddle">
-        {% block leftmiddle %}
-        {% endblock %}
-        </div><!-- leftmiddle -->
-
-        <div class="wrapper-inner">
-			<div id="left" class="span-6 first last"><!-- left sidebar -->
-				<div class="left-inner">
-					{%  block left  %}
-					{% endblock %}
-				</div>
-			</div><!-- end of left sidebar-->
-
-			<div id="middle" class="span-12 first last" ><!-- middle -->
-				<div class="middle-inner">
-				{%  block middle  %}
-				{% endblock %}
-				</div>
-	        </div><!-- end of middle -->
-
-			<div id="right" class="span-6 last"><!-- right sidebar -->
-				<div class="middle-inner">
-				{%  block right  %}
-				{% endblock %}
-				</div>
-			</div><!-- end of right sidebar -->
-		</div><!-- end of wrapper-inner -->
+        {% block content %}{% endblock %}
 
     </div>
 </div>

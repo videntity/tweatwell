@@ -20,3 +20,45 @@ body {
     padding:10px 0 25px 0;
     background: image-url('girls-bgrd.png') no-repeat right 10px;
 }
+
+.col-main {
+    @include pie-clearfix;
+    @include border-radius(10px);
+    min-height:225px;
+    background:#fff;
+    padding:10px 10px 10px 10px;
+}
+
+#col-main-sidebar-left {
+    float:left;
+    margin-left:10px;
+    width:700px;
+}
+
+#col-main-sidebar-both {
+    float:left;
+    margin-left:10px;
+    width:450px;
+}
+
+#sidebar-left {
+    width:240px;
+    padding-right:10px;
+    float:left;
+}
+
+#sidebar-right {
+    width:240px;
+    padding-left:10px;
+    float:left;
+}
+
+#col-2-bgrd {
+    @extend .col-main;
+    background:#FFFFFF image-url('2-col-bgrd.gif') repeat-y;
+}
+
+#col-3-bgrd {
+    @extend .col-main;
+    background:#FFFFFF image-url('3-col-bgrd.gif') repeat-y;
+}

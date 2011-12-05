@@ -5,45 +5,20 @@
     <div id="col-3-bgrd">
 
         <div id="sidebar-left">
-
+            {% block left %}
+            {% endblock %}
         </div>
 
         <div id="col-main-sidebar-both">
-
+            {% block middle %}
+            {% endblock %}
         </div>
 
         <div id="sidebar-right">
-
+            {% block right %}
+            {% endblock %}
         </div>
 
     </div>
 
-
-{#        <div id="leftmiddle">#}
-{#        {% block leftmiddle %}#}
-{#        {% endblock %}#}
-{#        </div><!-- leftmiddle -->#}
-{##}
-{#        <div class="wrapper-inner">#}
-{#			<div id="left" class="span-6 first last"><!-- left sidebar -->#}
-{#				<div class="left-inner">#}
-{#					{%  block left  %}#}
-{#					{% endblock %}#}
-{#				</div>#}
-{#			</div><!-- end of left sidebar-->#}
-{##}
-{#			<div id="middle" class="span-12 first last" ><!-- middle -->#}
-{#				<div class="middle-inner">#}
-{#				{%  block middle  %}#}
-{#				{% endblock %}#}
-{#				</div>#}
-{#	        </div><!-- end of middle -->#}
-{##}
-{#			<div id="right" class="span-6 last"><!-- right sidebar -->#}
-{#				<div class="middle-inner">#}
-{#				{%  block right  %}#}
-{#				{% endblock %}#}
-{#				</div>#}
-{#			</div><!-- end of right sidebar -->#}
-{#		</div><!-- end of wrapper-inner -->#}
 {% endblock %}

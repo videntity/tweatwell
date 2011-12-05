@@ -25,7 +25,10 @@
 
         {% include "include/top-nav.html" %}
 
-        {% block content %}{% endblock %}
+        {% block content %}
+            {% block middle %}
+            {% endblock %}
+        {% endblock %}
 
     </div>
 </div>

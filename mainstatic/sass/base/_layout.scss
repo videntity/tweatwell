@@ -26,25 +26,28 @@ body {
     @include border-radius(10px);
     min-height:225px;
     background:#fff;
-    padding:10px 10px 10px 10px;
+    padding:25px 10px 10px 10px;
 }
 
 #col-main-sidebar-left {
     float:left;
-    margin-left:10px;
+    margin-left:14px;
     width:700px;
+    margin-top:10px;
 }
 
 #col-main-sidebar-both {
     float:left;
     margin-left:10px;
     width:450px;
+    margin-top:10px;
 }
 
 #sidebar-left {
     width:240px;
-    padding-right:10px;
+    padding-right:5px;
     float:left;
+    border-right:1px solid silver;
 }
 
 #sidebar-right {
@@ -55,7 +58,7 @@ body {
 
 #col-2-bgrd {
     @extend .col-main;
-    background:#FFFFFF image-url('2-col-bgrd.gif') repeat-y;
+    /*background:#FFFFFF image-url('2-col-bgrd.gif') repeat-y;*/
 }
 
 #col-3-bgrd {

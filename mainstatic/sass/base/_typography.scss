@@ -1,6 +1,6 @@
 $text-color :#333333 !default;
 
-$link-color: lighten(#0000EE,3);
+$link-color: #757800;
 $link-color-hover: adjust-color($link-color, $lightness: 10, $saturation: 25) !default;
 $link-color-visited: adjust-color($link-color, $hue: 80, $lightness: -4) !default;
 $link-color-active: adjust-color($link-color-hover, $lightness: -15) !default;
@@ -17,8 +17,43 @@ body {
     line-height:1em;
 }
 
+p {
+    margin:0 0 1.5em;
+    line-height:1.4em;
+}
+
 a {
   @include link-colors($link-color, $hover: $link-color-hover, $focus: $link-color-hover, $visited: $link-color-visited, $active: $link-color-active);
   @include transition(color .3s);
   @include hover-link;
+}
+
+ul.nav-list {
+    list-style-position:outside;
+    list-style-type:none;
+    li {
+        margin:0 0 .5em 0;
+        border-bottom:1px #d0d0d0 dotted;
+        padding:0 0 .5em 0;
+    }
+}
+
+
+h1 {
+    font-size:3em;
+    margin-bottom:0.8em;
+    line-height:1em;
+}
+
+h2 {
+    font-size:2em;
+    margin-bottom: 0.8em;
+    line-height:1em;
+}
+
+h3 {
+    font-size:1.5em;
+    margin-bottom: 0.8em;
+    font-weight:bold;
+    line-height:1em;
 }

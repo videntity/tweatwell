@@ -29,15 +29,15 @@ urlpatterns = patterns('',
     (r'^avatar/', include('avatar.urls')),
     
     url(r'^faq/$', direct_to_template,
-           {'template': 'faq.html'},
+           {'template': 'static_page/faq.html'},
            name='faq'),
 
     url(r'^tos/$', direct_to_template,
-           {'template': 'tos.html'},
+           {'template': 'static_page/tos.html'},
            name='tos'),
     
     url(r'^privacy/$', direct_to_template,
-           {'template': 'privacy.html'},
+           {'template': 'static_page/privacy.html'},
            name='privacy'),
 
     

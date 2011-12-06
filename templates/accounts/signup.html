@@ -1,11 +1,13 @@
-{% extends "base.html" %}
+{% extends "layouts/1-column.html" %}
 
 {% block middle %}
-
-<form action='.' method='POST'>
-	{{form}}
+<h1>Signup</h1>
+<p><em><strong>* All fields required</strong></em></p>
+    
+<form action='.' method='POST' class="tw-form">
+	{{ form.as_p }}
 	{% csrf_token %}
-	<input type="submit" value="Signup" />
+	<input type="submit" value="Signup" class="button "/>
 </form>
 
 

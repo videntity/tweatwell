@@ -192,74 +192,11 @@
      <div id="badges"><!-- badges -->
 		 <h4>Badges</h4>
 
-
-            <div class="badge">
-                <div class="icon-badge icon-dean-off">
-
-                </div>
-                Text
-            </div>
-
-
-
-     		    <span class="badge"><img src="{{ STATIC_URL }}img/DEAN.png" alt="Dean" border="0" /><br />
-			    {{a.freggie}}
-			    </span>
-
-			<div class="small">
-			{% for a in awards %}  
-			  {% if a.award_class = "Dean" %}
-			    <span class="badge"><img src="{{ STATIC_URL }}img/DEAN.png" alt="Dean" border="0" /><br />
-			    {{a.freggie}}
-			    </span>
-			  {% endif %}
-			  
-			  {% if a.award_class = "President" %}
-			    <span class="badge"><img src="{{ STATIC_URL }}img/PRESIDENT.png" alt="President" border="0" /><br />
-			    {{a.freggie}}
-			    </span>
-			  {% endif %}
-			  
-			  {% if a.award_class = "Professor" %}
-			    <span class="badge"><img src="{{ STATIC_URL }}img/PROFESSOR.png" alt="Professor" border="0" /><br />
-			    {{a.freggie}}
-			    </span>
-			  {% endif %}
-			  
-			  {% if a.award_class = "Event" %}
-			    <span class="badge"><img src="{{ STATIC_URL }}img/event.png" alt="Event" border="0" /><br />
-			    {{a.freggie}}
-			    </span>
-			  {% endif %}
-			
-			  {% if a.award_class = "Sparkpeople" %}
-			    <span class="badge"><img src="{{ STATIC_URL }}img/sparkpeople.png" alt="SparkPeople" border="0" /><br />
-			    {{a.freggie}}
-			    </span>
-			  {% endif %}			
-			{% endfor %}
-			  	
-			 
-			  {% if not DeanAward %}
-			    <span class="badge"><img src="{{ STATIC_URL }}img/DEAN1.png" alt="Dean" border="0" /></span>	
-			  {% endif %}
-	  
-			 {% if not ProfessorAward %}
-			    <span class="badge"><img src="{{ STATIC_URL }}img/PROFESSOR1.png" alt="Professor" border="0" /></span>
-			  {% endif %}
-			  
-			  {% if not PresidentAward %}
-			    <span class="badge"><img src="{{ STATIC_URL }}img/PRESIDENT1.png" alt="President" border="0" /></span>
-			  {% endif %}
-			  
-			  {% if not EventAward %}
-			    <span class="badge"><img src="{{ STATIC_URL }}img/event1.png" alt="Event" border="0" /></span>
-			  {% endif %}
-			  
-			  {% if not SparkpeopleAward %}
-			    <span class="badge"><img src="{{ STATIC_URL }}img/sparkpeople1.png" alt="Spark People" border="0" /></span>
-			  {% endif %}
-		  </div>
+        <div class="icon-badge icon-dean-{{ DeanAward|yesno:"on,off" }}" title="Dean"></div>
+        <div class="icon-badge icon-professor-{{ ProfessorAward|yesno:"on,off" }}" title="Professor"></div>
+        <div class="icon-badge icon-president-{{ PresidentAward|yesno:"on,off" }}" title="President"></div>
+        <div class="icon-badge icon-event-{{ EventAward|yesno:"on,off" }}" title="Event"></div>
+        <div class="icon-badge icon-sparkpeople-{{ SparkpeopleAward|yesno:"on,off" }}" title="SparkPeople"></div>
 
 		  
 		</div><!-- end badges -->

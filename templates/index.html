@@ -83,12 +83,12 @@
         <div id="checkin">
 	        <h2>Check In</h2>
 
-                <div id="veggie" class="icon-food icon-broccoli_small"></div>
-                <div id="fruit" class="icon-food icon-fruit_small"></div>
-                <div id="water" class="icon-food icon-water_small"></div>
-                <div id="beer" class="icon-food icon-beer_small"></div>
-                <div id="junk" class="icon-food icon-pizza_small"></div>
-                <div id="question" class="icon-food icon-question_small"></div>
+                <div id="veggie" class="icon icon-broccoli_small"></div>
+                <div id="fruit" class="icon icon-fruit_small"></div>
+                <div id="water" class="icon icon-water_small"></div>
+                <div id="beer" class="icon icon-beer_small"></div>
+                <div id="junk" class="icon icon-pizza_small"></div>
+                <div id="question" class="icon icon-question_small"></div>
 				
 				<div id="veggieform" class="veggieform"> 
 					{{ veggieform.as_p }}
@@ -229,12 +229,15 @@
 
     		<div id="judges"><!-- judges -->
     			<h4>Judges</h4>
-		        <img src="{{ STATIC_URL }}img/judge_kiwi.gif" alt="Kiwi" />
-		        <img src="{{ STATIC_URL }}img/judge_pepper.gif" alt="Pepper" />
-				<img src="{{ STATIC_URL }}img/judge_apple.gif" alt="Apple" />
-				<img src="{{ STATIC_URL }}img/judge_daikon.gif" alt="Daikon" />
-				<img src="{{ STATIC_URL }}img/judge_gala.gif" alt="Gala" />
-				<img src="{{ STATIC_URL }}img/judge_cherry.gif" alt="Cherry" />				
+
+                <div class="icon icon-judge_kiwi" title="Kiwi"></div>
+                <div class="icon icon-judge_pepper" title="Pepper"></div>
+                <div class="icon icon-judge_apple" title="Apple"></div>
+                <div class="icon icon-judge_daikon" title="Daikon"></div>
+                <div class="icon icon-judge_gala" title="Gala"></div>
+                <div class="icon icon-judge_cherry" title="Cherry"></div>
+
+
 			</div><!-- end judges -->
 			
 			 <h2>Tip of the Day</h2>

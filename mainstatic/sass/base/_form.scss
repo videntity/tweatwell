@@ -24,6 +24,7 @@ $form-base-color : #e5e5e5;
 
 .button{
 	padding: 2px;
+    font-size:12px;
 	background-color: #e4e4e4;
 	border:1px solid #c0c0c0;
     @include border-radius(5);
@@ -63,7 +64,7 @@ ul.errorlist {
     color: #CD0A0A;
 }
 
-/* Home Form */
+/* Home Form Override */
 .tw-login {
     input.text, input.title, input[type="email"], input[type="text"], input[type="password"] {
         width: 150px;

@@ -1,11 +1,14 @@
-{% extends "base.html" %}
+{% extends "layouts/1-column.html" %}
 
 {% block middle %}
-  <form action="/accounts/profile/" method="POST">
-    {{ form.as_p }}
-    {% csrf_token %}
-    <input type="submit" name="Update"/>
-  </form>
+<h1>Settings</h1>
+<p><em><strong>* All fields required</strong></em></p>
 
-  
+<form action="/accounts/profile/" method="post" class="tw-form">
+	{{ form.as_p }}
+	{% csrf_token %}
+	<input type="submit" value="Update" class="button "/>
+</form>
+
+
 {% endblock %}

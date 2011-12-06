@@ -9,6 +9,6 @@ javascripts_dir = "../js"
 http_images_path = "/static/img"
 
 
-#uncomment for production 
+#uncomment for production
 line_comments = false
 output_style = :compressed

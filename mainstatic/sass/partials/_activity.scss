@@ -1,0 +1,30 @@
+.icon-food{
+	display: inline-block;
+	cursor: pointer;
+    width:66px;
+    height:66px;
+    margin:0 8px 8px 0;
+}
+
+.badge {
+    display:inline-block;
+    width:68px;
+    height:45px;
+    border:1px solid blue;
+    text-align:center;
+    .icon-badge {
+        margin-bottom:4px;
+    }
+}
+
+.icon-badge {
+    width:30px;
+    height:30px;
+}
+
+/*.badge{*/
+	/*width: 68px;*/
+	/*height: 55px;*/
+	/*float:left;*/
+	/*text-align: center;*/
+	/*padding-bottom: 5px;*/

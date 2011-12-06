@@ -14,12 +14,15 @@
 @import "partials/wvubanner";
 @import "partials/header";
 @import "partials/nav";
-@import "partials/footer";
+@import "partials/footer";  
+
+//Apps
+@import "partials/activity";  
 
 
-/* TODO: delete as soon as */
+/* TODO: delete as soon as */   
 @import "partials/legacy";
 
 //Image Sprites
-/*@import "icon*//*.png"; */
-/*@include all-icon-sprites;*/
+@import "icon/*.png";
+@include all-icon-sprites;

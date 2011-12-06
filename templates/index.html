@@ -82,25 +82,13 @@
     {% block left %}    
         <div id="checkin">
 	        <h2>Check In</h2>
-				<div id="veggie" class="foodicon">
-				<img src="{{ STATIC_URL }}img/broccoli_small.gif" alt="Broccoli" border="0" />
-						
-				</div><!-- veggie -->
-				<div id="fruit" class="foodicon">
-					<img src="{{ STATIC_URL }}img/fruit_small.gif" alt="Fruit" border="0" />
-				</div><!-- fruit -->
-				<div id="water" class="foodicon last">
-					<img src="{{ STATIC_URL }}img/water_small.gif" alt="Water" border="0" />
-				</div><!-- water -->			  
-				<div id="beer" class="foodicon"> 
-				   <img src="{{ STATIC_URL }}img/beer_small.gif" alt="Alcohol" border="0" />
-				</div><!-- beer -->			    
-				<div id="junk" class="foodicon"> 
-				   <img src="{{ STATIC_URL }}img/pizza_small.gif" alt="Junk" border="0" />
-				</div><!-- junk -->
-				<div id="question" class="foodicon"> 
-				   <img src="{{ STATIC_URL }}img/question_small.gif" alt="Question" border="0" />
-				</div><!-- question -->
+
+                <div id="veggie" class="icon-food icon-broccoli_small"></div>
+                <div id="fruit" class="icon-food icon-fruit_small"></div>
+                <div id="water" class="icon-food icon-water_small"></div>
+                <div id="beer" class="icon-food icon-beer_small"></div>
+                <div id="junk" class="icon-food icon-pizza_small"></div>
+                <div id="question" class="icon-food icon-question_small"></div>
 				
 				<div id="veggieform" class="veggieform"> 
 					{{ veggieform.as_p }}
@@ -203,6 +191,21 @@
      
      <div id="badges"><!-- badges -->
 		 <h4>Badges</h4>
+
+
+            <div class="badge">
+                <div class="icon-badge icon-dean-off">
+
+                </div>
+                Text
+            </div>
+
+
+
+     		    <span class="badge"><img src="{{ STATIC_URL }}img/DEAN.png" alt="Dean" border="0" /><br />
+			    {{a.freggie}}
+			    </span>
+
 			<div class="small">
 			{% for a in awards %}  
 			  {% if a.award_class = "Dean" %}

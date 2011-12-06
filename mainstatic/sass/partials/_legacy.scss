@@ -50,7 +50,7 @@
 }
 .dashboard {
 	float: left;
-	border-top-width: 1px;
+	border-top-width: 2px;
 	border-top-style: solid;
 	border-top-color: #FFFFFF;
 	border-bottom-width: 1px;
@@ -71,7 +71,7 @@
 	padding: 0px;
 	width: 215px;
 }
-.dashboard ul li {
+.dashboard ul li { 
 	list-style-type: none;
 	float: left;
 	width: 205px;
@@ -282,15 +282,6 @@ ul .commentscroller li{
 
 
 
-
-.foodicon{
-	display: inline;
-	float: left;
-	margin-right: 7px;
-	margin-bottom: 7px;
-	cursor: pointer;
-}
-
 #topscroll li{
 	width: 410px;
 }
@@ -307,13 +298,7 @@ ul .commentscroller li{
 	margin-left: 25px;
 	margin-top: 10px;
 }
-.badge{
-	width: 68px;
-	height: 55px;
-	float:left;
-	text-align: center;
-	padding-bottom: 5px;
-}
+
 #profile{
 	clear: both;
 	display: block;

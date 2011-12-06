@@ -1,7 +1,7 @@
 @mixin nav-tab-active {
     color:#6A8800;
     background-color:#ffffff;
-    text-shadow: 0 1px 1px #fffdc3;
+    text-shadow: 0 1px 1px #cccccc;
 }
 
 #topnav{
@@ -18,7 +18,7 @@
         padding:10px 15px 8px 15px;
         @include border-top-radius(5px);
         text-decoration:none;
-        text-shadow: 0 1px 1px #666666;
+        text-shadow: 0 1px 1px #000000;
         @include transition(.2s);
 
     }

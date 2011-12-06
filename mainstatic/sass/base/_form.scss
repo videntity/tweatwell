@@ -1,0 +1,75 @@
+$form-base-color : #e5e5e5;
+
+.tw-form {
+    p {
+        margin:0 0 .8em 0;
+        line-height:1.5em;
+        label { 
+            padding: 0 15px 0 0;
+            display:inline-block;
+            font-size:1em;
+        }
+
+    }
+    ul {
+        margin:0 0 2em 0;
+    }
+    li {
+        margin:0 0 .8em 1em;;
+        label {
+            font-weight:normal;
+        }
+    }
+}
+
+.button{
+	padding: 2px;
+	background-color: #e4e4e4;
+	border:1px solid #c0c0c0;
+    @include border-radius(5);
+    cursor: pointer;
+    &:hover {
+        @include linear-gradient(color-stops(lighten($form-base-color, 30%), lighten($form-base-color, 15%) 4%, lighten($form-base-color, 7%)));
+    }
+    &:active {
+        @include linear-gradient(color-stops(darken($form-base-color, 30%), darken($form-base-color, 15%) 4%, darken($form-base-color, 7%)));
+    }    
+}
+
+/* form error */
+ul.errorlist {
+    margin:2em 0 .2em 0;
+    padding:0 0 0 23px;
+    @include border-radius(5px);
+    background:#fef1ec image-url('icon/alert.png') 5px 2px no-repeat;
+    border: 1px solid #CD0A0A;
+    color: #CD0A0A;
+    width:50%;
+    list-style-type:none;
+    li {
+        font-size:.8em;
+        padding:.3em;
+        margin:0;
+        font-style:italic;
+    }
+}
+
+.error {
+    margin:2em 0 .2em 0;
+    padding:0 0 0 25px;
+    @include border-radius(5px);
+    background:#fef1ec image-url('icon/alert.png') 5px 2px no-repeat;
+    border: 1px solid #CD0A0A;
+    color: #CD0A0A;
+}
+
+/* Home Form */
+.tw-login {
+    input.text, input.title, input[type="email"], input[type="text"], input[type="password"] {
+        width: 150px;
+    }
+}
+
+
+
+

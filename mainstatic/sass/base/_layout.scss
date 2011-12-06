@@ -10,7 +10,7 @@ body {
 }
 
 #main {
-    background:#d1b11e image-url('page-bgrd.png') repeat-x;
+    background:#d1b11e image-url('layout/page-bgrd.png') repeat-x;
 }
 
 #content {
@@ -18,7 +18,7 @@ body {
     max-width: $max-width;
     margin: 0px auto 0px auto;
     padding:10px 0 25px 0;
-    background: image-url('girls-bgrd.png') no-repeat right 10px;
+    background: image-url('layout/girls-bgrd.png') no-repeat right 10px;
 }
 
 .col-main {
@@ -63,5 +63,5 @@ body {
 
 #col-3-bgrd {
     @extend .col-main;
-    background:#FFFFFF image-url('3-col-bgrd.gif') repeat-y;
+    background:#FFFFFF image-url('layout/3-col-bgrd.gif') repeat-y;
 }

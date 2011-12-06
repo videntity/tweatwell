@@ -2,18 +2,17 @@
 {% block active_nav_tab %}home-active{% endblock %}
 
 {% block left %}
-<div id="featureBox">
+
   {% if form.errors %}
     <p class="error">Sorry, that's not a valid username or password</p>
   {% endif %}
 
-  <form action='/accounts/login/' method='POST'>
-      {{form}}
+  <form action='/accounts/login/' method='POST' class="tw-form tw-login">
+      {{ form.as_p }}
       {% csrf_token %}
-      <input type="submit" value="login" />
-      
+      <input type="submit" value="Login" class="button" />
   </form>
-</div>
+
 {% endblock %}
 
 {% block middle %}

@@ -10,7 +10,7 @@
   <form action='/accounts/login/' method='POST' class="tw-form tw-login">
       {{ form.as_p }}
       {% csrf_token %}
-      <input type="submit" value="Login" class="button" />
+      <input type="submit" value="Login" class="button" />&nbsp;&nbsp;or <a href="/accounts/signup">Signup</a>
   </form>
 
 {% endblock %}
@@ -22,7 +22,7 @@ social network with the purpose of providing a fun way for WVU students
 to increase their intake of Freggies (fruits and vegetables).
 Please read the FAQs to the right, which includes information on using
 Mozilla Firefox as your internet browser during the program.
-New to tweatWELL? <a href="http://www.tweatwell.com/accounts/signup">Signup</a> to get started.</p>
+New to tweatWELL? <a href="/accounts/signup">Signup</a> to get started.</p>
 
 <iframe title="YouTube video player" class="youtube-player" type="text/html" 
 width="458" height="279" src="http://www.youtube.com/embed/cKnhLy7oQ14"

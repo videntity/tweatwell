@@ -49,11 +49,8 @@ urlpatterns = patterns('',
     url(r'^transmit/$', 'django.views.generic.simple.direct_to_template', {'template': 'transmit/index.html'}, name="transmist"),
     
     url(r'^tt/$', 'django.views.generic.simple.direct_to_template', {'template': 'testtemplate.html'}, name="testtemplate"),
-    url(r'^rankings/$', 'django.views.generic.simple.direct_to_template', {'template': 'rankings/index.html'}, name="rankings"),
-    url(r'^rankings/coaches/$', coaches, name="coaches"),
-    url(r'^rankings/points/$', points, name="points"),
-    
-    
+
+
     #Upload
     url(r'^ajaxupload/wt/(?P<user>\w+)/$', upload_wt_ajax, name="upload_wt_ajax"),
     url(r'^ajaxupload/ci/(?P<user>\w+)/$', upload_ci_ajax, name="upload_ci_ajax"),

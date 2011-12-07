@@ -111,9 +111,6 @@ def reset_password(request, reset_password_key=None):
 
 
 
-
-
-
 def password_reset_request(request):
     if request.method == 'POST':
 
@@ -121,14 +118,24 @@ def password_reset_request(request):
         
         if form.is_valid():  
             data = form.cleaned_data
-            return render_to_response('accounts/password-reset-request.html',
+            try:
+                u=User.objects.get(email=data['email'])
+            except(User.DoesNotExist):
+                messages.error(request, "A user with the email supplied does not exist.")
+                return render_to_response('accounts/password-reset-request.html',
                               RequestContext(request,
                                              {'form': form,
                                               }))
+            #success so create a 
+            k=ValidPasswordResetKey.objects.create(user=u)
+
+            return render_to_response('accounts/reset-token-sent.html',
+                              RequestContext(request,
+                                             {}))
     else:
         return render_to_response('accounts/password-reset-request.html', 
                              {'form': PasswordResetRequestForm()},
-                              context_instance = RequestContext(request))
+                              RequestContext(request))
     
 
 

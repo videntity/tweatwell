@@ -7,7 +7,6 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from ..accounts.models import UserProfile
-from ..pointsrank.models import PointsRank
 from ..upload.forms import OMHEUploadForm
 from ..foodreport.models import FoodReport, UserStatusReport
 from ..utils import *

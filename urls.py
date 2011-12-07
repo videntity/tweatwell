@@ -4,8 +4,6 @@ from tweatwell.apps.home.views import *
 from tweatwell.apps.stats.views import *
 from tweatwell.apps.upload.views import *
 from tweatwell.apps.twitbot.views import *
-from tweatwell.apps.pointsrank.views import *
-from tweatwell.apps.coachespoll.views import *
 
 #from registration.backends.default import DefaultBackend
 # Uncomment the next two lines to enable the admin:

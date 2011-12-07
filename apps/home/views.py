@@ -10,7 +10,6 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from ..accounts.models import UserProfile
 from ..utils import handle_uploaded_file, query_restcat
-from ..pointsrank.models  import PointsRank
 from ..questionstips.models  import QuestionTips
 from ..awards.models  import Award
 from ..upload.forms import PickFruitForm, PickVeggieForm
@@ -74,11 +73,7 @@ def home(request):
         
     p=get_object_or_404(UserProfile, user=u)
         
-    try:
-        pr=PointsRank.objects.get(user=u)
-        all['pointspoll']=pr.rank
-    except(PointsRank.DoesNotExist):
-        all['pointspoll']=0
+    all['pointspoll'] = 0
         
     try:
         #get every transaction for this user

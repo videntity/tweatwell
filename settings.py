@@ -193,8 +193,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'tweatwell.apps',
     'tweatwell.apps.twitbot',
-    'tweatwell.apps.coachespoll',
-    'tweatwell.apps.pointsrank',
     'tweatwell.apps.awards',
     'tweatwell.apps.questionstips',
     'tweatwell.apps.foodreport',

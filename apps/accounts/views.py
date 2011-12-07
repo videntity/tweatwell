@@ -50,6 +50,7 @@ def simple_login(request):
                                             {'form': form},
                                             RequestContext(request))
             else:
+                print "here"
                 messages.error(request, "Invalid username or password.")
                 return render_to_response('accounts/login.html',
                                     {'form': form},

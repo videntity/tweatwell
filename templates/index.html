@@ -80,54 +80,61 @@
 	{% endblock %}
 
 	
-	{% block middle %}
+{% block middle %}
+<h1>Check In</h1>
+<p>
+    Select the type of food by clicking one of the below icons, then
+    enter the descritpion in the text box. If you would like to answer the
+    question of the week, click "question" then add your answer to the box.
+</p>
+
+<h3>1. Select Type OF Food</h3>
+
+<div id="veggie" class="icon icon-broccoli_small"></div>
+<div id="fruit" class="icon icon-fruit_small"></div>
+<div id="water" class="icon icon-water_small"></div>
+<div id="beer" class="icon icon-beer_small"></div>
+<div id="junk" class="icon icon-pizza_small"></div>
+<div id="question" class="icon icon-question_small"></div>
 
 
-        <div id="checkin">
-	        <h2>Check In</h2>
+<div class="tweat-form">
 
-                <div id="veggie" class="icon icon-broccoli_small"></div>
-                <div id="fruit" class="icon icon-fruit_small"></div>
-                <div id="water" class="icon icon-water_small"></div>
-                <div id="beer" class="icon icon-beer_small"></div>
-                <div id="junk" class="icon icon-pizza_small"></div>
-                <div id="question" class="icon icon-question_small"></div>
+    <h3>2. Update What You Are Eating</h3>
 
-				<div id="veggieform" class="veggieform">
-					{{ veggieform.as_p }}
-				</div><!-- veggieform -->
-				<div id="fruitform" class="fruitform">
-					{{ fruitform.as_p }}
-				</div><!-- fruitform -->
+    <div id="veggieform" class="veggieform">
+        {{ veggieform.as_p }}
+    </div><!-- veggieform -->
+    <div id="fruitform" class="fruitform">
+        {{ fruitform.as_p }}
+    </div><!-- fruitform -->
 
 
-
-				<h2>Question of the Week</h2>
-
-	    		<h5 class="bottom">{{qt.question}} </h5>
-	    		<p class="small">Click on the question icon above to post answer</p>
-
-
-
-
-
-      	</div><!-- checkin -->
-        
-  	<div class="error-container"><!-- error container -->		
+  	<div class="error-container"><!-- error container -->
     	<div class="errormessage">
 			<p class="error">Oops! I didn't understand that.</p>
      	</div>
-  	</div><!-- end error container -->	
+  	</div><!-- end error container -->	    
+    <form  action="/upload/omhe/{{user}}/" method="POST" class="tw-form">
+        <input type="text" class="texti" id="texti" name="texti" >
+        <input type="submit" value="Update"  class="button"/>
+    </form>
+
+</div>
+
+<div class="qow">
+    <h3>Question of the Week</h3>
+    <p>{{qt.question}}</p>
+</div>
+
+<br/><br>
+<h1>Latest Tweats</h1>
+    Tweats go here
+        
+
 
     <div id="public_feed">  <!-- public feed -->	  
-		<div  class="tweatwellform">
-			<h2 class="what">What are you eating?</h2>
-			<form id="submittweat" action="/upload/omhe/{{user}}/" method="POST">
-				<input type="text" class="texti" id="texti" name="texti" >
-      			<input type="submit" value="Update"  />
-	      	</form>
-    	</div>
-		<h4 class="newtweats">New Tweats:</h4>
+
     	<div id="scroller">
     		<ul id="scrollerul">
       			{% for i in publicfeed %}
@@ -183,62 +190,78 @@
 
 	{% endblock %} <! -- end of middle -->
 
-	{% block right %}
-	
-     
-     <div id="badges"><!-- badges -->
-		 <h4>Badges</h4>
+{% block right %}
+{% load avatar_tags %}
 
-        <div class="icon-badge icon-dean-{{ DeanAward|yesno:"on,off" }}" title="Dean"></div>
-        <div class="icon-badge icon-professor-{{ ProfessorAward|yesno:"on,off" }}" title="Professor"></div>
-        <div class="icon-badge icon-president-{{ PresidentAward|yesno:"on,off" }}" title="President"></div>
-        <div class="icon-badge icon-event-{{ EventAward|yesno:"on,off" }}" title="Event"></div>
-        <div class="icon-badge icon-sparkpeople-{{ SparkpeopleAward|yesno:"on,off" }}" title="SparkPeople"></div>
+<div class="profile">
 
-		  
-		</div><!-- end badges -->
-    
-    		
-		    {% load avatar_tags %}
-		    <div id="profile"><!-- profile -->
-			    <div id="avatar"><!-- avatar -->
-			    	<a href="/avatar/change" style="border-style: none;">{% avatar user %}</a>
-			    </div>	<!-- end avatar -->	    
-			    	<h3>{{ user.first_name }}</h3>
-			    
-			    		    
-			    <div id="status">
-			    	<p><i id="statustext">{{all.status}}</i></p>
-			    </div>
-			    
-			    <div id="userpoints">
-	  				<ul>
-					  <li>FRUITS: {{all.fruit}}</li>
-					  <li>VEGETABLES: {{all.vegatble}}</li>
-					  <li>WATER: {{all.water}}</li>
-					  <li>JUNK: {{all.junk}}</li>
-					  <li class="points"><strong>POINTS: {{all.points}} </strong></li>
-				  	</ul>
-				  	<img src="{{ STATIC_URL }}img/freggie.png" alt="Freggie" border="0" class="freggie"/>
-				  				  
-				 </div>
-			</div> <!-- end of profile -->
+    <div class="avatar">
+        <a href="/avatar/change">{% avatar user %}</a>
+    </div>
 
-    		<div id="judges"><!-- judges -->
-    			<h4>Judges</h4>
+    <h3>{{ user.first_name }}</h3>
 
-                <div class="icon icon-judge_kiwi" title="Kiwi"></div>
-                <div class="icon icon-judge_pepper" title="Pepper"></div>
-                <div class="icon icon-judge_apple" title="Apple"></div>
-                <div class="icon icon-judge_daikon" title="Daikon"></div>
-                <div class="icon icon-judge_gala" title="Gala"></div>
-                <div class="icon icon-judge_cherry" title="Cherry"></div>
+    <p class="status">{{all.status}}adsfasd</p>
 
+    <table class="point-table">
+        <tr>
+            <td>FRUITS</td>
+            <td class="points">{{all.fruit}}</td>
+        </tr>
+        <tr>
+            <td>VEGETABLES</td>
+            <td class="points">{{all.vegatble}}</td>
+        </tr>
+        <tr>
+            <td>WATER</td>
+            <td class="points">{{all.water}}</td>
+        </tr>
+        <tr>
+            <td>JUNK</td>
+            <td class="points">{{all.junk}}</td>
+        </tr>
+        <tr>
+            <td class="point-total">Total Points</td>
+            <td class="points point-total">{{all.points}}</td>
+        </tr>
+    </table>
 
-			</div><!-- end judges -->
-			
-			 <h2>Tip of the Day</h2>
-	    	<p>{{qt.tip}}</p>
-        		<a href="http://twitter.com/#!/wellwvu" target="_blank"><img src="{{ STATIC_URL }}img/twitter.png" alt="Twitter logo" border="0" /></a>
-		<a href="http://well.wvu.edu" target="_blank"><img src="{{ STATIC_URL }}img/wellwvu-logo.gif" alt="Well WVU logo" border="0" /></a>
-	{% endblock %} <! -- end of right-->
+</div>
+
+<div class="sbar-module">
+    <h3>Badges</h3>
+
+    <div class="icon-badge icon-dean-{{ DeanAward|yesno:"on,off" }}" title="Dean"></div>
+    <div class="icon-badge icon-professor-{{ ProfessorAward|yesno:"on,off" }}" title="Professor"></div>
+    <div class="icon-badge icon-president-{{ PresidentAward|yesno:"on,off" }}" title="President"></div>
+    <div class="icon-badge icon-event-{{ EventAward|yesno:"on,off" }}" title="Event"></div>
+    <div class="icon-badge icon-sparkpeople-{{ SparkpeopleAward|yesno:"on,off" }}" title="SparkPeople"></div>
+</div>
+
+<div class="sbar-module">
+    <h3>Judges</h3>
+
+    <div class="icon icon-judge_kiwi" title="Kiwi"></div>
+    <div class="icon icon-judge_pepper" title="Pepper"></div>
+    <div class="icon icon-judge_apple" title="Apple"></div>
+    <div class="icon icon-judge_daikon" title="Daikon"></div>
+    <div class="icon icon-judge_gala" title="Gala"></div>
+    <div class="icon icon-judge_cherry" title="Cherry"></div>
+</div>
+
+<div class="sbar-module tod">
+    <h3>Tip Of The Day</h3>
+
+    <p>{{qt.tip}}</p>
+</div>
+
+<div class="sbar-module">
+    <img src="{{ STATIC_URL }}img/freggie.png" alt="Freggie" border="0" class="freggie"/>
+</div>
+
+<div class="sbar-module">
+    <a href="http://twitter.com/#!/wellwvu" target="_blank"><img src="{{ STATIC_URL }}img/twitter.png" alt="Twitter logo" border="0" /></a>
+    <a href="http://well.wvu.edu" target="_blank"><img src="{{ STATIC_URL }}img/wellwvu-logo.gif" alt="Well WVU logo" border="0" /></a>
+</div>
+
+{% endblock %}

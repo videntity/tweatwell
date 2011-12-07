@@ -1,22 +1,6 @@
-#avatar {
-	float: left;
-	margin-right: 10px;
-	margin-bottom: 10px;
-}
-#status {
-	margin-top: 15px;
-}
-#checkin {
-	margin-bottom: 20px;
-	float: left;
-}
-#userpoints{
-	clear: both;
-}
-#userpoints ul{
-	padding: 0px;
-	margin: 0px;
-}
+
+
+
 #userpoints ul li{
 	letter-spacing: 1px;
 	padding-bottom: 3px;
@@ -94,11 +78,6 @@
 	clear: both;
 }
 
-#badges{
-	margin-bottom: 20px;
-	clear: both;
-
-}
 
 #container {
 	float: left;
@@ -155,11 +134,6 @@
 }
 
 
-#public_feed {
-	float: left;
-	margin-top: 25px;
-	margin-left: 10px;
-}
 #public_feed ul {
 	margin: 0px;
 	padding: 0px;
@@ -238,12 +212,6 @@ ul .commentscroller li{
 	margin-bottom: 35px;
 }
 
-
-.status{
-	color: #4c4c4c;
-	font-size: 1.3em;
-}
-
 .tweated{
 	color: #b3b3b3;
 }
@@ -269,9 +237,7 @@ ul .commentscroller li{
 	width: 410px;
 }
 
-.points{
-	color: #f7ec31;
-}
+
 
 .avataricon{
 	margin-right: 10px;
@@ -282,7 +248,4 @@ ul .commentscroller li{
 	margin-top: 10px;
 }
 
-#profile{
-	clear: both;
-	display: block;
-}
+

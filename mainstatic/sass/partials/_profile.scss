@@ -1,0 +1,35 @@
+.profile {
+    .avatar{
+	    float: left;
+	    margin-right: 10px;
+	    margin-bottom: 10px;
+    }
+    .status {
+        font-style:italic;
+    }
+    table.point-table {
+        clear:both;
+        width:100%;
+        td {
+	        letter-spacing: 1px;
+	        padding:.5em 0 .5em 0;
+            border-bottom:1px dotted #597300;
+        }
+        .points {
+            text-align:right;
+        }
+        .point-total {
+            text-transform:uppercase;
+            color:#f7ec31;
+            font-weight:bold;
+        }
+    }
+}
+
+
+#avatar {
+
+}
+#status {
+	margin-top: 15px;
+}

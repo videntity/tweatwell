@@ -1,0 +1,51 @@
+.icon{
+	display: inline-block;
+	cursor: pointer;
+    width:66px;
+    height:66px;
+    margin:0 8px 8px 0;
+}
+
+.icon-badge {
+    width:30px;
+    height:30px;
+    display:inline-block;
+}
+
+.qow {
+    @include border-radius(5px);
+    margin:20px 0 20px 0;
+    border:2px solid silver;
+    background:#F5F5F5;
+    padding:10px;
+    width:80%;
+    h3 {
+        color:#666666;
+    }
+    p {
+        font-style:italic;
+        font-size:14px;
+        margin:0;
+        padding:0;
+        color:#666666;
+    }
+
+}
+
+.tod {
+    h3 {
+        margin:0;
+        padding:0;
+    }
+    p {
+        font-style:italic;
+        font-size:14px;
+        margin:0;
+        padding:0;
+    }
+}
+
+.tweat-form {
+    margin:20px 0 20px 0;
+}
+

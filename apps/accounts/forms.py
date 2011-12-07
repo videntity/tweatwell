@@ -93,9 +93,10 @@ class SignupForm(forms.Form):
 
 class AccountSettingsForm(forms.Form):
     username = forms.CharField(max_length=30, label="Userame")
+    email = forms.CharField(max_length=30, label="Email")
     first_name = forms.CharField(max_length=30, label="First Name")
     last_name = forms.CharField(max_length=60, label="Last Name")
-    mobile_phone_number = forms.CharField(max_length=15, label="Phone Number")
+    mobile_phone_number = forms.CharField(max_length=15, label="Mobile Phone Number")
     twitter = forms.CharField(max_length=15, label="Twitter")
      
     def clean_twitter(self):
@@ -104,3 +105,16 @@ class AccountSettingsForm(forms.Form):
             if twitter[0:1]=="@":
                 twitter=twitter[1:]
         return twitter
+    
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        username = self.cleaned_data.get('username')
+        if email and User.objects.filter(email=email).exclude(username=username).count():
+            raise forms.ValidationError(u'This email address is already registered.')
+        return email
+
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        if User.objects.filter(username=username).count()>0:
+            raise forms.ValidationError(u'This username is already taken.')
+        return username

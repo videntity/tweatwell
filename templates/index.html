@@ -1,4 +1,4 @@
-{% extends "layouts/3-column.html" %}
+{% extends "layouts/2-column-sidebar-right.html" %}
 {% block active_nav_tab  %}home-active{% endblock %}
 
 {% block extra_head %}
@@ -78,8 +78,11 @@
     <!-- END CHRISG -->  
         
 	{% endblock %}
-    
-    {% block left %}    
+
+	
+	{% block middle %}
+
+
         <div id="checkin">
 	        <h2>Check In</h2>
 
@@ -89,32 +92,27 @@
                 <div id="beer" class="icon icon-beer_small"></div>
                 <div id="junk" class="icon icon-pizza_small"></div>
                 <div id="question" class="icon icon-question_small"></div>
-				
-				<div id="veggieform" class="veggieform"> 
+
+				<div id="veggieform" class="veggieform">
 					{{ veggieform.as_p }}
 				</div><!-- veggieform -->
-				<div id="fruitform" class="fruitform"> 
+				<div id="fruitform" class="fruitform">
 					{{ fruitform.as_p }}
 				</div><!-- fruitform -->
-				
-				
-				
-				<h2>Question of the Week</h2> 
-				
-	    		<h5 class="bottom">{{qt.question}} </h5> 
-	    		<p class="small">Click on the question icon above to post answer</p>  
-	    		
-				
 
-				
-				
+
+
+				<h2>Question of the Week</h2>
+
+	    		<h5 class="bottom">{{qt.question}} </h5>
+	    		<p class="small">Click on the question icon above to post answer</p>
+
+
+
+
+
       	</div><!-- checkin -->
-
-       
-	    
-	{% endblock %} <!-- end left -->
-	
-	{% block middle %}  
+        
   	<div class="error-container"><!-- error container -->		
     	<div class="errormessage">
 			<p class="error">Oops! I didn't understand that.</p>

@@ -66,12 +66,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
 
-#STATIC_URL="https://statichive.s3.amazonaws.com/"
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
 #ADMIN_MEDIA_PREFIX = '/static/admin'
-ADMIN_MEDIA_PREFIX = 'https://cegdjadmin.s3.amazonaws.com/'
+ADMIN_MEDIA_PREFIX = 'http://djadminstatic.s3.amazonaws.com/'
 MAIN_STATIC_ROOT = os.path.join(BASE_DIR, 'mainstatic')
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -88,11 +87,9 @@ AUTHENTICATION_BACKENDS = (
  )
 
 
-# URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
-# trailing slash.
-# Examples: "http://foo.com/media/", "/media/".
 
-ADMIN_MEDIA_PREFIX = 'http://cegdjadmin.s3.amazonaws.com/'
+
+
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
@@ -118,6 +115,7 @@ STATIC_URL = '/static'
 #MEDIA_URL = 'http://physique7.s3.amazonaws.com/media/'
 #http://physique7.s3.amazonaws.com/
 MEDIA_URL = '/media'
+
 MAIN_STATIC_ROOT = os.path.join(BASE_DIR, 'mainstatic')
 
 STATICFILES_DIRS = (
@@ -145,7 +143,7 @@ LOGIN_REDIRECT_URL = '/'
 
 
 
-AUTHENTICATION_BACKENDS = (#'tweatwell.apps.janrain.backends.JanrainBackend',
+AUTHENTICATION_BACKENDS = (
                            'django.contrib.auth.backends.ModelBackend',
                            )
 

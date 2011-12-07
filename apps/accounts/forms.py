@@ -61,8 +61,16 @@ class SignupForm(forms.Form):
         email = self.cleaned_data.get('email')
         username = self.cleaned_data.get('username')
         if email and User.objects.filter(email=email).exclude(username=username).count():
-            raise forms.ValidationError(u'This email affress is already registered.')
+            raise forms.ValidationError(u'This email address is already registered.')
         return email
+
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        if User.objects.filter(username=username).count()>0:
+            raise forms.ValidationError(u'This username is already taken.')
+        return username
+
+
 
 
     def save(self, profile_callback=None):

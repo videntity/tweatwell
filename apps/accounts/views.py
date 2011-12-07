@@ -156,12 +156,13 @@ def account_settings(request):
         if form.is_valid():
             data = form.cleaned_data
             #update the user info
-            request.user.username= data['username']
-            request.user.first_name= data['first_name']
-            request.user.last_name= data['last_name']  
+            request.user.username   = data['username']
+            equest.user.email       = data['email']
+            request.user.first_name = data['first_name']
+            request.user.last_name  = data['last_name']  
             request.user.save()
             #update the user profile
-            up.twitter = data['twitter']
+            up.twitter            = data['twitter']
             up.mobile_phone_number= data['mobile_phone_number']
             up.save()
             messages.success(request,'Your account settings have been updated.')  

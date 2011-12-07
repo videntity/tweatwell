@@ -68,7 +68,9 @@ def signup(request):
         form = SignupForm(request.POST)
         if form.is_valid():
           new_user = form.save()
-          return HttpResponseRedirect(reverse('home'))
+          messages.success(request, "Signup complete. Please verify your email.")
+          return render_to_response('accounts/signup-complete.html',
+                                      RequestContext(request, {}))
         else:
             #return the bound form with errors
             return render_to_response('accounts/signup.html',
@@ -189,8 +191,8 @@ def account_settings(request):
 def signup_verify(request, signup_key=None):
     
     if validate_signup(signup_key=signup_key):
-        return render_to_response('accounts/reset-password-success.html',
-                              RequestContext(request,{}))
+        messages.success(request, "Your account has been activated.")
+        return HttpResponseRedirect(reverse('simple_login'))
     else:
         return render_to_response('accounts/invalid-key.html',
                               RequestContext(request,
@@ -215,8 +217,9 @@ def reset_password(request, reset_password_key=None):
             vprk.user.save()
             vprk.delete()
             logout(request)
-            return render_to_response('accounts/reset-password-success.html',
-                              RequestContext(request,{}))
+            messages.success(request, "Your password was reset successfully.")
+            return HttpResponseRedirect(reverse('simple_login'))
+
         else:
          return render_to_response('accounts/reset-password.html',
                         RequestContext(request, {'form': form,

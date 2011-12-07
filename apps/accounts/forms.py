@@ -56,6 +56,13 @@ class SignupForm(forms.Form):
             msg="Password must be at least %s characters long.  Be tricky!" % (settings.MIN_PASSWORD_LEN)
             raise forms.ValidationError(msg)
         return password2
+    
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        username = self.cleaned_data.get('username')
+        if email and User.objects.filter(email=email).exclude(username=username).count():
+            raise forms.ValidationError(u'This email affress is already registered.')
+        return email
 
 
     def save(self, profile_callback=None):

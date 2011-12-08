@@ -181,13 +181,11 @@ def checkin(request):
             responsedict['bodylist']=None
         
         return render_to_response(
-            'index.html',
+            'checkin/checkin.html',
             {
             'PresidentAward':PresidentAward,
             'ProfessorAward': ProfessorAward,
             'DeanAward': DeanAward,
-            'SparkpeopleAward': SparkpeopleAward,
-            'EventAward': EventAward,
             'commentslist':commentslist,
             'publicfeed': responsedict['bodylist'],
             'all': all,

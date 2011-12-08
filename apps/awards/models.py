@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from ..upload.models import fruit_list, veg_list
 award_choices=(
         ('President','President'), ('Dean','Dean'), ('Professor','Professor'),
-        ('Event','Event'), ('Sparkpeople','Sparkpeople'),
         )
 fvm=(('fruit', 'fruit'), ('veggie', 'veggie'), ('freggie', 'freggie'))
 freggie_choices= fvm + fruit_list + veg_list

@@ -69,6 +69,10 @@ USER_CHOICES     = ( ('player',  'player'),
 
 class UserProfile(models.Model):
     user                    = models.ForeignKey(User, unique=True)
+    anonymous_id            = models.CharField(max_length=36,       
+                                  unique=True,
+                                  verbose_name=u'Anonymous Patient ID',
+                                  default=str(uuid.uuid4()))
     url                     = models.URLField(blank = True)
     user_type               = models.CharField(default='player',
                                        choices=USER_CHOICES,
@@ -80,12 +84,15 @@ class UserProfile(models.Model):
 
     def __unicode__(self):
         return '%s %s is a %s. Active=%s' % (self.user.first_name,
-                                self.user.last_name,
+                            self.user.last_name,
                                self.user_type, self.user.is_active )
         
     class Meta:
         unique_together = (("user", "user_type"),)
 
+    def save(self, **kwargs):
+        print "create user in restcat"
+        super(UserProfile, self).save(**kwargs)
 
 
 class ValidPasswordResetKey(models.Model):

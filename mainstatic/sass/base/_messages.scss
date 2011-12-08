@@ -1,0 +1,13 @@
+div.messages {
+    margin:0 0 10px 0px;
+    border: 2px solid #FCEFA1;
+    background: #FCFAF3 image-url('icon/info.png') 10px 8px no-repeat;;
+    padding:10px 10px 5px 33px;
+    @include border-radius(5px);
+    font-weight:bold;
+    font-size:1em;
+    li {
+        padding:0 0 .4em 0;
+    }
+}
+ 

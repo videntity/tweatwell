@@ -158,7 +158,7 @@ def account_settings(request):
             data = form.cleaned_data
             #update the user info
             request.user.username   = data['username']
-            equest.user.email       = data['email']
+            request.user.email       = data['email']
             request.user.first_name = data['first_name']
             request.user.last_name  = data['last_name']  
             request.user.save()
@@ -180,6 +180,7 @@ def account_settings(request):
     #this is an HTTP GET        
     return render_to_response('accounts/account_settings.html',
         {'form': AccountSettingsForm(initial={ 'username':request.user.username,
+                                'email':request.user.email,
                                 'last_name':request.user.last_name,
                                 'first_name':request.user.first_name,
                                 'twitter':up.twitter,

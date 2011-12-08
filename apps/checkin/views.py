@@ -20,7 +20,7 @@ def anon_home_index(request):
     print ("anon. we'll do this at near the end. for now redirect to login/signup")
     return HttpResponseRedirect(reverse('simple_login'))
 
-def home(request):
+def checkin(request):
     error=None
     print "main page"
     #if the user is logged in, display
@@ -203,7 +203,7 @@ def home(request):
         error= msg + str(sys.exc_info())
         #print error
         return render_to_response(
-            'index.html',
+            'checkin/checkin.html',
             {'error':error,
              'ci': responsedict['bodylist'],
             'all': all,

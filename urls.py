@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 from django.views.generic.simple import direct_to_template
-from tweatwell.apps.home.views import *
+from tweatwell.apps.checkin.views import *
 from tweatwell.apps.stats.views import *
 from tweatwell.apps.upload.views import *
 from tweatwell.apps.twitbot.views import *
@@ -40,9 +40,10 @@ urlpatterns = patterns('',
 
     
     #application specific urls -------------------------------------------------
-    url(r'^$', home, name="home"),
+    url(r'^$', checkin, name="checkin"),
     
-    url(r'^download/$', 'django.views.generic.simple.direct_to_template', {'template': 'download/index.html'}, name="download"),
+    url(r'^download/$', 'django.views.generic.simple.direct_to_template',
+        {'template': 'download/index.html'}, name="download"),
     url(r'^upload/$', 'django.views.generic.simple.direct_to_template', {'template': 'upload/index.html'}, name="upload"),
     url(r'^transmit/$', 'django.views.generic.simple.direct_to_template', {'template': 'transmit/index.html'}, name="transmist"),
     

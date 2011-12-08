@@ -69,8 +69,8 @@ STATIC_URL = '/static/'
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
-#ADMIN_MEDIA_PREFIX = '/static/admin'
-ADMIN_MEDIA_PREFIX = 'http://djadminstatic.s3.amazonaws.com/'
+# ADMIN_MEDIA_PREFIX = '/static/admin/'
+ 
 MAIN_STATIC_ROOT = os.path.join(BASE_DIR, 'mainstatic')
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -161,7 +161,7 @@ TEMPLATE_DIRS = (
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#
+
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -196,7 +196,6 @@ INSTALLED_APPS = (
     'tweatwell.apps.foodreport',
     'tweatwell.apps.givepoints',
     'tweatwell.apps.accounts',
-    #'tweatwell.apps.janrain',
     'avatar',
     'django_ses',
 )
@@ -245,7 +244,7 @@ AWS_SECRET_ACCESS_KEY = 'sH17aMlImhIm4QxHnqSHS+zQj6qChrZ8I+QGzH0T'
 
 
 
-#Registration Settings
+#Registration Settings ---------------------------------------------------------
 
 #Only allow a person to registeration from this domain
 #Set to None to allow any
@@ -269,4 +268,11 @@ RESTCAT_PASS="tweatwellpass"
 RESTCAT_USER_EMAIL="tweatwellapp@videntity.com"
 DEFAULT_TRANSACTION_TIMEZONE_OFFSET=-5
 
-JANRAIN_RPX_API_KEY = "29141158497f97547cba22785170a0326bec2851"
+
+
+
+try:
+    import settings_local
+except ImportError:
+    pass
+

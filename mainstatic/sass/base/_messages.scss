@@ -6,6 +6,7 @@ div.messages {
     @include border-radius(5px);
     font-weight:bold;
     font-size:1em;
+    text-shadow: 0 1px 0 #ffffff;
     li {
         padding:0 0 .4em 0;
     }

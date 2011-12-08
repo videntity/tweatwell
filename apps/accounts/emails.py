@@ -31,7 +31,7 @@ def send_password_reset_url_via_email(user, reset_key):
     to = user.email
     headers = {'Reply-To': from_email}
     
-    html_content = """"
+    html_content = """
     <P>
     Click on the following link to reset your password.<br>
     <a HREF="%s/accounts/reset-password/%s">%s/accounts/reset-password/%s</a>
@@ -52,7 +52,7 @@ def send_signup_key_via_email(user, signup_key):
     to = user.email
     headers = {'Reply-To': from_email}
     
-    html_content = """"
+    html_content = """
     <P>
     You're almost done.  Please click the link to activate your account.<br>
     <a HREF="%s/accounts/signup-verify/%s">%s/accounts/signup-verify/%s</a>

@@ -62,11 +62,6 @@ class ValidSignupKey(models.Model):
         super(ValidSignupKey, self).save(**kwargs)
 
 
-APPROVAL_CHOICES =( ('pending',  'Pending'),
-                    ('approved',  'Approved'),
-                    ('rejected',  'rejected'))
-
-
 
 USER_CHOICES     = ( ('player',  'player'),
                     ('admin',  'admin'),
@@ -79,6 +74,7 @@ class UserProfile(models.Model):
                                        choices=USER_CHOICES,
                                        max_length=6)
     mobile_phone_number     = PhoneNumberField(blank = True, max_length=15)
+    daily_freggie_goal      = models.IntegerField(max_length=1, default=5)
     twitter                 = models.CharField(blank = True, max_length=15)
     notes                   = models.TextField(blank = True, max_length=250)
 

@@ -38,13 +38,20 @@ class LoginForm(forms.Form):
 
 class SignupForm(forms.Form):
     username = forms.CharField(max_length=30, label="Username")
-    password1 = forms.CharField(widget=forms.PasswordInput, max_length=30, label="Password")
-    password2 = forms.CharField(widget=forms.PasswordInput, max_length=30, label="Password (again)")
+    daily_freggie_goal = forms.IntegerField( label="Daily Freggie Goal",
+                                            initial=5)
+    password1 = forms.CharField(widget=forms.PasswordInput, max_length=30,
+                                label="Password")
+    password2 = forms.CharField(widget=forms.PasswordInput, max_length=30,
+                                label="Password (again)")
     email = forms.EmailField(max_length=75, label="Email")
     first_name = forms.CharField(max_length=30, label="First Name")
     last_name = forms.CharField(max_length=60, label="Last Name")
-    mobile_phone_number = forms.CharField(max_length=15, label="Mobile Phone Number")
-    twitter = forms.CharField(max_length=15, label="Twitter")
+    
+    mobile_phone_number = forms.CharField(max_length=15,
+                                          label="Mobile Phone Number",
+                                          required=False)
+    twitter = forms.CharField(max_length=15, label="Twitter", required=False)
     
 
     def clean_password2(self):
@@ -85,6 +92,7 @@ class SignupForm(forms.Form):
         up=UserProfile.objects.create(
             user=new_user,
             twitter=self.cleaned_data.get('twitter', ""),
+            daily_freggie_goal = self.cleaned_data.get('daily_freggie_goal', ""),
             mobile_phone_number=self.cleaned_data.get('mobile_phone_number', ""),
             )
         v=ValidSignupKey(user=new_user)
@@ -92,12 +100,15 @@ class SignupForm(forms.Form):
         return new_user
 
 class AccountSettingsForm(forms.Form):
+    daily_freggie_goal = forms.IntegerField(initial=5)
     username = forms.CharField(max_length=30, label="Userame")
     email = forms.CharField(max_length=30, label="Email")
     first_name = forms.CharField(max_length=30, label="First Name")
     last_name = forms.CharField(max_length=60, label="Last Name")
-    mobile_phone_number = forms.CharField(max_length=15, label="Mobile Phone Number")
-    twitter = forms.CharField(max_length=15, label="Twitter")
+    mobile_phone_number = forms.CharField(max_length=15,
+                                          label="Mobile Phone Number",
+                                          required=False)
+    twitter = forms.CharField(max_length=15, label="Twitter", required=False)
      
     def clean_twitter(self):
         twitter = self.cleaned_data.get("twitter", "")

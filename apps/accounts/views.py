@@ -19,7 +19,7 @@ from emails import send_reply_email
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ObjectDoesNotExist
 from utils import validate_signup
-from models import ValidSMSCode, ValidPasswordResetKey, UserProfile
+from models import ValidPasswordResetKey, UserProfile
 from datetime import datetime
 # from registration.models import RegistrationProfile
 

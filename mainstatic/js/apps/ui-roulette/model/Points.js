@@ -14,26 +14,25 @@
 define([
     'jquery'
 ], function($) {
-    var Points = {};
+    return {
 
-    /** Gets users points
-     *
-     * @param id    userid
-     */
-    Points.getPoints = function(id) {
-        return true
+        /** Gets users points
+         *
+         * @param id userID
+         */
+        getPoints : function(id) {
+            return true
+        },
+
+        /** Updates user points
+         *
+         * @param id
+         * @param points
+         */
+        updatePoints : function(id, points) {
+            return true;
+        }
+
     };
-
-    /** Updates users points
-     *
-     * @param id        userid
-     * @param points    points
-     */
-    Points.updatePoints = function(id, points) {
-        return true;
-    };
-
-    return Points;
-
 });
 

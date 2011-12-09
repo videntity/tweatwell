@@ -34,7 +34,6 @@ define("ui.roulette", [
             $('#roulette-canvas').click(function(){
                 self._spinWheel(self._getRandomPocket());
             });
-
         },
 
         /**

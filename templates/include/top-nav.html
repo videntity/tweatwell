@@ -1,5 +1,8 @@
 <ul id="topnav">
     <li><a class="nav-home-tab" href="/">Home</a></li>
+    {% if user.is_authenticated %}
+        <li><a class="nav-roulette-tab" href="/roulette/">Roulette</a></li>
+    {% endif %}
     <li><a class="nav-faq-tab" href="/faq/">FAQ</a></li>
 </ul>
 

@@ -1,0 +1,44 @@
+{% extends "layouts/2-column-sidebar-right.html" %}
+{% block active_nav_tab  %}roulette-active{% endblock %}
+
+
+{% block extra_head %}
+
+<script>
+    /** Load Roulette Wheel Bootstrap
+     */
+    require({
+        baseUrl: '{{STATIC_URL}}js/'
+    }, ['apps/ui-roulette/main']);
+</script>
+
+{% endblock %}
+
+{% block middle %}
+
+    Roulette!
+
+<style type="text/css">
+    #roulette-canvas {
+        width:350px;
+        height:350px;
+        cursor:pointer;
+        border: 1px solid grey;
+        background: url('{{ STATIC_URL }}img/roulette/test-bgrd.png') top left no-repeat;
+    }
+</style>
+    
+<div id="roulette">
+    <div id="roulette-canvas">
+        <img id="roulette-arrow" src="{{ STATIC_URL }}img/roulette/arrow.png" width="150" height="150" style="display:none;"/>
+    </div>
+</div>
+
+<br/>
+<div>
+    Winning Pocket Is: <span id="roulette-result"></span>
+</div>
+
+
+{% endblock %}
+

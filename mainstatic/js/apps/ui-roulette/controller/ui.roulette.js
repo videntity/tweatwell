@@ -1,15 +1,18 @@
 /**
- * jQuery ui roulette wheel using raphael
- * Note: raphael is not AMD so load as static js file
- *  TODO figure out save, maybe sep model
+ * Copyright (c) 2011 DevPatch (http://www.devpatch.com)
+ *
+ * Date: 12/9/11
+ * Time: 8:30 AM
+ *
+ * Jquery UI roulette wheel, note this requires raphael which is not amd, so load as sep file.
+ *
  */
-
 
 define("ui.roulette", [
     "jquery",
-    "app/js/lib/vendor/raphael-min.js",
-    "lib/vendor/jquery-ui-1.8.16.custom.min",
-    "lib/vendor/pubsub"
+    "lib/vendor/raphael/raphael-min",
+    "lib/vendor/jquery-ui/jquery-ui-1.8.16.custom.min",
+    "lib/utils/pubsub"
 ], function ($) {
 
     $.widget("ui.roulette", {

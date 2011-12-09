@@ -36,6 +36,11 @@ urlpatterns = patterns('',
            {'template': 'static_page/privacy.html'},
            name='privacy'),
 
+    #TODO: this is temp for skinning
+    url(r'^roulette/$', direct_to_template,
+           {'template': 'roulette/index.html'},
+           name='roulette'),
+
     
     #application specific urls -------------------------------------------------
     url(r'^$', checkin, name="checkin"),

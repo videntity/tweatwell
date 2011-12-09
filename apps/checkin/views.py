@@ -9,17 +9,21 @@ from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from ..accounts.models import UserProfile
-from ..utils import handle_uploaded_file, query_restcat
-from ..questionstips.models  import QuestionTips
-from ..awards.models  import Award
+from ..questions.models import QuestionAnswer, Question
+from ..awards.models import Award
 from forms import FreggieForm
 from ..upload.forms import PickFruitForm, PickVeggieForm
 import datetime, os, pycurl, StringIO, json, types, sys
 from operator import itemgetter, attrgetter
+from django.contrib import messages
 
 def anon_home_index(request):
     print ("anon. we'll do this at near the end. for now redirect to login/signup")
     return HttpResponseRedirect(reverse('simple_login'))
+
+@login_required
+def answer_question(request):
+    pass
 
 def checkin(request):
 
@@ -30,7 +34,7 @@ def checkin(request):
     u=User.objects.get(username=request.user)
     p=get_object_or_404(UserProfile, user=u)
     awards =Award.objects.filter(user=u)
-
+    question=Question.objects.get(display=True)
     PresidentAward=False
     ProfessorAward=False
     DeanAward=False
@@ -49,13 +53,16 @@ def checkin(request):
     if request.method == 'POST':
         form = FreggieForm(request.POST)
         if form.is_valid():
-            form.save()
-            messages.success("Status updated.")
+            f=form.save(commit=False)
+            f.user=request.user
+            f.save()
+            messages.success(request,"Status updated.")
             return HttpResponseRedirect(reverse('checkin'))
         else:
             #the form had errors.
             return render_to_response('checkin/checkin.html',
                 {'form':form,
+                 'question':question,
                 'deanaward':DeanAward,
                 'presidentaward':PresidentAward,
                 'professoraward': ProfessorAward,
@@ -65,6 +72,7 @@ def checkin(request):
 
     return render_to_response('checkin/checkin.html',
             {'form':FreggieForm(),
+              'question':question,
              'deanaward':DeanAward,
              'presidentaward':PresidentAward,
              'professoraward': ProfessorAward,

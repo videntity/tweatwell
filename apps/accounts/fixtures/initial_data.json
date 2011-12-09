@@ -1,0 +1,16 @@
+[
+    {
+        "pk": 1, 
+        "model": "accounts.userprofile", 
+        "fields": {
+            "mobile_phone_number": "", 
+            "anonymous_id": "d901bfd6-8a48-4985-8dd8-f176dd33b971", 
+            "url": "", 
+            "twitter": "aviars", 
+            "user_type": "player", 
+            "daily_freggie_goal": 5, 
+            "notes": "", 
+            "user": 1
+        }
+    }
+]

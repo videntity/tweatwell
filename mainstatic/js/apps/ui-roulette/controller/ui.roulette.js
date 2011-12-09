@@ -10,10 +10,11 @@
 
 define("ui.roulette", [
     "jquery",
+    "apps/ui-roulette/model/Points",
     "lib/vendor/raphael/raphael-min",
     "lib/vendor/jquery-ui/jquery-ui-1.8.16.custom.min",
     "lib/utils/pubsub"
-], function ($) {
+], function ($, Points) {
 
     $.widget("ui.roulette", {
         options: {
@@ -33,6 +34,7 @@ define("ui.roulette", [
             $('#roulette-canvas').click(function(){
                 self._spinWheel(self._getRandomPocket());
             });
+
         },
 
         /**

@@ -7,12 +7,10 @@ from django.db import models
 from django.contrib.auth.models import User
 from datetime import date, datetime, timedelta
 from django.contrib.localflavor.us.models import PhoneNumberField
-import string
-import random
-import uuid
+import string, random, uuid
 from emails import send_password_reset_url_via_email, send_signup_key_via_email
 from django.utils.safestring import mark_safe
-
+from restcat_utils import create_restcat_user
 
 
 class ValidPasswordResetKey(models.Model):
@@ -69,10 +67,10 @@ USER_CHOICES     = ( ('player',  'player'),
 
 class UserProfile(models.Model):
     user                    = models.ForeignKey(User, unique=True)
-    anonymous_id            = models.CharField(max_length=36,       
+    anonymous_patient_id    = models.CharField(max_length=30,       
                                   unique=True,
                                   verbose_name=u'Anonymous Patient ID',
-                                  default=str(uuid.uuid4()))
+                                  blank=True)
     url                     = models.URLField(blank = True)
     user_type               = models.CharField(default='player',
                                        choices=USER_CHOICES,
@@ -91,7 +89,16 @@ class UserProfile(models.Model):
         unique_together = (("user", "user_type"),)
 
     def save(self, **kwargs):
-        print "create user in restcat"
+        if not self.anonymous_patient_id:
+            self.anonymous_patient_id = str(uuid.uuid4())[0:30]
+
+        
+        response=create_restcat_user(username=self.anonymous_patient_id,
+                            password=str(uuid.uuid4())[0:30],
+                            email=self.user.email,
+                            first_name=self.user.first_name,
+                            last_name=self.user.last_name,
+                            mobile_phone_number=self.mobile_phone_number)
         super(UserProfile, self).save(**kwargs)
 
 
@@ -120,10 +127,7 @@ class ValidPasswordResetKey(models.Model):
 
 
 permission_choices=(    ('player',  'player'),
-                        ('admin',  'admin'),
-
-
-                    )
+                        ('admin',  'admin'),)
 
 class Permission(models.Model):
     user  = models.ForeignKey(User)
@@ -139,4 +143,30 @@ class Permission(models.Model):
         unique_together = (("user", "permission_name"),)
         
 
-        
+def validate_signup(signup_key):
+    try:
+        vc=ValidSignupKey.objects.get(signup_key=signup_key)
+        now=datetime.now()
+    
+        if vc.expires < now:
+            vc.delete()
+            return False   
+    except(ValidSignupKey.DoesNotExist):
+        return False  
+    u=vc.user
+    u.is_active=True
+    u.save()
+    vc.delete()
+    return True
+
+
+def user_permissions(request):
+    try:
+        p=Permission.objects.filter(user=request.user)
+        pl=[]
+        for i in p:
+            pl.append(i.permission_name)
+        return tuple(pl)
+    except(Permission.DoesNotExist):
+        return ()
+          

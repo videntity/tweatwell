@@ -254,10 +254,9 @@ TWITTERHASH="wvu5"
 
 
 #RESTCat Settings
-RESTCAT_SERVER="http://restcat.tweatwell.com/"
-RESTCAT_USER="tweatwellapp"
-RESTCAT_PASS="tweatwellpass"
-RESTCAT_USER_EMAIL="tweatwellapp@videntity.com"
+RESTCAT_SERVER="http://127.0.0.1:8000/"
+RESTCAT_USER="alan"
+RESTCAT_PASS="p"
 DEFAULT_TRANSACTION_TIMEZONE_OFFSET=-5
 
 

@@ -11,10 +11,11 @@
 define("ui.roulette", [
     "jquery",
     "apps/ui-roulette/model/Points",
+    "apps/ui-roulette/model/Rules",
     "lib/vendor/raphael/raphael-min",
     "lib/vendor/jquery-ui/jquery-ui-1.8.16.custom.min",
     "lib/utils/pubsub"
-], function ($, Points) {
+], function ($, Points, Rules) {
 
     $.widget("ui.roulette", {
         options: {

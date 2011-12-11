@@ -93,12 +93,12 @@ class UserProfile(models.Model):
             self.anonymous_patient_id = str(uuid.uuid4())[0:30]
 
         
-        response=create_restcat_user(username=self.anonymous_patient_id,
-                            password=str(uuid.uuid4())[0:30],
-                            email=self.user.email,
-                            first_name=self.user.first_name,
-                            last_name=self.user.last_name,
-                            mobile_phone_number=self.mobile_phone_number)
+        #response=create_restcat_user(username=self.anonymous_patient_id,
+        #                    password=str(uuid.uuid4())[0:30],
+        #                    email=self.user.email,
+        #                    first_name=self.user.first_name,
+        #                    last_name=self.user.last_name,
+        #                    mobile_phone_number=self.mobile_phone_number)
         super(UserProfile, self).save(**kwargs)
 
 

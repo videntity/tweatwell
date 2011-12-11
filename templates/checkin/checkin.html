@@ -149,9 +149,19 @@
 
 <br/><br>
 <h1>Latest Tweats</h1>
-    Tweats go here
-        
-
+    Tweats<br>
+    {% for t in tweatlist%}
+	Tweat: {{ t.tweat.text }} <br>
+	Comments:<br>
+	{% if t.comments %}
+	    {% for c in t.comments %}
+		{{ c.text }}<br>
+	    {% endfor %}
+	{% else %}
+	   No comments<br>
+	{% endif %}
+	
+    {% endfor %}
 
     <div id="public_feed">  <!-- public feed -->	  
 

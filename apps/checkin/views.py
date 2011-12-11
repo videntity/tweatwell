@@ -16,9 +16,10 @@ from ..upload.forms import PickFruitForm, PickVeggieForm
 import datetime, os, pycurl, StringIO, json, types, sys
 from operator import itemgetter, attrgetter
 from django.contrib import messages
-
+from models import Comment, Freggie, Spin, Roulette
+from django.db.models import Sum
 def anon_home_index(request):
-    print ("anon. we'll do this at near the end. for now redirect to login/signup")
+    print ("anonymous home. We'll do this at near the end. for now redirect to login/signup")
     return HttpResponseRedirect(reverse('simple_login'))
 
 @login_required
@@ -27,7 +28,7 @@ def answer_question(request):
 
 def checkin(request):
 
-    #if the user is logged in, display
+    #if the user is not logged in, display an anonymous home page
     if request.user.is_anonymous()==True:
         return anon_home_index(request)
     
@@ -38,6 +39,7 @@ def checkin(request):
     PresidentAward=False
     ProfessorAward=False
     DeanAward=False
+    
     for a in awards:
         if a.award_class=="President":
             PresidentAward=True
@@ -46,9 +48,39 @@ def checkin(request):
         if a.award_class=="Professor":
             ProfessorAward=True    
         
-    #fetch freggies and points
-    freggies=0
-    points=0
+    #fetch points
+    
+    freggie_points = Freggie.objects.filter(user=request.user).aggregate(Sum('points'))
+    if freggie_points['points__sum']== None:
+        freggie_points['points__sum']=0
+    
+    comment_points = Comment.objects.filter(user=request.user).aggregate(Sum('points'))
+    if comment_points['points__sum']== None:
+        comment_points['points__sum']=0    
+
+    spin_points = Spin.objects.filter(user=request.user).aggregate(Sum('points'))
+    if spin_points['points__sum']== None:
+        spin_points['points__sum']=0
+        
+    roulette_points = Comment.objects.filter(user=request.user).aggregate(Sum('points'))
+    if roulette_points['points__sum']== None:
+        roulette_points['points__sum']=0 
+    
+    
+    points = freggie_points['points__sum'] + comment_points['points__sum'] + \
+                spin_points['points__sum'] + roulette_points['points__sum']
+    
+    #fetch total freggies -----------------------------------------------------
+    
+    freggies=Freggie.objects.filter(user=request.user).count()
+
+    #fetch tweats and comments ------------------------------------------------
+    tweats = Freggie.objects.all()
+    tweatlist=[]
+    for t in tweats:
+        c=Comment.objects.filter(freggie=t)
+        tweatitem = {'tweat': t, 'comments':c}
+        tweatlist.append(tweatitem)
     
     if request.method == 'POST':
         form = FreggieForm(request.POST)
@@ -56,7 +88,7 @@ def checkin(request):
             f=form.save(commit=False)
             f.user=request.user
             f.save()
-            messages.success(request,"Status updated.")
+            messages.success(request, "Status updated.")
             return HttpResponseRedirect(reverse('checkin'))
         else:
             #the form had errors.
@@ -64,6 +96,7 @@ def checkin(request):
                 {'form':form,
                  'question':question,
                 'deanaward':DeanAward,
+                'tweatlist': tweatlist,
                 'presidentaward':PresidentAward,
                 'professoraward': ProfessorAward,
                 'freggies': freggies,
@@ -72,8 +105,9 @@ def checkin(request):
 
     return render_to_response('checkin/checkin.html',
             {'form':FreggieForm(),
-              'question':question,
+             'question':question,
              'deanaward':DeanAward,
+             'tweatlist': tweatlist,
              'presidentaward':PresidentAward,
              'professoraward': ProfessorAward,
              'freggies': freggies,

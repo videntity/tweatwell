@@ -55,7 +55,7 @@ define(function() {
 
     rules.joker = function(points) {
         return {
-            'points' : "+ joker",
+            'points' : "joker",
             'resultTxt' : "You Won The Joker Badge"
         };
     };

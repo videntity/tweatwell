@@ -25,7 +25,7 @@ define([
         equals( 10, result.points, "Pocket 1, loseHalf" );
 
         result = Rules.applyRule(2, points);
-        equals( 20, result.points, "Pocket 2, loseTurn" );
+        equals( 0, result.points, "Pocket 2, loseTurn" );
 
         result = Rules.applyRule(3, points);
         equals( 30, result.points, "Pocket 3, plusTen" );

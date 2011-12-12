@@ -84,10 +84,10 @@ define("ui.roulette", [
         _getRandomPocket: function() {
             var o = this.options;
             
-            return Math.floor(Math.random() * 7);
+            return Math.floor(Math.random() * (o.numPockets - 1));
         },
 
-        /** Returns resutl based on landed pocket and wager
+        /** Returns result based on landed pocket and wager
          *
          * @param pocket
          */
@@ -125,7 +125,7 @@ define("ui.roulette", [
             $('#result .txt').html(results.resultTxt);
 
             
-            //Apply other rules
+            //Apply other rules joker etc
 
         },
 

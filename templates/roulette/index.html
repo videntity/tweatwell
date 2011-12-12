@@ -1,10 +1,19 @@
 {% extends "layouts/2-column-sidebar-right.html" %}
 {% block active_nav_tab  %}roulette-active{% endblock %}
 
-
 {% block extra_head %}
 
 <script>
+//    Module for handling passing points, replace with points from Django {points}
+    define("TW", function() {
+        var tw = {};
+        tw.user = {
+            points:10
+        };
+
+        return tw;
+    });
+
     /** Load Roulette Wheel Bootstrap
      */
     require({
@@ -16,18 +25,45 @@
 
 {% block middle %}
 
-    Roulette!
-
 <div id="roulette">
     <div id="roulette-canvas">
         <img id="roulette-arrow" src="{{ STATIC_URL }}img/roulette/arrow.png" width="150" height="150" style="display:none;"/>
     </div>
 </div>
 
-<br/>
-<div>
-    Winning Pocket Is: <span id="roulette-result"></span>
+
+<div id="roulette-points">
+    <h1>Spin To Win</h1>
+    <p>Bet some points then click the wheel to win big. <em>You must have at least 10 points to play and can play once per day.</em></p>
+
+    <div>
+        Current Points: XX <br/>
+        Points To Wager:
+        <form>
+            <select>
+                <option>1</option>
+            </select>
+        </form>
+        Winning Pocket Is: <span id="roulette-result"></span>
+
+
+        <div class="msg" id="result">
+            Result: 
+        </div>
+
+        <div class="msg" id="minimum-points">
+            You must have at least 10 points to play.
+        </div>
+
+        <div class="msg" id="once-per-day">
+            You may only spin once per day.
+        </div>
+
+    </div>
 </div>
+
+
+
 
 {% endblock %}
 

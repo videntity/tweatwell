@@ -7,9 +7,7 @@
 //    Module for handling passing points, replace with points from Django {points}
     define("TW", function() {
         var tw = {};
-        tw.user = {
-            points:10
-        };
+        tw.points = 20;
 
         return tw;
     });
@@ -34,36 +32,45 @@
 
 <div id="roulette-points">
     <h1>Spin To Win</h1>
-    <p>Bet some points then click the wheel to win big. <em>You must have at least 10 points to play and can play once per day.</em></p>
+    <p><strong>Select the number of points you would like to wager, then click the wheel to win big!</strong></p>
+    <p><em>You must have at least 10 points to play and can play once per day.</em></p>
 
-    <div>
-        Current Points: XX <br/>
-        Points To Wager:
+    <div class="points-display">
+        You have  <span id="total-points">20</span> points.
         <form>
-            <select>
-                <option>1</option>
+            <label for="points-wagered">Points To Wager:&nbsp;</label>
+            <select id="points-wagered">
+{#                TODO: loop based on {point}#}
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19</option>
             </select>
         </form>
-        Winning Pocket Is: <span id="roulette-result"></span>
 
 
         <div class="msg" id="result">
-            Result: 
+            Result: <span class="txt"></span><br/><br>
+            Winnings: <span class="winnings"></span><br/><br>
+            Total Points: <span class="total"></span><br/><br/>
         </div>
 
-        <div class="msg" id="minimum-points">
-            You must have at least 10 points to play.
-        </div>
-
-        <div class="msg" id="once-per-day">
-            You may only spin once per day.
-        </div>
+{#        <div class="msg" id="minimum-points">#}
+{#            You must have at least 10 points to play.#}
+{#        </div>#}
+{##}
+{#        <div class="msg" id="once-per-day">#}
+{#            You may only spin once per day.#}
+{#        </div>#}
 
     </div>
 </div>
-
-
-
 
 {% endblock %}
 

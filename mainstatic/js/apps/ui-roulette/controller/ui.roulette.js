@@ -22,6 +22,7 @@ define("ui.roulette", [
         options: {
             arrowId     : "#roulette-arrow",
             canvas      : "roulette-canvas",
+            wagerId     : "#points-wagered",
             numPockets  : 8,
             numRotations: 3
         },
@@ -32,11 +33,10 @@ define("ui.roulette", [
 
             self._createCanvas();
 
-            //console.log(User);
-
             //bind click
             $('#roulette-canvas').click(function(){
                 self._spinWheel(self._getRandomPocket());
+                $(this).unbind('click');
             });
         },
 
@@ -60,6 +60,8 @@ define("ui.roulette", [
             self.img.stop();
             self.img.attr("rotation", "0");
             self.img.animate({rotation: self._calculateSpin(pocket)}, 4000, ">", function(){
+                //result, update!
+                self._updateInterface(pocket);
                 $.publish('/roulette/stop', [pocket]);
             });
         },
@@ -73,8 +75,6 @@ define("ui.roulette", [
             var minimumRotation = (360 * o.numRotations);
             var offset = Math.floor((360 / o.numPockets) / 2);
 
-            //debug
-            $("#roulette-result").html(pocket);
             return (pocketLocation + minimumRotation + offset);
         },
 
@@ -84,7 +84,49 @@ define("ui.roulette", [
         _getRandomPocket: function() {
             var o = this.options;
             
-            return Math.floor(Math.random() * (o.numPockets - 1 + 1)) + 1;
+            return Math.floor(Math.random() * 7);
+        },
+
+        /** Returns resutl based on landed pocket and wager
+         *
+         * @param pocket
+         */
+        _getResult: function(pocket) {
+            var self = this, o = this.options;
+            var wager = self._getWager();
+
+            return Rules.applyRule(pocket, wager);
+        },
+
+        /** Returns user selected wager amount
+         *
+         */
+        _getWager: function() {
+            var o = this.options;
+            return $(o.wagerId + ' option:selected').val();
+        },
+
+        /** Processes result for display to user
+         * updates interface
+         */
+        _updateInterface: function(pocket) {
+            var self = this, o = this.options;
+
+            var results = self._getResult(pocket);
+
+            //Update Points
+            var total = (User.points + results.points);
+            User.points = total;
+
+            $('#result .winnings').html(results.points);
+            $('#result .total').html(total);
+            
+            //Update Text
+            $('#result .txt').html(results.resultTxt);
+
+            
+            //Apply other rules
+
         },
 
         _setOption: function(key, value) {

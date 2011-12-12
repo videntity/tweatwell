@@ -18,14 +18,29 @@ define([
 
         var points = 20;
 
-        equals( 40, Rules.applyRule(0, points), "Pocket 0, timesTwo" );
-        equals( 10, Rules.applyRule(1, points), "Pocket 1, loseHalf" );
-        equals( 20, Rules.applyRule(2, points), "Pocket 2, loseTurn" );
-        equals( 30, Rules.applyRule(3, points), "Pocket 3, plusTen" );
-        equals( 'joker', Rules.applyRule(4, points), "Pocket 4, joker" );
-        equals( 100, Rules.applyRule(5, points), "Pocket 5, timesFive" );
-        equals( 10, Rules.applyRule(6, points), "Pocket 6, minusTen" );
-        equals( 0, Rules.applyRule(7, points), "Pocket 7, bankrupt" );
+        var result = Rules.applyRule(0, points);
+        equals( 40, result.points, "Pocket 0, timesTwo" );
+
+        result = Rules.applyRule(1, points);
+        equals( 10, result.points, "Pocket 1, loseHalf" );
+
+        result = Rules.applyRule(2, points);
+        equals( 20, result.points, "Pocket 2, loseTurn" );
+
+        result = Rules.applyRule(3, points);
+        equals( 30, result.points, "Pocket 3, plusTen" );
+
+        result = Rules.applyRule(4, points);
+        equals( 'joker', result.points, "Pocket 4, joker" );
+
+        result = Rules.applyRule(5, points);
+        equals( 100, result.points, "Pocket 5, timesFive" );
+
+        result = Rules.applyRule(6, points);
+        equals( 10, result.points, "Pocket 6, minusTen" );
+
+        result = Rules.applyRule(7, points);
+        equals( 0, result.points, "Pocket 7, bankrupt" );
 
     });
 });

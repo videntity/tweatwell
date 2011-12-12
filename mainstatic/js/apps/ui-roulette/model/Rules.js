@@ -26,35 +26,59 @@ define(function() {
     var rules = {};
 
     rules.timesTwo = function(points) {
-        return (points * 2);
+        return {
+            'points' : (points * 2),
+            'resultTxt' : "Double Points"
+        };
     };
 
     rules.loseHalf = function(points) {
-        return (Math.round(points - (points/2)));
+        return {
+            'points' : Math.round(points - (points/2)),
+            'resultTxt' : "Lose Half"
+        };
     };
 
     rules.loseTurn = function(points) {
-        return points;
+        return {
+            'points' : 0,
+            'resultTxt' : "Lose Turn"
+        };
     };
 
     rules.plusTen = function(points) {
-        return (points + 10);
+        return {
+            'points' : (parseInt(points) + 10),
+            'resultTxt' : "Plus 10"
+        };
     };
 
     rules.joker = function(points) {
-        return "joker";
+        return {
+            'points' : "+ joker",
+            'resultTxt' : "You Won The Joker Badge"
+        };
     };
 
     rules.timesFive = function(points) {
-        return (points * 5);
+        return {
+            'points' : (points * 5),
+            'resultTxt' : "Times 5"
+        };
     };
 
     rules.minusTen = function(points) {
-        return (points - 10);
+        return {
+            'points' : (points - 10),
+            'resultTxt' : "Minus 10"
+        };
     };
 
     rules.bankrupt = function(points) {
-        return 0;
+        return {
+            'points' : 0,
+            'resultTxt' : "Bankrupt, Lose All Points"
+        };
     };
 
 
@@ -69,7 +93,6 @@ define(function() {
         if(typeof rules[rule] === 'function') {
             return rules[rule](points);
         } else {
-
             return false;
         }
     };

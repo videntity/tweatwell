@@ -33,7 +33,7 @@ define("ui.roulette", [
 
             self._createCanvas();
 
-            //bind click
+            //bind click & only allow one click
             $('#roulette-canvas').click(function(){
                 self._spinWheel(self._getRandomPocket());
                 $(this).unbind('click');

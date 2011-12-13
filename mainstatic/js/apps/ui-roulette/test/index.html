@@ -9,11 +9,39 @@
     <script type="text/javascript" src="../../../require-jquery.js"></script>
     <script type="text/javascript" src="../../../lib/vendor/qunit/qunit.js"></script>
 
+    <style type="text/css">
+        #roulette-canvas {
+        width:350px;
+        height:350px;
+        cursor:pointer;
+        float:left;
+        border: 1px solid grey;
+        background: url('/static/img/roulette/test-bgrd.png');
+    }
+    </style>
+
     <script>
+
+
         QUnit.config.autostart = false;
 
-        require([
-            'Rules.js'
+
+        //Fake points
+        define("TW", function() {
+            var tw = {};
+            tw.points = 20;
+
+            return tw;
+        });
+
+
+        //Bootstrap and lets start testing
+        require(
+        {baseUrl: '/static/js/'},
+        [
+            'apps/ui-roulette/test/Rules',
+            'apps/ui-roulette/test/Roulette',
+            'apps/ui-roulette/main'
         ], function(){
             QUnit.start(); //Tests loaded, run tests
         });
@@ -25,12 +53,33 @@
 <body>
 <!-- Path: /static/js/apps/ui-roulette/test/index.html -->
 
+
+
 <h1 id="qunit-header">Roulette Test Suite</h1>
 <h2 id="qunit-banner"></h2>
 <div id="qunit-testrunner-toolbar"></div>
 <h2 id="qunit-userAgent"></h2>
 <ol id="qunit-tests"></ol>
-<div id="qunit-fixture">test markup</div>
+<div id="qunit-fixture">
+    
+</div>
+<hr/>
+    <div id="roulette">
+        <div id="roulette-canvas">
+            <img id="roulette-arrow" src="../../../../img/roulette/arrow.png" width="150" height="150" style="display:none;"/>
+        </div>
+    </div>
+    <div class="msg" id="result">
+        Result: <span class="txt"></span><br/><br>
+        Winnings: <span class="winnings"></span><br/><br>
+        Total Points: <span class="total"></span><br/><br/>
+        <form>
+            <label for="points-wagered">Points To Wager:&nbsp;</label>
+            <select id="points-wagered">
+                <option selected>10</option>
+            </select>
+        </form>
+    </div>
 
 
 </body>

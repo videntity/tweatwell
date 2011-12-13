@@ -27,7 +27,7 @@ define(function() {
 
     rules.timesTwo = function(points) {
         return {
-            'points' : (points * 2),
+            'points' : (parseInt(points) * 2),
             'resultTxt' : "Double Points"
         };
     };

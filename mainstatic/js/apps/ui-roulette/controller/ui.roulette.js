@@ -60,11 +60,9 @@ define("ui.roulette", [
             self.img.stop();
             self.img.attr("rotation", "0");
             self.img.animate({rotation: self._calculateSpin(pocket)}, 4000, ">", function(){
-                //result, update!
+                //result, update & save
                 self._updateInterface(pocket);
-                //save points
                 Points.save(User.points);
-                $.publish('/roulette/stop', [pocket]);
             });
         },
 
@@ -127,7 +125,7 @@ define("ui.roulette", [
             $('#result .txt').html(results.resultTxt);
 
             
-            //Apply other rules joker etc
+            //Apply other rules joker etc & logic for save (probably)
 
         },
 

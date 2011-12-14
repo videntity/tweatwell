@@ -30,14 +30,19 @@ define("ui.roulette", [
         _create: function() {
             var self = this;
             self.img = null;
+            self.results = {};
 
             self._createCanvas();
 
-            //bind click & only allow one click
-            $('#roulette-canvas').click(function(){
-                self._spinWheel(self._getRandomPocket());
-                $(this).unbind('click');
-            });
+            //bind click & only allow one click if points > 10
+            if(User.points >= 10 ) {
+
+                $('#roulette-canvas').click(function(){
+                    self._spinWheel(self._getRandomPocket());
+                    $(this).unbind('click');
+                });
+
+            }
         },
 
         /**
@@ -60,9 +65,9 @@ define("ui.roulette", [
             self.img.stop();
             self.img.attr("rotation", "0");
             self.img.animate({rotation: self._calculateSpin(pocket)}, 4000, ">", function(){
-                //result, update & save
-                self._updateInterface(pocket);
-
+                self._getResult(pocket);
+                self._updateInterface();
+                self._save();
             });
         },
 
@@ -95,7 +100,7 @@ define("ui.roulette", [
             var self = this, o = this.options;
             var wager = self._getWager();
 
-            return Rules.applyRule(pocket, wager);
+            self.results = Rules.applyRule(pocket, wager);
         },
 
         /** Returns user selected wager amount
@@ -109,26 +114,26 @@ define("ui.roulette", [
         /** Processes result for display to user
          * updates interface
          */
-        _updateInterface: function(pocket) {
-            var self = this, o = this.options;
+        _updateInterface: function() {
+            var self = this;
 
-            var results = self._getResult(pocket);
-
-            //Update Points
-            var total = (User.points + results.points);
-            User.points = total;
-
-            $('#result .winnings').html(results.points);
-            $('#result .total').html(total);
+            $('#result .winnings').html(self.results.points);
+            $('#result .total').html((User.points + self.results.points));
             
             //Update Text
-            $('#result .txt').html(results.resultTxt);
-
-            
-            //Apply other rules joker etc & logic for save (probably)
-            Points.save(User.points);
-
+            $('#result .txt').html(self.results.resultTxt);
         },
+
+
+        /** save method, handles joker
+         *
+         */
+        _save: function() {
+            var self = this;
+
+            Points.save(self.results.points);
+        },
+
 
         _setOption: function(key, value) {
             switch( key ) {

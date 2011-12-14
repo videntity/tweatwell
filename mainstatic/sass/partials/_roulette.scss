@@ -5,6 +5,7 @@
     float:left;
     border: 1px solid grey;
     background-image: url(/static/img/roulette/test-bgrd.png);
+
 }
 
 #roulette-points {
@@ -16,9 +17,21 @@
         border:2px solid silver;
         background:#F5F5F5;
         padding:10px;
+        min-height:100px;
         h3 {
             color:#666666;
         }
+        .hide {
+            display:none;
+        }
+        .msg {
+            color:#6A8800;
+            font-size:14px;
+            margin:20px 0 0 0;
+        }
+    }
+    #wager {
+
     }
 
 }

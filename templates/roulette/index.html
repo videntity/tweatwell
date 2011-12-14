@@ -38,47 +38,48 @@
     <p><em>You must have at least 10 points to play and can play once per day.</em></p>
 
     <div class="points-display">
-        You have <span id="total-points">{{ points }}</span> points.
-        <form>
-            <label for="points-wagered">Points To Wager:&nbsp;</label>
-            <select id="points-wagered">
+        <strong>You curently have <span id="total-points">{{ points }}</span> points.</strong>
 
-                <option>10</option>
-                <option>11</option>
-                <option>12</option>
-                <option>13</option>
-                <option>14</option>
-                <option>15</option>
-                <option>16</option>
-                <option>17</option>
-                <option>18</option>
-                <option>19</option>
-            </select>
-        </form>
+        <div id="wager" class="{% if points < 10 %}hide{% endif %}">
+            <form>
+                <label for="points-wagered">Points To Wager:&nbsp;</label>
+                <select id="points-wagered">
+
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                    <option>13</option>
+                    <option>14</option>
+                    <option>15</option>
+                    <option>16</option>
+                    <option>17</option>
+                    <option>18</option>
+                    <option>19</option>
+                </select>
+            </form>
 
 
-        <div class="msg" id="result">
-            Result: <span class="txt"></span><br/><br>
-            Winnings: <span class="winnings"></span><br/><br>
-            Total Points: <span class="total"></span><br/><br/>
+            <div class="msg" id="result">
+                Result: <span class="txt"></span><br/><br>
+                Winnings: <span class="winnings"></span><br/><br>
+                Total Points: <span class="total"></span><br/><br/>
+            </div>
+
         </div>
 
-{#        <div class="msg" id="minimum-points">#}
-{#            You must have at least 10 points to play.#}
-{#        </div>#}
-{##}
-{#        <div class="msg" id="once-per-day">#}
-{#            You may only spin once per day.#}
-{#        </div>#}
+        <div class="msg {% if points >= 10 %}hide{% endif %}" id="minimum-points">
+            You must have at least 10 points to play.
+        </div>
+
+
+
+        <div class="msg hide" id="once-per-day">
+            You may only spin once per day.
+        </div>
 
     </div>
 </div>
 
-
-<form action='/roulette/spin-results/' method='POST' class="roulette">
-		{{ form.as_p }}
-		<input type="submit" value="Assign Points" class="button" />
-	   </form>
 
 {% endblock %}
 

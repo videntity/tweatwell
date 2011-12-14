@@ -107,6 +107,7 @@ define("ui.roulette", [
             if(self.results.points == "joker") {
                 self.results.points = "";
                 self.joker = true;
+                //to test here for existing badge and allow spin again
             }
         },
 

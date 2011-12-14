@@ -4,11 +4,12 @@
 {% block extra_head %}
 
 <script>
-//    Module for handling passing points, replace with points from Django {points}
+//    Module for handling passing points
 //    TODO: Add boolean for allowing to play (once per day rule) popualted from django
     define("TW", function() {
         var tw = {};
-        tw.points = 20;
+        tw.points = {{ points }};
+        //tw.points = 20;
 
         return tw;
     });
@@ -32,16 +33,16 @@
 
 
 <div id="roulette-points">
-    <h1>Spin To Win</h1>{{ points }}
+    <h1>Spin To Win</h1>
     <p><strong>Select the number of points you would like to wager, then click the wheel to win big!</strong></p>
     <p><em>You must have at least 10 points to play and can play once per day.</em></p>
 
     <div class="points-display">
-        You have  <span id="total-points">20</span> points.
+        You have <span id="total-points">{{ points }}</span> points.
         <form>
             <label for="points-wagered">Points To Wager:&nbsp;</label>
             <select id="points-wagered">
-{#                TODO: loop based on {point}#}
+
                 <option>10</option>
                 <option>11</option>
                 <option>12</option>

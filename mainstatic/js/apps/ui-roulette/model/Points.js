@@ -7,7 +7,7 @@
  *
  */
 
-define(function() {
+define(["lib/utils/pubsub"],function() {
     /** Save method
      *
      * @param points
@@ -16,10 +16,10 @@ define(function() {
         $.ajax({
             type: "POST",
             url: "/roulette/spin-results/",
-            data: "id_points=" + points,
+            data: "points=" + points,
             success: function(data) {
                 if (!data.exception) {
-                    alert("success");
+                    //alert("success");
 
                 } else {
                     alert("fail")

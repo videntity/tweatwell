@@ -62,7 +62,7 @@ define("ui.roulette", [
             self.img.animate({rotation: self._calculateSpin(pocket)}, 4000, ">", function(){
                 //result, update & save
                 self._updateInterface(pocket);
-                Points.save(User.points);
+
             });
         },
 
@@ -126,6 +126,7 @@ define("ui.roulette", [
 
             
             //Apply other rules joker etc & logic for save (probably)
+            Points.save(User.points);
 
         },
 

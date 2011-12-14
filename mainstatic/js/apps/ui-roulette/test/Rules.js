@@ -22,7 +22,7 @@ define([
         equals( 40, result.points, "Pocket 0, timesTwo" );
 
         result = Rules.applyRule(1, points);
-        equals( 10, result.points, "Pocket 1, loseHalf" );
+        equals( -10, result.points, "Pocket 1, loseHalf" );
 
         result = Rules.applyRule(2, points);
         equals( 0, result.points, "Pocket 2, loseTurn" );
@@ -37,10 +37,10 @@ define([
         equals( 100, result.points, "Pocket 5, timesFive" );
 
         result = Rules.applyRule(6, points);
-        equals( 10, result.points, "Pocket 6, minusTen" );
+        equals( -10, result.points, "Pocket 6, minusTen" );
 
         result = Rules.applyRule(7, points);
-        equals( 0, result.points, "Pocket 7, bankrupt" );
+        equals( -20, result.points, "Pocket 7, bankrupt" );
 
     });
 });

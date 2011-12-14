@@ -34,7 +34,7 @@ define(function() {
 
     rules.loseHalf = function(points) {
         return {
-            'points' : Math.round(points - (points/2)),
+            'points' : -Math.round(points - (points/2)),
             'resultTxt' : "Lose Half"
         };
     };
@@ -69,14 +69,14 @@ define(function() {
 
     rules.minusTen = function(points) {
         return {
-            'points' : (points - 10),
+            'points' : -10,
             'resultTxt' : "Minus 10"
         };
     };
 
     rules.bankrupt = function(points) {
         return {
-            'points' : 0,
+            'points' : -points,
             'resultTxt' : "Bankrupt, Lose All Points"
         };
     };

@@ -8,7 +8,7 @@
  */
 
 define(["lib/utils/pubsub"],function() {
-    /** Save method
+    /** Save points
      *
      * @param points
      */
@@ -17,7 +17,8 @@ define(["lib/utils/pubsub"],function() {
         $.ajax({
             type: "POST",
             url: "/roulette/spin-results/",
-            data: "points=" + points,
+            data: "points=" + "20",
+            fixture: "/",
             success: function(data) {
                 if (!data.exception) {
                     $.publish('/points/save');
@@ -28,9 +29,27 @@ define(["lib/utils/pubsub"],function() {
         });
     };
 
+    /** Save if joker badge is won */
+    var saveJoker = function() {
+        $.ajax({
+            type: "POST",
+            url: "/roulette/joker-badge/",
+            data: "joker=true",
+            fixture: "/",
+            success: function(data) {
+                if (!data.exception) {
+                    $.publish('/points/joker');
+                } else {
+                    alert("Save Failure")
+                }
+            }
+        });
+    };
+
     /** public methods */
     return {
-        save : save
+        save        : save,
+        saveJoker   : saveJoker
     };
 
 });

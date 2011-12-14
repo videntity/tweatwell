@@ -13,7 +13,7 @@ define([
     module("Roulette Test");
 
     test("Roulette UI", function() {
-        expect(3);
+        expect(2);
 
         stop();
 
@@ -23,7 +23,6 @@ define([
 
         function test() {
             notEqual( $('.txt').html(), "", "txt value not empty" );
-            notEqual( $('.winnings').html(),"", "winnings value not empty" );
             notEqual( $('.total').html(), "", "total value not empty" );
             clearInterval(timer);
             start();

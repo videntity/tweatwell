@@ -31,6 +31,7 @@ define("ui.roulette", [
             var self = this;
             self.img = null;
             self.results = {};
+            self.joker = false;
 
             self._createCanvas();
 
@@ -101,6 +102,11 @@ define("ui.roulette", [
             var wager = self._getWager();
 
             self.results = Rules.applyRule(pocket, wager);
+            //handle joker & make points blank
+            if(self.results.points == "joker") {
+                self.results.points = "";
+                self.joker = true;
+            }
         },
 
         /** Returns user selected wager amount
@@ -136,7 +142,12 @@ define("ui.roulette", [
         _save: function() {
             var self = this;
 
-            Points.save(self.results.points);
+            if(self.joker) {
+                Points.saveJoker();
+            } else {
+                Points.save(self.results.points);
+            }
+
         },
 
 

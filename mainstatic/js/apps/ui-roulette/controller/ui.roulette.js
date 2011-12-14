@@ -93,7 +93,7 @@ define("ui.roulette", [
             return Math.floor(Math.random() * (o.numPockets - 1));
         },
 
-        /** Returns result based on landed pocket and wager
+        /** Gets result based on landed pocket and wager, stores in widget object
          *
          * @param pocket
          */
@@ -102,23 +102,24 @@ define("ui.roulette", [
             var wager = self._getWager();
 
             self.results = Rules.applyRule(pocket, wager);
-            //handle joker & make points blank
+
+            //handle joker
             if(self.results.points == "joker") {
                 self.results.points = "";
                 self.joker = true;
             }
         },
 
-        /** Returns user selected wager amount
-         *
+        /**
+         * Returns user selected wager amount
          */
         _getWager: function() {
             var o = this.options;
             return $(o.wagerId + ' option:selected').val();
         },
 
-        /** Processes result for display to user
-         * updates interface
+        /**
+         * Updates interface
          */
         _updateInterface: function() {
             var self = this;
@@ -126,18 +127,14 @@ define("ui.roulette", [
             $('#result .winnings').html(self.results.points);
             $('#result .total').html((User.points + self.results.points));
 
-            //Update Text
             $('#result .txt').html(self.results.resultTxt);
 
-            //Fade in result, fade out form
             $("#wager-form").hide();
-
             $("#result").fadeIn();
         },
 
-
-        /** save method, handles joker
-         *
+        /**
+         * Save method, handles joker
          */
         _save: function() {
             var self = this;

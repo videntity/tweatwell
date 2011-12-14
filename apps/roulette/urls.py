@@ -7,4 +7,5 @@ from views import *
 urlpatterns = patterns('',
     url(r'^$',              roulette_home,  name='roulette_home'),
     url(r'spin-results/$',  spin_results,   name='spin_results'),
+    url(r'joker-results/$',  joker_results,   name='joker_results'),
     )

@@ -1,7 +1,6 @@
 from django.conf.urls.defaults import *
 from django.views.generic.simple import direct_to_template
-from tweatwell.apps.checkin.views import *
-from tweatwell.apps.stats.views import *
+from tweatwell.apps.checkin.views import checkin
 from tweatwell.apps.twitbot.views import *
 
 #from registration.backends.default import DefaultBackend
@@ -35,15 +34,13 @@ urlpatterns = patterns('',
     url(r'^privacy/$', direct_to_template,
            {'template': 'static_page/privacy.html'},
            name='privacy'),
-
-    #TODO: this is temp for skinning
-    url(r'^roulette/$', direct_to_template,
-           {'template': 'roulette/index.html'},
-           name='roulette'),
-
     
     #application specific urls -------------------------------------------------
     url(r'^$', checkin, name="checkin"),
+    url(r'^checkin/',  include('tweatwell.apps.checkin.urls')),
+     url(r'^checkin/',  include('tweatwell.apps.checkin.urls')),
+    url(r'^questions/', include('tweatwell.apps.questions.urls')),
+    
     
     #Twitter searchbot
     url(r'^executetwitsearchbot/', executetwitsearchbot, name="executetwitsearchbot"),

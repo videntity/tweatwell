@@ -7,6 +7,7 @@ from httpauth import HttpBasicAuthentication
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from datetime import datetime
+from models import Permission
 
 def authorize(request):
     a=HttpBasicAuthentication()
@@ -19,6 +20,17 @@ def authorize(request):
         else:
             auth=False
     return auth
+
+
+def user_permissions(request):
+    try:
+        p=Permission.objects.filter(user=request.user)
+        pl=[]
+        for i in p:
+            pl.append(i.permission_name)
+        return tuple(pl)
+    except(Permission.DoesNotExist):
+        return ()
 
 
 

@@ -8,16 +8,19 @@ from django.contrib.auth.models import User
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-from ..accounts.models import UserProfile
+from ..accounts.models import UserProfile, Award
 from ..questions.models import QuestionAnswer, Question
-from ..awards.models import Award
-from forms import FreggieForm
+from forms import FreggieForm, CommentForm
 from ..upload.forms import PickFruitForm, PickVeggieForm
 import datetime, os, pycurl, StringIO, json, types, sys
 from operator import itemgetter, attrgetter
 from django.contrib import messages
-from models import Comment, Freggie, Spin, Roulette
+from models import Comment, Freggie
+from ..roulette.models import Roulette
 from django.db.models import Sum
+
+
+
 def anon_home_index(request):
     print ("anonymous home. We'll do this at near the end. for now redirect to login/signup")
     return HttpResponseRedirect(reverse('simple_login'))
@@ -26,8 +29,30 @@ def anon_home_index(request):
 def answer_question(request):
     pass
 
+
+@login_required
+def freggie_comment(request, freggie_id):
+    
+    freggie = get_object_or_404(Freggie, pk=freggie_id)
+    
+    if request.method == 'POST':
+
+        form = CommentForm(request.POST)
+        
+        if form.is_valid():  
+            data = form.cleaned_data
+            newcomment=form.save(commit=False)
+            newcomment.text=data['text']
+            newcomment.user=request.user
+            newcomment.freggie=freggie
+            newcomment.save()
+            messages.success(request, "Successfuly added a comment.")
+            return HttpResponseRedirect(reverse('checkin'))
+            
 def checkin(request):
 
+
+    commentform=CommentForm()
     #if the user is not logged in, display an anonymous home page
     if request.user.is_anonymous()==True:
         return anon_home_index(request)
@@ -58,7 +83,7 @@ def checkin(request):
     if comment_points['points__sum']== None:
         comment_points['points__sum']=0    
 
-    spin_points = Spin.objects.filter(user=request.user).aggregate(Sum('points'))
+    spin_points = Roulette.objects.filter(user=request.user).aggregate(Sum('points'))
     if spin_points['points__sum']== None:
         spin_points['points__sum']=0
         
@@ -97,6 +122,7 @@ def checkin(request):
                  'question':question,
                 'deanaward':DeanAward,
                 'tweatlist': tweatlist,
+                'commentform': commentform,
                 'presidentaward':PresidentAward,
                 'professoraward': ProfessorAward,
                 'freggies': freggies,
@@ -104,10 +130,11 @@ def checkin(request):
                 context_instance = RequestContext(request),)
 
     return render_to_response('checkin/checkin.html',
-            {'form':FreggieForm(),
-             'question':question,
-             'deanaward':DeanAward,
+            {'form': FreggieForm(),
+             'question': question,
+             'deanaward': DeanAward,
              'tweatlist': tweatlist,
+             'commentform': commentform,
              'presidentaward':PresidentAward,
              'professoraward': ProfessorAward,
              'freggies': freggies,

@@ -3,5 +3,5 @@ from models import QuestionAnswer
 
 class QuestionAnswerForm(forms.ModelForm):
     class Meta:
-        model = Comment
-        fields = ('answer',)
+        model = QuestionAnswer
+        fields = ('answer', 'choices')

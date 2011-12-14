@@ -1,6 +1,4 @@
 from django.contrib import admin
-from models import Freggie, Comment, Roulette, Spin
+from models import Freggie, Comment
 admin.site.register(Freggie)
 admin.site.register(Comment)
-admin.site.register(Roulette)
-admin.site.register(Spin)

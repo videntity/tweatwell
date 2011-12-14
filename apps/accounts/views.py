@@ -68,7 +68,6 @@ def signup(request):
         form = SignupForm(request.POST)
         if form.is_valid():
           new_user = form.save()
-          messages.success(request, "Signup complete. Please verify your email.")
           return render_to_response('accounts/signup-complete.html',
                                       RequestContext(request, {}))
         else:

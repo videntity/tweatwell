@@ -117,6 +117,15 @@
       <input type="submit" value="Veg Out!" class="button" />
     </form>
 
+
+
+
+</div>
+
+<div class="qow">
+    <h3>Question of the Week</h3>
+    <p>{{qt.question}}</p>
+
     <br>Question:<br>
     {{question.question}}
     <br>Choices:<br>
@@ -127,24 +136,11 @@
     <br>Right answer:<br>
     {{question.answer}}
 
-
-
-  	<div class="error-container"><!-- error container -->
-    	<div class="errormessage">
-			<p class="error">Oops! I didn't understand that.</p>
-     	</div>
-  	</div><!-- end error container -->	    
-    <form  action="/upload/omhe/{{user}}/" method="POST" class="tw-form">
-        <input type="text" class="texti" id="texti" name="texti" >
-        <input type="submit" value="Update"  class="button"/>
-    </form>
-
 </div>
 
-<div class="qow">
-    <h3>Question of the Week</h3>
-    <p>{{qt.question}}</p>
-</div>
+
+
+
 
 <br/><br>
 <h1>Latest Tweats</h1>
@@ -156,10 +152,15 @@
 	    {% for c in t.comments %}
 		{{ c.text }}<br>
 	    {% endfor %}
+	    {{ commentform }}
 	{% else %}
 	   No comments<br>
 	{% endif %}
-	
+	  <form action='/checkin/comment/{{t.tweat.id}}/' method='POST' class="freggie">
+		{{ commentform.as_p }}
+		{% csrf_token %}
+		<input type="submit" value="Comment" class="button" />
+	   </form>
     {% endfor %}
 
     <div id="public_feed">  <!-- public feed -->	  

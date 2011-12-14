@@ -7,7 +7,6 @@ from views import *
 
 urlpatterns = patterns('',
 
-    url(r'answer/(?P<question_id>[^/]+)/$', question_answer,
-                                            name='question_answer'),
+    url(r'comment/(?P<freggie_id>[^/]+)/$', freggie_comment,  name='freggie_comment'),
     
     )

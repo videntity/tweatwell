@@ -11,6 +11,77 @@ import string, random, uuid
 from emails import send_password_reset_url_via_email, send_signup_key_via_email
 from django.utils.safestring import mark_safe
 from restcat_utils import create_restcat_user
+from ..checkin.models import FREGGIE_CHOICES
+
+USER_CHOICES     = ( ('player',  'player'),
+                    ('admin',  'admin'),
+                    )
+
+award_choices=(
+        ('President','President'), ('Dean','Dean'), ('Professor','Professor'),
+        )
+
+class Award(models.Model):
+    user  = models.ForeignKey(User)
+    award_class = models.CharField(max_length=15, choices=award_choices)
+    freggie = models.CharField(max_length=40,
+                               choices=FREGGIE_CHOICES,
+                               blank=True)
+    points = models.IntegerField(max_length=2, default=10)
+
+    
+    def __unicode__(self):
+        return '%s is the %s of %s' % (self.user.username,
+       		self.award_class, self.freggie)
+    class Meta:
+        unique_together = (("award_class", "freggie"),)  
+
+
+class UserProfile(models.Model):
+    user                    = models.ForeignKey(User, unique=True)
+    anonymous_patient_id    = models.CharField(max_length=30,       
+                                  unique=True,
+                                  verbose_name=u'Anonymous Patient ID',
+                                  blank=True)
+    url                     = models.URLField(blank = True)
+    user_type               = models.CharField(default='player',
+                                       choices=USER_CHOICES,
+                                       max_length=6)
+    mobile_phone_number     = PhoneNumberField(blank = True, max_length=15)
+    daily_freggie_goal      = models.IntegerField(max_length=1, default=5)
+    twitter                 = models.CharField(blank = True, max_length=15)
+    notes                   = models.TextField(blank = True, max_length=250)
+    awards                  = models.ManyToManyField(Award, blank = True, null=True)
+
+
+
+    def __unicode__(self):
+        return '%s %s is a %s. Active=%s' % (self.user.first_name,
+                            self.user.last_name,
+                               self.user_type, self.user.is_active )
+        
+    class Meta:
+        unique_together = (("user", "user_type"),)
+
+    def save(self, **kwargs):
+        if not self.anonymous_patient_id:
+            self.anonymous_patient_id = str(uuid.uuid4())[0:30]
+
+        
+        #response=create_restcat_user(username=self.anonymous_patient_id,
+        #                    password=str(uuid.uuid4())[0:30],
+        #                    email=self.user.email,
+        #                    first_name=self.user.first_name,
+        #                    last_name=self.user.last_name,
+        #                    mobile_phone_number=self.mobile_phone_number)
+        super(UserProfile, self).save(**kwargs)
+
+
+
+
+
+
+
 
 
 class ValidPasswordResetKey(models.Model):
@@ -61,45 +132,7 @@ class ValidSignupKey(models.Model):
 
 
 
-USER_CHOICES     = ( ('player',  'player'),
-                    ('admin',  'admin'),
-                    )
 
-class UserProfile(models.Model):
-    user                    = models.ForeignKey(User, unique=True)
-    anonymous_patient_id    = models.CharField(max_length=30,       
-                                  unique=True,
-                                  verbose_name=u'Anonymous Patient ID',
-                                  blank=True)
-    url                     = models.URLField(blank = True)
-    user_type               = models.CharField(default='player',
-                                       choices=USER_CHOICES,
-                                       max_length=6)
-    mobile_phone_number     = PhoneNumberField(blank = True, max_length=15)
-    daily_freggie_goal      = models.IntegerField(max_length=1, default=5)
-    twitter                 = models.CharField(blank = True, max_length=15)
-    notes                   = models.TextField(blank = True, max_length=250)
-
-    def __unicode__(self):
-        return '%s %s is a %s. Active=%s' % (self.user.first_name,
-                            self.user.last_name,
-                               self.user_type, self.user.is_active )
-        
-    class Meta:
-        unique_together = (("user", "user_type"),)
-
-    def save(self, **kwargs):
-        if not self.anonymous_patient_id:
-            self.anonymous_patient_id = str(uuid.uuid4())[0:30]
-
-        
-        #response=create_restcat_user(username=self.anonymous_patient_id,
-        #                    password=str(uuid.uuid4())[0:30],
-        #                    email=self.user.email,
-        #                    first_name=self.user.first_name,
-        #                    last_name=self.user.last_name,
-        #                    mobile_phone_number=self.mobile_phone_number)
-        super(UserProfile, self).save(**kwargs)
 
 
 class ValidPasswordResetKey(models.Model):
@@ -123,6 +156,14 @@ class ValidPasswordResetKey(models.Model):
         #send an email with reset url
         x=send_password_reset_url_via_email(self.user, self.reset_password_key)
         super(ValidPasswordResetKey, self).save(**kwargs)
+
+
+
+
+
+
+
+
 
 
 
@@ -160,13 +201,5 @@ def validate_signup(signup_key):
     return True
 
 
-def user_permissions(request):
-    try:
-        p=Permission.objects.filter(user=request.user)
-        pl=[]
-        for i in p:
-            pl.append(i.permission_name)
-        return tuple(pl)
-    except(Permission.DoesNotExist):
-        return ()
+
           

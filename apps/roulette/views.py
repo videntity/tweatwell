@@ -8,7 +8,10 @@ from forms import RouletteSpinForm
 from ..checkin.models import Comment, Freggie
 from models import Roulette
 from django.db.models import Sum
+from django.views.decorators.csrf import csrf_exempt
 
+
+@csrf_exempt
 @login_required
 def spin_results(request):
     

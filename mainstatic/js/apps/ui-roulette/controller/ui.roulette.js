@@ -119,9 +119,14 @@ define("ui.roulette", [
 
             $('#result .winnings').html(self.results.points);
             $('#result .total').html((User.points + self.results.points));
-            
+
             //Update Text
             $('#result .txt').html(self.results.resultTxt);
+
+            //Fade in result, fade out form
+            $("#wager-form").hide();
+
+            $("#result").fadeIn();
         },
 
 

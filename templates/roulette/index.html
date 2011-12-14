@@ -3,82 +3,84 @@
 
 {% block extra_head %}
 
-<script>
-//    Module for handling passing points
-//    TODO: Add boolean for allowing to play (once per day rule) popualted from django
-    define("TW", function() {
-        var tw = {};
-        tw.points = {{ points }};
-        //tw.points = 20;
+    <script>
+        //    Module for handling passing points
+        //    TODO: Add boolean for allowing to play (once per day rule) popualted from django
+        define("TW", function() {
+            var tw = {};
+            tw.points = {{ points }};
+            //tw.points = 20;
 
-        return tw;
-    });
+            return tw;
+        });
 
-    /** Load Roulette Wheel Bootstrap
-     */
-    require({
-        baseUrl: '{{STATIC_URL}}js/'
-    }, ['apps/ui-roulette/main']);
-</script>
+        /** Load Roulette Wheel Bootstrap
+         */
+        require({
+            baseUrl: '{{STATIC_URL}}js/'
+        }, ['apps/ui-roulette/main']);
+    </script>
 
 {% endblock %}
 
 {% block middle %}
 
-<div id="roulette">
-    <div id="roulette-canvas">
-        <img id="roulette-arrow" src="{{ STATIC_URL }}img/roulette/arrow.png" width="150" height="150" style="display:none;"/>
+    <div id="roulette">
+        <div id="roulette-canvas">
+            <img id="roulette-arrow" src="{{ STATIC_URL }}img/roulette/arrow.png" width="150" height="150" style="display:none;"/>
+        </div>
     </div>
-</div>
 
 
-<div id="roulette-points">
-    <h1>Spin To Win</h1>
-    <p><strong>Select the number of points you would like to wager, then click the wheel to win big!</strong></p>
-    <p><em>You must have at least 10 points to play and can play once per day.</em></p>
+    <div id="roulette-points">
+        <h1>Spin To Win</h1>
+        <p><strong>Select the number of points you would like to wager, then click the wheel to win big!</strong></p>
+        <p><em>You must have at least 10 points to play and can play once per day.</em></p>
 
-    <div class="points-display">
-        <strong>You curently have <span id="total-points">{{ points }}</span> points.</strong>
+        <div class="points-display">
 
-        <div id="wager" class="{% if points < 10 %}hide{% endif %}">
-            <form>
-                <label for="points-wagered">Points To Wager:&nbsp;</label>
-                <select id="points-wagered">
+            <div id="wager" class="{% if points < 10 %}hide{% endif %}">
 
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19</option>
-                </select>
-            </form>
+                <form id="wager-form">
+                    You have <span id="total-points">{{ points }}</span> points.
+                    <br/><br/>
+                    <label for="points-wagered">Points To Wager:&nbsp;</label>
+                    <select id="points-wagered">
+                        {# todo: generate based on {wager_points} #}
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                        <option>13</option>
+                        <option>14</option>
+                        <option>15</option>
+                        <option>16</option>
+                        <option>17</option>
+                        <option>18</option>
+                        <option>19</option>
+                    </select>
+                </form>
 
 
-            <div class="msg" id="result">
-                Result: <span class="txt"></span><br/><br>
-                Winnings: <span class="winnings"></span><br/><br>
-                Total Points: <span class="total"></span><br/><br/>
+                <div class="msg hide" id="result">
+                    <strong>Result:</strong> <span class="txt"></span><br/><br>
+                    <strong>Winnings:</strong> <span class="winnings"></span><br/><br>
+                    <strong>Total Points:</strong> <span class="total"></span><br/><br/>
+                </div>
+
+            </div>
+
+            <div class="msg {% if points >= 10 %}hide{% endif %}" id="minimum-points">
+                You must have at least 10 points to play.
+            </div>
+
+
+            {#  todo: add check for once per day #}
+            <div class="msg hide" id="once-per-day">
+                You may only spin once per day.
             </div>
 
         </div>
-
-        <div class="msg {% if points >= 10 %}hide{% endif %}" id="minimum-points">
-            You must have at least 10 points to play.
-        </div>
-
-
-
-        <div class="msg hide" id="once-per-day">
-            You may only spin once per day.
-        </div>
-
     </div>
-</div>
 
 
 {% endblock %}

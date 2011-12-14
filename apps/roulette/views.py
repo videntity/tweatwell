@@ -25,9 +25,7 @@ def spin_results(request):
             newpoints.text=data['points']
             newpoints.user=request.user
             newpoints.save()
-            pointsmsg="%s points were appended to your total" % (data['points'])
-            messages.success(request, pointsmsg)
-            return HttpResponseRedirect(reverse('checkin'))
+            return HttpResponse("OK", status=200)
             
             
 @login_required

@@ -12,10 +12,11 @@ define("ui.roulette", [
     "jquery",
     "apps/ui-roulette/model/Rules",
     "apps/ui-roulette/model/User",
+    "apps/ui-roulette/model/Points",
     "lib/vendor/raphael/raphael-min",
     "lib/vendor/jquery-ui/jquery-ui-1.8.16.custom.min",
     "lib/utils/pubsub"
-], function ($, Rules, User) {
+], function ($, Rules, User, Points) {
 
     $.widget("ui.roulette", {
         options: {
@@ -61,6 +62,8 @@ define("ui.roulette", [
             self.img.animate({rotation: self._calculateSpin(pocket)}, 4000, ">", function(){
                 //result, update!
                 self._updateInterface(pocket);
+                //save points
+                Points.save(User.points);
                 $.publish('/roulette/stop', [pocket]);
             });
         },

@@ -7,6 +7,7 @@ from views import *
 
 urlpatterns = patterns('',
 
-    url(r'comment/(?P<freggie_id>[^/]+)/$', freggie_comment,  name='freggie_comment'),
+    url(r'comment/(?P<freggie_id>[^/]+)/$', freggie_comment,
+        name='freggie_comment'),
     
     )

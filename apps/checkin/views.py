@@ -83,17 +83,14 @@ def checkin(request):
     if comment_points['points__sum']== None:
         comment_points['points__sum']=0    
 
-    spin_points = Roulette.objects.filter(user=request.user).aggregate(Sum('points'))
-    if spin_points['points__sum']== None:
-        spin_points['points__sum']=0
-        
-    roulette_points = Comment.objects.filter(user=request.user).aggregate(Sum('points'))
+    roulette_points = Roulette.objects.filter(user=request.user).aggregate(Sum('points'))
     if roulette_points['points__sum']== None:
-        roulette_points['points__sum']=0 
+        roulette_points['points__sum']=0
+        
     
     
     points = freggie_points['points__sum'] + comment_points['points__sum'] + \
-                spin_points['points__sum'] + roulette_points['points__sum']
+                roulette_points['points__sum']
     
     #fetch total freggies -----------------------------------------------------
     

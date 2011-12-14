@@ -9,7 +9,7 @@ class QuestionAnswerChoices(models.Model):
 
 
 class Question(models.Model):
-    question       = models.CharField(max_length=500, blank=True)
+    question       = models.CharField(max_length=500)
     answer         = models.CharField(max_length=100)
     answer_choices = models.ManyToManyField(QuestionAnswerChoices)
     display        = models.BooleanField()

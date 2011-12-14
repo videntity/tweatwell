@@ -38,7 +38,7 @@ urlpatterns = patterns('',
     #application specific urls -------------------------------------------------
     url(r'^$', checkin, name="checkin"),
     url(r'^checkin/',  include('tweatwell.apps.checkin.urls')),
-     url(r'^checkin/',  include('tweatwell.apps.checkin.urls')),
+     url(r'^roulette/',  include('tweatwell.apps.roulette.urls')),
     url(r'^questions/', include('tweatwell.apps.questions.urls')),
     
     

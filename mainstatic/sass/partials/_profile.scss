@@ -1,3 +1,17 @@
+.icon{
+	display: inline-block;
+	cursor: pointer;
+    width:66px;
+    height:66px;
+    margin:0 8px 8px 0;
+}
+
+.icon-badge {
+    width:30px;
+    height:30px;
+    display:inline-block;
+}
+
 .profile {
     .avatar{
 	    float: left;

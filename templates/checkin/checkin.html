@@ -2,223 +2,92 @@
 {% block active_nav_tab  %}home-active{% endblock %}
 
 {% block extra_head %}
-	    <script type="text/javascript">
-		
-		$(function() {
-		
-		$('.veggieform').change(function() {
-		var s = "vegetable=" + $('.veggieform option:selected').text();
-		$('#texti').val(s);
-		});
-		
-		$('.fruitform').change(function() {
-		var s = "fruit=" + $('.fruitform option:selected').text();
-		$('#texti').val(s);
-		});
-                
-		$('#beer').click(function() {
-		$('#texti').val("alcohol=");
-		});
-		
-		$('#junk').click(function() {
-		$('#texti').val("junk=");
-		});
-		
-		$('#water').click(function() {
-		$('#texti').val("water=");
-		});
-		
-		$('#veggie').click(function() {
-		$('#texti').val("vegetable=");
-		});
-		
-		$('#fruit').click(function() {
-		  $('#texti').val("fruit=");
-		});
-		
-		$('#question').click(function() {
-		$('#texti').val("answer=");
-		});
-		
-		});          
-                
-		</script>
-		
-		<!-- CHRISG: Added as of 01/07/11 -->
-      <style>
-        .commentform { display:none; }
-		  </style>
-      <style>
-        .errormessage { display:none; }
-      </style>
-      <style>
-        .fruitform { display:none; }
-		  </style>
-      <style>
-      	.veggieform { display:none; }
-      </style>
-			<script>
-		    $(document).ready(function(){
-		    	$('.comment-container a').click(function() { 
-		    	$('.commentform',$(this).parent()).fadeIn(600);
-		    	return false;
-				})
-				
-				$('#veggie').click(function() {
-  				$('.veggieform').toggle('slow', function() {
-				  });
-				});
-				
-				$('#fruit').click(function() {
-  				$('.fruitform').toggle('slow', function() {				   
-				  });
-				});								
-		    });
-	    </script>
-    <!-- END CHRISG -->  
-        
-	{% endblock %}
+    <script src="{{STATIC_URL}}js/lib/page/checkin.js"></script>
+{% endblock %}
 
 	
 {% block middle %}
-<h1>Check In</h1>
-<p>
-    Select the type of food by clicking one of the below icons, then
-    enter the descritpion in the text box. If you would like to answer the
-    question of the week, click "question" then add your answer to the box.
-</p>
-
-<h3>1. Select Type OF Food</h3>
-
-<div id="veggie" class="icon icon-broccoli_small"></div>
-<div id="fruit" class="icon icon-fruit_small"></div>
-<div id="water" class="icon icon-water_small"></div>
-<div id="beer" class="icon icon-beer_small"></div>
-<div id="junk" class="icon icon-pizza_small"></div>
-<div id="question" class="icon icon-question_small"></div>
-
-
-<div class="tweat-form">
-
-    <h3>2. Update What You Are Eating</h3>
-
-    <div id="veggieform" class="veggieform">
-        {{ veggieform.as_p }}
-    </div><!-- veggieform -->
-    <div id="fruitform" class="fruitform">
-        {{ fruitform.as_p }}
-    </div><!-- fruitform -->
-    
-    Freggieform
-
-    <form action='/' method='POST' class="freggie">
-	{{ form.as_p }}
-	{% csrf_token %}
-      <input type="submit" value="Veg Out!" class="button" />
-    </form>
+    <h1>Check In</h1>
+    <p>
+        Earn points by entering what you are eating. Earn enough points
+        and you can earn a badge! Note a Freggie is either a fruit or a vegetable.
+        TEXT TK
+    </p>
 
 
 
+    <div class="tweat-form">
+        <h3 class="sub">Tell Us What You Are Eating</h3>
 
-</div>
+        <form action='/' method='POST' class="tw-form">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="submit" value="Send" class="button" />
+        </form>
+    </div>
 
-<div class="qow">
-    <h3>Question of the Week</h3>
-    <p>{{qt.question}}</p>
+    <div class="qow">
+        <h3>Answer the Question of the Week</h3>
+        <p>{{qt.question}}</p>
 
-    <br>Question:<br>
-    {{question.question}}
-    <br>Choices:<br>
-    {{question.answer_choice1}}
-    {{question.answer_choice2}}
-    {{question.answer_choice3}}
-    {{question.answer_choice4}}
-    <br>Right answer:<br>
-    {{question.answer}}
+        <br>Question:<br>
+        {{question.question}}
+        <br>Choices:<br>
+        {{question.answer_choice1}}
+        {{question.answer_choice2}}
+        {{question.answer_choice3}}
+        {{question.answer_choice4}}
+        <br>Right answer:<br>
+        {{question.answer}}
+    </div>
 
-</div>
+    <h3 class="sub">Latest Tweats</h3>
 
-
-
-
-
-<br/><br>
-<h1>Latest Tweats</h1>
-    Tweats<br>
+    {% load avatar_tags %}
     {% for t in tweatlist%}
-	Tweat: {{ t.tweat.text }} <br>
-	Comments:<br>
-	{% if t.comments %}
-	    {% for c in t.comments %}
-		{{ c.text }}<br>
-	    {% endfor %}
-	    {{ commentform }}
-	{% else %}
-	   No comments<br>
-	{% endif %}
-	  <form action='/checkin/comment/{{t.tweat.id}}/' method='POST' class="freggie">
-		{{ commentform.as_p }}
-		{% csrf_token %}
-		<input type="submit" value="Comment" class="button" />
-	   </form>
+
+        <div class="tweat-instance">
+            {% if t.tweat.user %}
+            <div class="avatar">
+                {% avatar t.tweat.user 45 %}
+            </div>
+            {% endif %}
+
+            <div class="tweat-content">
+                <div class="tweat-txt">
+                     <strong>{{ t.tweat.text }}</strong>
+                </div>
+                <div class="tweat-quote">
+                    <em>"user entered description goes here"</em>
+                </div>
+
+                <div class="tweat-comments">
+                    Comments: <a href="" class="tw-comment-trigger">Add Comment</a><br/>
+                    <form action='/checkin/comment/{{t.tweat.id}}/' method='POST' class="tweat-comment-form tw-form">
+                        {{ commentform.as_p }}
+                        {% csrf_token %}
+                        <input type="submit" value="Leave Comment" class="button" />
+                    </form>
+
+                    {% if t.comments %}
+                        {% for c in t.comments %}
+                            <div class="tweat-comment-instance">
+                                <strong>{{ c.user.username }}</strong>:
+                                <p>
+                                    <em>"{{ c.text }}"</em>
+                                </p>
+                                <div class="timestamp">{{ c.txdt}}</div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+
     {% endfor %}
 
-    <div id="public_feed">  <!-- public feed -->	  
-
-    	<div id="scroller">
-    		<ul id="scrollerul">
-      			{% for i in publicfeed %}
-        		{% if i.showme %}
-	    		<div name="topscroll" id="topscroll"></div>
-   				<li>
-   					<span class="avatar_icon">
-	   					{% load avatar_tags %}
-						{% if i.username %}
-						  {% avatar i.username 45 %}
-						{% endif %}
-					</span>
-		    		<span class="status">{{i.display_status}} by <i>{{i.display_name}}</i> </span> <br/>
-		    		<span class="tweated"> {{ i.ev_dt|timesince }} ago </span>
-	    		</li>
-	    
-	   			 <div class="comment-container"><!-- comment-container -->	
-					<a href="#">Add Comment</a>
-					<div class="commentform">
-						<form action="/upload/comment/{{user}}/" method="POST">
-							<textarea name="ci"></textarea>
-							<input name="idr" type="hidden" value="{{i.id}}" />
-							<input type="submit" id="submitcomment" value="Submit Comment" />
-						</form>
-					</div>
-				 
-
-				      <ul class="commentscroller">
-					{% for j in commentslist %}
-					  {% if j.idr == i.id %}		    
-				            <li>
-				            <span class="avatar_icon">
-				              {% if j.username %}
-				                {% avatar j.username 35 %}
-				              {% endif %}
-				              </span>
-				              
-				              {{j.display_status}} {{i.display_name}}  {{ i.ev_dt|timesince:i.ev_dt }} ago 
-				              
-				            </li>
-					    {% endif %}     
-					{% endfor %} 
-				      </ul>
-      				</div><!-- end comment-container -->	
-    
-					  </li>
-						{% endif %}
-				      	{% endfor %} 
-				    </ul>		   		
-		  </div><!-- end scroller -->
-        
- 	 </div><!-- public_feed -->
-
-	{% endblock %} <! -- end of middle -->
+{% endblock %}
 
 {% block right %}
     {% include "include/profile-sidebar.html" %}

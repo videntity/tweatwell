@@ -32,7 +32,7 @@ class Award(models.Model):
     
     def __unicode__(self):
         return '%s is the %s of %s' % (self.user.username,
-       		self.award_class, self.freggie)
+            self.award_class, self.freggie)
     class Meta:
         unique_together = (("award_class", "freggie"),)  
 
@@ -40,17 +40,23 @@ class Award(models.Model):
 class UserProfile(models.Model):
     user                    = models.ForeignKey(User, unique=True)
     anonymous_patient_id    = models.CharField(max_length=30,       
-                                  unique=True,
-                                  verbose_name=u'Anonymous Patient ID',
-                                  blank=True)
-    url                     = models.URLField(blank = True)
+                                unique=True,  blank=True,
+                                verbose_name=u'Anonymous Patient ID')
     user_type               = models.CharField(default='player',
-                                       choices=USER_CHOICES,
-                                       max_length=6)
+                                choices=USER_CHOICES,
+                                max_length=6)
     mobile_phone_number     = PhoneNumberField(blank = True, max_length=15)
-    daily_freggie_goal      = models.IntegerField(max_length=1, default=5)
+    url                     = models.URLField(blank = True)
+    daily_freggie_goal      = models.IntegerField(max_length=1, default=5,
+                                verbose_name= 'Daily Fruit and Vegetable "Freggie" Goal')
     twitter                 = models.CharField(blank = True, max_length=15)
     notes                   = models.TextField(blank = True, max_length=250)
+    joker_badge             = models.BooleanField(default = False)
+    dean_badge              = models.BooleanField(default = False)
+    president_badge         = models.BooleanField(default = False)
+    professor_badge         = models.BooleanField(default = False)
+    professor_of_freggie    = models.CharField(choices=USER_CHOICES,
+                                    max_length=20, blank=True, null=True)
     awards                  = models.ManyToManyField(Award, blank = True, null=True)
 
 

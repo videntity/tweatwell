@@ -4,21 +4,19 @@ from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.contrib import messages
-from forms import RouletteSpinForm
+from forms import RouletteSpinForm, RouletteJokerForm
 from ..checkin.models import Comment, Freggie
 from models import Roulette
 from django.db.models import Sum
 from django.views.decorators.csrf import csrf_exempt
-
+from ..accounts.models import UserProfile
 
 @csrf_exempt
 @login_required
 def spin_results(request):
     
     if request.method == 'POST':
-
         form = RouletteSpinForm(request.POST)
-        
         if form.is_valid():  
             data = form.cleaned_data
             newpoints=form.save(commit=False)
@@ -27,12 +25,26 @@ def spin_results(request):
             newpoints.save()
             return HttpResponse("OK", status=200)
             
+
+
+@csrf_exempt
+@login_required
+def joker_results(request):
+    
+    up=get_object_or_404(UserProfile, user=request.user)
+    if request.method == 'POST':
+        form = RouletteJokerForm(request.POST)    
+        if form.is_valid():  
+            data = form.cleaned_data
+            #if data['joker_badge']=="true" or data['joker_badge']==True:
+            up.joker_badge=True
+            up.save()
+            return HttpResponse("OK", status=200)
+
             
 @login_required
 def roulette_home(request):
-    
-#fetch points
-    
+     
     freggie_points = Freggie.objects.filter(user=request.user).aggregate(Sum('points'))
     if freggie_points['points__sum']== None:
         freggie_points['points__sum']=0
@@ -56,6 +68,7 @@ def roulette_home(request):
     
     return render_to_response('roulette/index.html',
             {'form': RouletteSpinForm(),
+             'jokerform' : RouletteJokerForm(),
              'deanaward': "TBD",
              'presidentaward': "TBD",
              'professoraward': "TBD",

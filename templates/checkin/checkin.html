@@ -27,7 +27,7 @@
     </div>
 
     <div class="qow">
-        <h3>Answer the Question of the Week</h3>
+        <h3>Question of the Week</h3>
         <p>{{qt.question}}</p>
 
         <br>Question:<br>
@@ -71,7 +71,13 @@
 
                     {% if t.comments %}
                         {% for c in t.comments %}
+
                             <div class="tweat-comment-instance">
+                                {% if c.user %}
+                                <div class="avatar">
+                                    {% avatar c.user 30 %}
+                                </div>
+                                {% endif %}
                                 <strong>{{ c.user.username }}</strong>:
                                 <p>
                                     <em>"{{ c.text }}"</em>

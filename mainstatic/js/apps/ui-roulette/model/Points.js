@@ -17,7 +17,7 @@ define(["lib/utils/pubsub"],function() {
         $.ajax({
             type: "POST",
             url: "/roulette/spin-results/",
-            data: "points=" + "20",
+            data: "points=" + points,
             fixture: "/",
             success: function(data) {
                 if (!data.exception) {

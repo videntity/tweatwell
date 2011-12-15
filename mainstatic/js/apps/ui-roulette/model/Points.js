@@ -33,8 +33,8 @@ define(["lib/utils/pubsub"],function() {
     var saveJoker = function() {
         $.ajax({
             type: "POST",
-            url: "/roulette/joker-badge/",
-            data: "joker=true",
+            url: " /roulette/joker-results/",
+            data: "joker_badge=true",
             fixture: "/",
             success: function(data) {
                 if (!data.exception) {

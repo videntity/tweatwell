@@ -12,20 +12,20 @@
 
     <table class="point-table">
         <tr>
-            <td>FRUITS</td>
-            <td class="points">{{all.fruit}}</td>
+            <td>FREGGIES</td>
+            <td class="points">{{ freggie_points }}</td>
         </tr>
         <tr>
-            <td>VEGETABLES</td>
-            <td class="points">{{all.vegatble}}</td>
+            <td>COMMENTS</td>
+            <td class="points">{{ comment_points }}</td>
         </tr>
         <tr>
             <td>ROULETTE</td>
-            <td class="points">{#  {{all.roulette}}  #}</td>
+            <td class="points">{{ roulette_points }}</td>
         </tr>
         <tr>
             <td class="point-total">Total Points</td>
-            <td class="points point-total">{{all.points}}</td>
+            <td class="points point-total">{{ points }}</td>
         </tr>
     </table>
 
@@ -34,9 +34,15 @@
 <div class="sbar-module">
     <h3>Badges</h3>
 
-    <div class="icon-badge icon-dean-{{ DeanAward|yesno:"on,off" }}" title="Dean"></div>
-    <div class="icon-badge icon-professor-{{ ProfessorAward|yesno:"on,off" }}" title="Professor"></div>
-    <div class="icon-badge icon-president-{{ PresidentAward|yesno:"on,off" }}" title="President"></div>
+    joker_badge         {{user.get_profile.joker_badge}}<br/>
+    dean_veggie_badge   {{user.get_profile.dean_veggie_badge}}<br/>
+    dean_fruit_badge    {{user.get_profile.dean_fruit_badge}}<br/>
+    president_badge     {{user.get_profile.president_badge}}<br/>
+    professor_badge     {{user.get_profile.professor_badge}}<br/>
+
+{#    <div class="icon-badge icon-dean-{{ DeanAward|yesno:"on,off" }}" title="Dean"></div>#}
+{#    <div class="icon-badge icon-professor-{{ ProfessorAward|yesno:"on,off" }}" title="Professor"></div>#}
+{#    <div class="icon-badge icon-president-{{ PresidentAward|yesno:"on,off" }}" title="President"></div>#}
 </div>
 
 <div class="sbar-module">

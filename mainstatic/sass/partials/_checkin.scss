@@ -30,8 +30,12 @@
     }
 }
 
+/* hack away */
 .tweat-form {
     margin:20px 0 20px 0;
+    #id_freggie_other, label[for=id_freggie_other] {
+        display:none;
+    }
 }
 
 .tweat-instance {

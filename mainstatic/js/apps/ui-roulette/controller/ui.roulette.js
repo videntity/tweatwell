@@ -52,7 +52,7 @@ define("ui.roulette", [
             var self = this, o = this.options;
             var paper = Raphael(o.canvas, 350, 350);
 
-            self.img = paper.image($(o.arrowId).attr("src"), 100, 95, 150, 150);
+            self.img = paper.image($(o.arrowId).attr("src"), 145, 0, 58, 350);
         },
 
         /**
@@ -60,7 +60,7 @@ define("ui.roulette", [
          */
         _spinWheel: function(pocket) {
             var self = this;
-            
+
             //handle multiple clicks & reset
             self.img.stop();
             self.img.attr("rotation", "0");
@@ -89,7 +89,7 @@ define("ui.roulette", [
         _getRandomPocket: function() {
             var o = this.options;
             
-            return Math.floor(Math.random() * (o.numPockets - 1));
+            return Math.floor(Math.random() * (o.numPockets));
         },
 
         /** Gets result based on landed pocket and wager, stores in widget object

@@ -17,7 +17,7 @@ define(["lib/utils/pubsub"],function() {
             type: "POST",
             url: "/roulette/spin-results/",
             data: "points=" + points,
-            fixture: "/",
+            fixture: "/roulette/",
             success: function(data) {
                 if (!data.exception) {
                     $.publish('/points/save');
@@ -34,7 +34,7 @@ define(["lib/utils/pubsub"],function() {
             type: "POST",
             url: " /roulette/joker-results/",
             data: "joker_badge=true",
-            fixture: "/",
+            fixture: "/roulette/",
             success: function(data) {
                 if (!data.exception) {
                     $.publish('/points/joker');

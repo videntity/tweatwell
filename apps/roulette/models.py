@@ -13,3 +13,6 @@ class Roulette(models.Model):
         return '%s got %s points via roulette on %s' % (self.user, self.points,
                                                         self.date)
 
+def last_spin(user):
+    r=Roulette.objects.filter(user=user).order_by('date')[0]
+    return r.date

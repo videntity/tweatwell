@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 from django.contrib import messages
 from forms import RouletteSpinForm, RouletteJokerForm
 from ..checkin.models import Comment, Freggie
-from models import Roulette
+from models import Roulette, last_spin
 from django.db.models import Sum
 from django.views.decorators.csrf import csrf_exempt
 from ..accounts.models import UserProfile
@@ -44,7 +44,7 @@ def joker_results(request):
             
 @login_required
 def roulette_home(request):
-     
+    print last_spin(request.user)     
     freggie_points = Freggie.objects.filter(user=request.user).aggregate(Sum('points'))
     if freggie_points['points__sum']== None:
         freggie_points['points__sum']=0

@@ -4,8 +4,7 @@
 {% block extra_head %}
 
     <script>
-        //    Module for handling passing django data
-        //    TODO: Add boolean if already have joker badge
+        /** Module for handling passing django data */
         define("TW", function() {
             var tw = {};
             tw.points = {{ points }};
@@ -48,14 +47,11 @@
                     <br/><br/>
                     <label for="points-wagered">Points To Wager:&nbsp;</label>
                     <select id="points-wagered">
-                        {# todo: generate based on {wager_points} #}
                         {% for value in wager_points_range %}
                             <option value="{{ value }}">{{ value }}</option>
                         {% endfor %}
-
                     </select>
                 </form>
-
 
                 <div class="msg hide" id="result">
                     <strong>Result:</strong> <span class="txt"></span><br/><br>

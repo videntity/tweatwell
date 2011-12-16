@@ -19,7 +19,7 @@
     <div class="tweat-form">
         <h3 class="sub">Tell Us What You Are Eating</h3>
 
-        <form action='/' method='POST' class="tw-form">
+        <form enctype="multipart/form-data" action='/' method='POST' class="tw-form">
             {{ form.as_p }}
             {% csrf_token %}
             <input type="submit" value="Send" class="button" />

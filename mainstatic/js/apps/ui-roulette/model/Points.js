@@ -13,7 +13,6 @@ define(["lib/utils/pubsub"],function() {
      * @param points
      */
     var save = function(points) {
-        console.log(points);
         $.ajax({
             type: "POST",
             url: "/roulette/spin-results/",

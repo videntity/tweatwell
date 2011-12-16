@@ -4,19 +4,18 @@
 {% block extra_head %}
 
     <script>
-        //    Module for handling passing points
-        //    TODO: Add boolean for allowing to play (once per day rule) popualted from django
+        //    Module for handling passing django data
         //    TODO: Add boolean if already have joker badge
         define("TW", function() {
             var tw = {};
             tw.points = {{ points }};
-            //tw.points = 20;
+            tw.canSpin = "{{ can_spin }}";
+            tw.hasJoker = "{{user.get_profile.joker_badge}}";
 
             return tw;
         });
 
-        /** Load Roulette Wheel Bootstrap
-         */
+        /** Load Roulette Wheel Bootstrap */
         require({
             baseUrl: '{{STATIC_URL}}js/'
         }, ['apps/ui-roulette/main']);
@@ -40,6 +39,8 @@
 
         <div class="points-display">
 
+            {% if can_spin %}
+
             <div id="wager" class="{% if points < 10 %}hide{% endif %}">
 
                 <form id="wager-form">
@@ -48,16 +49,10 @@
                     <label for="points-wagered">Points To Wager:&nbsp;</label>
                     <select id="points-wagered">
                         {# todo: generate based on {wager_points} #}
-                        <option>10</option>
-                        <option>11</option>
-                        <option>12</option>
-                        <option>13</option>
-                        <option>14</option>
-                        <option>15</option>
-                        <option>16</option>
-                        <option>17</option>
-                        <option>18</option>
-                        <option>19</option>
+                        {% for value in wager_points_range %}
+                            <option value="{{ value }}">{{ value }}</option>
+                        {% endfor %}
+
                     </select>
                 </form>
 
@@ -74,12 +69,13 @@
                 You must have at least 10 points to play.
             </div>
 
+            {% else %}
 
-            {#  todo: add check for once per day #}
-            <div class="msg hide" id="once-per-day">
+            <div class="msg" id="once-per-day">
                 You may only spin once per day.
             </div>
 
+            {% endif %}
         </div>
     </div>
 

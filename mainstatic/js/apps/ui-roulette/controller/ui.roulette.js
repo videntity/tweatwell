@@ -35,16 +35,15 @@ define("ui.roulette", [
 
             self._createCanvas();
 
-            //bind click & only allow one click if points > 10
-            if(User.points >= 10 ) {
-
+            //bind click if user can play
+            if(User.points >= 10 && User.canSpin == "True") {
                 $('#roulette-canvas').click(function(){
                     self._spinWheel(self._getRandomPocket());
                     $(this).unbind('click');
                 });
-
             }
         },
+
 
         /**
          * Creates raphael version of image

@@ -7,6 +7,8 @@ import os, sys
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+THUMBNAIL_DEBUG = True
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 ADMINS = (
     ('Alan Viars', 'aviars@videntity.com'),
@@ -14,7 +16,24 @@ ADMINS = (
 SITE_ID = 1
 MANAGERS = ADMINS
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# Language code for this installation. All choices can be found here:
+# http://www.i18nguy.com/unicode/language-identifiers.html
+LANGUAGE_CODE = 'en-us'
+
+# Local time zone for this installation. Choices can be found here:
+# http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
+# although not all choices may be available on all operating systems.
+# If running in a Windows environment this must be set to the same as your
+# system time zone.
+TIME_ZONE = 'America/New_York'
+
+# If you set this to False, Django will make some optimizations so as not
+# to load the internationalization machinery.
+USE_I18N = True
+
+# Make this unique, and don't share it with anybody.
+SECRET_KEY = 'cw87b^k4+bl#-jj#gf3)%&!^k@fr_j4#p8g@uoyn!ijzmnce1i'
+
 
 # Fix up piston imports here. We would normally place piston in 
 # a directory accessible via the Django app, but this is an
@@ -35,20 +54,11 @@ DATABASES = {
  }
 
 
-# Local time zone for this installation. Choices can be found here:
-# http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
-# although not all choices may be available on all operating systems.
-# If running in a Windows environment this must be set to the same as your
-# system time zone.
-TIME_ZONE = 'America/New_York'
-
-
-
 
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -82,47 +92,14 @@ STATICFILES_DIRS = (
 
 
 #Use a custom authentication backend to allow login with username or email.
+
 AUTHENTICATION_BACKENDS = (
-    'tweatwell.accounts.email-auth.EmailBackend',
- )
-
-
-
-
-
-# Language code for this installation. All choices can be found here:
-# http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
-
-SITE_ID = 1
-
-# If you set this to False, Django will make some optimizations so as not
-# to load the internationalization machinery.
-USE_I18N = True
-
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = 'cw87b^k4+bl#-jj#gf3)%&!^k@fr_j4#p8g@uoyn!ijzmnce1i'
-
-
-# Absolute path to the directory that holds media.
-# Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_URL = '/static/'
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash if there is a path component (optional in other cases).
-# Examples: "http://media.lawrence.com", "http://example.com/media/"
-
-MEDIA_URL = '/media/'
-
-MAIN_STATIC_ROOT = os.path.join(BASE_DIR, 'mainstatic')
-
-STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    MAIN_STATIC_ROOT,
-    )
+            'django.contrib.auth.backends.ModelBackend',
+            )
+AUTH_PROFILE_MODULE = 'accounts.UserProfile'
+LOGOUT_URL = '/accounts/logout'
+LOGIN_URL='/accounts/login'
+LOGIN_REDIRECT_URL = '/'
 
 
 MIDDLEWARE_CLASSES = (
@@ -133,18 +110,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
 )
-
-AUTH_PROFILE_MODULE = 'accounts.UserProfile'
-
-LOGOUT_URL = '/accounts/logout'
-LOGIN_URL='/accounts/login'
-LOGIN_REDIRECT_URL = '/'
-
-
-
-AUTHENTICATION_BACKENDS = (
-                           'django.contrib.auth.backends.ModelBackend',
-                           )
 
 
 ROOT_URLCONF = 'tweatwell.urls'
@@ -191,6 +156,7 @@ INSTALLED_APPS = (
     'tweatwell.apps.accounts',
     'avatar',
     'django_ses',
+    'sorl.thumbnail',
 )
 
 

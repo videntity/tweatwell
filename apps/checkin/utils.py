@@ -5,6 +5,7 @@ import os
 
 
 def update_filename(instance, filename):
+    print "here"
     path = "freggie-pics/"
     format = instance.user.username + "-" + filename
     return os.path.join(path, format)

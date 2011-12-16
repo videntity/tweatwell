@@ -19,7 +19,9 @@ class Freggie(models.Model):
     photo           = ImageField(upload_to=update_filename,
                        null=True, blank=True)
     freggie         = models.CharField(max_length=50, choices=FREGGIE_CHOICES)
-    fruit_or_veg    = models.CharField(max_length=5, choices=FOV_CHOICES)
+    freggie_other   = models.CharField(max_length=50, blank=True, null=True)
+    fruit_or_veg    = models.CharField(max_length=5, choices=FOV_CHOICES,
+                                       blank=True, null=True)
     quantity        = models.IntegerField(max_length=1, default=1)
     note            = models.TextField(max_length=140, blank=True, null=True)
     evdt            = models.DateTimeField()
@@ -28,7 +30,7 @@ class Freggie(models.Model):
     timestamp       = models.DateTimeField(auto_now_add=True)
     evtz            = models.IntegerField(max_length=3, default=-5)
     txtz            = models.IntegerField(max_length=3, default=0)
-    text            = models.CharField(max_length=140, blank=True)
+    text            = models.CharField(max_length=140, blank=True, null=True)
     eattext         = models.CharField(max_length=140, blank=True)
     ttype           = models.CharField(max_length=10, default="omhe")
     points          = models.IntegerField(max_length=3, default=2)

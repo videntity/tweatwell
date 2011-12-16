@@ -85,7 +85,7 @@ def checkin(request):
     freggie_points =  freggie_points['points__sum']
     comment_points =  comment_points['points__sum']
     roulette_points =  roulette_points['points__sum']
-    print freggie_points
+
     #fetch total freggies -----------------------------------------------------
     
     freggies=Freggie.objects.filter(user=request.user).count()

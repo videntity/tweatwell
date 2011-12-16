@@ -61,6 +61,11 @@ def roulette_home(request):
     points = freggie_points['points__sum'] + comment_points['points__sum'] + \
                 roulette_points['points__sum']
     
+    freggie_points =  freggie_points['points__sum']
+    comment_points =  comment_points['points__sum']
+    roulette_points =  roulette_points['points__sum']
+
+
     if points>=10:
         wager_points_range=range(10,points+1)
     else:

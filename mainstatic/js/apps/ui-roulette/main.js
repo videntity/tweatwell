@@ -10,10 +10,11 @@
 
 require([
     'jquery',
+    'lib/utils/domReady',
     'apps/ui-roulette/controller/ui.roulette'
-], function ($) {
+], function ($, domReady) {
 
-    $(function() {
+    domReady.withResources(function () {
         $("#roulette").roulette();
     });
 

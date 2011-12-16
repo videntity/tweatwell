@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-from ..accounts.models import UserProfile, Award
+from ..accounts.models import UserProfile
 from ..questions.models import QuestionAnswer, Question
 from forms import FreggieForm, CommentForm
 from ..upload.forms import PickFruitForm, PickVeggieForm
@@ -59,19 +59,9 @@ def checkin(request):
     
     u=User.objects.get(username=request.user)
     p=get_object_or_404(UserProfile, user=u)
-    awards =Award.objects.filter(user=u)
+
     question=Question.objects.get(display=True)
-    PresidentAward=False
-    ProfessorAward=False
-    DeanAward=False
-    
-    for a in awards:
-        if a.award_class=="President":
-            PresidentAward=True
-        if a.award_class=="Dean":
-            DeanAward=True
-        if a.award_class=="Professor":
-            ProfessorAward=True    
+
         
     #fetch points
     
@@ -116,25 +106,27 @@ def checkin(request):
             #the form had errors.
             return render_to_response('checkin/checkin.html',
                 {'form':form,
+                 'commentform': CommentForm(),
                  'question':question,
-                'deanaward':DeanAward,
                 'tweatlist': tweatlist,
                 'commentform': commentform,
-                'presidentaward':PresidentAward,
-                'professoraward': ProfessorAward,
                 'freggies': freggies,
-                'points': points,},
+                'freggie_points': freggie_points,
+                'comment_points': comment_points,
+                'roulette_points': roulette_points,         
+                'points': points},
                 context_instance = RequestContext(request),)
 
     return render_to_response('checkin/checkin.html',
             {'form': FreggieForm(),
-             'question': question,
-             'deanaward': DeanAward,
-             'tweatlist': tweatlist,
-             'commentform': commentform,
-             'presidentaward':PresidentAward,
-             'professoraward': ProfessorAward,
-             'freggies': freggies,
-             'points': points,
+                 'commentform': CommentForm(),
+                 'question':question,
+                'tweatlist': tweatlist,
+                'commentform': commentform,
+                'freggies': freggies,
+                'freggie_points': freggie_points,
+                'comment_points': comment_points,
+                'roulette_points': roulette_points,         
+                'points': points
             },
             context_instance = RequestContext(request),)

@@ -17,25 +17,6 @@ USER_CHOICES     = ( ('player',  'player'),
                     ('admin',  'admin'),
                     )
 
-award_choices=(
-        ('President','President'), ('Dean','Dean'), ('Professor','Professor'),
-        )
-
-class Award(models.Model):
-    user  = models.ForeignKey(User)
-    award_class = models.CharField(max_length=15, choices=award_choices)
-    freggie = models.CharField(max_length=40,
-                               choices=FREGGIE_CHOICES,
-                               blank=True)
-    points = models.IntegerField(max_length=2, default=10)
-
-    
-    def __unicode__(self):
-        return '%s is the %s of %s' % (self.user.username,
-            self.award_class, self.freggie)
-    class Meta:
-        unique_together = (("award_class", "freggie"),)  
-
 
 class UserProfile(models.Model):
     user                    = models.ForeignKey(User, unique=True)
@@ -52,13 +33,12 @@ class UserProfile(models.Model):
     twitter                 = models.CharField(blank = True, max_length=15)
     notes                   = models.TextField(blank = True, max_length=250)
     joker_badge             = models.BooleanField(default = False)
-    dean_badge              = models.BooleanField(default = False)
+    dean_veggie_badge       = models.BooleanField(default = False)
+    dean_fruit_badge        = models.BooleanField(default = False)
     president_badge         = models.BooleanField(default = False)
     professor_badge         = models.BooleanField(default = False)
-    professor_of_freggie    = models.CharField(choices=USER_CHOICES,
+    professor_of_freggie    = models.CharField(choices=FREGGIE_CHOICES,
                                     max_length=20, blank=True, null=True)
-    awards                  = models.ManyToManyField(Award, blank = True, null=True)
-
 
 
     def __unicode__(self):
@@ -67,7 +47,8 @@ class UserProfile(models.Model):
                                self.user_type, self.user.is_active )
         
     class Meta:
-        unique_together = (("user", "user_type"),)
+        unique_together = (("user", "user_type"),
+            ("professor_badge","professor_of_freggie"))
 
     def save(self, **kwargs):
         if not self.anonymous_patient_id:
@@ -138,9 +119,6 @@ class ValidSignupKey(models.Model):
 
 
 
-
-
-
 class ValidPasswordResetKey(models.Model):
     user               = models.ForeignKey(User)
     reset_password_key = models.CharField(max_length=50, blank=True)
@@ -162,15 +140,6 @@ class ValidPasswordResetKey(models.Model):
         #send an email with reset url
         x=send_password_reset_url_via_email(self.user, self.reset_password_key)
         super(ValidPasswordResetKey, self).save(**kwargs)
-
-
-
-
-
-
-
-
-
 
 
 permission_choices=(    ('player',  'player'),

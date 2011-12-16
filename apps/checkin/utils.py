@@ -1,6 +1,8 @@
 from django.conf import settings
 import pycurl
 from datetime import datetime, timedelta
+import os
+
 
 def update_filename(instance, filename):
     path = "freggie-pics/"

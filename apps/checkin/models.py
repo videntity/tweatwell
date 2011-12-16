@@ -16,7 +16,7 @@ class Freggie(models.Model):
     sinceid         = models.CharField(max_length=20, null=True, blank=True)
     txid            = models.CharField(max_length=36, blank=True)
     user            = models.ForeignKey(User)
-    file            = ImageField(upload_to=update_filename,
+    photo           = ImageField(upload_to=update_filename,
                        null=True, blank=True)
     freggie         = models.CharField(max_length=50, choices=FREGGIE_CHOICES)
     fruit_or_veg    = models.CharField(max_length=5, choices=FOV_CHOICES)

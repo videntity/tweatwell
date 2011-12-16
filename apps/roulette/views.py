@@ -61,6 +61,12 @@ def roulette_home(request):
     points = freggie_points['points__sum'] + comment_points['points__sum'] + \
                 roulette_points['points__sum']
     
+    if points>=10:
+        wager_points_range=range(10,points)
+    else:
+        wager_points_range=[]
+        
+    
     #fetch total freggies -----------------------------------------------------
     
     freggies=Freggie.objects.filter(user=request.user).count()
@@ -72,6 +78,7 @@ def roulette_home(request):
              'comment_points': comment_points,
              'roulette_points': roulette_points,         
              'points': points,
+             'wager_points_range': wager_points_range,
              'last_spin_date':last_spin_date(request.user),
              'can_spin':can_spin(request.user),
             },

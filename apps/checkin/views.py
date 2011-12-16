@@ -95,7 +95,7 @@ def checkin(request):
         tweatlist.append(tweatitem)
     
     if request.method == 'POST':
-        form = FreggieForm(request.POST)
+        form = FreggieForm(request.POST, request.FILES)
         if form.is_valid():
             f=form.save(commit=False)
             f.user=request.user

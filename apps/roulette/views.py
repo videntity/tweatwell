@@ -62,7 +62,7 @@ def roulette_home(request):
                 roulette_points['points__sum']
     
     if points>=10:
-        wager_points_range=range(10,points)
+        wager_points_range=range(10,points+1)
     else:
         wager_points_range=[]
         

@@ -26,8 +26,8 @@ from datetime import datetime
 
 def mylogout(request):
     logout(request)
-    return render_to_response('accounts/logout.html',
-                              context_instance = RequestContext(request))
+    messages.success(request, "You have logged out.")
+    return HttpResponseRedirect(reverse('checkin'))
 
     
 def simple_login(request):

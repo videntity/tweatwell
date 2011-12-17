@@ -119,7 +119,6 @@ def password_reset_request(request):
         
         if form.is_valid():  
             data = form.cleaned_data
-            print data
             try:
                 u=User.objects.get(email=data['email'])
             except(User.DoesNotExist):

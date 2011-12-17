@@ -202,15 +202,16 @@ AWS_SECRET_ACCESS_KEY = 'sH17aMlImhIm4QxHnqSHS+zQj6qChrZ8I+QGzH0T'
 
 
 
-#Registration Settings ---------------------------------------------------------
+#Registration  & Password Reset Settings ---------------------------------------
 
 #Only allow a person to registeration from this domain
 #Set to None to allow any
 #RESTRICT_REG_DOMAIN_TO="mix.wvu.edu"
-RESTRICT_REG_DOMAIN_TO=None
-MIN_PASSWORD_LEN=8
-SIGNUP_TIMEOUT_DAYS = 7
-ORGANIZATION_NAME = "WVU:Tweatwell"
+RESTRICT_REG_DOMAIN_TO      = None
+MIN_PASSWORD_LEN            = 8
+SIGNUP_TIMEOUT_DAYS         = 7
+PASSWORD_RESET_TIMEOUT_DAYS = 2 
+ORGANIZATION_NAME           = "WVU:Tweatwell"
 
 
 #Twitter Hash Tag.  Setting this gets only tweats with this hash.

@@ -86,7 +86,7 @@ class ValidPasswordResetKey(models.Model):
         
         self.reset_password_key=str(uuid.uuid4())
         now = datetime.now()
-        expires=now+timedelta(minutes=settings.SMS_LOGIN_TIMEOUT_MIN)
+        expires=now+timedelta(days=settings.PASSWORD_RESET_TIMEOUT_DAYS)
         self.expires=expires
         
         #send an email with reset url

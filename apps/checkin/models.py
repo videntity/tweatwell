@@ -56,20 +56,6 @@ class Freggie(models.Model):
             self.freggie=self.freggie_other
         
         self.eattext=" %s just ate %s" % (self.user, self.freggie )
-
-        #result=save_to_restcat({'ttype': self.ttype,
-        #                        'txid':self.txid,
-        #                        'sndr': settings.RESTCAT_USER,
-        #                        'rcvr': settings.RESTCAT_USER,
-        #                        'subj': profile.anonymous_patient_id,
-        #                        'evdt': self.evdt,
-        #                        'txdt': self.txdt,
-        #                        'evtz': self.evtz,
-        #                        'txtz': self.txtz,
-        #                        'sec': '2',
-        #                        'text': self.text,
-        #                        })
-        #self.sinceid=str(uuid.uuid4())[0:20]
         super(Freggie, self).save(**kwargs)
         
 class Comment(models.Model):

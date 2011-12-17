@@ -1,10 +1,11 @@
 Tweatwell: Food Tracking Microblog Game
+=======================================
+
 Copyright 2011 Videntity Systems, Inc.
-===========================================
+
 
 Tweatwell is a web-based food microblog tracking game written in Django.
-
-Its goal is to encourage a plant based diet amongsst a college
+The goal of the game is to encourage a plant based diet amongst a college
 student population. Eat Healthy, Live Long, and TweatWell.
 
 
@@ -56,11 +57,10 @@ MySQL, SQLite, and Oracle.  The default is SQLite.
 
 Production Configuration using Apache and modWSGI
 =================================================
-Production Django configuration can be done in many ways and a exhaustive
-explanation is beyond the scope of these setup instructions.  The information here
-is just provided as a quick jumpstart. More detailed documentation may be found
-online. Please see the Django documentation at http://djangoproject.org for more
-information.  
+Production Django configuration can be done in many ways and an exhaustive
+explanation is beyond the scope of these setup instructions.  The information
+provided here is just provided as a quick jumpstart. More detailed documentation
+may be found at http://djangoproject.org.  
 ::
     sudo apt-get install apache2 libapache2-mod-wsgi
     cd tweatwell

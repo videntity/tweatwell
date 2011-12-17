@@ -47,11 +47,16 @@ class Freggie(models.Model):
         now = datetime.utcnow()
         self.evdt=now#.strftime("%Y-%m-%d %H:%M:%S")
         self.txdt=now#.strftime("%Y-%m-%d %H:%M:%S")
-        self.eattext=" %s just ate %s" % (self.user, self.freggie )
         if fruit_tuple.__contains__(self.freggie):
             self.fruit_or_veg="fruit"
         else:
             self.fruit_or_veg="veg"
+            
+        if self.freggie=="other_fruit" or self.freggie=="other_veg":
+            self.freggie=self.freggie_other
+        
+        self.eattext=" %s just ate %s" % (self.user, self.freggie )
+
         #result=save_to_restcat({'ttype': self.ttype,
         #                        'txid':self.txid,
         #                        'sndr': settings.RESTCAT_USER,

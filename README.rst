@@ -37,8 +37,8 @@ Running the Development Server:
 ===============================
 
 Here's how to create the database and start the Django's devlopment server
-environment.  You should also use virtualenv and virtualenv when developing in
-Python.
+environment.  You should also use virtualenv and virtualenvwrapper when
+developing in Python.
 ::
     sudo apt-get install git-core python-imaging build-essential python-setuptools memcached libmemcached-dev
     sudo easy_install pip

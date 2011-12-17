@@ -57,12 +57,19 @@
                 <div class="tweat-txt">
                      <strong>{{ t.tweat.eattext }}</strong>
                 </div>
-                <div class="tweat-quote">
-                    <span style="color:red">image should display here</span>
-                    <br/>
 
+                <div class="tweat-quote">
                     <em>{{ t.tweat.text }}</em>
                 </div>
+
+                {% load thumbnail %}
+                {% if t.tweat.photo %}
+                <div class="tweat-photo">
+                    {% thumbnail t.tweat.photo "50" as im %}
+                        <a href="{#  original.url   #}"><img src="{{ im.url }}" width="50" /></a>
+                    {% endthumbnail %}
+                </div>
+                {% endif %}
 
                 <div class="tweat-comments">
                     Comments: <a href="" class="tw-comment-trigger">Add Comment</a><br/>

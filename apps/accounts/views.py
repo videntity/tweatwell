@@ -119,6 +119,7 @@ def password_reset_request(request):
         
         if form.is_valid():  
             data = form.cleaned_data
+            print data
             try:
                 u=User.objects.get(email=data['email'])
             except(User.DoesNotExist):
@@ -133,6 +134,11 @@ def password_reset_request(request):
             return render_to_response('accounts/reset-token-sent.html',
                               RequestContext(request,
                                              {}))
+        else:
+            #the form had errors
+            return render_to_response('accounts/password-reset-request.html', 
+                             {'form': form},
+                              RequestContext(request))    
     else:
         return render_to_response('accounts/password-reset-request.html', 
                              {'form': PasswordResetRequestForm()},

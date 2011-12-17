@@ -66,8 +66,9 @@
                 {% if t.tweat.photo %}
                 <div class="tweat-photo">
                     {% thumbnail t.tweat.photo "50" as im %}
-                        <a href="{#  original.url   #}"><img src="{{ im.url }}" width="50" /></a>
+                        <a href="{{ MEDIA_URL }}{{t.tweat.photo}}"><img src="{{ im.url }}" width="50" /></a>
                     {% endthumbnail %}
+		    
                 </div>
                 {% endif %}
 

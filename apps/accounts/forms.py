@@ -38,7 +38,7 @@ class LoginForm(forms.Form):
 
 class SignupForm(forms.Form):
     username = forms.CharField(max_length=30, label="Username")
-    daily_freggie_goal = forms.IntegerField( label="Daily Freggie Goal",
+    daily_freggie_goal = forms.IntegerField( label='Daily Fruit and Vegetable "Freggie" Goal',
                                             initial=5)
     password1 = forms.CharField(widget=forms.PasswordInput, max_length=30,
                                 label="Password")
@@ -100,7 +100,7 @@ class SignupForm(forms.Form):
         return new_user
 
 class AccountSettingsForm(forms.Form):
-    daily_freggie_goal = forms.IntegerField(initial=5)
+    daily_freggie_goal = forms.IntegerField(initial=5, label='Daily Fruit and Vegetable "Freggie" Goal')
     username = forms.CharField(max_length=30, label="Userame")
     email = forms.CharField(max_length=30, label="Email")
     first_name = forms.CharField(max_length=30, label="First Name")

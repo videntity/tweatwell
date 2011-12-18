@@ -1,0 +1,66 @@
+{% extends "layouts/2-column-sidebar-right.html" %}
+{% block active_nav_tab  %}home-active{% endblock %}
+
+{% block extra_head %}
+    <script src="{{STATIC_URL}}js/lib/page/checkin.js"></script>
+{% endblock %}
+
+	
+{% block middle %}
+    <h1>Recipes</h1>
+    
+
+    <h3 class="sub">Recipes</h3>
+
+    {% load avatar_tags %}
+    {% for r in recipelist %}
+        <div class="tweat-instance">
+            {% if r.recipe.user %}
+            <div class="avatar">
+                {% avatar r.recipe.user 45 %}
+            </div>
+            {% endif %}
+
+            <div class="tweat-content">
+
+                <div class="tweat-quote">
+                    <em>{{ r.recipe.detail }}</em>
+                </div>
+
+                <div class="tweat-comments">
+                    Comments: <a href="" class="tw-comment-trigger">Add Comment</a><br/>
+                    <form action='/recipes/comment/{{r.recipe.id}}/' method='POST' class="tweat-comment-form tw-form">
+                        {{ commentform.as_p }}
+                        {% csrf_token %}
+                        <input type="submit" value="Leave Comment" class="button" />
+                    </form>
+
+                    {% if r.comments %}
+                        {% for c in r.comments %}
+
+                            <div class="tweat-comment-instance">
+                                {% if c.user %}
+                                <div class="avatar">
+                                    {% avatar c.user 30 %}
+                                </div>
+                                {% endif %}
+                                <strong>{{ c.user.username }}</strong>:
+                                <p>
+                                    <em>"{{ c.text }}"</em>
+                                </p>
+                                <div class="timestamp">{{ c.txdt}}</div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+
+    {% endfor %}
+
+{% endblock %}
+
+{% block right %}
+    {% include "include/profile-sidebar.html" %}
+{% endblock %}

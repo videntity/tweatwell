@@ -9,7 +9,7 @@ from sorl.thumbnail import ImageField
 class Recipe(models.Model):
     name         = models.CharField(max_length=100)
     slug         = models.CharField(max_length=100)
-    detail       = models.TextField(User)
+    detail       = models.TextField(max_length=10000)
     date         = models.DateField(auto_now_add=True)
     class Meta:
         ordering = ['-date']

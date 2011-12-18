@@ -1,0 +1,29 @@
+{% extends "layouts/2-column-sidebar-right.html" %}
+{% block active_nav_tab  %}roulette-active{% endblock %}
+
+{% block extra_head %}
+
+
+{% endblock %}
+
+{% block middle %}
+
+
+
+    <div id="roulette-points">
+        <h1>Profile for {{ user }}</h1>
+        
+        Your goal is  {{ user.get_profile.daily_freggie_goal }}.<br>
+        
+        {%for c in combolist%}
+            {{ c }} <br>
+        {% endfor%}
+    </div>
+
+{% endblock %}
+
+
+{% block right %}
+    {% include "include/profile-sidebar.html" %}
+{% endblock %}
+

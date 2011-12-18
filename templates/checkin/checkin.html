@@ -11,20 +11,30 @@
     <p>
         Earn points by entering what you are eating. Earn enough points
         and you can earn a badge! Note a Freggie is either a fruit or a vegetable.
-        TEXT TK
     </p>
 
 
 
     <div class="tweat-form">
-        <h3 class="sub">Tell Us What You Are Eating</h3>
+        <h3 class="sub">What Fruits and Veggies You Are Eating?</h3>
 
         <form enctype="multipart/form-data" action='/' method='POST' class="tw-form">
             {{ form.as_p }}
             {% csrf_token %}
-            <input type="submit" value="Send" class="button" />
+            <input type="submit" value="Submit" class="button" />
         </form>
     </div>
+    
+    <div class="nonveg-form">
+        <h3 class="sub">Eating Something Else?</h3>
+
+        <form action='/checkin/nonveg/' method='POST' class="nv-form">
+            {{ nonvegform.as_p }}
+            {% csrf_token %}
+            <input type="submit" value="Submit" class="button" />
+        </form>
+    </div>
+    
 
     <div class="qow">
         <h3>Question of the Week</h3>

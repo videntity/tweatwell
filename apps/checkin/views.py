@@ -10,16 +10,16 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from ..accounts.models import UserProfile
 from ..questions.models import QuestionAnswer, Question
-from forms import FreggieForm, CommentForm
+from forms import FreggieForm, CommentForm, NonVegForm
 from ..upload.forms import PickFruitForm, PickVeggieForm
 import datetime, os, pycurl, StringIO, json, types, sys
 from operator import itemgetter, attrgetter
 from django.contrib import messages
-from models import Comment, Freggie
+from models import Comment, Freggie, NonVeg
 from ..roulette.models import Roulette
 from django.db.models import Sum
-
-
+from itertools import chain
+from operator import attrgetter
 
 def anon_home_index(request):
     print ("anonymous home. We'll do this at near the end. for now redirect to login/signup")
@@ -30,29 +30,80 @@ def answer_question(request):
     pass
 
 
+
 @login_required
-def freggie_comment(request, freggie_id):
+def admin_profile(request, username):
+    u=get_object_or_404(User, username=username)
+    p=get_object_or_404(UserProfile, user=u)
+    nonvegs=NonVeg.objects.filter(user=u)
+    freggies=Freggie.objects.filter(user=u)
+    combolist = sorted(chain(nonvegs, freggies), key=attrgetter('evdt'),
+                       reverse=True)
     
-    freggie = get_object_or_404(Freggie, pk=freggie_id)
+    return render_to_response('checkin/admin-profile.html',
+                    {'combolist':combolist,
+                     'u':u,
+                     'profile':p
+                     },
+            context_instance = RequestContext(request),)
+
+
+
+
+@login_required
+def profile(request):
+    p=get_object_or_404(UserProfile, user=request.user)
+    nonvegs=NonVeg.objects.filter(user=request.user)
+    freggies=Freggie.objects.filter(user=request.user)
+    combolist = sorted(chain(nonvegs, freggies), key=attrgetter('evdt'),
+                       reverse=True)
+    
+    return render_to_response('checkin/profile.html',
+                    {
+                'freggies': freggies,
+                'nonvegs': nonvegs,
+                'combolist':combolist,
+            },
+            context_instance = RequestContext(request),)
+
+
+@login_required
+def nonveg(request):
     
     if request.method == 'POST':
 
-        form = CommentForm(request.POST)
+        form = NonVegForm(request.POST)
         
         if form.is_valid():  
             data = form.cleaned_data
-            newcomment=form.save(commit=False)
-            newcomment.text=data['text']
-            newcomment.user=request.user
-            newcomment.freggie=freggie
+            newnonveg=form.save(commit=False)
+            newnonveg.text=data['text']
+            newnonveg.nonveg=data['nonveg']
+            newnonveg.user=request.user
+            newnonveg.save()
+            messages.success(request, "Successfuly added a non fruit or vegetable item.")
+            return HttpResponseRedirect(reverse('checkin'))
+
+
+@login_required
+def freggie_comment(request):
+    
+    if request.method == 'POST':
+
+        form = NonVegForm(request.POST)
+        
+        if form.is_valid():  
+            data = form.cleaned_data
+            newnonveg=form.save(commit=False)
+            newnonveg.text=data['text']
+            newnonveg.nonveg=data['nonveg']
+            newnonveg.user=request.user
             newcomment.save()
-            messages.success(request, "Successfuly added a comment.")
+            messages.success(request, "Successfuly added a non fruit or vegetable item.")
             return HttpResponseRedirect(reverse('checkin'))
             
 def checkin(request):
 
-
-    commentform=CommentForm()
     #if the user is not logged in, display an anonymous home page
     if request.user.is_anonymous()==True:
         return anon_home_index(request)
@@ -111,9 +162,9 @@ def checkin(request):
             return render_to_response('checkin/checkin.html',
                 {'form':form,
                  'commentform': CommentForm(),
+                 'nonvegform': NonVegForm(),
                  'question':question,
                  'tweatlist': tweatlist,
-                 'commentform': commentform,
                  'freggies': freggies,
                  'freggie_points': freggie_points,
                  'comment_points': comment_points,
@@ -124,9 +175,9 @@ def checkin(request):
     return render_to_response('checkin/checkin.html',
             {'form': FreggieForm(),
                  'commentform': CommentForm(),
+                 'nonvegform': NonVegForm(),
                  'question':question,
                 'tweatlist': tweatlist,
-                'commentform': commentform,
                 'freggies': freggies,
                 'freggie_points': freggie_points,
                 'comment_points': comment_points,

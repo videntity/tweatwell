@@ -24,10 +24,8 @@ class Freggie(models.Model):
                                        blank=True, null=True)
     quantity        = models.IntegerField(max_length=1, default=1)
     note            = models.TextField(max_length=140, blank=True, null=True)
-    evdt            = models.DateTimeField()
-    txdt            = models.DateTimeField()
-    date            = models.DateField(auto_now_add=True)
-    timestamp       = models.DateTimeField(auto_now_add=True)
+    evdate            = models.DateField(auto_now_add=True)
+    evdt       = models.DateTimeField(auto_now_add=True)
     evtz            = models.IntegerField(max_length=3, default=-5)
     txtz            = models.IntegerField(max_length=3, default=0)
     text            = models.CharField(max_length=140, blank=True, null=True)
@@ -83,3 +81,26 @@ class Comment(models.Model):
     
     def save(self, **kwargs):
         super(Comment, self).save(**kwargs)        
+
+
+class NonVeg(models.Model):
+    nonveg          = models.CharField(verbose_name="Non Fruit or Veggie",
+                                       max_length=140)
+    user            = models.ForeignKey(User)
+    text            = models.TextField(max_length=140)
+    evdt            = models.DateTimeField(auto_now_add=True)
+    evdate          = models.DateField(auto_now_add=True)
+    evtz            = models.IntegerField(max_length=3, default=-5)
+    txtz            = models.IntegerField(max_length=3, default=0)
+    ttype           = models.CharField(max_length=10, default="txt")
+    points          = models.IntegerField(max_length=3, default=0)
+    
+    class Meta:
+        ordering = ['-evdt']
+    
+    def __unicode__(self):
+        return '%s ate %s and said "%s"  on %s' % (self.user, self.nonveg,
+                                                   self.text, self.evdt)
+    
+    def save(self, **kwargs):
+        super(NonVeg, self).save(**kwargs)    

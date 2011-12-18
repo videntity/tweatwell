@@ -47,6 +47,10 @@ class Freggie(models.Model):
         now = datetime.utcnow()
         self.evdt=now#.strftime("%Y-%m-%d %H:%M:%S")
         self.txdt=now#.strftime("%Y-%m-%d %H:%M:%S")
+        
+        if self.photo:
+            self.points=self.points+5
+        
         if fruit_tuple.__contains__(self.freggie):
             self.fruit_or_veg="fruit"
         else:

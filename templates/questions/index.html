@@ -2,24 +2,28 @@
 {% block active_nav_tab  %}qow-active{% endblock %}
 
 {% block middle %}
-    <h1>Question Of The Week</h1>
+<h1>Question Of The Week</h1>
          
-    <div class="qow">
-    {% if not already_answered %}
+<div class="qow">
 
-        <h2>{{question}}</h2>
+{% if not already_answered %}
 
-        <form action="." method="POST" class="tw-form">
+    <h2>{{question}}</h2>
 
-            {{ form.as_p }}
-            {% csrf_token %}
-            <input type="submit" value="Submit" class="button"/>
-        </form>
+    <form action="." method="POST" class="tw-form">
 
-    {% else %}
-        <p>{{ already_answered }}</p>
-    {% endif %}
-    </div>
+        {{ form.as_p }}
+        {% csrf_token %}
+        <input type="submit" value="Submit" class="button"/>
+    </form>
+
+{% else %}
+
+    <p>{{ already_answered }}</p>
+
+{% endif %}
+
+</div>
 {% endblock %}
 
 {% block right %}

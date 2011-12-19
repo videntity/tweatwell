@@ -154,6 +154,7 @@ INSTALLED_APPS = (
     'tweatwell.apps.tips',
     'tweatwell.apps.foodreport',
     'tweatwell.apps.accounts',
+    'tweatwell.apps.quiz',
     'avatar',
     'django_ses',
     'sorl.thumbnail',

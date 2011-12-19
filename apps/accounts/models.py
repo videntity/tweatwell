@@ -13,10 +13,12 @@ from django.utils.safestring import mark_safe
 from restcat_utils import create_restcat_user
 from ..checkin.models import FREGGIE_CHOICES
 
-USER_CHOICES     = ( ('player',  'player'),
-                    ('admin',  'admin'),
-                    )
+USER_CHOICES     = ( ('player',  'player'), ('admin',  'admin'),)
 
+
+QOW_CHOICES =   (('NO_ANSWER',  'NO_ANSWER'),
+                ('CORRECT',  'CORRECT'),
+                ('INCORRECT',  'INCORRECT'),)
 
 class UserProfile(models.Model):
     user                    = models.ForeignKey(User, unique=True)
@@ -39,7 +41,8 @@ class UserProfile(models.Model):
     professor_badge         = models.BooleanField(default = False)
     professor_of_freggie    = models.CharField(choices=FREGGIE_CHOICES,
                                     max_length=20, blank=True, null=True)
-
+    qow_status              = models.CharField(choices=QOW_CHOICES,
+                                    max_length=20, default="NO_ANSWER")
 
     def __unicode__(self):
         return '%s %s is a %s. Active=%s' % (self.user.first_name,

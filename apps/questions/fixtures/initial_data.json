@@ -1,40 +1,27 @@
 [
     {
         "pk": 1, 
-        "model": "questions.questionanswerchoices", 
+        "model": "questions.question", 
         "fields": {
-            "choice": "Yes"
+            "test": "Is the sun hot?"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "questions.answer", 
+        "fields": {
+            "test": "Yes", 
+            "is_correct": true, 
+            "question": 1
         }
     }, 
     {
         "pk": 2, 
-        "model": "questions.questionanswerchoices", 
+        "model": "questions.answer", 
         "fields": {
-            "choice": "No"
-        }
-    }, 
-    {
-        "pk": 1, 
-        "model": "questions.question", 
-        "fields": {
-            "answer": "Yes", 
-            "answer_choices": [
-                1, 
-                2
-            ], 
-            "question": "is the sky blue", 
-            "display": true
-        }
-    }, 
-    {
-        "pk": 1, 
-        "model": "questions.questionanswer", 
-        "fields": {
-            "answer": "Yes", 
-            "created_on": "2011-12-08", 
-            "question": 1, 
-            "user": 1, 
-            "correct": true
+            "test": "No", 
+            "is_correct": false, 
+            "question": 1
         }
     }
 ]

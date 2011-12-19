@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+
+{% block middle %}
+
+    <h1>Answer the Question:</h1>
+         
+    {% if not already_answered %}
+    
+    <h2>{{question}}</h2>
+    <form action="." method="POST">
+
+    {{ form.as_p }}
+    {% csrf_token %}
+        
+    <input type="submit" value="Submit"/>
+    </form>
+    {% else %}
+        {{ already_answered }}
+    {% endif %}
+
+{% endblock %}

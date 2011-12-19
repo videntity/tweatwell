@@ -1,0 +1,33 @@
+{% extends "base/frame.html" %}
+
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+{% if passed %}
+    <h1>You already passed!</h1>
+    <p>Great job.  Thank you for your interest in the GeniusRocket creative community.</p>
+{% else %}
+
+    <h1>Answer the questions below to Join the Rocket Community:</h1>
+    <p>Please make sure you answer ALL questions.</p>
+    <form enctype="multipart/form-data" action="." method="POST">
+    
+    {% if error %}
+      <p class="error">ERROR: {{error}}</p>
+    {% endif %}
+    
+    
+    {% if form.errors %}
+      <p class="error">Please correct the errors below.</p>
+    {% endif %}
+
+    {{ form.as_p }}
+    <input type="hidden" name="quizid" value="{{quizid}}">
+        
+    <input type="submit" value="Submit"/>
+    </form>
+{% endif %}
+{% endif %}
+{% endblock %}

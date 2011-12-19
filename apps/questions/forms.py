@@ -1,7 +1,12 @@
 from django import forms
-from models import QuestionAnswer
+from models import Answer, Question
+def quiz_form_factory(question):
 
-class QuestionAnswerForm(forms.ModelForm):
-    class Meta:
-        model = QuestionAnswer
-        fields = ('answer', 'choices')
+    properties = {
+        'question' : forms.IntegerField(widget=forms.HiddenInput, \
+            initial=question.id),
+        'answers' : forms.ModelChoiceField(queryset= \
+            question.answer_set)
+    }
+
+    return type('QuizForm', (forms.Form,), properties)

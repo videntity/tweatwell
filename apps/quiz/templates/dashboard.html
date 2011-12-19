@@ -1,0 +1,135 @@
+{% extends "base/frame.html" %}
+
+
+
+
+{% block content %}
+
+
+{% block additional_header %}
+    <script type='text/javascript' src='http://www.google.com/jsapi'></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['gauge']});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Label');
+        data.addColumn('number', 'Value');
+        data.addRows(2);
+        data.setValue(0, 0, 'All');
+        data.setValue(0, 1, {{average_score}});
+        data.setValue(1, 0, 'Passing');
+        data.setValue(1, 1, {{average_passing_score}});
+
+        var chart = new google.visualization.Gauge(document.getElementById('total_average_chart_div'));
+        var options = {width: 400, height: 120, redFrom: 0, redTo: {{min_quiz_pass_score}},
+            greenFrom:{{min_quiz_pass_score}}, greenTo: 100, minorTicks: 5};
+        chart.draw(data, options);
+      }
+    </script>
+    
+    
+    
+    <script type='text/javascript' src='http://www.google.com/jsapi'></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['gauge']});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Label');
+        data.addColumn('number', 'Value');
+        data.addRows({{ average_passing_score_by_category|length }});
+        {% for c in average_passing_score_by_category %}
+        data.setValue({{forloop.counter0}}, 0, '{{c.name}}');
+        data.setValue({{forloop.counter0}}, 1, {{c.avg_score}});
+        {% endfor %}
+
+
+        var chart = new google.visualization.Gauge(document.getElementById('cat_pass_average_chart_div'));
+        var options = {width: 400, height: 120, redFrom: 0, redTo: {{min_quiz_pass_score}},
+            greenFrom:{{min_quiz_pass_score}}, greenTo: 100, minorTicks: 5};
+        chart.draw(data, options);
+      }
+    </script>
+    
+
+    
+    <script type='text/javascript' src='http://www.google.com/jsapi'></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['gauge']});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Label');
+        data.addColumn('number', 'Value');
+        data.addRows({{ average_score_by_category|length }});
+        {% for c in average_score_by_category %}
+            data.setValue({{forloop.counter0}}, 0, '{{c.name}}');
+            data.setValue({{forloop.counter0}}, 1, {{c.avg_score}});
+        {% endfor %}
+        var chart = new google.visualization.Gauge(document.getElementById('cat_average_chart_div'));
+        var options = {width: 400, height: 120, redFrom: 0, redTo: {{min_quiz_pass_score}},
+            greenFrom:{{min_quiz_pass_score}}, greenTo: 100, minorTicks: 5};
+        chart.draw(data, options);
+      }
+    </script>
+    
+{% endblock %}
+
+
+    <h1>Administrative Quiz Dashboard</h1>    
+    <p>Hey-ya!  Here's a summary for creators' quizes.</p>
+    
+    
+    <table border="1">
+        <tr>
+        <td>Metric:</td>
+        <td>Value:</td>
+        </tr>
+        
+        <tr>
+        <td>Total Number of Quiz Takers:</td>
+        <td>{{num_users}}</td>
+        </tr>
+        
+        
+        <tr>
+        <td>Total Number of Quiz Attempts:</td>
+        <td>{{number_of_tries}}</td>
+        </tr>
+                
+        <tr>
+        <td>Total Number of Quizes Passed:</td>
+        <td>{{number_of_passed}}</td>
+        </tr>
+                        
+        <tr>
+        <td>Total Pass/Fail Ratio:</td>
+        <td>{{pass_fail_ratio}}</td>
+        </tr>
+                                
+        <tr>
+        <td>Total Average Number of Tries:</td>
+        <td>{{average_num_tries}}</td>
+        </tr>
+    </table>
+        
+    <p>
+    <h1>Total Score Averages:</h1>
+    <div id='total_average_chart_div'></div>
+    </p>
+    
+    
+   <p>
+   <h1>Average Scores by Category:</h1>
+   <div id='cat_average_chart_div'></div>
+   </p>
+   
+   <p>
+   <h1>Average Passing Scores by Category:</h1>
+   <div id='cat_pass_average_chart_div'></div>
+   </p>
+   
+    
+{% endblock %}
+

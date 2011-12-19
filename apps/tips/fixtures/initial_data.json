@@ -1,0 +1,18 @@
+[
+    {
+        "pk": 1, 
+        "model": "tips.tip", 
+        "fields": {
+            "date": "2011-12-18", 
+            "text": "this is a tip"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "tips.currenttip", 
+        "fields": {
+            "date": "2011-12-18", 
+            "tip": 1
+        }
+    }
+]

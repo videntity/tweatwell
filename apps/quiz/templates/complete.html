@@ -1,0 +1,70 @@
+{% extends "base/frame.html" %}
+
+
+{% block content %}
+
+    <script type='text/javascript' src='http://www.google.com/jsapi'></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['gauge']});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Label');
+        data.addColumn('number', 'Value');
+        data.addRows(1);
+        data.setValue(0, 0, 'Score');
+        data.setValue(0, 1, {{score}});
+       
+
+        var chart = new google.visualization.Gauge(document.getElementById('grade_chart_div'));
+        var options = {width: 400, height: 120, redFrom: 0, redTo: {{min_quiz_pass_score}},
+            greenFrom:{{min_quiz_pass_score}}, greenTo: 100, minorTicks: 5};
+        chart.draw(data, options);
+      }
+    </script>
+
+
+
+    <h1> Test Complete:</h1>    
+ {% if passed  %}
+    <p>Aww-Snap! You've passed! Congratulations!</p>
+ {% else %}
+  
+    <p>
+    Unfortunately you didn't pass the quiz.  Don't go jumping off any bridges just yet.
+    You can retake the quiz, although the questions will not be the same.
+    </p>
+    
+ {% endif %}
+ 
+    <p>Your score was:  {{score}}%</p>
+    
+    <div id='grade_chart_div'></div>
+    
+ {% if missedlist %}   
+    <h1> Here are the answers and explanations for the ones you missed.</h1>
+        
+        <table border="1">
+        <tr>
+        <td>Question:</td>
+        <td>Your Answer:</td>
+        <td>Correct Answer:</td>
+        <td>Explanation:</td>
+        </tr>
+        {%for m in missedlist%}
+         <tr>
+         <td>{{m.question_text}}</td>
+         <td>{{m.your_answer}}</td>
+         <td>{{m.right_answer}}</td>
+         <td>{{m.explanation}}</td>
+         </tr> 
+        {% endfor %}
+        </table>
+           {% else %}
+        <p>Wow you're good. You didn't miss a single question!</p>
+  {% endif %}
+    
+    
+    
+{% endblock %}
+

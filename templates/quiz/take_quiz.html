@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+
+{% block middle %}
+
+{% if passed %}
+    <h1>You already passed!</h1>
+    <p>Great job.</p>
+{% else %}
+
+    <h1>Answer the questions below:</h1>
+    <p>Please make sure you answer ALL questions.</p>
+    <form enctype="multipart/form-data" action="." method="POST">
+    
+    {% if error %}
+      <p class="error">ERROR: {{error}}</p>
+    {% endif %}
+    
+    
+    {% if form.errors %}
+      <p class="error">Please correct the errors below.</p>
+    {% endif %}
+
+    {{ form.as_p }}
+    {% csrf_token %}
+    <input type="hidden" name="quizid" value="{{quizid}}">
+        
+    <input type="submit" value="Submit"/>
+    </form>
+{% endif %}
+
+{% endblock %}

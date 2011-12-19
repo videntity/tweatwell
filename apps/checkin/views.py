@@ -3,7 +3,7 @@
 # vim: ai ts=4 sts=4 et sw=4
 from django.conf import settings
 from django.db.models import Sum
-from django.http import HttpResponse, Http404,HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib.auth.models import User
 from django.template import RequestContext
@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 from ..accounts.models import UserProfile
-from ..questions.models import QuestionAnswer, Question
+from ..questions.models import Question
 from ..roulette.models import Roulette
 from ..tips.models import CurrentTip
 from ..upload.forms import PickFruitForm, PickVeggieForm
@@ -111,7 +111,7 @@ def checkin(request):
     #get the current tip
     try:
         ct=CurrentTip.objects.all()[0]
-        tiptext=ct.tip.text
+        tip_text=ct.tip.text
     except(CurrentTip.DoesNotExist):
         tip_text="No tip to display"
     
@@ -121,10 +121,7 @@ def checkin(request):
     
     u=User.objects.get(username=request.user)
     p=get_object_or_404(UserProfile, user=u)
-
-    question=Question.objects.get(display=True)
-
-        
+   
     #fetch points
     
     freggie_points = Freggie.objects.filter(user=request.user).aggregate(Sum('points'))
@@ -174,7 +171,6 @@ def checkin(request):
                 {'form':form,
                  'commentform': CommentForm(),
                  'nonvegform': NonVegForm(),
-                 'question':question,
                  'tweatlist': tweatlist,
                  'freggies': freggies,
                  'tip_text':tip_text,
@@ -188,7 +184,6 @@ def checkin(request):
             {'form': FreggieForm(),
                  'commentform': CommentForm(),
                  'nonvegform': NonVegForm(),
-                 'question':question,
                 'tweatlist': tweatlist,
                 'freggies': freggies,
                 'tip_text':tip_text,

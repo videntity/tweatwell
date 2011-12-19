@@ -13,12 +13,6 @@ $(function() {
     $('#checkin-form #id_quantity').parent("p")
         .addClass('id_quantity');
 
-    //comments show hide
-    $('.tw-comment-trigger').click(function(){
-        $(this).parent('.tweat-comments').find('.tweat-comment-form').slideToggle();
-        return false;
-    });
-
     //other text field show hide
     $('#id_freggie').change(function() {
         var option = $('#id_freggie' + ' option:selected').val();

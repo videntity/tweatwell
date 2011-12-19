@@ -39,11 +39,19 @@
     border-bottom:1px dotted #cccccc;
     margin-bottom:20px;
     padding:10px;
-    .avatar {
-        border:1px solid #cccccc;
-        padding:5px;
-        float:left;
-        margin-right:10px;
+    .user-avatar {
+	    float: left;
+	    background: #e6e6e6;
+        background: image-url('layout/shadow-sm.png') no-repeat right bottom;
+        margin: 10px 4px 0 2px;
+	    img {
+	        display:block;
+            background-color: #FFFFFF;
+            display: block;
+            margin: -4px 4px 4px -4px;
+            padding:2px;
+            position: relative;
+	    }
     }
     .tweat-content {
         float:left;
@@ -92,9 +100,11 @@
             color:#999999;
             float:right;
         }
-        .avatar {
-            padding:2px;
+        .comment-avatar{
+            border:1px solid #cccccc;
+            padding:3px;
+            float:left;
+            margin-right:10px;
         }
     }
 }
-

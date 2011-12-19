@@ -24,6 +24,10 @@
             <td class="points">{{ roulette_points }}</td>
         </tr>
         <tr>
+            <td>QUESTION OF THE WEEK</td>
+            <td class="points">{{question_points}}</td>
+        </tr>
+        <tr>
             <td class="point-total">Total Points</td>
             <td class="points point-total">{{ points }}</td>
         </tr>
@@ -59,7 +63,7 @@
 <div class="sbar-module tod">
     <h3>Tip Of The Day</h3>
 
-    <p>{{qt.tip}}</p>
+    <p>{{ tip_text }}</p>
 </div>
 
 <div class="sbar-module">

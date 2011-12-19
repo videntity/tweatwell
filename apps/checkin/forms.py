@@ -4,7 +4,7 @@ from models import Comment, Freggie, NonVeg
 class FreggieForm(forms.ModelForm):
     class Meta:
         model = Freggie
-        fields = ('freggie','freggie_other','quantity', 'text', 'photo' )
+        fields = ('freggie', 'quantity', 'freggie_other', 'text', 'photo' )
 
 
 class CommentForm(forms.ModelForm):

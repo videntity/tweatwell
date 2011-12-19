@@ -29,4 +29,9 @@ $(function() {
         }
     });
 
+    //manually move id form field
+    $('#checkin-form #id_quantity').parent("p")
+    .addClass('id_quantity');
+
+
 });

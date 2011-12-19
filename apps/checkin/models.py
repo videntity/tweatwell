@@ -87,7 +87,7 @@ class NonVeg(models.Model):
     nonveg          = models.CharField(verbose_name="Non Fruit or Veggie",
                                        max_length=140)
     user            = models.ForeignKey(User)
-    text            = models.TextField(max_length=140)
+    text            = models.CharField(max_length=140)
     evdt            = models.DateTimeField(auto_now_add=True)
     evdate          = models.DateField(auto_now_add=True)
     evtz            = models.IntegerField(max_length=3, default=-5)

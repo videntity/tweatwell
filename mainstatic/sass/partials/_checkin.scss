@@ -11,13 +11,28 @@
     }
 }
 
-/* hack away */
-.tweat-form {
-    margin:20px 0 20px 0;
+/* hack away, note to skirt django we are moving the quantity field by adding a class with js */
+#checkin-form{
+    position:relative;
     #id_freggie_other, label[for=id_freggie_other] {
         display:none;
     }
+    #id_quantity {
+        width:75px;
+    }
+    p.id_quantity {
+        width:100px;
+        position:absolute;
+        top:35px;
+        left:150px;
+    }
 }
+
+.tweat-form {
+    margin:20px 0 40px 0;
+}
+
+
 
 .tweat-instance {
     @include pie-clearfix;

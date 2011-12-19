@@ -15,7 +15,7 @@
 
 
 
-    <div class="tweat-form">
+    <div class="tweat-form" id="checkin-form">
         <h3 class="sub">What Fruits and Veggies You Are Eating?</h3>
 
         <form enctype="multipart/form-data" action='/' method='POST' class="tw-form">
@@ -25,10 +25,10 @@
         </form>
     </div>
     
-    <div class="nonveg-form">
+    <div class="tweat-form">
         <h3 class="sub">Eating Something Else?</h3>
 
-        <form action='/checkin/nonveg/' method='POST' class="nv-form">
+        <form action='/checkin/nonveg/' method='POST' class="tw-form">
             {{ nonvegform.as_p }}
             {% csrf_token %}
             <input type="submit" value="Submit" class="button" />
@@ -98,9 +98,6 @@
 
 
     {% endfor %}
-TIP TEXT: {{ tip_text }} <br>
-QUESTION POINTS: {{question_points}}
-
 
 {% endblock %}
 

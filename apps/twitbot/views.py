@@ -7,13 +7,10 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from ..accounts.models import UserProfile
-from ..upload.forms import OMHEUploadForm
-from ..foodreport.models import FoodReport, UserStatusReport
 from ..utils import *
-from ..upload.forms import uploadOMHE2restcatdict
 from models import TwitBot
-from utils import twitbotsearch
-from django import forms
+from utils import twitbotsearch, convert_twitter_date
+
 from operator import itemgetter, attrgetter
 import json, sys, StringIO, pycurl
 from omhe.core.parseomhe import parseomhe
@@ -23,37 +20,26 @@ def executetwitsearchbot(request):
     tb=TwitBot.objects.get(pk=1)
     
     d=twitbotsearch(settings.TWITTERHASH, tb.since_id)    
+    
     for i in d['results']:
         jsonstr=json.dumps(i, indent = 4,)
         x=dict(json.loads(jsonstr))
-        #if the from_user is in our DB, then create a RESTCAT transaction. 
-        #print x['text'], x['from_user'], x['id']
+        #if the from_user is in our DB, then create a Freggie 
         if  int(tb.since_id) <= int(x['id']):
             try:
                 up=UserProfile.objects.get(twitter=x['from_user'])
-                #print "process"
-                #print up.user
-                
-                omhe_str= x['text']
-                """ Instantiate an instance of the OMHE class"""
-                o = parseomhe()
-                """Parse it if valid, otherwise raise the appropriate  error"""
-                d=o.parse(omhe_str)
-                u=User.objects.get(username=up.user)
-                user_email=str(u.email)
-    
-                responsedict=uploadOMHE2restcatdict(d, settings.RESTCAT_USER, settings.RESTCAT_PASS, user_email,
-                                      settings.RESTCAT_USER,
-                                      user_email, 3)
-                tb.since_id=x['id']
-                tb.save()
+                print "process"
+                print x['created_at']
+                print convert_twitter_date(str(x['created_at']))
             
             except(UserProfile.DoesNotExist):
                 pass
             except:
-                #print str(sys.exc_info())
+                print str(sys.exc_info())
                 pass
                 #return HttpResponse(str(sys.exc_info()), status=500)
+        #tb.since_id=x['id']
+        #tb.save()
         
     return HttpResponse("OK")
     

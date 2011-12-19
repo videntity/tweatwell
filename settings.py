@@ -152,7 +152,6 @@ INSTALLED_APPS = (
     'tweatwell.apps.roulette',
     'tweatwell.apps.recipes',
     'tweatwell.apps.tips',
-    'tweatwell.apps.foodreport',
     'tweatwell.apps.accounts',
     'tweatwell.apps.quiz',
     'avatar',

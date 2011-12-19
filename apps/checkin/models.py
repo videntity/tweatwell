@@ -24,8 +24,8 @@ class Freggie(models.Model):
                                        blank=True, null=True)
     quantity        = models.IntegerField(max_length=1, default=1)
     note            = models.TextField(max_length=140, blank=True, null=True)
-    evdate            = models.DateField(auto_now_add=True)
-    evdt       = models.DateTimeField(auto_now_add=True)
+    evdate          = models.DateField(auto_now_add=True)
+    evdt            = models.DateTimeField(blank=True)
     evtz            = models.IntegerField(max_length=3, default=-5)
     txtz            = models.IntegerField(max_length=3, default=0)
     text            = models.CharField(max_length=140, blank=True, null=True)
@@ -99,8 +99,34 @@ class NonVeg(models.Model):
         ordering = ['-evdt']
     
     def __unicode__(self):
-        return '%s ate %s and said "%s"  on %s' % (self.user, self.nonveg,
+        return '%s ate %s and said "%s" on %s' % (self.user, self.nonveg,
                                                    self.text, self.evdt)
     
     def save(self, **kwargs):
-        super(NonVeg, self).save(**kwargs)    
+        super(NonVeg, self).save(**kwargs)
+        
+        
+BADGE_CHOICES=(('fruitdean','fruitdean'),('vegdean','vegdean'),
+                ('president','president'),('professor','professor'))
+
+class BadgePoints(models.Model):
+    user            = models.ForeignKey(User)
+    badge           = models.CharField(max_length=20, choices=BADGE_CHOICES)
+    evdate            = models.DateField(auto_now_add=True)
+    points          = models.IntegerField(max_length=2, default=0)
+    class Meta:
+        ordering = ['-evdate']
+    
+    def __unicode__(self):
+        return '%s got the %s badge and %s points on %s' % (self.user,
+                                self.badge, self.evdate, self.points)
+    
+    def save(self, **kwargs):
+        if self.badge=="president":
+            self.points=5
+        if self.badge=="fruitdean" or self.badge=="vegdean":
+            self.points=3
+        if self.badge=="professor":
+            self.points=1
+        
+        super(BadgePoints, self).save(**kwargs)

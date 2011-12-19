@@ -1,0 +1,21 @@
+.recipe-instance {
+    border-bottom:1px dotted #cccccc;
+    margin-bottom:20px;
+    padding:10px;
+    .recipe-content {
+        margin-bottom:20px;
+    }
+    h3 {
+        margin:.8em 0 .8em 0;
+    }
+    .recipe-ingredient, .recipe-detail, .recipe-nutrition {
+        @extend .mono;
+        font-size:10px;
+        line-height: 1.8em;
+        p{
+            line-height: 1.8em;
+            margin:0;
+            padding:0 0 1em 0;;
+        }
+    }
+}

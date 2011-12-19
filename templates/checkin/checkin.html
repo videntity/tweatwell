@@ -70,9 +70,9 @@
                 </div>
                 {% endif %}
 
-                <div class="tweat-comments">
+                <div class="tw-comments">
                     Comments: <a href="" class="tw-comment-trigger">Add Comment</a><br/>
-                    <form action='/checkin/comment/{{t.tweat.id}}/' method='POST' class="tweat-comment-form tw-form">
+                    <form action='/checkin/comment/{{t.tweat.id}}/' method='POST' class="tw-comment-form tw-form">
                         {{ commentform.as_p }}
                         {% csrf_token %}
                         <input type="submit" value="Leave Comment" class="button" />
@@ -81,7 +81,7 @@
                     {% if t.comments %}
                         {% for c in t.comments %}
 
-                            <div class="tweat-comment-instance">
+                            <div class="tw-comment-instance">
                                 {% if c.user %}
                                 <div class="comment-avatar">
                                     {% avatar c.user 30 %}

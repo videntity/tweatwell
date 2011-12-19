@@ -12,7 +12,7 @@ $(function() {
 
     //comments show hide
     $('.tw-comment-trigger').click(function(){
-        $(this).parent('.tweat-comments').find('.tweat-comment-form').slideToggle();
+        $(this).parent('.tw-comments').find('.tw-comment-form').slideToggle();
         return false;
     });
 

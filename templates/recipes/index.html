@@ -6,72 +6,77 @@
 {% endblock %}
 
 {% block middle %}
-    <h1>Recipes</h1>
-    
+{% load avatar_tags %}
 
-    <h3 class="sub">Recipes</h3>
+<h1>Recipes</h1>
 
-    {% load avatar_tags %}
-    {% for r in recipelist %}
-        <div class="tweat-instance">
-            {% if r.recipe.user %}
-            <div class="avatar">
-                {% avatar r.recipe.user 45 %}
-            </div>
-            {% endif %}
+{% for r in recipelist %}
 
-            <div class="tweat-content">
 
-	     <div class="tweat-quote">
-                    <em>{{ r.recipe.name }}</em>
-                </div>
-	    
-	    
-	    <div class="tweat-quote">
-                    <em>{{ r.recipe.ingedients }}</em>
-                </div>
+<div class="recipe-instance">
+    <div class="recipe-content">
 
-                <div class="tweat-quote">
-                    <em>{{ r.recipe.detail }}</em>
-                </div>
-	    <div class="tweat-quote">
-                    <em>{{ r.recipe.nutrition }}</em>
-                </div>
+        <h2>{{ r.recipe.name }}</h2>
 
-                <div class="tweat-comments">
-                    Comments: <a href="" class="tw-comment-trigger">Add Comment</a><br/>
-                    <form action='/recipes/comment/{{r.recipe.id}}/' method='POST' class="tweat-comment-form tw-form">
-                        {{ commentform.as_p }}
-                        {% csrf_token %}
-                        <input type="submit" value="Leave Comment" class="button" />
-                    </form>
-
-                    {% if r.comments %}
-                        {% for c in r.comments %}
-
-                            <div class="tweat-comment-instance">
-                                {% if c.user %}
-                                <div class="avatar">
-                                    {% avatar c.user 30 %}
-                                </div>
-                                {% endif %}
-                                <strong>{{ c.user.username }}</strong>:
-                                <p>
-                                    <em>"{{ c.text }}"</em>
-                                </p>
-                                <div class="timestamp">{{ c.txdt}}</div>
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-
-            </div>
+        {% autoescape off %}
+        {% if r.recipe.ingedients %}
+        <h3>Ingredients</h3>
+        <div class="recipe-ingredient">
+            {{ r.recipe.ingedients }}
         </div>
+        {% endif %}
 
-    {% endfor %}
+        {% if r.recipe.detail %}
+        <h3>Preparation</h3>
+        <div class="recipe-detail">
+            {{ r.recipe.detail }}
+        </div>
+        {% endif %}
+
+        {% if r.recipe.nutrition %}
+        <h3>Nutrition</h3>
+        <div class="recipe-nutrition">
+            {{ r.recipe.nutrition }}
+        </div>
+        {% endif %}
+        {% endautoescape %}
+
+    </div>
+
+    <div class="tw-comments">
+        Comments: <a href="" class="tw-comment-trigger">Add Comment</a><br/>
+        <form action='/recipes/comment/{{r.recipe.id}}/' method='POST' class="tw-comment-form tw-form">
+            {{ commentform.as_p }}
+            {% csrf_token %}
+            <input type="submit" value="Leave Comment" class="button" />
+        </form>
+
+        {% if r.comments %}
+            {% for c in r.comments %}
+                <div class="tw-comment-instance">
+                    {% if c.user %}
+                        <div class="comment-avatar">
+                            {% avatar c.user 30 %}
+                        </div>
+                    {% endif %}
+
+                    <strong>{{ c.user.username }}</strong>:
+                    <p>
+                        <em>"{{ c.text }}"</em>
+                    </p>
+                    <div class="timestamp">{{ c.txdt}}</div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+</div>
+
+{% endfor %}
 
 {% endblock %}
 
 {% block right %}
     {% include "include/profile-sidebar.html" %}
 {% endblock %}
+

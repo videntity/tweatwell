@@ -1,22 +1,27 @@
-{% extends "base.html" %}
-
+{% extends "layouts/2-column-sidebar-right.html" %}
+{% block active_nav_tab  %}qow-active{% endblock %}
 
 {% block middle %}
-
-    <h1>Answer the Question:</h1>
+    <h1>Question Of The Week</h1>
          
-    {% if not already_answered %}
-    
-    <h2>{{question}}</h2>
-    <form action="." method="POST">
+{#    {% if not already_answered %}#}
+    <div class="qow">
+        <h2>{{question}}</h2>
 
-    {{ form.as_p }}
-    {% csrf_token %}
-        
-    <input type="submit" value="Submit"/>
-    </form>
-    {% else %}
-        {{ already_answered }}
-    {% endif %}
+        <form action="." method="POST" class="tw-form">
 
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="submit" value="Submit" class="button"/>
+        </form>
+
+{#    {% else %}#}
+        <p>{{ already_answered }}</p>
+{#    {% endif %}#}
+    </div>
+    <div class="divider"></div>
+{% endblock %}
+
+{% block right %}
+    {% include "include/profile-sidebar.html" %}
 {% endblock %}

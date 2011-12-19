@@ -28,7 +28,6 @@
 
 }
 
-/* todo add on states */
 body.home-active,{
     #topnav a.nav-home-tab {
         @include nav-tab-active;
@@ -37,6 +36,12 @@ body.home-active,{
 
 body.roulette-active,{
     #topnav a.nav-roulette-tab {
+        @include nav-tab-active;
+    }
+}
+
+body.qow-active,{
+    #topnav a.nav-qow-tab {
         @include nav-tab-active;
     }
 }

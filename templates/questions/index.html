@@ -4,8 +4,9 @@
 {% block middle %}
     <h1>Question Of The Week</h1>
          
-{#    {% if not already_answered %}#}
     <div class="qow">
+    {% if not already_answered %}
+
         <h2>{{question}}</h2>
 
         <form action="." method="POST" class="tw-form">
@@ -15,11 +16,10 @@
             <input type="submit" value="Submit" class="button"/>
         </form>
 
-{#    {% else %}#}
+    {% else %}
         <p>{{ already_answered }}</p>
-{#    {% endif %}#}
+    {% endif %}
     </div>
-    <div class="divider"></div>
 {% endblock %}
 
 {% block right %}

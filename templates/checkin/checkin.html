@@ -2,7 +2,9 @@
 {% block active_nav_tab  %}home-active{% endblock %}
 
 {% block extra_head %}
+    <script src="{{STATIC_URL}}js/lib/vendor/fancybox/jquery.fancybox.pack.js"></script>
     <script src="{{STATIC_URL}}js/lib/page/checkin.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}js/lib/vendor/fancybox/jquery.fancybox.css" media="screen" />
 {% endblock %}
 
 	
@@ -60,7 +62,7 @@
                 {% if t.tweat.photo %}
                 <div class="tweat-photo">
                     {% thumbnail t.tweat.photo "50" as im %}
-                        <a href="{{ MEDIA_URL }}{{t.tweat.photo}}"><img src="{{ im.url }}" width="50" /></a>
+                        <a href="{{ MEDIA_URL }}{{t.tweat.photo}}" class="tw-lightbox"><img src="{{ im.url }}" width="50" /></a>
                     {% endthumbnail %}
 		    
                 </div>

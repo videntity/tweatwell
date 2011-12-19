@@ -9,6 +9,10 @@
  */
 
 $(function() {
+    //manually move id form field
+    $('#checkin-form #id_quantity').parent("p")
+        .addClass('id_quantity');
+
     //comments show hide
     $('.tw-comment-trigger').click(function(){
         $(this).parent('.tweat-comments').find('.tweat-comment-form').slideToggle();
@@ -29,9 +33,6 @@ $(function() {
         }
     });
 
-    //manually move id form field
-    $('#checkin-form #id_quantity').parent("p")
-    .addClass('id_quantity');
-
-
+    //add lightbox for user uploaded images
+    $('a.tw-lightbox').fancybox()
 });

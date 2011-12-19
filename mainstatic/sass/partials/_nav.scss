@@ -40,6 +40,12 @@ body.roulette-active,{
     }
 }
 
+body.recipes-active,{
+    #topnav a.nav-recipes-tab {
+        @include nav-tab-active;
+    }
+}
+
 body.qow-active,{
     #topnav a.nav-qow-tab {
         @include nav-tab-active;

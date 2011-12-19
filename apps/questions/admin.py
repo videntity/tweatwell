@@ -1,6 +1,7 @@
 from django.contrib import admin
-from models import Answer, Question
+from models import Answer, Question, CorrectAnswerPoints
 
 
 admin.site.register(Question)
 admin.site.register(Answer)
+admin.site.register(CorrectAnswerPoints)

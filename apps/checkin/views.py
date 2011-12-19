@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 from ..accounts.models import UserProfile
-from ..questions.models import Question
+from ..questions.models import CorrectAnswerPoints
 from ..roulette.models import Roulette
 from ..tips.models import CurrentTip
 from ..upload.forms import PickFruitForm, PickVeggieForm
@@ -136,15 +136,18 @@ def checkin(request):
     if roulette_points['points__sum']== None:
         roulette_points['points__sum']=0
         
-
+    question_points = CorrectAnswerPoints.objects.filter(user=request.user).aggregate(Sum('points'))
+    if question_points['points__sum']== None:
+        question_points['points__sum']=0
     
     points = freggie_points['points__sum'] + comment_points['points__sum'] + \
-                roulette_points['points__sum']
+                roulette_points['points__sum'] + question_points['points__sum']
 
     freggie_points =  freggie_points['points__sum']
     comment_points =  comment_points['points__sum']
     roulette_points =  roulette_points['points__sum']
-
+    question_points = question_points['points__sum']
+    
     #fetch total freggies -----------------------------------------------------
     
     freggies=Freggie.objects.filter(user=request.user).count()
@@ -176,7 +179,8 @@ def checkin(request):
                  'tip_text':tip_text,
                  'freggie_points': freggie_points,
                  'comment_points': comment_points,
-                 'roulette_points': roulette_points,         
+                 'roulette_points': roulette_points,
+                 'question_points': question_points, 
                  'points': points},
                 context_instance = RequestContext(request),)
 
@@ -189,7 +193,8 @@ def checkin(request):
                 'tip_text':tip_text,
                 'freggie_points': freggie_points,
                 'comment_points': comment_points,
-                'roulette_points': roulette_points,         
+                'roulette_points': roulette_points,
+                'question_points': question_points, 
                 'points': points
             },
             context_instance = RequestContext(request),)

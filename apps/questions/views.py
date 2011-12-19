@@ -9,7 +9,7 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from forms import quiz_form_factory
-from models import Question, Answer
+from models import Question, Answer, CorrectAnswerPoints
 from ..accounts.models import UserProfile
 @login_required
 def question_answer(request):
@@ -27,6 +27,7 @@ def question_answer(request):
             if data['answers'].is_correct==True:
                 messages.success(request,"You got the question right!")
                 profile.qow_status="CORRECT"
+                CorrectAnswerPoints.objects.create(user=request.user)
                 
             else:
                 messages.success(request,

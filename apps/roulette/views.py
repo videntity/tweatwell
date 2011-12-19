@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 from django.contrib import messages
 from forms import RouletteSpinForm, RouletteJokerForm
 from ..checkin.models import Comment, Freggie
+from ..questions.models import CorrectAnswerPoints
 from models import Roulette, last_spin_date, can_spin
 from django.db.models import Sum
 from django.views.decorators.csrf import csrf_exempt
@@ -45,6 +46,8 @@ def joker_results(request):
 @login_required
 def roulette_home(request):  
     
+    #fetch points
+    
     freggie_points = Freggie.objects.filter(user=request.user).aggregate(Sum('points'))
     if freggie_points['points__sum']== None:
         freggie_points['points__sum']=0
@@ -56,14 +59,18 @@ def roulette_home(request):
     roulette_points = Roulette.objects.filter(user=request.user).aggregate(Sum('points'))
     if roulette_points['points__sum']== None:
         roulette_points['points__sum']=0
-       
+        
+    question_points = CorrectAnswerPoints.objects.filter(user=request.user).aggregate(Sum('points'))
+    if question_points['points__sum']== None:
+        question_points['points__sum']=0
     
     points = freggie_points['points__sum'] + comment_points['points__sum'] + \
-                roulette_points['points__sum']
-    
+                roulette_points['points__sum'] + question_points['points__sum']
+
     freggie_points =  freggie_points['points__sum']
     comment_points =  comment_points['points__sum']
     roulette_points =  roulette_points['points__sum']
+    question_points = question_points['points__sum']
 
 
     if points>=10:
@@ -82,6 +89,7 @@ def roulette_home(request):
              'freggie_points': freggie_points,
              'comment_points': comment_points,
              'roulette_points': roulette_points,         
+             'question_points': question_points, 
              'points': points,
              'wager_points_range': wager_points_range,
              'last_spin_date':last_spin_date(request.user),

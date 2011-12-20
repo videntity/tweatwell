@@ -22,8 +22,8 @@ try:
 except ImportError:
     import Image
 
-from avatar.util import invalidate_cache
-from avatar.settings import (AVATAR_STORAGE_DIR, AVATAR_RESIZE_METHOD,
+from util import invalidate_cache
+from settings import (AVATAR_STORAGE_DIR, AVATAR_RESIZE_METHOD,
                              AVATAR_MAX_AVATARS_PER_USER, AVATAR_THUMB_FORMAT,
                              AVATAR_HASH_USERDIRNAMES, AVATAR_HASH_FILENAMES,
                              AVATAR_THUMB_QUALITY, AUTO_GENERATE_AVATAR_SIZES)

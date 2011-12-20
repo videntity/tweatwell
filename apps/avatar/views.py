@@ -6,11 +6,11 @@ from django.conf import settings
 
 from django.contrib.auth.decorators import login_required
 
-from avatar.forms import PrimaryAvatarForm, DeleteAvatarForm, UploadAvatarForm
-from avatar.models import Avatar
-from avatar.settings import AVATAR_MAX_AVATARS_PER_USER, AVATAR_DEFAULT_SIZE
-from avatar.signals import avatar_updated
-from avatar.util import get_primary_avatar, get_default_avatar_url
+from forms import PrimaryAvatarForm, DeleteAvatarForm, UploadAvatarForm
+from models import Avatar
+from settings import AVATAR_MAX_AVATARS_PER_USER, AVATAR_DEFAULT_SIZE
+from signals import avatar_updated
+from util import get_primary_avatar, get_default_avatar_url
 
 
 def _get_next(request):

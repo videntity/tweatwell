@@ -3,7 +3,7 @@ from django.core.cache import cache
 
 from django.contrib.auth.models import User
 
-from avatar.settings import (AVATAR_DEFAULT_URL, AVATAR_CACHE_TIMEOUT,
+from settings import (AVATAR_DEFAULT_URL, AVATAR_CACHE_TIMEOUT,
                              AUTO_GENERATE_AVATAR_SIZES, AVATAR_DEFAULT_SIZE)
 
 cached_funcs = set()

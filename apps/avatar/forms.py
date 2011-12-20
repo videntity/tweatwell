@@ -6,8 +6,8 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 from django.template.defaultfilters import filesizeformat
 
-from avatar.models import Avatar
-from avatar.settings import (AVATAR_MAX_AVATARS_PER_USER, AVATAR_MAX_SIZE,
+from models import Avatar
+from settings import (AVATAR_MAX_AVATARS_PER_USER, AVATAR_MAX_SIZE,
                              AVATAR_ALLOWED_FILE_EXTS, AVATAR_DEFAULT_SIZE)
 
 

@@ -21,7 +21,7 @@ urlpatterns = patterns('',
                 {'document_root': settings.STATIC_ROOT}),
     
 
-    (r'^avatar/', include('avatar.urls')),
+    (r'^avatar/', include('tweatwell.apps.avatar.urls')),
     
     url(r'^faq/$', direct_to_template,
            {'template': 'static_page/faq.html'},

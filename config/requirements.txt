@@ -1,4 +1,5 @@
 -e git+https://github.com/videntity/python-omhe.git#egg=python-omhe
+-e git+https://github.com/ericflo/django-avatar.git#egg=django-avatar
 Django==1.3.1
 boto==2.0b4
 PIL

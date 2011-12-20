@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.db import models
-from datetime import datetime
+from datetime import datetime, timedelta
 from utils import update_filename, save_to_restcat
 from django.contrib.auth.models import User
 from sorl.thumbnail import ImageField
@@ -43,8 +43,13 @@ class Freggie(models.Model):
         self.txid=str(uuid.uuid4())
         #profile=self.user.get_profile()
         now = datetime.utcnow()
-        self.evdt=now#.strftime("%Y-%m-%d %H:%M:%S")
-        self.txdt=now#.strftime("%Y-%m-%d %H:%M:%S")
+        if self.evdt:
+            self.evdt=self.evdt + timedelta(hours=-5)#.strftime("%Y-%m-%d %H:%M:%S")
+        else:
+            self.evdt=now
+            
+        if self.quantity > 1:
+            self.points=self.points * self.quantity
         
         if self.photo:
             self.points=self.points+5

@@ -7,16 +7,13 @@ from datetime import datetime
 def convert_twitter_date(date_str):
     """Convert string to datetime
     """
-    print "here"
-    time_struct = time.strptime(date_str, "%a, %d %Y %H:%M:%S +0000")#Tue Apr 26 08:57:55 +0000 2011
-    print time_struct
-    date= datetime.fromtimestamp(time.mktime(time_struct))
-    print date
-    print "end"
+    time_struct = time.strptime(date_str, "%a, %d %b %Y %H:%M:%S +0000")#Tue, Apr 26 08:57:55 +0000 2011
+    mydate= datetime.fromtimestamp(time.mktime(time_struct))
+    return mydate
+
 
 def twitbotsearch(query, since_id):
     URL="http://search.twitter.com/search.json?q=%s&since_id=%s" % (query, since_id)
-    print URL
     URL=str(URL)
     
     c = pycurl.Curl()

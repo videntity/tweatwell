@@ -42,7 +42,7 @@ class Freggie(models.Model):
     def save(self, **kwargs):
         self.txid=str(uuid.uuid4())
         #profile=self.user.get_profile()
-        now = datetime.utcnow()
+        now = datetime.now()
         if self.evdt:
             self.evdt=self.evdt + timedelta(hours=-5)#.strftime("%Y-%m-%d %H:%M:%S")
         else:

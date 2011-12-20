@@ -1,0 +1,18 @@
+.tw-settings-form {
+    position:relative;
+    .tw-settings-avatar {
+        position:absolute;
+        top:0px;
+        right:25px;
+        padding:10px 50px 10px 50px;
+        background: #F6F6F6;
+        @include border-radius(5px);
+        border:1px solid #7D9702;
+        background:#F5F5F5;
+        text-align:center;
+    }
+    .avatar {
+        @extend .avatar-skin;
+        margin-left:20px;
+    }
+}

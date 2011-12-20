@@ -4,11 +4,26 @@
 <h1>Settings</h1>
 <p><em><strong>* All fields required</strong></em></p>
 
-<form action="/accounts/profile/" method="post" class="tw-form">
+<form action="/accounts/profile/" method="post" class="tw-form tw-settings-form">
 	{{ form.as_p }}
 	{% csrf_token %}
 	<input type="submit" value="Update" class="button "/>
-</form>
 
+
+    <div class="tw-settings-avatar">
+        <h3>Profile Photo</h3>
+        {% load avatar_tags %}
+
+        <div class="avatar">
+            <a href="/avatar/change">{% avatar user %}</a>
+        </div>
+
+        <div style="clear:both"></div>
+
+        <a href="/avatar/change/">Change Photo</a>
+
+    </div>
+
+</form>
 
 {% endblock %}

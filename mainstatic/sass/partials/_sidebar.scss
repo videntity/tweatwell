@@ -14,18 +14,7 @@
 
 .profile {
     .avatar {
-	    float: left;
-	    background: #e6e6e6;
-        background: image-url('layout/shadow.png') no-repeat right bottom;
-        margin: 10px 4px 0 2px;
-	    img {
-	        display:block;
-            background-color: #FFFFFF;
-            display: block;
-            margin: -6px 6px 6px -6px;
-            padding: 2px;
-            position: relative;
-	    }
+        @extend .avatar-skin;
     }
     .status {
         font-style:italic;

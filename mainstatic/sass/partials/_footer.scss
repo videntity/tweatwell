@@ -9,36 +9,25 @@
 
 #footer {
     background-color: #5fa1c8;
-    padding-top: 25px;
+    padding: 25px 0 50px 0;
     div {
         width: 438px;
         margin:0 auto 0 auto;
         color:#ffffff;
         text-align:center;
-        @include pie-clearfix;
+    }
+    div.tagline {
+        font-size:16px;
+        font-weight:bold;
+        text-shadow: 0px -1px 0px #374683;
+        font-style: italic;
     }
     p {
-        clear:both;
         padding-top:8px;
+        font-weight:bold;
+        text-shadow: 0px -1px 0px #374683;
+        font-style: italic;
     }
-    .restcat {
-        @include footer-image;
-        background-image: url(/static/img/restcat.jpg);
-    }
-    .restcat:hover {background-position: top;}
+    a {color:#FFFFFF;}
 
-    .videntity {
-        @include footer-image;
-        background-image: url(/static/img/videntity.jpg);
-    }
-    .videntity:hover:hover {background-position: top;}
-    
-    .plus {
-        display:block;
-        background-image: url(/static/img/plus.gif);
-        height: 73px;
-        width: 33px;
-        float: left;
-        background-position: bottom;
-    }
 }

@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}js/lib/vendor/fancybox/jquery.fancybox.css" media="screen" />
 {% endblock %}
 
-	
+
 {% block middle %}
     <h1>Check In</h1>
     <p>
@@ -28,7 +28,7 @@
             <input type="submit" value="Submit" class="button" />
         </form>
     </div>
-    
+
     <div class="tweat-form">
         <h3 class="sub">Eating Something Else?</h3>
 
@@ -46,14 +46,18 @@
 
         <div class="tweat-instance">
             {% if t.tweat.user %}
-            <div class="user-avatar">
-                {% avatar t.tweat.user 45 %}
-            </div>
+                <div class="user-avatar">
+                    {% avatar t.tweat.user 45 %}
+                </div>
             {% endif %}
 
             <div class="tweat-content">
                 <div class="tweat-txt">
-                     <strong>{{ t.tweat.eattext }}</strong>
+                    <strong>{{ t.tweat.eattext }}</strong>
+                </div>
+
+                <div class="tweat-timestamp">
+                    {{ t.tweat.evdt }}
                 </div>
 
                 <div class="tweat-quote">
@@ -62,12 +66,12 @@
 
                 {% load thumbnail %}
                 {% if t.tweat.photo %}
-                <div class="tweat-photo">
-                    {% thumbnail t.tweat.photo "75" as im %}
-                        <a class="tw-lightbox" href="{{ MEDIA_URL }}{{t.tweat.photo}}"><img src="{{ im.url }}" width="75" /></a>
-                    {% endthumbnail %}
-		    
-                </div>
+                    <div class="tweat-photo">
+                        {% thumbnail t.tweat.photo "75" as im %}
+                            <a class="tw-lightbox" href="{{ MEDIA_URL }}{{t.tweat.photo}}"><img src="{{ im.url }}" width="75" /></a>
+                        {% endthumbnail %}
+
+                    </div>
                 {% endif %}
 
                 <div class="tw-comments">
@@ -83,9 +87,9 @@
 
                             <div class="tw-comment-instance">
                                 {% if c.user %}
-                                <div class="comment-avatar">
-                                    {% avatar c.user 30 %}
-                                </div>
+                                    <div class="comment-avatar">
+                                        {% avatar c.user 30 %}
+                                    </div>
                                 {% endif %}
                                 <strong>{{ c.user.username }}</strong>:
                                 <p>

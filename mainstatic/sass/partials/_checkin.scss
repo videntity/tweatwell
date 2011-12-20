@@ -39,6 +39,7 @@
     border-bottom:1px dotted #cccccc;
     margin-bottom:20px;
     padding:10px;
+    position:relative;
     .user-avatar {
 	    float: left;
 	    background: #e6e6e6;
@@ -72,5 +73,12 @@
             display:block;
             border:1px solid #999999;
         }
+    }
+    .tweat-timestamp {
+        font-size:10px;
+        color:#999999;
+        position: absolute;
+        top:15px;
+        right:5px;
     }
 }

@@ -154,7 +154,7 @@ INSTALLED_APPS = (
     'tweatwell.apps.tips',
     'tweatwell.apps.accounts',
     'tweatwell.apps.quiz',
-    'avatar',
+    'tweatwell.apps.avatar',
     'django_ses',
     'sorl.thumbnail',
 )
@@ -218,6 +218,8 @@ ORGANIZATION_NAME           = "WVU:Tweatwell"
 #To turn off set yo None: TWITTERHASH=None
 TWITTERHASH="wvu5"
 
+#TiMEZON OFFSET
+TIMEZONE_OFFSET=-5
 
 
 #RESTCat Settings

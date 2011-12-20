@@ -44,7 +44,9 @@ class Freggie(models.Model):
         #profile=self.user.get_profile()
         now = datetime.now()
         if self.evdt:
-            self.evdt=self.evdt + timedelta(hours=-5)#.strftime("%Y-%m-%d %H:%M:%S")
+            #assuming we are getting this from twitter which reports in UTC time.
+            #adjust accordingly.
+            self.evdt=self.evdt + timedelta(hours=settings.TIMEZONE_OFFSET)
         else:
             self.evdt=now
             

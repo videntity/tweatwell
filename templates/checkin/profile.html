@@ -1,10 +1,12 @@
 {% extends "layouts/2-column-sidebar-right.html" %}
 {% block active_nav_tab  %}profile-active{% endblock %}
 
-{% block extra_head %}
+{% block extra_ie %}
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9">
+    <!--[if IE]><script src="{{STATIC_URL}}js/lib/utils/excanvas.compiled.js"></script><![endif]-->
+{% endblock %}
 
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9">
-<!--[if IE]><script src="{{STATIC_URL}}js/lib/utils/excanvas.compiled.js"></script><![endif]-->
+{% block extra_head %}
 <script src="{{STATIC_URL}}js/lib/vendor/dygraph/dygraph-combined.js"></script>
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
 <script type="text/javascript">

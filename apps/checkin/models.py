@@ -28,7 +28,8 @@ class Freggie(models.Model):
     evdt            = models.DateTimeField(blank=True)
     evtz            = models.IntegerField(max_length=3, default=-5)
     txtz            = models.IntegerField(max_length=3, default=0)
-    text            = models.CharField(max_length=140, blank=True, null=True)
+    text            = models.CharField(max_length=140, blank=True, null=True,
+                                verbose_name="Say something about your freggie")
     eattext         = models.CharField(max_length=140, blank=True)
     ttype           = models.CharField(max_length=10, default="omhe")
     points          = models.IntegerField(max_length=3, default=2)
@@ -91,16 +92,17 @@ class Comment(models.Model):
 
 
 class NonVeg(models.Model):
-    nonveg          = models.CharField(verbose_name="Non Fruit or Veggie",
-                                       max_length=140)
-    user            = models.ForeignKey(User)
-    text            = models.CharField(max_length=140)
-    evdt            = models.DateTimeField(auto_now_add=True)
-    evdate          = models.DateField(auto_now_add=True)
-    evtz            = models.IntegerField(max_length=3, default=-5)
-    txtz            = models.IntegerField(max_length=3, default=0)
-    ttype           = models.CharField(max_length=10, default="txt")
-    points          = models.IntegerField(max_length=3, default=0)
+    nonveg  = models.CharField(max_length=140,
+                    verbose_name="Other food or beverage non-freggie")
+    user    = models.ForeignKey(User)
+    text    = models.CharField(max_length=140, blank=True, null=True,
+                    verbose_name="Say something about what else you're eating")
+    evdt    = models.DateTimeField(auto_now_add=True)
+    evdate  = models.DateField(auto_now_add=True)
+    evtz    = models.IntegerField(max_length=3, default=-5)
+    txtz    = models.IntegerField(max_length=3, default=0)
+    ttype   = models.CharField(max_length=10, default="txt")
+    points  = models.IntegerField(max_length=3, default=0)
     
     class Meta:
         ordering = ['-evdt']

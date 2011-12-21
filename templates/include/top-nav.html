@@ -1,6 +1,7 @@
 <ul id="topnav">
     <li><a class="nav-home-tab" href="/">Home</a></li>
     {% if user.is_authenticated %}
+        <li><a class="nav-profile-tab" href="/checkin/profile">My Profile</a></li>
         <li><a class="nav-recipes-tab" href="/recipes/">Recipes</a></li>
         <li><a class="nav-roulette-tab" href="/roulette/">Spin To Win</a></li>
         <li><a class="nav-qow-tab" href="/questions/ask/">Question Of The Week</a></li>

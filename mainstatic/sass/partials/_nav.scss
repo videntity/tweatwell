@@ -34,6 +34,12 @@ body.home-active,{
     }
 }
 
+body.profile-active,{
+    #topnav a.nav-profile-tab {
+        @include nav-tab-active;
+    }
+}
+
 body.roulette-active,{
     #topnav a.nav-roulette-tab {
         @include nav-tab-active;

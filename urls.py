@@ -45,8 +45,7 @@ urlpatterns = patterns('',
     
     
     #Twitter searchbot
-    url(r'^executetwitsearchbot/', executetwitsearchbot, name="executetwitsearchbot"),
-    url(r'^buildpointsrank/', buildpointsrank, name="buildpointsrank"),
+    url(r'^twitsearchbot/', executetwitsearchbot, name="executetwitsearchbot"),
     
 
     # enable the admin interface:

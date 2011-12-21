@@ -200,13 +200,13 @@ AWS_ACCESS_KEY_ID = 'AKIAIU6C5F7PYXMGXKWA'
 AWS_SECRET_ACCESS_KEY = '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'
 
 
-
-
-#Registration  & Password Reset Settings ---------------------------------------
-
-#Only allow a person to registeration from this domain
-#Set to None to allow any
-#RESTRICT_REG_DOMAIN_TO="mix.wvu.edu"
+RESTCAT_SERVER="127.0.0.1"
+RESTCAT_USER=""
+RESTCAT_PASS=""
+# Registration  & Password Reset Settings ---------------------------------------
+# Only allow a person to registeration from this domain
+# Set to None to allow any
+# RESTRICT_REG_DOMAIN_TO="mix.wvu.edu"
 RESTRICT_REG_DOMAIN_TO      = None
 MIN_PASSWORD_LEN            = 8
 SIGNUP_TIMEOUT_DAYS         = 7
@@ -214,21 +214,12 @@ PASSWORD_RESET_TIMEOUT_DAYS = 2
 ORGANIZATION_NAME           = "WVU:Tweatwell"
 
 
-#Twitter Hash Tag.  Setting this gets only tweats with this hash.
-#To turn off set yo None: TWITTERHASH=None
-TWITTERHASH="wvu5"
+# Twitter Hash Tag.  Only fetch tweets with this hash.
+# To turn off set to None: TWITTERHASH=None
+TWITTERHASH="#freggie"
 
-#TiMEZON OFFSET
+# TIMEZONE OFFSET
 TIMEZONE_OFFSET=-5
-
-
-#RESTCat Settings
-RESTCAT_SERVER="http://127.0.0.1:8000/"
-RESTCAT_USER="alan"
-RESTCAT_PASS="p"
-DEFAULT_TRANSACTION_TIMEZONE_OFFSET=-5
-
-
 
 
 try:

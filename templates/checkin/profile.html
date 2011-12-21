@@ -3,12 +3,45 @@
 
 {% block extra_head %}
 
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9">
+<!--[if IE]><script src="{{STATIC_URL}}js/lib/utils/excanvas.compiled.js"></script><![endif]-->
+<script src="{{STATIC_URL}}js/lib/vendor/dygraph/dygraph-combined.js"></script>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript">
+
+    google.load('visualization', '1', {packages: ['linechart']});
+    google.setOnLoadCallback(drawChart);
+
+    var fakeData = [];
+
+    for(var i=1; i<30; i++) {
+
+        var freggie = Math.floor(Math.random() * 6);
+        var goal    = 5;
+
+        fakeData.push([new Date(2011, 0 , i), goal, freggie]);
+    }
+
+    function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'Date');
+        data.addColumn('number', 'Goal');
+        data.addColumn('number', 'Freggies');
+        data.addRows(fakeData);
+
+        var g = new Dygraph.GVizChart(document.getElementById("graphdiv"));
+        g.draw(data, {
+            displayAnnotations: true,
+            fillGraph: true,
+            stepPlot: true
+        });
+
+    }
+</script>
 
 {% endblock %}
 
 {% block middle %}
-
-
 <h1>Profile for {{ user }}</h1>
 
 Your goal is  {{ user.get_profile.daily_freggie_goal }}.<br>
@@ -16,6 +49,12 @@ Your goal is  {{ user.get_profile.daily_freggie_goal }}.<br>
 {%for c in combolist%}
     {{ c }} <br>
 {% endfor%}
+
+
+<br/><br/>
+<h2>Visualizer Proof Of Concept</h2>
+
+<div id="graphdiv" style="width:700px;height:200px;"></div>
 
 {% endblock %}
 

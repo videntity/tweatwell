@@ -53,6 +53,8 @@ define("ui.roulette", [
             var paper = Raphael(o.canvas, 350, 350);
 
             self.img = paper.image($(o.arrowId).attr("src"), 145, 0, 58, 350);
+            //stupid ie8 hack, set angle to 0 to force display
+            self.img.attr("rotation", "0");
         },
 
         /**

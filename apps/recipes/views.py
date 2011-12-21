@@ -15,13 +15,14 @@ from forms import CommentForm
 
 def recipe(request):
     recipes = Recipe.objects.all()
+    
     recipelist=[]
     for r in recipes:
         c=RecipeComment.objects.filter(recipe=r)
         recipeitem = {'recipe': r, 'comments':c}
         recipelist.append(recipeitem)
-    print recipelist
     
+
     return render_to_response('recipes/index.html',
                 {
                 'commentform': CommentForm(),

@@ -11,7 +11,7 @@ class Recipe(models.Model):
     slug         = models.CharField(max_length=100)
     ingredients  = models.TextField(max_length=5000)
     detail       = models.TextField(max_length=10000)
-    nutrition    = models.TextField(max_length=5000)
+    nutrition    = models.TextField(max_length=5000, blank=True, null=True)
     date         = models.DateField(auto_now_add=True)
     class Meta:
         ordering = ['-date']
@@ -24,10 +24,10 @@ class RecipeComment(models.Model):
     recipe       = models.ForeignKey(Recipe)
     text         = models.CharField(max_length=100)
     points       = models.IntegerField(max_length=2, default=1)
-    date         = models.DateField(auto_now_add=True)
+    evdt         = models.DateTimeField(auto_now_add=True)
     
     class Meta:
-        ordering = ['-date']
+        ordering = ['-evdt']
     
     def __unicode__(self):
         return 'Comment on %s by %s' % (self.recipe, self.user)

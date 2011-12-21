@@ -3,9 +3,9 @@
         "pk": 1, 
         "model": "recipes.recipe", 
         "fields": {
-            "nutrition": "very fattening", 
-            "name": "This is a recipe", 
-            "ingredients": "ingredient 1\r\ningredient 2", 
+            "nutrition": "100 calories.", 
+            "name": "recipe title", 
+            "ingredients": "<ul>\r\n<li>ingredient 1</li>\r\n<li>ingredient 2</li>\r\n</ul>", 
             "detail": "mix them together", 
             "date": "2011-12-19", 
             "slug": "recipe"

@@ -19,10 +19,10 @@
         <h2>{{ r.recipe.name }}</h2>
 
         {% autoescape off %}
-        {% if r.recipe.ingedients %}
+        {% if r.recipe.ingredients %}
         <h3>Ingredients</h3>
         <div class="recipe-ingredient">
-            {{ r.recipe.ingedients }}
+            {{ r.recipe.ingredients }}
         </div>
         {% endif %}
 
@@ -64,7 +64,7 @@
                     <p>
                         <em>"{{ c.text }}"</em>
                     </p>
-                    <div class="timestamp">{{ c.txdt}}</div>
+                    <div class="timestamp">{{ c.evdt}}</div>
                 </div>
             {% endfor %}
         {% endif %}

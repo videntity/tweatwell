@@ -203,7 +203,7 @@ AWS_SECRET_ACCESS_KEY = 'sH17aMlImhIm4QxHnqSHS+zQj6qChrZ8I+QGzH0T'
 RESTCAT_SERVER="127.0.0.1"
 RESTCAT_USER=""
 RESTCAT_PASS=""
-# Registration  & Password Reset Settings ---------------------------------------
+# Registration  & Password Reset Settings --------------------------------------
 # Only allow a person to registeration from this domain
 # Set to None to allow any
 # RESTRICT_REG_DOMAIN_TO="mix.wvu.edu"

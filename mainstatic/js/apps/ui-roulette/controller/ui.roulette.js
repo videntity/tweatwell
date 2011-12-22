@@ -122,7 +122,7 @@ define("ui.roulette", [
             var self = this;
 
             if(self.results.points == "joker") {
-                self.results.points = "0";
+                self.results.points = 0;
                 self.joker = true;
 
                 //test if user already has joker badge, if so spin again, set text

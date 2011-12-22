@@ -7,7 +7,6 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from ..accounts.models import UserProfile
-from ..utils import *
 from models import TwitBot
 from utils import twitbotsearch, convert_twitter_date
 from ..checkin.models import Freggie

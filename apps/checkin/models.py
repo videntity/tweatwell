@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.db import models
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 from utils import update_filename, save_to_restcat
 from django.contrib.auth.models import User
 from sorl.thumbnail import ImageField
@@ -11,13 +11,24 @@ FOV_CHOICES = (('fruit', 'fruit'),('veg','veg'))
 FREGGIE_CHOICES=tuple(list(fruit_choices) + list(veg_choices))
 
 
+class FreggieGoal(models.Model):
+    user            = models.ForeignKey(User)
+    evdate          = models.DateField(auto_now_add=True)
+    freggie_goal    = models.IntegerField(max_length=2)
+    
+    def __unicode__(self):
+        return "%s's goal was %s on %s" % (self.user, self.freggie_goal,
+                             self.evdate) 
+    def save(self, **kwargs):
+        super(FreggieGoal, self).save(**kwargs)
+
 # Create your models here.
 class Freggie(models.Model):
     sinceid         = models.CharField(max_length=20, null=True, blank=True)
     txid            = models.CharField(max_length=36, blank=True)
     user            = models.ForeignKey(User)
-    photo           = ImageField(upload_to=update_filename,
-                       null=True, blank=True)
+    photo           = ImageField(upload_to=update_filename, null=True, blank=True,
+                       verbose_name="Upload a photo of your freggie for 5 extra points.")
     freggie         = models.CharField(max_length=50, choices=FREGGIE_CHOICES)
     freggie_other   = models.CharField(max_length=50, blank=True, null=True)
     fruit_or_veg    = models.CharField(max_length=5, choices=FOV_CHOICES,
@@ -33,7 +44,6 @@ class Freggie(models.Model):
     eattext         = models.CharField(max_length=140, blank=True)
     ttype           = models.CharField(max_length=10, default="omhe")
     points          = models.IntegerField(max_length=3, default=2)
-
     class Meta:
         ordering = ['-evdt']
     
@@ -66,8 +76,19 @@ class Freggie(models.Model):
             self.freggie=self.freggie_other
         
         self.eattext=" %s just ate %s" % (self.user, self.freggie )
-        super(Freggie, self).save(**kwargs)
         
+        try:
+            f=FreggieGoal.objects.get(user=self.user, evdate=date.today())
+            f.freggie_goal=self.user.get_profile().daily_freggie_goal
+            f.save()
+        except(FreggieGoal.DoesNotExist):
+            FreggieGoal.objects.create(user=self.user,
+                    freggie_goal=self.user.get_profile().daily_freggie_goal )
+        
+        super(Freggie, self).save(**kwargs)
+
+
+
 class Comment(models.Model):
     freggie         = models.ForeignKey(Freggie, blank=True, null=True)
     sinceid         = models.CharField(max_length=20, blank=True, null=True)
@@ -88,31 +109,7 @@ class Comment(models.Model):
         return '%s said: "%s"  on %s' % (self.user, self.text, self.evdt)
     
     def save(self, **kwargs):
-        super(Comment, self).save(**kwargs)        
-
-
-class NonVeg(models.Model):
-    nonveg  = models.CharField(max_length=140,
-                    verbose_name="Other food or beverage non-freggie")
-    user    = models.ForeignKey(User)
-    text    = models.CharField(max_length=140, blank=True, null=True,
-                    verbose_name="Say something about what else you're eating")
-    evdt    = models.DateTimeField(auto_now_add=True)
-    evdate  = models.DateField(auto_now_add=True)
-    evtz    = models.IntegerField(max_length=3, default=-5)
-    txtz    = models.IntegerField(max_length=3, default=0)
-    ttype   = models.CharField(max_length=10, default="txt")
-    points  = models.IntegerField(max_length=3, default=0)
-    
-    class Meta:
-        ordering = ['-evdt']
-    
-    def __unicode__(self):
-        return '%s ate %s and said "%s" on %s' % (self.user, self.nonveg,
-                                                   self.text, self.evdt)
-    
-    def save(self, **kwargs):
-        super(NonVeg, self).save(**kwargs)
+        super(Comment, self).save(**kwargs)
         
         
 BADGE_CHOICES=(('fruitdean','fruitdean'),('vegdean','vegdean'),
@@ -137,5 +134,4 @@ class BadgePoints(models.Model):
             self.points=3
         if self.badge=="professor":
             self.points=1
-        
         super(BadgePoints, self).save(**kwargs)

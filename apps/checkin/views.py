@@ -16,8 +16,8 @@ from ..roulette.models import Roulette
 from ..tips.models import CurrentTip
 from ..upload.forms import PickFruitForm, PickVeggieForm
 import datetime
-from forms import FreggieForm, CommentForm, NonVegForm
-from models import Comment, Freggie, NonVeg
+from forms import FreggieForm, CommentForm
+from models import Comment, Freggie
 from itertools import chain
 from operator import attrgetter
 
@@ -25,67 +25,8 @@ def anon_home_index(request):
     print ("anonymous home. We'll do this at near the end. for now redirect to login/signup")
     return HttpResponseRedirect(reverse('simple_login'))
 
-@login_required
-def answer_question(request):
-    pass
 
-
-
-@login_required
-def admin_profile(request, username):
-    u=get_object_or_404(User, username=username)
-    p=get_object_or_404(UserProfile, user=u)
-    nonvegs=NonVeg.objects.filter(user=u)
-    freggies=Freggie.objects.filter(user=u)
-    combolist = sorted(chain(nonvegs, freggies), key=attrgetter('evdt'),
-                       reverse=True)
-    
-    return render_to_response('checkin/admin-profile.html',
-                    {'combolist':combolist,
-                     'u':u,
-                     'profile':p
-                     },
-            context_instance = RequestContext(request),)
-
-
-
-
-@login_required
-def profile(request):
-    p=get_object_or_404(UserProfile, user=request.user)
-    nonvegs=NonVeg.objects.filter(user=request.user)
-    freggies=Freggie.objects.filter(user=request.user)
-    combolist = sorted(chain(nonvegs, freggies), key=attrgetter('evdt'),
-                       reverse=True)
-    
-    return render_to_response('checkin/profile.html',
-                    {
-                'freggies': freggies,
-                'nonvegs': nonvegs,
-                'combolist':combolist,
-            },
-            context_instance = RequestContext(request),)
-
-
-@login_required
-def nonveg(request):
-    
-    if request.method == 'POST':
-
-        form = NonVegForm(request.POST)
-        
-        if form.is_valid():  
-            data = form.cleaned_data
-            newnonveg=form.save(commit=False)
-            newnonveg.text=data['text']
-            newnonveg.nonveg=data['nonveg']
-            newnonveg.user=request.user
-            newnonveg.save()
-            messages.success(request, "Successfuly added a non fruit or vegetable item.")
-            return HttpResponseRedirect(reverse('checkin'))
-
-
-            
+   
 @login_required
 def freggie_comment(request, freggie_id):
     
@@ -105,8 +46,8 @@ def freggie_comment(request, freggie_id):
             messages.success(request, "Successfuly added a comment.")
             return HttpResponseRedirect(reverse('checkin'))
             
-def checkin(request):
 
+def checkin(request):
 
     #get the current tip
     try:
@@ -173,7 +114,6 @@ def checkin(request):
             return render_to_response('checkin/checkin.html',
                 {'form':form,
                  'commentform': CommentForm(),
-                 'nonvegform': NonVegForm(),
                  'tweatlist': tweatlist,
                  'freggies': freggies,
                  'tip_text':tip_text,
@@ -187,7 +127,6 @@ def checkin(request):
     return render_to_response('checkin/checkin.html',
             {'form': FreggieForm(),
                  'commentform': CommentForm(),
-                 'nonvegform': NonVegForm(),
                 'tweatlist': tweatlist,
                 'freggies': freggies,
                 'tip_text':tip_text,

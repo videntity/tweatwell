@@ -42,7 +42,7 @@ urlpatterns = patterns('',
     url(r'^recipes/',   include('tweatwell.apps.recipes.urls')),
     url(r'^quiz/',      include('tweatwell.apps.quiz.urls')),
     url(r'^questions/', include('tweatwell.apps.questions.urls')),
-    
+    url(r'^profile/', include('tweatwell.apps.profile.urls')),
     
     #Twitter searchbot
     url(r'^twitsearchbot/', executetwitsearchbot, name="executetwitsearchbot"),

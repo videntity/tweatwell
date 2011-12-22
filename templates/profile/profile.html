@@ -1,0 +1,83 @@
+{% extends "layouts/2-column-sidebar-right.html" %}
+{% block active_nav_tab  %}profile-active{% endblock %}
+
+{% block extra_ie %}
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9">
+    <!--[if IE]><script src="{{STATIC_URL}}js/lib/utils/excanvas.compiled.js"></script><![endif]-->
+{% endblock %}
+
+{% block extra_head %}
+<script src="{{STATIC_URL}}js/lib/vendor/dygraph/dygraph-combined.js"></script>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript">
+
+    google.load('visualization', '1', {packages: ['linechart']});
+    google.setOnLoadCallback(drawChart);
+
+    var fakeData = [];
+
+    for(var i=1; i<30; i++) {
+
+        var freggie = Math.floor(Math.random() * 6);
+        var goal    = 5;
+
+        fakeData.push([new Date(2011, 0 , i), goal, freggie]);
+    }
+
+    function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'Date');
+        data.addColumn('number', 'Goal');
+        data.addColumn('number', 'Freggies');
+        data.addRows(fakeData);
+
+        var g = new Dygraph.GVizChart(document.getElementById("graphdiv"));
+        g.draw(data, {
+            displayAnnotations: true,
+            fillGraph: true,
+            stepPlot: true
+        });
+
+    }
+</script>
+
+{% endblock %}
+
+{% block middle %}
+
+
+{%for i in goallist%}
+   Day: {{ i.evdate }}<br> Goal:{{ i.goal }}<br> Actual:{{ i.freggie }}<br><br>
+{% endfor%}
+
+
+<h1>Profile for {{ user }}</h1>
+
+Your goal is  {{ user.get_profile.daily_freggie_goal }}.<br>
+
+{%for c in combolist%}
+    {{ c }} <br>
+{% endfor%}
+
+<div class="tweat-form">
+        <h3 class="sub">Eating Something Else? Add it here</h3>
+
+        <form action='/profile/nonveg/' method='POST' class="tw-form">
+            {{ nonvegform.as_p }}
+            {% csrf_token %}
+            <input type="submit" value="Submit" class="button" />
+        </form>
+    </div>
+
+
+<br/><br/>
+<h2>Visualizer Proof Of Concept</h2>
+
+<div id="graphdiv" style="width:700px;height:200px;"></div>
+
+{% endblock %}
+
+
+{% block right %}
+    {% include "include/profile-sidebar.html" %}
+{% endblock %}

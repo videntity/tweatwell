@@ -1,5 +1,5 @@
 from django import forms
-from models import Comment, Freggie, NonVeg
+from models import Comment, Freggie
 
 class FreggieForm(forms.ModelForm):
     class Meta:
@@ -12,7 +12,3 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ('text',)
         
-class NonVegForm(forms.ModelForm):
-    class Meta:
-        model = NonVeg
-        fields = ('nonveg','text',)

@@ -36,12 +36,9 @@ define("ui.roulette", [
             self._createCanvas();
 
             //bind click if user can play
-            if(User.points >= 10 && User.canSpin == "True") {
-                $('#roulette-canvas').click(function(){
-                    self._spinWheel(self._getRandomPocket());
-                    $(this).unbind('click');
-                });
-            }
+//            if(User.points >= 10 && User.canSpin == "True") {
+                self.rouletteBindClick();
+//            }
         },
 
 
@@ -57,6 +54,18 @@ define("ui.roulette", [
             self.img.attr("rotation", "0");
         },
 
+        /** Adds on click behavior
+         *
+         */
+        rouletteBindClick: function() {
+            var self = this;
+
+            $('#roulette-canvas').click(function(){
+                self._spinWheel(self._getRandomPocket());
+                $(this).unbind('click');
+            });
+        },
+
         /**
          * Spin Animation
          */
@@ -68,6 +77,7 @@ define("ui.roulette", [
             self.img.attr("rotation", "0");
             self.img.animate({rotation: self._calculateSpin(pocket)}, 4000, ">", function(){
                 self._getResult(pocket);
+                self._handleJoker();
                 self._updateInterface();
                 self._save();
             });
@@ -103,12 +113,25 @@ define("ui.roulette", [
             var wager = self._getWager();
 
             self.results = Rules.applyRule(pocket, wager);
+        },
 
-            //handle joker
+        /** specific behavior for handling joker
+         *
+         */
+        _handleJoker: function() {
+            var self = this;
+
             if(self.results.points == "joker") {
                 self.results.points = "";
                 self.joker = true;
-                //to test here for existing badge and allow spin again
+
+                //test if user already has joker badge, if so spin again
+                if(User.hasJoker == "True")  {
+                    //spin again & overrided result object
+                    self.results.resultTxt = '<span style="font-size:12px;">You already won the joker badge, spin again</span>';
+                    self.results.points = 0;
+                    self.rouletteBindClick();
+                }
             }
         },
 
@@ -142,7 +165,9 @@ define("ui.roulette", [
             var self = this;
 
             if(self.joker) {
-                Points.saveJoker();
+                if(User.hasJoker != "True") {
+                    Points.saveJoker();
+                }
             } else {
                 Points.save(self.results.points);
             }

@@ -36,9 +36,9 @@ define("ui.roulette", [
             self._createCanvas();
 
             //bind click if user can play
-//            if(User.points >= 10 && User.canSpin == "True") {
+            if(User.points >= 10 && User.canSpin == "True") {
                 self.rouletteBindClick();
-//            }
+            }
         },
 
 
@@ -122,14 +122,12 @@ define("ui.roulette", [
             var self = this;
 
             if(self.results.points == "joker") {
-                self.results.points = "";
+                self.results.points = "0";
                 self.joker = true;
 
-                //test if user already has joker badge, if so spin again
+                //test if user already has joker badge, if so spin again, set text
                 if(User.hasJoker == "True")  {
-                    //spin again & overrided result object
                     self.results.resultTxt = '<span style="font-size:12px;">You already won the joker badge, spin again</span>';
-                    self.results.points = 0;
                     self.rouletteBindClick();
                 }
             }

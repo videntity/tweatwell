@@ -67,7 +67,7 @@ define("ui.roulette", [
         },
 
         /**
-         * Spin Animation
+         * Spin Animation & Main Event
          */
         _spinWheel: function(pocket) {
             var self = this;
@@ -104,7 +104,7 @@ define("ui.roulette", [
             return Math.floor(Math.random() * (o.numPockets));
         },
 
-        /** Gets result based on landed pocket and wager, stores in widget object
+        /** Gets result based on landed pocket and wager
          *
          * @param pocket
          */

@@ -16,10 +16,12 @@ define([
         expect(2);
 
         stop();
+        var timer = "";
 
-        var timer = setInterval(function(){test()}, 5000);
 
-        $('#roulette-canvas').click();
+        $('#roulette-canvas').click(function(){
+            timer = setInterval(function(){test()}, 5000);
+        });
 
         function test() {
             notEqual( $('.txt').html(), "", "txt value not empty" );

@@ -126,8 +126,8 @@ define("ui.roulette", [
         _updateInterface: function() {
             var self = this;
 
-            $('#result .winnings').html(self.results.points);
-            $('#result .total').html((User.points + self.results.points));
+            $('.rt-winnings').html(self.results.points);
+            $('.rt-total').html((User.points + self.results.points));
 
             $('#result .txt').html(self.results.resultTxt);
 

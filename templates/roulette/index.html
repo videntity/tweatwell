@@ -8,7 +8,7 @@
         define("TW", function() {
             var tw = {};
             tw.points = {{ points }};
-            tw.canSpin = "{{ can_spin }}";
+            tw.canSpin = {{ can_spin }};
             tw.hasJoker = "{{user.get_profile.joker_badge}}";
 
             return tw;
@@ -55,8 +55,8 @@
 
                 <div class="msg hide" id="result">
                     <strong>Result:</strong> <span class="txt"></span><br/><br>
-                    <strong>Winnings:</strong> <span class="winnings"></span><br/><br>
-                    <strong>Total Points:</strong> <span class="total"></span><br/><br/>
+                    <strong>Winnings:</strong> <span class="rt-winnings"></span><br/><br>
+                    <strong>Total Points:</strong> <span class="rt-total"></span><br/><br/>
                 </div>
 
             </div>

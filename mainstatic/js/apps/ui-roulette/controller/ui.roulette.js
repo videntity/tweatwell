@@ -37,10 +37,7 @@ define("ui.roulette", [
 
             //bind click if user can play
             if(User.points >= 10 && User.canSpin == "True") {
-                $('#roulette-canvas').click(function(){
-                    self._spinWheel(self._getRandomPocket());
-                    $(this).unbind('click');
-                });
+                self.rouletteBindClick();
             }
         },
 
@@ -57,8 +54,20 @@ define("ui.roulette", [
             self.img.attr("rotation", "0");
         },
 
+        /** Adds on click behavior
+         *
+         */
+        rouletteBindClick: function() {
+            var self = this;
+
+            $('#roulette-canvas').click(function(){
+                self._spinWheel(self._getRandomPocket());
+                $(this).unbind('click');
+            });
+        },
+
         /**
-         * Spin Animation
+         * Spin Animation & Main Event
          */
         _spinWheel: function(pocket) {
             var self = this;
@@ -68,6 +77,7 @@ define("ui.roulette", [
             self.img.attr("rotation", "0");
             self.img.animate({rotation: self._calculateSpin(pocket)}, 4000, ">", function(){
                 self._getResult(pocket);
+                self._handleJoker();
                 self._updateInterface();
                 self._save();
             });
@@ -94,7 +104,7 @@ define("ui.roulette", [
             return Math.floor(Math.random() * (o.numPockets));
         },
 
-        /** Gets result based on landed pocket and wager, stores in widget object
+        /** Gets result based on landed pocket and wager
          *
          * @param pocket
          */
@@ -103,12 +113,23 @@ define("ui.roulette", [
             var wager = self._getWager();
 
             self.results = Rules.applyRule(pocket, wager);
+        },
 
-            //handle joker
+        /** specific behavior for handling joker
+         *
+         */
+        _handleJoker: function() {
+            var self = this;
+
             if(self.results.points == "joker") {
-                self.results.points = "";
+                self.results.points = 0;
                 self.joker = true;
-                //to test here for existing badge and allow spin again
+
+                //test if user already has joker badge, if so spin again, set text
+                if(User.hasJoker == "True")  {
+                    self.results.resultTxt = '<span style="font-size:12px;">You already won the joker badge, spin again</span>';
+                    self.rouletteBindClick();
+                }
             }
         },
 
@@ -126,8 +147,8 @@ define("ui.roulette", [
         _updateInterface: function() {
             var self = this;
 
-            $('#result .winnings').html(self.results.points);
-            $('#result .total').html((User.points + self.results.points));
+            $('.rt-winnings').html(self.results.points);
+            $('.rt-total').html((User.points + self.results.points));
 
             $('#result .txt').html(self.results.resultTxt);
 
@@ -142,7 +163,9 @@ define("ui.roulette", [
             var self = this;
 
             if(self.joker) {
-                Points.saveJoker();
+                if(User.hasJoker != "True") {
+                    Points.saveJoker();
+                }
             } else {
                 Points.save(self.results.points);
             }

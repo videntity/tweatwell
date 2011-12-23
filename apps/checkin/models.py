@@ -29,7 +29,8 @@ class Freggie(models.Model):
     user            = models.ForeignKey(User)
     photo           = ImageField(upload_to=update_filename, null=True, blank=True,
                        verbose_name="Upload a photo of your freggie for 5 extra points.")
-    freggie         = models.CharField(max_length=50, choices=FREGGIE_CHOICES)
+    freggie         = models.CharField(max_length=50, choices=FREGGIE_CHOICES,
+                            verbose_name="Freggie (+2 Points)")
     freggie_other   = models.CharField(max_length=50, blank=True, null=True)
     fruit_or_veg    = models.CharField(max_length=5, choices=FOV_CHOICES,
                                        blank=True, null=True)
@@ -40,7 +41,7 @@ class Freggie(models.Model):
     evtz            = models.IntegerField(max_length=3, default=-5)
     txtz            = models.IntegerField(max_length=3, default=0)
     text            = models.CharField(max_length=140, blank=True, null=True,
-                                verbose_name="Say something about your freggie")
+                            verbose_name="Say something about your freggie")
     eattext         = models.CharField(max_length=140, blank=True)
     ttype           = models.CharField(max_length=10, default="omhe")
     points          = models.IntegerField(max_length=3, default=2)

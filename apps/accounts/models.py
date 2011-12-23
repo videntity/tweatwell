@@ -20,6 +20,10 @@ QOW_CHOICES =   (('NO_ANSWER',  'NO_ANSWER'),
                 ('CORRECT',  'CORRECT'),
                 ('INCORRECT',  'INCORRECT'),)
 
+
+FREGGIE_GOAL_CHOICES = ( (1,'1'), (2,'2'),(3,'3'), (4,'4'), (5,'5'),
+                         (6,'6'), (7,'7'),(8,'8'), (9,'9'), (10,'10'))
+
 class UserProfile(models.Model):
     user                    = models.ForeignKey(User, unique=True)
     anonymous_patient_id    = models.CharField(max_length=30,       
@@ -31,6 +35,7 @@ class UserProfile(models.Model):
     mobile_phone_number     = PhoneNumberField(blank = True, max_length=15)
     url                     = models.URLField(blank = True)
     daily_freggie_goal      = models.IntegerField(max_length=1, default=5,
+                                choices=FREGGIE_GOAL_CHOICES,
                                 verbose_name= 'Daily Fruit and Vegetable "Freggie" Goal')
     twitter                 = models.CharField(blank = True, max_length=15)
     notes                   = models.TextField(blank = True, max_length=250)

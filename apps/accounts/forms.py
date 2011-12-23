@@ -12,8 +12,10 @@ class PasswordResetRequestForm(forms.Form):
     email= forms.CharField(max_length=75, label="Email")
 
 class PasswordResetForm(forms.Form):
-    password1 = forms.CharField(widget=forms.PasswordInput, max_length=30, label="Password*")
-    password2 = forms.CharField(widget=forms.PasswordInput, max_length=30, label="Password (again)*")
+    password1 = forms.CharField(widget=forms.PasswordInput, max_length=30,
+                                label="Password*")
+    password2 = forms.CharField(widget=forms.PasswordInput, max_length=30,
+                                label="Password (again)*")
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1", "")
@@ -29,7 +31,8 @@ class PasswordResetForm(forms.Form):
 
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=30, label="Username")
-    password = forms.CharField(widget=forms.PasswordInput, max_length=30, label="Password")
+    password = forms.CharField(widget=forms.PasswordInput, max_length=30,
+                               label="Password")
 
 
 
@@ -38,20 +41,20 @@ class LoginForm(forms.Form):
 
 class SignupForm(forms.Form):
     username = forms.CharField(max_length=30, label="Username")
-    daily_freggie_goal = forms.IntegerField( label='Daily Fruit and Vegetable "Freggie" Goal',
-                                            initial=5)
-    password1 = forms.CharField(widget=forms.PasswordInput, max_length=30,
-                                label="Password")
-    password2 = forms.CharField(widget=forms.PasswordInput, max_length=30,
-                                label="Password (again)")
     email = forms.EmailField(max_length=75, label="Email")
     first_name = forms.CharField(max_length=30, label="First Name")
     last_name = forms.CharField(max_length=60, label="Last Name")
-    
+    daily_freggie_goal = forms.TypedChoiceField(choices = FREGGIE_GOAL_CHOICES,
+                            label='Daily Fruit and Vegetable "Freggie" Goal',
+                                            initial=5)    
     mobile_phone_number = forms.CharField(max_length=15,
                                           label="Mobile Phone Number",
                                           required=False)
     twitter = forms.CharField(max_length=15, label="Twitter", required=False)
+    password1 = forms.CharField(widget=forms.PasswordInput, max_length=30,
+                                label="Password")
+    password2 = forms.CharField(widget=forms.PasswordInput, max_length=30,
+                                label="Password (again)")
     
 
     def clean_password2(self):
@@ -78,8 +81,6 @@ class SignupForm(forms.Form):
         return username
 
 
-
-
     def save(self, profile_callback=None):
         new_user = User.objects.create_user(
                         username=self.cleaned_data['username'],
@@ -100,11 +101,14 @@ class SignupForm(forms.Form):
         return new_user
 
 class AccountSettingsForm(forms.Form):
-    daily_freggie_goal = forms.IntegerField(initial=5, label='Daily Fruit and Vegetable "Freggie" Goal')
+
     username = forms.CharField(max_length=30, label="Userame")
     email = forms.CharField(max_length=30, label="Email")
     first_name = forms.CharField(max_length=30, label="First Name")
     last_name = forms.CharField(max_length=60, label="Last Name")
+    daily_freggie_goal = forms.TypedChoiceField(choices = FREGGIE_GOAL_CHOICES,
+                            label='Daily Fruit and Vegetable "Freggie" Goal',
+                            initial=5)
     mobile_phone_number = forms.CharField(max_length=15,
                                           label="Mobile Phone Number",
                                           required=False)

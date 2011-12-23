@@ -24,41 +24,42 @@ def executetwitsearchbot(request):
     d=twitbotsearch(settings.TWITTERHASH, tb.since_id)    
     latest_since_id=tb.since_id
     
-    for i in reversed(d['results']):
-        jsonstr=json.dumps(i, indent = 4,)
-        x=dict(json.loads(jsonstr))
-        #if the from_user is in our DB, then create a Freggie 
-        if  int(tb.since_id) <= int(x['id']):
-            latest_since_id=x['id']
-            try:
-                freggie=None
-                up=UserProfile.objects.get(twitter=x['from_user'])
-                print "process", x['text'], x['id']
-                for i in fruit_tuple:
-                    if str(x['text']).lower().__contains__(i):
-                        freggie = i
-                for i in veg_tuple:
-                    if str(x['text']).lower().__contains__(i):
-                        freggie = i                        
-
-                if freggie:
-                    mydate = convert_twitter_date(str(x['created_at']))
-                    f=Freggie.objects.create(user=up.user, freggie=freggie,
-                                         text=x['text'], sinceid=x['id'],
-                                         evdt=mydate)
-                    freggiedict=model_to_dict(f, exclude=['evdt','photo',
-                                                          'since_id'])
-                    freggiedict['created_at']=x['created_at']
-                    freggiedict['twitter_id']=x['id']
-                    freggielist.append(freggiedict)
-                    
-            except(UserProfile.DoesNotExist):
-                print "A tweat was found but no matching user profile"
-            except:
-                print str(sys.exc_info())
-                #return HttpResponse(str(sys.exc_info()), status=500)
-    tb.since_id=int(latest_since_id)+1
-    tb.save()
+    if d.has_key('results'):
+        for i in reversed(d['results']):
+            jsonstr=json.dumps(i, indent = 4,)
+            x=dict(json.loads(jsonstr))
+            #if the from_user is in our DB, then create a Freggie 
+            if  int(tb.since_id) <= int(x['id']):
+                latest_since_id=x['id']
+                try:
+                    freggie=None
+                    up=UserProfile.objects.get(twitter=x['from_user'])
+                    print "process", x['text'], x['id']
+                    for i in fruit_tuple:
+                        if str(x['text']).lower().__contains__(i):
+                            freggie = i
+                    for i in veg_tuple:
+                        if str(x['text']).lower().__contains__(i):
+                            freggie = i                        
+    
+                    if freggie:
+                        mydate = convert_twitter_date(str(x['created_at']))
+                        f=Freggie.objects.create(user=up.user, freggie=freggie,
+                                             text=x['text'], sinceid=x['id'],
+                                             evdt=mydate)
+                        freggiedict=model_to_dict(f, exclude=['evdt','photo',
+                                                              'since_id'])
+                        freggiedict['created_at']=x['created_at']
+                        freggiedict['twitter_id']=x['id']
+                        freggielist.append(freggiedict)
+                        
+                except(UserProfile.DoesNotExist):
+                    print "A tweat was found but no matching user profile"
+                except:
+                    print str(sys.exc_info())
+                    #return HttpResponse(str(sys.exc_info()), status=500)
+        tb.since_id=int(latest_since_id)+1
+        tb.save()
     
     jsonstr=json.dumps(freggielist, indent = 4,)
     return HttpResponse(jsonstr,  mimetype="text/plain")

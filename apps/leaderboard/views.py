@@ -66,6 +66,21 @@ def score(request):
             professor.save()
             professor_list.append({'freggie':f, 'professor':professor})
             BadgePoints.objects.create(user=professor.user, badge='professor')
+
+    for v in veg_tuple:
+        
+        agg = Freggie.objects.filter(freggie=v).values('user').annotate(Sum('quantity')).order_by('-quantity__sum')
+        if agg:
+            print "Professor of ", v, " is ", agg[0]['user']
+            professor_pk = agg[0]['user']
+            professor=UserProfile.objects.get(user=professor_pk)
+            professor.professor_badge = True
+            professor.professor_of_freggie=v
+            professor.save()
+            professor_list.append({'freggie':v, 'professor':professor})
+            BadgePoints.objects.create(user=professor.user, badge='professor')
+
+
     
     return render_to_response('leaderboard/score.html',
             {'dean_fruit':dean_fruit,

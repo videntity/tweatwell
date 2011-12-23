@@ -58,8 +58,8 @@ body.qow-active,{
     }
 }
 
-body.faq-active,{
-    #topnav a.nav-faq-tab {
+body.board-active,{
+    #topnav a.nav-board-tab {
         @include nav-tab-active;
     }
 }

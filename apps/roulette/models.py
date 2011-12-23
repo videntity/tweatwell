@@ -33,3 +33,4 @@ def can_spin(user):
         return True
     except(Roulette.DoesNotExist):
         return True
+    return True

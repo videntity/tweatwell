@@ -74,6 +74,6 @@ def nonveg(request):
             newnonveg.nonveg=data['nonveg']
             newnonveg.user=request.user
             newnonveg.save()
-            messages.success(request, "Successfuly added a non-freggie item. I can actually hear you getting fatter.")
+            messages.success(request, "Successfuly added a non-freggie item.")
             return HttpResponseRedirect(reverse('profile'))
 

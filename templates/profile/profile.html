@@ -7,65 +7,110 @@
 {% endblock %}
 
 {% block extra_head %}
+
+<script src="{{STATIC_URL}}js/lib/vendor/fancybox/jquery.fancybox.pack.js"></script>
+<script src="{{STATIC_URL}}js/lib/page/lightbox.js"></script>
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}js/lib/vendor/fancybox/jquery.fancybox.css" media="screen" />
+
 <script src="{{STATIC_URL}}js/lib/vendor/dygraph/dygraph-combined.js"></script>
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
 <script type="text/javascript">
 
-    google.load('visualization', '1', {packages: ['linechart']});
-    google.setOnLoadCallback(drawChart);
+    {# load visualizer only if 3 or more checkins #}
 
-    var userData = [];
+    {%  if goallist|length > 2 %}
+        google.load('visualization', '1', {packages: ['linechart']});
+        google.setOnLoadCallback(drawChart);
 
-//  note we have to format python date for js, month is 0 based
-    {%for i in goallist%}
-        userData.push([new Date({{ i.evdate|date:"Y" }}, {{ i.evdate|date:"n" }} - 1, {{ i.evdate|date:"d" }}), {{ i.goal }}, {{ i.freggie }}]);
-    {% endfor%}
+        var userData = [];
 
-    function drawChart() {
-        var data = new google.visualization.DataTable();
-        data.addColumn('date', 'Date');
-        data.addColumn('number', 'Goal');
-        data.addColumn('number', 'Freggies');
-        data.addRows(userData);
+        //  note we have to format python date for js, month is 0 based
+        {% for i in goallist %}
+            userData.push([new Date({{ i.evdate|date:"Y" }}, {{ i.evdate|date:"n" }} - 1, {{ i.evdate|date:"d" }}), {{ i.goal }}, {{ i.freggie }}]);
+        {% endfor%}
 
-        var g = new Dygraph.GVizChart(document.getElementById("graphdiv"));
-        g.draw(data, {
-            displayAnnotations: true,
-            fillGraph: true,
-            stepPlot: true,
-            valueRange: [0,11]
-        });
+        function drawChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('date', 'Date');
+            data.addColumn('number', 'Goal');
+            data.addColumn('number', 'Freggies');
+            data.addRows(userData);
 
-    }
+            var g = new Dygraph.GVizChart(document.getElementById("graphdiv"));
+            g.draw(data, {
+                displayAnnotations: true,
+                fillGraph: true,
+                stepPlot: true,
+                strokeWidth: 1.5,
+                legend: 'always',
+                labelsDivStyles: {'font-weight' : 'bold'},
+                valueRange: [0,11]
+            });
+        }
+    {% endif %}
+
 </script>
-
 {% endblock %}
 
 {% block middle %}
 
-<h1>Profile for {{ user }}</h1>
+<h1>Profile For <em>{{ user.first_name }} {{ user.last_name }}</em></h1>
+    
+    
+<p>
+Below is a timeline showing all your reported freggies by day.
+Hover over a date to see if you have completed your freggie goal for that day.
+</p>
 
-Your goal is  {{ user.get_profile.daily_freggie_goal }}.<br>
 
-{%for c in combolist%}
-    {{ c }} <br>
-{% endfor%}
-
+{%  if goallist|length > 2 %}
+    <div id="graphdiv" style="width:700px;height:300px;margin-left:-20px;"></div>
+{% else %}
+    <p>
+        <strong>
+            You have only checked in on {{ goallist|length }} day(s).  You must
+            checkin 3 or more days to see the timeline.
+        </strong>
+    </p>
+{% endif %}
+    
+<br/>
 <div class="tweat-form">
-        <h3 class="sub">Eating Something Else? Add it here</h3>
+    <h3 class="sub">Eating Something Else? Add it:</h3>
 
-        <form action='/profile/nonveg/' method='POST' class="tw-form">
-            {{ nonvegform.as_p }}
-            {% csrf_token %}
-            <input type="submit" value="Submit" class="button" />
-        </form>
-    </div>
+    <form action='/profile/nonveg/' method='POST' class="tw-form">
+        {{ nonvegform.as_p }}
+        {% csrf_token %}
+        <input type="submit" value="Submit" class="button" />
+    </form>
+</div>
 
 
-<br/><br/>
-<h2>Visualizer Proof Of Concept</h2>
+<h3 class="sub">Your Eating History</h3>
 
-<div id="graphdiv" style="width:700px;height:300px;"></div>
+<table class="tweat-history">
+    <tr>
+        <th>Date</th>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Photo</th>
+        <th>Note</th>
+    </tr>
+    {% for c in combolist %}
+    <tr class="{% cycle 'even-row' 'odd-row'%}">
+        <td style="white-space: nowrap;">{{ c.evdate }}</td>
+        <td style="white-space: nowrap;">{{ c.freggie }}{{ c.nonveg }}</td>
+        <td style="white-space: nowrap;">{{ c.quantity }}</td>
+        <td style="white-space: nowrap;">
+            {% if c.photo %}
+                <a class="tw-lightbox" href="{{ MEDIA_URL }}{{ c.photo }}">View</a>
+            {% endif %}
+        </td>
+        <td style="width:300px;"><em>{{ c.text }}</em></td>
+    </tr>
+    {% endfor %}
+
+</table>
 
 {% endblock %}
 

@@ -26,7 +26,4 @@ $(function() {
             $(fieldId + ', ' + label).fadeOut('fast');
         }
     });
-
-    //add lightbox for user uploaded images
-    $('a.tw-lightbox').fancybox()
 });

@@ -44,13 +44,14 @@ class SignupForm(forms.Form):
     email = forms.EmailField(max_length=75, label="Email")
     first_name = forms.CharField(max_length=30, label="First Name")
     last_name = forms.CharField(max_length=60, label="Last Name")
+    twitter = forms.CharField(max_length=15, label="Twitter", required=False)
     daily_freggie_goal = forms.TypedChoiceField(choices = FREGGIE_GOAL_CHOICES,
                             label='Daily Fruit and Vegetable "Freggie" Goal',
                                             initial=5)    
     mobile_phone_number = forms.CharField(max_length=15,
                                           label="Mobile Phone Number",
                                           required=False)
-    twitter = forms.CharField(max_length=15, label="Twitter", required=False)
+    
     password1 = forms.CharField(widget=forms.PasswordInput, max_length=30,
                                 label="Password")
     password2 = forms.CharField(widget=forms.PasswordInput, max_length=30,
@@ -102,7 +103,7 @@ class SignupForm(forms.Form):
 
 class AccountSettingsForm(forms.Form):
 
-    username = forms.CharField(max_length=30, label="Userame")
+    username = forms.CharField(max_length=30, label="Username")
     email = forms.CharField(max_length=30, label="Email")
     first_name = forms.CharField(max_length=30, label="First Name")
     last_name = forms.CharField(max_length=60, label="Last Name")

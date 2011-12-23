@@ -2,7 +2,6 @@ from django.conf.urls.defaults import *
 from django.views.generic.simple import direct_to_template
 from tweatwell.apps.checkin.views import checkin
 from tweatwell.apps.twitbot.views import *
-
 #from registration.backends.default import DefaultBackend
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin

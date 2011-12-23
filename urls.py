@@ -36,13 +36,13 @@ urlpatterns = patterns('',
     
     #application specific urls -------------------------------------------------
     url(r'^$', checkin, name="checkin"),
-    url(r'^checkin/',   include('tweatwell.apps.checkin.urls')),
-    url(r'^roulette/',  include('tweatwell.apps.roulette.urls')),
-    url(r'^recipes/',   include('tweatwell.apps.recipes.urls')),
-    url(r'^quiz/',      include('tweatwell.apps.quiz.urls')),
-    url(r'^questions/', include('tweatwell.apps.questions.urls')),
-    url(r'^profile/', include('tweatwell.apps.profile.urls')),
-    
+    url(r'^checkin/',       include('tweatwell.apps.checkin.urls')),
+    url(r'^roulette/',      include('tweatwell.apps.roulette.urls')),
+    url(r'^recipes/',       include('tweatwell.apps.recipes.urls')),
+    url(r'^quiz/',          include('tweatwell.apps.quiz.urls')),
+    url(r'^questions/',     include('tweatwell.apps.questions.urls')),
+    url(r'^profile/',       include('tweatwell.apps.profile.urls')),
+    url(r'^leaderboard/',   include('tweatwell.apps.leaderboard.urls')),
     #Twitter searchbot
     url(r'^twitsearchbot/', executetwitsearchbot, name="executetwitsearchbot"),
     

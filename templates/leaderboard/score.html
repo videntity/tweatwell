@@ -1,0 +1,24 @@
+{% extends "layouts/2-column-sidebar-right.html" %}
+{% block active_nav_tab  %}qow-active{% endblock %}
+
+{% block middle %}
+<h1>Score</h1>
+         
+    
+    President is:   {{ president }}       <br>   
+    Dean Veggie is: {{ dean_veggie }}     <br>
+    Dean Fruit is:  {{ dean_veggie }}     <br>
+ 
+ Professors:
+ <ul>
+ {% for p in professor_list %}
+    <li>{{p.freggie}}: {{p.professor.user.first_name }} {{p.professor.user.last_name }}
+    </li>
+ {% endfor %}
+  </ul>
+
+{% endblock %}
+
+{% block right %}
+    {% include "include/profile-sidebar.html" %}
+{% endblock %}

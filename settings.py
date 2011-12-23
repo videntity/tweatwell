@@ -157,6 +157,7 @@ INSTALLED_APPS = (
     'tweatwell.apps.accounts',
     'tweatwell.apps.quiz',
     'tweatwell.apps.profile',
+    'tweatwell.apps.leaderboard',
     'avatar',
     'django_ses',
     'sorl.thumbnail',

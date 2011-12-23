@@ -7,6 +7,7 @@
 
 {% block middle %}
 {% load avatar_tags %}
+{% load markup %}
 
 <h1>Recipes</h1>
 
@@ -22,21 +23,21 @@
         {% if r.recipe.ingredients %}
         <h3>Ingredients</h3>
         <div class="recipe-ingredient">
-            {{ r.recipe.ingredients }}
+            {{ r.recipe.ingredients|markdown }}
         </div>
         {% endif %}
 
         {% if r.recipe.detail %}
         <h3>Preparation</h3>
         <div class="recipe-detail">
-            {{ r.recipe.detail }}
+            {{ r.recipe.detail|markdown }}
         </div>
         {% endif %}
 
         {% if r.recipe.nutrition %}
         <h3>Nutrition</h3>
         <div class="recipe-nutrition">
-            {{ r.recipe.nutrition }}
+            {{ r.recipe.nutrition|markdown }}
         </div>
         {% endif %}
         {% endautoescape %}

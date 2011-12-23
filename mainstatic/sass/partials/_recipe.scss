@@ -1,5 +1,5 @@
 .recipe-instance {
-    border-bottom:1px dotted #cccccc;
+    border-bottom:2px dotted #333333;
     margin-bottom:20px;
     padding:10px;
     .recipe-content {
@@ -10,12 +10,20 @@
     }
     .recipe-ingredient, .recipe-detail, .recipe-nutrition {
         @extend .mono;
-        font-size:10px;
+        font-size:12px;
         line-height: 1.8em;
         p{
             line-height: 1.8em;
             margin:0;
             padding:0 0 1em 0;;
+        }
+        ol {
+            list-style-type: decimal;
+            margin-left:1em;
+            padding-left:1em;
+            li {
+                margin-bottom:.8em;
+            }
         }
     }
 }

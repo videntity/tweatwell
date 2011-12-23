@@ -1,1 +1,48 @@
-{% include "profile/profile.html" %}
+{% extends "layouts/2-column-sidebar-right.html" %}
+{% block active_nav_tab  %}profile-active{% endblock %}
+
+{% block extra_head %}
+
+    <script src="{{STATIC_URL}}js/lib/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    <script src="{{STATIC_URL}}js/lib/page/lightbox.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}js/lib/vendor/fancybox/jquery.fancybox.css" media="screen" />
+
+{% endblock %}
+
+{% block middle %}
+
+    <h1>Profile For <em>{{ user.first_name }} {{ user.last_name }}</em></h1>
+
+
+    <h3 class="sub">Eating History</h3>
+
+    <table class="tweat-history">
+        <tr>
+            <th>Date</th>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Photo</th>
+            <th>Note</th>
+        </tr>
+        {% for c in combolist %}
+            <tr class="{% cycle 'even-row' 'odd-row'%}">
+                <td style="white-space: nowrap;">{{ c.evdate }}</td>
+                <td style="white-space: nowrap;">{{ c.freggie }}{{ c.nonveg }}</td>
+                <td style="white-space: nowrap;">{{ c.quantity }}</td>
+                <td style="white-space: nowrap;">
+                    {% if c.photo %}
+                        <a class="tw-lightbox" href="{{ MEDIA_URL }}{{ c.photo }}">View</a>
+                    {% endif %}
+                </td>
+                <td style="width:300px;"><em>{{ c.text }}</em></td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+{% endblock %}
+
+
+{% block right %}
+    {% include "include/profile-sidebar.html" %}
+{% endblock %}

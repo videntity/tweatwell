@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 # vim: ai ts=4 sts=4 et sw=4
 from django.conf import settings
-from django.db.models import Sum
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib.auth.models import User
@@ -20,12 +19,6 @@ from forms import FreggieForm, CommentForm
 from models import Comment, Freggie
 from itertools import chain
 from operator import attrgetter
-
-def anon_home_index(request):
-    print ("anonymous home. We'll do this at near the end. for now redirect to login/signup")
-    return HttpResponseRedirect(reverse('simple_login'))
-
-
    
 @login_required
 def freggie_comment(request, freggie_id):
@@ -46,7 +39,7 @@ def freggie_comment(request, freggie_id):
             messages.success(request, "Successfuly added a comment.")
             return HttpResponseRedirect(reverse('checkin'))
             
-
+@login_required
 def checkin(request):
 
     

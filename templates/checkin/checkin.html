@@ -33,12 +33,13 @@
         <div class="tweat-instance">
             {% if t.tweat.user %}
                 <div class="user-avatar">
-                    {% avatar t.tweat.user 45 %}
+                    <a href="/profile/admin-profile/{{ t.tweat.user }}">{% avatar t.tweat.user 45 %}</a>
                 </div>
             {% endif %}
 
             <div class="tweat-content">
                 <div class="tweat-txt">
+{#   todo: link username                 <a href="/profile/admin-profile/{{ t.tweat.user }}"></a>#}
                     <strong>{{ t.tweat.eattext }}</strong>
                 </div>
 

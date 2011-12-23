@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # vim: ai ts=4 sts=4 et sw=4
 from django.db.models import Sum
-from ..checkin.models import Freggie, Comment
+from ..checkin.models import Freggie, Comment, BadgePoints
 from ..questions.models import CorrectAnswerPoints
 from ..roulette.models import Roulette
 from ..tips.models import CurrentTip
@@ -25,6 +25,10 @@ def sidebar(request):
         freggie_points = Freggie.objects.filter(user=request.user).aggregate(Sum('points'))
         if freggie_points['points__sum']== None:
             freggie_points['points__sum']=0
+
+        badge_points = BadgePoints.objects.filter(user=request.user).aggregate(Sum('points'))
+        if badge_points['points__sum']== None:
+            badge_points['points__sum']=0
         
         comment_points = Comment.objects.filter(user=request.user).aggregate(Sum('points'))
         if comment_points['points__sum']== None:
@@ -39,12 +43,14 @@ def sidebar(request):
             question_points['points__sum']=0
         
         points = freggie_points['points__sum'] + comment_points['points__sum'] + \
-                    roulette_points['points__sum'] + question_points['points__sum']
+                roulette_points['points__sum'] + question_points['points__sum'] + \
+                badge_points['points__sum']
 
-        freggie_points =  freggie_points['points__sum']
-        comment_points =  comment_points['points__sum']
-        roulette_points =  roulette_points['points__sum']
+        freggie_points  = freggie_points['points__sum']
+        comment_points  = comment_points['points__sum']
+        roulette_points = roulette_points['points__sum']
         question_points = question_points['points__sum']
+        badge_points    = badge_points['points__sum']
     
         if points>=10:
             wager_points_range=range(10,points+1)
@@ -56,13 +62,15 @@ def sidebar(request):
                 'roulette_points': 0,
                 'question_points': 0, 
                 'points': 0,
+                'badge_points':0,
                 'tip_text':tip_text,
                 'wager_points_range': [0,],}
         
     return {'freggie_points': freggie_points,
              'comment_points': comment_points,
             'roulette_points': roulette_points,
-            'question_points': question_points, 
+            'question_points': question_points,
+            'badge_points':badge_points,
              'points': points,
              'tip_text':tip_text,
              'wager_points_range': wager_points_range,}

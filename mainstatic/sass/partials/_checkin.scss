@@ -23,8 +23,14 @@
     p.id_quantity {
         width:100px;
         position:absolute;
-        top:35px;
+        top:0px;
         left:150px;
+    }
+    textarea {
+        height:30px;
+        @extend .sans;
+        font-size:12px;
+        line-height:1em;
     }
 }
 

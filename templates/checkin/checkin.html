@@ -15,10 +15,14 @@
     <h1>What Freggie Are You Eating?</h1>
     
 
-    <div class="tweat-form" id="checkin-form">
-        <h3 class="sub">A "freggie" is one serving of a fruit or vegetable.</h3>
+    <div class="tweat-form">
+        <p style="font-size:1.2em;">
+                A "freggie" is one serving of a fruit or vegetable.
+                <strong><a href="/faq">Learn more about freggies and scoring in the FAQ</a>.</strong>
+        </p>
 
-        <form enctype="multipart/form-data" action='/' method='POST' class="tw-form">
+        <br/><br/>
+        <form id="checkin-form" enctype="multipart/form-data" action='/' method='POST' class="tw-form">
             {{ form.as_p }}
             {% csrf_token %}
             <input type="submit" value="Submit" class="button" />

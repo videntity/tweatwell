@@ -40,7 +40,7 @@ class Freggie(models.Model):
     evdt            = models.DateTimeField(blank=True)
     evtz            = models.IntegerField(max_length=3, default=-5)
     txtz            = models.IntegerField(max_length=3, default=0)
-    text            = models.CharField(max_length=140, blank=True, null=True,
+    text            = models.TextField(max_length=140, blank=True, null=True,
                             verbose_name="Say something about your freggie")
     eattext         = models.CharField(max_length=140, blank=True)
     ttype           = models.CharField(max_length=10, default="omhe")

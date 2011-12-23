@@ -13,7 +13,17 @@ from django.contrib import messages
 from ..accounts.models import UserProfile
 from ..checkin.models import Freggie, BadgePoints
 from ..checkin.freggies import fruit_tuple, veg_tuple
+from datetime import date, timedelta
+
+
+
+
+
 def score(request):
+    
+    today=date.today()
+    a_week_ago = today - timedelta(days=7)
+    
     # reset all badges
     up = UserProfile.objects.all()
     for u in up:
@@ -26,7 +36,7 @@ def score(request):
         u.save()
     
     # who had the most freggies of all (president)?
-    agg = Freggie.objects.values('user').annotate(Sum('quantity')).order_by('-quantity__sum')
+    agg = Freggie.objects.filter(evdate__gte=a_week_ago).values('user').annotate(Sum('quantity')).order_by('-quantity__sum')
     presuser_pk= agg[0]['user']
     president=UserProfile.objects.get(user=presuser_pk)
     president.president_badge = True
@@ -36,7 +46,7 @@ def score(request):
     
     
     # who had the most veggies (excluding the president) ?  - dean of veg 
-    agg = Freggie.objects.filter(fruit_or_veg="veg").exclude(user=presuser_pk).values('user').annotate(Sum('quantity')).order_by('-quantity__sum')
+    agg = Freggie.objects.filter(fruit_or_veg="veg", evdate__gte=a_week_ago).exclude(user=presuser_pk).values('user').annotate(Sum('quantity')).order_by('-quantity__sum')
     dean_veggie_pk= agg[0]['user']
     dean_veggie=UserProfile.objects.get(user=dean_veggie_pk)
     dean_veggie.dean_veggie_badge = True
@@ -45,7 +55,7 @@ def score(request):
     BadgePoints.objects.create(user=dean_veggie.user, badge='vegdean')
     
     # who had the most fruits (excluding the president & veg dean)?  - dean of fruit
-    agg = Freggie.objects.filter(fruit_or_veg="fruit").exclude(user=presuser_pk).exclude(user=dean_veggie_pk).values('user').annotate(Sum('quantity')).order_by('-quantity__sum')
+    agg = Freggie.objects.filter(fruit_or_veg="fruit", evdate__gte=a_week_ago).exclude(user=presuser_pk).exclude(user=dean_veggie_pk).values('user').annotate(Sum('quantity')).order_by('-quantity__sum')
     dean_fruit_pk= agg[0]['user']
     dean_fruit=UserProfile.objects.get(user=dean_fruit_pk)
     dean_fruit.dean_fruit_badge = True
@@ -56,7 +66,7 @@ def score(request):
     professor_list=[]
     for f in fruit_tuple:
         
-        agg = Freggie.objects.filter(freggie=f).values('user').annotate(Sum('quantity')).order_by('-quantity__sum')
+        agg = Freggie.objects.filter(freggie=f, evdate__gte=a_week_ago).values('user').annotate(Sum('quantity')).order_by('-quantity__sum')
         if agg:
             print "Professor of ", f, " is ", agg[0]['user']
             professor_pk = agg[0]['user']

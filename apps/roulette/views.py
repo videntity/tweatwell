@@ -67,12 +67,6 @@ def roulette_home(request):
     points = freggie_points['points__sum'] + comment_points['points__sum'] + \
                 roulette_points['points__sum'] + question_points['points__sum']
 
-    freggie_points =  freggie_points['points__sum']
-    comment_points =  comment_points['points__sum']
-    roulette_points =  roulette_points['points__sum']
-    question_points = question_points['points__sum']
-
-
     if points>=10:
         wager_points_range=range(10,points+1)
     else:
@@ -85,12 +79,6 @@ def roulette_home(request):
     
     return render_to_response('roulette/index.html',
             {
-             'freggies': freggies,
-             'freggie_points': freggie_points,
-             'comment_points': comment_points,
-             'roulette_points': roulette_points,         
-             'question_points': question_points, 
-             'points': points,
              'wager_points_range': wager_points_range,
              'last_spin_date':last_spin_date(request.user),
              'can_spin':can_spin(request.user),

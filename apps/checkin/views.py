@@ -49,12 +49,6 @@ def freggie_comment(request, freggie_id):
 
 def checkin(request):
 
-    #get the current tip
-    try:
-        ct=CurrentTip.objects.all()[0]
-        tip_text=ct.tip.text
-    except(CurrentTip.DoesNotExist):
-        tip_text="No tip to display"
     
     #if the user is not logged in, display an anonymous home page
     if request.user.is_anonymous()==True:
@@ -63,31 +57,7 @@ def checkin(request):
     u=User.objects.get(username=request.user)
     p=get_object_or_404(UserProfile, user=u)
    
-    #fetch points
-    
-    freggie_points = Freggie.objects.filter(user=request.user).aggregate(Sum('points'))
-    if freggie_points['points__sum']== None:
-        freggie_points['points__sum']=0
-    
-    comment_points = Comment.objects.filter(user=request.user).aggregate(Sum('points'))
-    if comment_points['points__sum']== None:
-        comment_points['points__sum']=0    
 
-    roulette_points = Roulette.objects.filter(user=request.user).aggregate(Sum('points'))
-    if roulette_points['points__sum']== None:
-        roulette_points['points__sum']=0
-        
-    question_points = CorrectAnswerPoints.objects.filter(user=request.user).aggregate(Sum('points'))
-    if question_points['points__sum']== None:
-        question_points['points__sum']=0
-    
-    points = freggie_points['points__sum'] + comment_points['points__sum'] + \
-                roulette_points['points__sum'] + question_points['points__sum']
-
-    freggie_points =  freggie_points['points__sum']
-    comment_points =  comment_points['points__sum']
-    roulette_points =  roulette_points['points__sum']
-    question_points = question_points['points__sum']
     
     #fetch total freggies -----------------------------------------------------
     
@@ -115,25 +85,12 @@ def checkin(request):
                 {'form':form,
                  'commentform': CommentForm(),
                  'tweatlist': tweatlist,
-                 'freggies': freggies,
-                 'tip_text':tip_text,
-                 'freggie_points': freggie_points,
-                 'comment_points': comment_points,
-                 'roulette_points': roulette_points,
-                 'question_points': question_points, 
-                 'points': points},
+                 'freggies': freggies,},
                 context_instance = RequestContext(request),)
 
     return render_to_response('checkin/checkin.html',
             {'form': FreggieForm(),
                  'commentform': CommentForm(),
                 'tweatlist': tweatlist,
-                'freggies': freggies,
-                'tip_text':tip_text,
-                'freggie_points': freggie_points,
-                'comment_points': comment_points,
-                'roulette_points': roulette_points,
-                'question_points': question_points, 
-                'points': points
-            },
+                'freggies': freggies,},
             context_instance = RequestContext(request),)

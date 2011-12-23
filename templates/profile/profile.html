@@ -14,28 +14,26 @@
     google.load('visualization', '1', {packages: ['linechart']});
     google.setOnLoadCallback(drawChart);
 
-    var fakeData = [];
+    var userData = [];
 
-    for(var i=1; i<30; i++) {
-
-        var freggie = Math.floor(Math.random() * 6);
-        var goal    = 5;
-
-        fakeData.push([new Date(2011, 0 , i), goal, freggie]);
-    }
+//  note we have to format python date for js, month is 0 based
+    {%for i in goallist%}
+        userData.push([new Date({{ i.evdate|date:"Y" }}, {{ i.evdate|date:"n" }} - 1, {{ i.evdate|date:"d" }}), {{ i.goal }}, {{ i.freggie }}]);
+    {% endfor%}
 
     function drawChart() {
         var data = new google.visualization.DataTable();
         data.addColumn('date', 'Date');
         data.addColumn('number', 'Goal');
         data.addColumn('number', 'Freggies');
-        data.addRows(fakeData);
+        data.addRows(userData);
 
         var g = new Dygraph.GVizChart(document.getElementById("graphdiv"));
         g.draw(data, {
             displayAnnotations: true,
             fillGraph: true,
-            stepPlot: true
+            stepPlot: true,
+            valueRange: [0,11]
         });
 
     }
@@ -44,12 +42,6 @@
 {% endblock %}
 
 {% block middle %}
-
-
-{%for i in goallist%}
-   Day: {{ i.evdate }}<br> Goal:{{ i.goal }}<br> Actual:{{ i.freggie }}<br><br>
-{% endfor%}
-
 
 <h1>Profile for {{ user }}</h1>
 
@@ -73,7 +65,7 @@ Your goal is  {{ user.get_profile.daily_freggie_goal }}.<br>
 <br/><br/>
 <h2>Visualizer Proof Of Concept</h2>
 
-<div id="graphdiv" style="width:700px;height:200px;"></div>
+<div id="graphdiv" style="width:700px;height:300px;"></div>
 
 {% endblock %}
 

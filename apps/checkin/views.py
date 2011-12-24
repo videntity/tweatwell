@@ -49,8 +49,6 @@ def checkin(request):
     
     u=User.objects.get(username=request.user)
     p=get_object_or_404(UserProfile, user=u)
-   
-
     
     #fetch total freggies -----------------------------------------------------
     

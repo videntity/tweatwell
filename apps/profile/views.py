@@ -36,16 +36,10 @@ def download_xls(request):
     
         
     combolist=sorted(combolist,key=itemgetter('mydatetime'), reverse=True)
-    
-    for i in combolist:
-        print i
     filename = datetime.now().strftime('%m-%d-%Y_%H:%M:%S') + '.xls'
     response = HttpResponse(mimetype="application/vnd.ms-excel")
     response['Content-Disposition'] = 'attachment; filename=' + filename
-    
     excelwb = build_foodlog_xls(combolist)
-    #print excelwb
-    #excelwb.save("foo.xls")
     excelwb.save(response)
     return response
 

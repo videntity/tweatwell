@@ -16,9 +16,6 @@ from ..checkin.freggies import fruit_tuple, veg_tuple
 from datetime import date, timedelta
 
 
-
-
-
 def score(request):
     
     today=date.today()
@@ -100,7 +97,30 @@ def score(request):
             context_instance = RequestContext(request),)
 
 def leaderboard(request):
+    
+    today=date.today()
+    a_week_ago = today - timedelta(days=7)
+    
+    #get president
+
+    president=UserProfile.objects.get(president_badge=True)
+    dean_fruit=UserProfile.objects.get(dean_fruit_badge=True)
+    dean_veggie=UserProfile.objects.get(dean_veggie_badge=True)
+    professors = UserProfile.objects.filter(professor_badge=True)
+    
+    agg = Freggie.objects.filter(evdate__gte=a_week_ago).values('user').annotate(Sum('quantity')).order_by('-quantity__sum')
+    rankings=[]
+    for a in agg:
+        rankuser=UserProfile.objects.get(user=a['user'])
+        rank={'rankuser':rankuser, 'quantity':a['quantity__sum']}
+        rankings.append(rank)
+    
+    
     return render_to_response('leaderboard/index.html',
-            {},
-            context_instance = RequestContext(request),)    
+            {'dean_fruit':dean_fruit,
+             'dean_veggie':dean_veggie,         
+            'president':president,         
+             'professors':professors,
+             'rankings':rankings},
+            context_instance = RequestContext(request),) 
     

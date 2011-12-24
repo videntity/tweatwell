@@ -3,7 +3,25 @@
 
 {% block middle %}
 <h1>Leaderboard</h1>
-         
+ <h2>This Week's Badge Holders</h2>
+    President is {{president.user.first_name}}  {{president.user.first_name}}</br>
+    Dean of Veggies is {{dean_veggie.user.first_name}}  {{dean_veggie.user.last_name}}</br>  
+    Dean of Fruits is {{dean_fruit.user.first_name}}  {{dean_fruit.user.last_name}}</br>  
+    
+    {% for p in professors %}  
+        {{p.user.first_name}} {{p.user.last_name}} is the professor of {{p.professor_of_freggie}} </br>
+    {% endfor %}     
+
+
+<h2>This Week's Freggie Standings</h2>
+    {% for r in rankings %}  
+        {{r.rankuser.user.first_name}} {{r.rankuser.user.last_name}} ate {{r.quantity}} freggies. </br>
+    {% endfor %}
+
+
+
+
+
 {% endblock %}
 
 {% block right %}

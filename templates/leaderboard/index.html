@@ -3,21 +3,56 @@
 
 {% block middle %}
 <h1>Leaderboard</h1>
+ 
  <h2>This Week's Badge Holders</h2>
-    President is {{president.user.first_name}}  {{president.user.first_name}}</br>
-    Dean of Veggies is {{dean_veggie.user.first_name}}  {{dean_veggie.user.last_name}}</br>  
-    Dean of Fruits is {{dean_fruit.user.first_name}}  {{dean_fruit.user.last_name}}</br>  
+    {% if president %}
+        <p>The President is {{president.user.first_name}}  {{president.user.first_name}} </p>
+    {% else %}
+        <p>No one is President at the moment.</p>
+    {% endif %}
     
-    {% for p in professors %}  
-        {{p.user.first_name}} {{p.user.last_name}} is the professor of {{p.professor_of_freggie}} </br>
-    {% endfor %}     
+    {% if dean_veggie %}
+        <p>The Dean of Veggies is {{dean_veggie.user.first_name}}  {{dean_veggie.user.last_name}}</p> 
+    {% else %}
+        <p>No one is Dean of Veggies at the moment.</p>
+    {% endif %}
+    
+    {% if dean_fruit %}
+        <p>The Dean of Fruits is {{dean_fruit.user.first_name}}  {{dean_fruit.user.last_name}}.</p>
+    {% else %}
+        <p>No one is Dean of Fruits at the moment.</p>
+    {% endif %}
 
+
+    {% if professors %}
+        {% for p in professors %}  
+            <p>{{p.user.first_name}} {{p.user.last_name}} is the professor of {{p.professor_of_freggie}} </p>
+        {% endfor %}     
+    
+    {% else %}
+        <p>There are no Professors yet.</p>
+    {% endif %}
+    
+    {% if jokers %}
+        {% for j in jokers %}  
+            <p>{{j.user.first_name}} {{j.user.last_name}} is a Joker and gets FREE stuff at the farmer's market. </p>
+        {% endfor %}     
+    
+    {% else %}
+        <p>There are no Jokers yet.</p>
+    {% endif %}    
+    
+    
 
 <h2>This Week's Freggie Standings</h2>
-    {% for r in rankings %}  
-        {{r.rankuser.user.first_name}} {{r.rankuser.user.last_name}} ate {{r.quantity}} freggies. </br>
-    {% endfor %}
-
+    
+    {% if rankings %}
+        {% for r in rankings %}  
+            {{r.rankuser.user.first_name}} {{r.rankuser.user.last_name}} ate {{r.quantity}} freggies. </br>
+        {% endfor %}
+    {% else %}
+        There are no ranks yet.
+    {% endif %}
 
 
 

@@ -100,27 +100,38 @@ def leaderboard(request):
     
     today=date.today()
     a_week_ago = today - timedelta(days=7)
+    try:
+        president=UserProfile.objects.get(president_badge=True)
+    except(UserProfile.DoesNotExist):
+        president=None
     
-    #get president
+    try:
+        dean_fruit=UserProfile.objects.get(dean_fruit_badge=True)
+    except(UserProfile.DoesNotExist):
+        dean_fruit=None
+    
+    try:
+        dean_veggie=UserProfile.objects.get(dean_veggie_badge=True)
+    except(UserProfile.DoesNotExist):
+        dean_veggie=None
 
-    president=UserProfile.objects.get(president_badge=True)
-    dean_fruit=UserProfile.objects.get(dean_fruit_badge=True)
-    dean_veggie=UserProfile.objects.get(dean_veggie_badge=True)
+    jokers=UserProfile.objects.filter(joker_badge=True)
+
     professors = UserProfile.objects.filter(professor_badge=True)
-    
+        
     agg = Freggie.objects.filter(evdate__gte=a_week_ago).values('user').annotate(Sum('quantity')).order_by('-quantity__sum')
     rankings=[]
     for a in agg:
         rankuser=UserProfile.objects.get(user=a['user'])
         rank={'rankuser':rankuser, 'quantity':a['quantity__sum']}
         rankings.append(rank)
-    
-    
+
     return render_to_response('leaderboard/index.html',
             {'dean_fruit':dean_fruit,
              'dean_veggie':dean_veggie,         
             'president':president,         
              'professors':professors,
+             'jokers':jokers,
              'rankings':rankings},
             context_instance = RequestContext(request),) 
     

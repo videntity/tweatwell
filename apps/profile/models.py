@@ -18,5 +18,6 @@ class NonVeg(models.Model):
         ordering = ['-evdt']
     
     def __unicode__(self):
-        return '%s ate %s and said "%s" on %s' % (self.user, self.nonveg,
-                                                   self.text, self.evdt)
+        return '%s %s ate %s and said "%s" on %s' % (self.user.first_name,
+                                        self.user.last_name, self.nonveg,
+                                        self.text, self.evdt)

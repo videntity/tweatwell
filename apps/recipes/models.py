@@ -30,4 +30,5 @@ class RecipeComment(models.Model):
         ordering = ['-evdt']
     
     def __unicode__(self):
-        return 'Comment on %s by %s' % (self.recipe, self.user)
+        return 'Comment on %s by %s %s' % (self.recipe, self.user.first_name,
+                                          self.user.last_name)

@@ -9,7 +9,8 @@ from freggies import fruit_choices, fruit_tuple, veg_choices, veg_tuple
 
 FOV_CHOICES = (('fruit', 'fruit'),('veg','veg'))
 FREGGIE_CHOICES=tuple(list(fruit_choices) + list(veg_choices))
-
+FREGGIE_QTY_CHOICES = ( (1,'1'), (2,'2'),(3,'3'), (4,'4'), (5,'5'),
+                         (6,'6'), (7,'7'),(8,'8'), (9,'9'), (10,'10'))
 
 class FreggieGoal(models.Model):
     user            = models.ForeignKey(User)
@@ -34,7 +35,8 @@ class Freggie(models.Model):
     freggie_other   = models.CharField(max_length=50, blank=True, null=True)
     fruit_or_veg    = models.CharField(max_length=5, choices=FOV_CHOICES,
                                        blank=True, null=True)
-    quantity        = models.IntegerField(max_length=1, default=1)
+    quantity        = models.IntegerField(max_length=2, default=1,
+                                          choices=FREGGIE_QTY_CHOICES)
     note            = models.TextField(max_length=140, blank=True, null=True)
     evdate          = models.DateField(auto_now_add=True)
     evdt            = models.DateTimeField(blank=True)
@@ -49,8 +51,9 @@ class Freggie(models.Model):
         ordering = ['-evdt']
     
     def __unicode__(self):
-        return '%s ate %s (qty=%s) on %s' % (self.user, self.freggie,
-                               self.quantity, self.evdt)    
+        return '%s %s ate %s (qty=%s) on %s' % (self.user.first_name,
+                                self.user.last_name, self.freggie,
+                                self.quantity, self.evdt)    
     def save(self, **kwargs):
         self.txid=str(uuid.uuid4())
         #profile=self.user.get_profile()
@@ -76,7 +79,8 @@ class Freggie(models.Model):
         if self.freggie=="other_fruit" or self.freggie=="other_veg":
             self.freggie=self.freggie_other
         
-        self.eattext=" %s just ate %s" % (self.user, self.freggie )
+        self.eattext=" %s %s just ate %s" % (self.user.first_name,
+                                          self.user.last_name, self.freggie )
         
         try:
             f=FreggieGoal.objects.get(user=self.user, evdate=date.today())
@@ -107,7 +111,9 @@ class Comment(models.Model):
         ordering = ['evdt']
     
     def __unicode__(self):
-        return '%s said: "%s"  on %s' % (self.user, self.text, self.evdt)
+        return '%s %s said: "%s"  on %s' % (self.user.first_name,
+                                          self.user.last_name, self.text,
+                                          self.evdt)
     
     def save(self, **kwargs):
         super(Comment, self).save(**kwargs)
@@ -125,7 +131,8 @@ class BadgePoints(models.Model):
         ordering = ['-evdate']
     
     def __unicode__(self):
-        return '%s got the %s badge and %s points on %s' % (self.user,
+        return '%s %s got the %s badge and %s points on %s' % (self.user.first_name,
+                                self.user.last_name,
                                 self.badge, self.evdate, self.points)
     
     def save(self, **kwargs):

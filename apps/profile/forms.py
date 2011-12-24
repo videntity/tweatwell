@@ -4,4 +4,4 @@ from models import NonVeg
 class NonVegForm(forms.ModelForm):
     class Meta:
         model = NonVeg
-        fields = ('nonveg','text',)
+        fields = ('nonveg','quantity','text',)

@@ -11,13 +11,43 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 from ..accounts.models import UserProfile
-import datetime
 from forms import NonVegForm
 from models import NonVeg
 from ..checkin.models import Freggie, FreggieGoal
 from itertools import chain
-from operator import attrgetter
+from operator import attrgetter, itemgetter
 from django.forms.models import model_to_dict
+from datetime import datetime
+from utils import build_foodlog_xls
+
+@login_required
+def download_xls(request):
+    p=get_object_or_404(UserProfile, user=request.user)
+    nonvegs=NonVeg.objects.filter(user=request.user)
+    combolist=[]
+    for i in nonvegs:
+        row={'mydatetime': i.evdt, 'item':i.nonveg, 'quantity': i.quantity}        
+        combolist.append(row)
+        
+    freggies=Freggie.objects.filter(user=request.user)
+    for i in freggies:
+        row={'mydatetime': i.evdt, 'item':i.freggie, 'quantity': i.quantity}        
+        combolist.append(row)    
+    
+        
+    combolist=sorted(combolist,key=itemgetter('mydatetime'), reverse=True)
+    
+    for i in combolist:
+        print i
+    filename = datetime.now().strftime('%m-%d-%Y_%H:%M:%S') + '.xls'
+    response = HttpResponse(mimetype="application/vnd.ms-excel")
+    response['Content-Disposition'] = 'attachment; filename=' + filename
+    
+    excelwb = build_foodlog_xls(combolist)
+    #print excelwb
+    #excelwb.save("foo.xls")
+    excelwb.save(response)
+    return response
 
 @login_required
 def profile(request):

@@ -48,9 +48,6 @@ class SignupForm(forms.Form):
     daily_freggie_goal = forms.TypedChoiceField(choices = FREGGIE_GOAL_CHOICES,
                             label='Daily Fruit and Vegetable "Freggie" Goal',
                                             initial=5)    
-    mobile_phone_number = forms.CharField(max_length=15,
-                                          label="Mobile Phone Number",
-                                          required=False)
     
     password1 = forms.CharField(widget=forms.PasswordInput, max_length=30,
                                 label="Password")
@@ -95,7 +92,6 @@ class SignupForm(forms.Form):
             user=new_user,
             twitter=self.cleaned_data.get('twitter', ""),
             daily_freggie_goal = self.cleaned_data.get('daily_freggie_goal', ""),
-            mobile_phone_number=self.cleaned_data.get('mobile_phone_number', ""),
             )
         v=ValidSignupKey(user=new_user)
         v.save()
@@ -110,9 +106,6 @@ class AccountSettingsForm(forms.Form):
     daily_freggie_goal = forms.TypedChoiceField(choices = FREGGIE_GOAL_CHOICES,
                             label='Daily Fruit and Vegetable "Freggie" Goal',
                             initial=5)
-    mobile_phone_number = forms.CharField(max_length=15,
-                                          label="Mobile Phone Number",
-                                          required=False)
     twitter = forms.CharField(max_length=15, label="Twitter", required=False)
      
     def clean_twitter(self):

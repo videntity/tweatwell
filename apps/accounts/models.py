@@ -32,7 +32,6 @@ class UserProfile(models.Model):
     user_type               = models.CharField(default='player',
                                 choices=USER_CHOICES,
                                 max_length=6)
-    mobile_phone_number     = PhoneNumberField(blank = True, max_length=15)
     url                     = models.URLField(blank = True)
     daily_freggie_goal      = models.IntegerField(max_length=1, default=5,
                                 choices=FREGGIE_GOAL_CHOICES,

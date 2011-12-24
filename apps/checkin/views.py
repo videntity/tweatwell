@@ -55,7 +55,7 @@ def checkin(request):
     freggies=Freggie.objects.filter(user=request.user).count()
 
     #fetch tweats and comments ------------------------------------------------
-    tweats = Freggie.objects.all()
+    tweats = Freggie.objects.all()[:50]
     tweatlist=[]
     for t in tweats:
         c=Comment.objects.filter(freggie=t)

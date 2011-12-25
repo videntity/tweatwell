@@ -24,6 +24,7 @@ def score(request):
     # reset all badges
     up = UserProfile.objects.all()
     for u in up:
+        u.qow_status            = False
         u.joker_badge           = False
         u.dean_veggie_badge     = False
         u.dean_fruit_badge      = False

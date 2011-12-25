@@ -85,34 +85,8 @@ Hover over a date to see if you have completed your freggie goal for that day.
     </form>
 </div>
 
+{% include "profile/_eating-history.html" %}
 
-<h3 class="sub">Eating History</h3> 
-
-<table class="tweat-history">
-    <tr>
-        <th>Date</th>
-        <th>Item</th>
-        <th>Quantity</th>
-        <th>Photo</th>
-        <th>Note</th>
-    </tr>
-    {% for c in combolist %}
-    <tr class="{% cycle 'even-row' 'odd-row'%}">
-        <td style="white-space: nowrap;">{{ c.evdate }}</td>
-        <td style="white-space: nowrap;">{{ c.freggie }}{{ c.nonveg }}</td>
-        <td style="white-space: nowrap;">{{ c.quantity }}</td>
-        <td style="white-space: nowrap;">
-            {% if c.photo %}
-                <a class="tw-lightbox" href="{{ MEDIA_URL }}{{ c.photo }}">View</a>
-            {% endif %}
-        </td>
-        <td style="width:300px;"><em>{{ c.text }}</em></td>
-    </tr>
-    {% endfor %}
-
-</table>
-
-<a HREF="./download">Download as Excel File</a>
 {% endblock %}
 
 

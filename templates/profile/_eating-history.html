@@ -1,0 +1,30 @@
+<h3 class="sub">Eating History</h3>
+
+<div class="download-link">
+    <a href="./download" class="icon-excel">Download Excel File</a>
+</div>
+
+<table class="tweat-history">
+    <tr>
+        <th>Date</th>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Photo</th>
+        <th>Note</th>
+    </tr>
+    {% for c in combolist %}
+        <tr class="{% cycle 'even-row' 'odd-row'%}">
+            <td style="white-space: nowrap;">{{ c.evdate }}</td>
+            <td style="white-space: nowrap;">{{ c.freggie }}{{ c.nonveg }}</td>
+            <td style="white-space: nowrap;">{{ c.quantity }}</td>
+            <td style="white-space: nowrap;">
+                {% if c.photo %}
+                    <a class="tw-lightbox" href="{{ MEDIA_URL }}{{ c.photo }}">View</a>
+                {% endif %}
+            </td>
+            <td style="width:300px;"><em>{{ c.text }}</em></td>
+        </tr>
+    {% endfor %}
+
+</table>
+

@@ -1,15 +1,1898 @@
 [
     {
+        "pk": 73, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_permission", 
+            "name": "Can add permission", 
+            "content_type": 25
+        }
+    }, 
+    {
+        "pk": 74, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_permission", 
+            "name": "Can change permission", 
+            "content_type": 25
+        }
+    }, 
+    {
+        "pk": 75, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_permission", 
+            "name": "Can delete permission", 
+            "content_type": 25
+        }
+    }, 
+    {
+        "pk": 64, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_userprofile", 
+            "name": "Can add user profile", 
+            "content_type": 22
+        }
+    }, 
+    {
+        "pk": 65, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_userprofile", 
+            "name": "Can change user profile", 
+            "content_type": 22
+        }
+    }, 
+    {
+        "pk": 66, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_userprofile", 
+            "name": "Can delete user profile", 
+            "content_type": 22
+        }
+    }, 
+    {
+        "pk": 67, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_validpasswordresetkey", 
+            "name": "Can add valid password reset key", 
+            "content_type": 23
+        }
+    }, 
+    {
+        "pk": 68, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_validpasswordresetkey", 
+            "name": "Can change valid password reset key", 
+            "content_type": 23
+        }
+    }, 
+    {
+        "pk": 69, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_validpasswordresetkey", 
+            "name": "Can delete valid password reset key", 
+            "content_type": 23
+        }
+    }, 
+    {
+        "pk": 70, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_validsignupkey", 
+            "name": "Can add valid signup key", 
+            "content_type": 24
+        }
+    }, 
+    {
+        "pk": 71, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_validsignupkey", 
+            "name": "Can change valid signup key", 
+            "content_type": 24
+        }
+    }, 
+    {
+        "pk": 72, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_validsignupkey", 
+            "name": "Can delete valid signup key", 
+            "content_type": 24
+        }
+    }, 
+    {
+        "pk": 22, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_logentry", 
+            "name": "Can add log entry", 
+            "content_type": 8
+        }
+    }, 
+    {
+        "pk": 23, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_logentry", 
+            "name": "Can change log entry", 
+            "content_type": 8
+        }
+    }, 
+    {
+        "pk": 24, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_logentry", 
+            "name": "Can delete log entry", 
+            "content_type": 8
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_group", 
+            "name": "Can add group", 
+            "content_type": 2
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_group", 
+            "name": "Can change group", 
+            "content_type": 2
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_group", 
+            "name": "Can delete group", 
+            "content_type": 2
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_message", 
+            "name": "Can add message", 
+            "content_type": 4
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_message", 
+            "name": "Can change message", 
+            "content_type": 4
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_message", 
+            "name": "Can delete message", 
+            "content_type": 4
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_permission", 
+            "name": "Can add permission", 
+            "content_type": 1
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_permission", 
+            "name": "Can change permission", 
+            "content_type": 1
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_permission", 
+            "name": "Can delete permission", 
+            "content_type": 1
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_user", 
+            "name": "Can add user", 
+            "content_type": 3
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_user", 
+            "name": "Can change user", 
+            "content_type": 3
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_user", 
+            "name": "Can delete user", 
+            "content_type": 3
+        }
+    }, 
+    {
+        "pk": 94, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_avatar", 
+            "name": "Can add avatar", 
+            "content_type": 32
+        }
+    }, 
+    {
+        "pk": 95, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_avatar", 
+            "name": "Can change avatar", 
+            "content_type": 32
+        }
+    }, 
+    {
+        "pk": 96, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_avatar", 
+            "name": "Can delete avatar", 
+            "content_type": 32
+        }
+    }, 
+    {
+        "pk": 37, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_badgepoints", 
+            "name": "Can add badge points", 
+            "content_type": 13
+        }
+    }, 
+    {
+        "pk": 38, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_badgepoints", 
+            "name": "Can change badge points", 
+            "content_type": 13
+        }
+    }, 
+    {
+        "pk": 39, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_badgepoints", 
+            "name": "Can delete badge points", 
+            "content_type": 13
+        }
+    }, 
+    {
+        "pk": 34, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_comment", 
+            "name": "Can add comment", 
+            "content_type": 12
+        }
+    }, 
+    {
+        "pk": 35, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_comment", 
+            "name": "Can change comment", 
+            "content_type": 12
+        }
+    }, 
+    {
+        "pk": 36, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_comment", 
+            "name": "Can delete comment", 
+            "content_type": 12
+        }
+    }, 
+    {
+        "pk": 31, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_freggie", 
+            "name": "Can add freggie", 
+            "content_type": 11
+        }
+    }, 
+    {
+        "pk": 32, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_freggie", 
+            "name": "Can change freggie", 
+            "content_type": 11
+        }
+    }, 
+    {
+        "pk": 33, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_freggie", 
+            "name": "Can delete freggie", 
+            "content_type": 11
+        }
+    }, 
+    {
+        "pk": 28, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_freggiegoal", 
+            "name": "Can add freggie goal", 
+            "content_type": 10
+        }
+    }, 
+    {
+        "pk": 29, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_freggiegoal", 
+            "name": "Can change freggie goal", 
+            "content_type": 10
+        }
+    }, 
+    {
+        "pk": 30, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_freggiegoal", 
+            "name": "Can delete freggie goal", 
+            "content_type": 10
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_contenttype", 
+            "name": "Can add content type", 
+            "content_type": 5
+        }
+    }, 
+    {
+        "pk": 14, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_contenttype", 
+            "name": "Can change content type", 
+            "content_type": 5
+        }
+    }, 
+    {
+        "pk": 15, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_contenttype", 
+            "name": "Can delete content type", 
+            "content_type": 5
+        }
+    }, 
+    {
+        "pk": 91, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_nonveg", 
+            "name": "Can add non veg", 
+            "content_type": 31
+        }
+    }, 
+    {
+        "pk": 92, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_nonveg", 
+            "name": "Can change non veg", 
+            "content_type": 31
+        }
+    }, 
+    {
+        "pk": 93, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_nonveg", 
+            "name": "Can delete non veg", 
+            "content_type": 31
+        }
+    }, 
+    {
+        "pk": 43, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_answer", 
+            "name": "Can add answer", 
+            "content_type": 15
+        }
+    }, 
+    {
+        "pk": 44, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_answer", 
+            "name": "Can change answer", 
+            "content_type": 15
+        }
+    }, 
+    {
+        "pk": 45, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_answer", 
+            "name": "Can delete answer", 
+            "content_type": 15
+        }
+    }, 
+    {
+        "pk": 46, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_correctanswerpoints", 
+            "name": "Can add correct answer points", 
+            "content_type": 16
+        }
+    }, 
+    {
+        "pk": 47, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_correctanswerpoints", 
+            "name": "Can change correct answer points", 
+            "content_type": 16
+        }
+    }, 
+    {
+        "pk": 48, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_correctanswerpoints", 
+            "name": "Can delete correct answer points", 
+            "content_type": 16
+        }
+    }, 
+    {
+        "pk": 40, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_question", 
+            "name": "Can add question", 
+            "content_type": 14
+        }
+    }, 
+    {
+        "pk": 41, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_question", 
+            "name": "Can change question", 
+            "content_type": 14
+        }
+    }, 
+    {
+        "pk": 42, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_question", 
+            "name": "Can delete question", 
+            "content_type": 14
+        }
+    }, 
+    {
+        "pk": 82, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_answer", 
+            "name": "Can add answer", 
+            "content_type": 28
+        }
+    }, 
+    {
+        "pk": 83, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_answer", 
+            "name": "Can change answer", 
+            "content_type": 28
+        }
+    }, 
+    {
+        "pk": 84, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_answer", 
+            "name": "Can delete answer", 
+            "content_type": 28
+        }
+    }, 
+    {
+        "pk": 76, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_category", 
+            "name": "Can add category", 
+            "content_type": 26
+        }
+    }, 
+    {
+        "pk": 77, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_category", 
+            "name": "Can change category", 
+            "content_type": 26
+        }
+    }, 
+    {
+        "pk": 78, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_category", 
+            "name": "Can delete category", 
+            "content_type": 26
+        }
+    }, 
+    {
+        "pk": 79, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_question", 
+            "name": "Can add question", 
+            "content_type": 27
+        }
+    }, 
+    {
+        "pk": 80, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_question", 
+            "name": "Can change question", 
+            "content_type": 27
+        }
+    }, 
+    {
+        "pk": 81, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_question", 
+            "name": "Can delete question", 
+            "content_type": 27
+        }
+    }, 
+    {
+        "pk": 85, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_quiz", 
+            "name": "Can add quiz", 
+            "content_type": 29
+        }
+    }, 
+    {
+        "pk": 86, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_quiz", 
+            "name": "Can change quiz", 
+            "content_type": 29
+        }
+    }, 
+    {
+        "pk": 87, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_quiz", 
+            "name": "Can delete quiz", 
+            "content_type": 29
+        }
+    }, 
+    {
+        "pk": 88, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_response", 
+            "name": "Can add response", 
+            "content_type": 30
+        }
+    }, 
+    {
+        "pk": 89, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_response", 
+            "name": "Can change response", 
+            "content_type": 30
+        }
+    }, 
+    {
+        "pk": 90, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_response", 
+            "name": "Can delete response", 
+            "content_type": 30
+        }
+    }, 
+    {
+        "pk": 52, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_recipe", 
+            "name": "Can add recipe", 
+            "content_type": 18
+        }
+    }, 
+    {
+        "pk": 53, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_recipe", 
+            "name": "Can change recipe", 
+            "content_type": 18
+        }
+    }, 
+    {
+        "pk": 54, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_recipe", 
+            "name": "Can delete recipe", 
+            "content_type": 18
+        }
+    }, 
+    {
+        "pk": 55, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_recipecomment", 
+            "name": "Can add recipe comment", 
+            "content_type": 19
+        }
+    }, 
+    {
+        "pk": 56, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_recipecomment", 
+            "name": "Can change recipe comment", 
+            "content_type": 19
+        }
+    }, 
+    {
+        "pk": 57, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_recipecomment", 
+            "name": "Can delete recipe comment", 
+            "content_type": 19
+        }
+    }, 
+    {
+        "pk": 49, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_roulette", 
+            "name": "Can add roulette", 
+            "content_type": 17
+        }
+    }, 
+    {
+        "pk": 50, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_roulette", 
+            "name": "Can change roulette", 
+            "content_type": 17
+        }
+    }, 
+    {
+        "pk": 51, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_roulette", 
+            "name": "Can delete roulette", 
+            "content_type": 17
+        }
+    }, 
+    {
+        "pk": 16, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_session", 
+            "name": "Can add session", 
+            "content_type": 6
+        }
+    }, 
+    {
+        "pk": 17, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_session", 
+            "name": "Can change session", 
+            "content_type": 6
+        }
+    }, 
+    {
+        "pk": 18, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_session", 
+            "name": "Can delete session", 
+            "content_type": 6
+        }
+    }, 
+    {
+        "pk": 19, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_site", 
+            "name": "Can add site", 
+            "content_type": 7
+        }
+    }, 
+    {
+        "pk": 20, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_site", 
+            "name": "Can change site", 
+            "content_type": 7
+        }
+    }, 
+    {
+        "pk": 21, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_site", 
+            "name": "Can delete site", 
+            "content_type": 7
+        }
+    }, 
+    {
+        "pk": 97, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_kvstore", 
+            "name": "Can add kv store", 
+            "content_type": 33
+        }
+    }, 
+    {
+        "pk": 98, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_kvstore", 
+            "name": "Can change kv store", 
+            "content_type": 33
+        }
+    }, 
+    {
+        "pk": 99, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_kvstore", 
+            "name": "Can delete kv store", 
+            "content_type": 33
+        }
+    }, 
+    {
+        "pk": 61, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_currenttip", 
+            "name": "Can add current tip", 
+            "content_type": 21
+        }
+    }, 
+    {
+        "pk": 62, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_currenttip", 
+            "name": "Can change current tip", 
+            "content_type": 21
+        }
+    }, 
+    {
+        "pk": 63, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_currenttip", 
+            "name": "Can delete current tip", 
+            "content_type": 21
+        }
+    }, 
+    {
+        "pk": 58, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_tip", 
+            "name": "Can add tip", 
+            "content_type": 20
+        }
+    }, 
+    {
+        "pk": 59, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_tip", 
+            "name": "Can change tip", 
+            "content_type": 20
+        }
+    }, 
+    {
+        "pk": 60, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_tip", 
+            "name": "Can delete tip", 
+            "content_type": 20
+        }
+    }, 
+    {
+        "pk": 25, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "add_twitbot", 
+            "name": "Can add twit bot", 
+            "content_type": 9
+        }
+    }, 
+    {
+        "pk": 26, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "change_twitbot", 
+            "name": "Can change twit bot", 
+            "content_type": 9
+        }
+    }, 
+    {
+        "pk": 27, 
+        "model": "auth.permission", 
+        "fields": {
+            "codename": "delete_twitbot", 
+            "name": "Can delete twit bot", 
+            "content_type": 9
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "auth.user", 
+        "fields": {
+            "username": "alan", 
+            "first_name": "Admi", 
+            "last_name": "Nister", 
+            "is_active": true, 
+            "is_superuser": true, 
+            "is_staff": true, 
+            "last_login": "2011-12-25 14:36:32", 
+            "groups": [], 
+            "user_permissions": [], 
+            "password": "sha1$54649$1d8dbdab92908ba3179e2af4e8ffe2c804e55846", 
+            "email": "tweatwell@videntity.com", 
+            "date_joined": "2011-12-25 14:12:23"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "auth.user", 
+        "fields": {
+            "username": "aviars", 
+            "first_name": "Alan", 
+            "last_name": "Viars", 
+            "is_active": true, 
+            "is_superuser": false, 
+            "is_staff": false, 
+            "last_login": "2011-12-25 14:31:31", 
+            "groups": [], 
+            "user_permissions": [], 
+            "password": "sha1$4a5fc$36bcf52ab15636c0459098f98ff68f50b165c903", 
+            "email": "aviars@videntity.com", 
+            "date_joined": "2011-12-25 14:14:31"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "auth.user", 
+        "fields": {
+            "username": "booboobenny", 
+            "first_name": "Ben", 
+            "last_name": "Dorkthal", 
+            "is_active": true, 
+            "is_superuser": false, 
+            "is_staff": false, 
+            "last_login": "2011-12-25 14:31:19", 
+            "groups": [], 
+            "user_permissions": [], 
+            "password": "sha1$2bc64$c7536938e2098fca80e097bb13965a30e9eec76e", 
+            "email": "sales@videntity.com", 
+            "date_joined": "2011-12-23 14:24:00"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "auth.user", 
+        "fields": {
+            "username": "reba", 
+            "first_name": "Rebecca", 
+            "last_name": "Callahan", 
+            "is_active": true, 
+            "is_superuser": false, 
+            "is_staff": false, 
+            "last_login": "2011-12-25 14:36:49", 
+            "groups": [], 
+            "user_permissions": [], 
+            "password": "sha1$6743a$77a56b5dce7f56c90b5b9fe11e7875f5b28fe332", 
+            "email": "rlcalla@yahoo.com", 
+            "date_joined": "2011-12-25 14:32:17"
+        }
+    }, 
+    {
         "pk": 1, 
         "model": "accounts.userprofile", 
         "fields": {
-            "anonymous_patient_id": "d901bfd6-8a48-4985-8dd8-f176dd33b971",
+            "professor_of_freggie": "corn", 
+            "dean_fruit_badge": false, 
             "url": "", 
             "twitter": "aviars", 
+            "dean_veggie_badge": false, 
             "user_type": "player", 
+            "joker_badge": false, 
+            "anonymous_patient_id": "be976433-7620-4afc-b79a-89be82", 
             "daily_freggie_goal": 5, 
+            "president_badge": false, 
+            "professor_badge": true, 
             "notes": "", 
+            "qow_status": "NO_ANSWER", 
             "user": 1
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "accounts.userprofile", 
+        "fields": {
+            "professor_of_freggie": "cucumbers", 
+            "dean_fruit_badge": true, 
+            "url": "", 
+            "twitter": "healthyacv", 
+            "dean_veggie_badge": false, 
+            "user_type": "player", 
+            "joker_badge": false, 
+            "anonymous_patient_id": "043a541e-8f2e-429b-abe8-30e0e8", 
+            "daily_freggie_goal": 5, 
+            "president_badge": false, 
+            "professor_badge": true, 
+            "notes": "", 
+            "qow_status": "NO_ANSWER", 
+            "user": 2
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "accounts.userprofile", 
+        "fields": {
+            "professor_of_freggie": "potatoes", 
+            "dean_fruit_badge": false, 
+            "url": "", 
+            "twitter": "bensternthal", 
+            "dean_veggie_badge": true, 
+            "user_type": "player", 
+            "joker_badge": false, 
+            "anonymous_patient_id": "99051024-088a-49a1-821b-1cc5f1", 
+            "daily_freggie_goal": 5, 
+            "president_badge": false, 
+            "professor_badge": true, 
+            "notes": "", 
+            "qow_status": "NO_ANSWER", 
+            "user": 3
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "accounts.userprofile", 
+        "fields": {
+            "professor_of_freggie": "squash", 
+            "dean_fruit_badge": false, 
+            "url": "", 
+            "twitter": "rlcalla", 
+            "dean_veggie_badge": false, 
+            "user_type": "player", 
+            "joker_badge": false, 
+            "anonymous_patient_id": "a59a26ef-57b4-435f-b2e3-9e1718", 
+            "daily_freggie_goal": 5, 
+            "president_badge": true, 
+            "professor_badge": true, 
+            "notes": "", 
+            "qow_status": "CORRECT", 
+            "user": 4
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "checkin.freggiegoal", 
+        "fields": {
+            "freggie_goal": 5, 
+            "evdate": "2011-12-25", 
+            "user": 2
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "checkin.freggiegoal", 
+        "fields": {
+            "freggie_goal": 5, 
+            "evdate": "2011-12-24", 
+            "user": 2
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "checkin.freggiegoal", 
+        "fields": {
+            "freggie_goal": 5, 
+            "evdate": "2011-12-23", 
+            "user": 2
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "checkin.freggiegoal", 
+        "fields": {
+            "freggie_goal": 5, 
+            "evdate": "2011-12-25", 
+            "user": 3
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "checkin.freggiegoal", 
+        "fields": {
+            "freggie_goal": 5, 
+            "evdate": "2011-12-25", 
+            "user": 1
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "checkin.freggiegoal", 
+        "fields": {
+            "freggie_goal": 5, 
+            "evdate": "2011-12-25", 
+            "user": 4
+        }
+    }, 
+    {
+        "pk": 24, 
+        "model": "checkin.freggie", 
+        "fields": {
+            "points": 20, 
+            "evtz": -5, 
+            "freggie_other": "", 
+            "photo": "", 
+            "sinceid": null, 
+            "eattext": " Rebecca Callahan just ate pumpkin", 
+            "txid": "56921ffd-1bee-4d05-9882-d6e5d4bb504f", 
+            "note": null, 
+            "evdate": "2011-12-25", 
+            "user": 4, 
+            "txtz": 0, 
+            "text": "", 
+            "ttype": "omhe", 
+            "quantity": 10, 
+            "evdt": "2011-12-25 14:43:21", 
+            "freggie": "pumpkin", 
+            "fruit_or_veg": "veg"
+        }
+    }, 
+    {
+        "pk": 23, 
+        "model": "checkin.freggie", 
+        "fields": {
+            "points": 20, 
+            "evtz": -5, 
+            "freggie_other": "", 
+            "photo": "", 
+            "sinceid": null, 
+            "eattext": " Rebecca Callahan just ate broccoli", 
+            "txid": "27da6784-4130-4f32-b4d3-6a65d3c25886", 
+            "note": null, 
+            "evdate": "2011-12-25", 
+            "user": 4, 
+            "txtz": 0, 
+            "text": "Wow I'm up to 2 bowel movements per hour", 
+            "ttype": "omhe", 
+            "quantity": 10, 
+            "evdt": "2011-12-25 14:42:33", 
+            "freggie": "broccoli", 
+            "fruit_or_veg": "veg"
+        }
+    }, 
+    {
+        "pk": 22, 
+        "model": "checkin.freggie", 
+        "fields": {
+            "points": 20, 
+            "evtz": -5, 
+            "freggie_other": "", 
+            "photo": "", 
+            "sinceid": null, 
+            "eattext": " Rebecca Callahan just ate garlic", 
+            "txid": "04bea5f5-075a-4f5e-827a-6454ac915d63", 
+            "note": null, 
+            "evdate": "2011-12-25", 
+            "user": 4, 
+            "txtz": 0, 
+            "text": "I'm trying to keep my husband from trying to procreate.  Seems to be working.  I just have him the old crop duster.", 
+            "ttype": "omhe", 
+            "quantity": 10, 
+            "evdt": "2011-12-25 14:39:06", 
+            "freggie": "garlic", 
+            "fruit_or_veg": "veg"
+        }
+    }, 
+    {
+        "pk": 21, 
+        "model": "checkin.freggie", 
+        "fields": {
+            "points": 2, 
+            "evtz": -5, 
+            "freggie_other": "", 
+            "photo": "", 
+            "sinceid": null, 
+            "eattext": " Rebecca Callahan just ate onions", 
+            "txid": "4100227b-6e0f-477d-be63-9d302e264286", 
+            "note": null, 
+            "evdate": "2011-12-25", 
+            "user": 4, 
+            "txtz": 0, 
+            "text": "", 
+            "ttype": "omhe", 
+            "quantity": 1, 
+            "evdt": "2011-12-25 14:37:51", 
+            "freggie": "onions", 
+            "fruit_or_veg": "veg"
+        }
+    }, 
+    {
+        "pk": 20, 
+        "model": "checkin.freggie", 
+        "fields": {
+            "points": 20, 
+            "evtz": -5, 
+            "freggie_other": "", 
+            "photo": "", 
+            "sinceid": null, 
+            "eattext": " Rebecca Callahan just ate squash", 
+            "txid": "b5e7747d-632a-420b-83d8-32083948fdeb", 
+            "note": null, 
+            "evdate": "2011-12-25", 
+            "user": 4, 
+            "txtz": 0, 
+            "text": "", 
+            "ttype": "omhe", 
+            "quantity": 10, 
+            "evdt": "2011-12-25 14:37:41", 
+            "freggie": "squash", 
+            "fruit_or_veg": "veg"
+        }
+    }, 
+    {
+        "pk": 19, 
+        "model": "checkin.freggie", 
+        "fields": {
+            "points": 20, 
+            "evtz": -5, 
+            "freggie_other": "", 
+            "photo": "", 
+            "sinceid": null, 
+            "eattext": " Rebecca Callahan just ate romaine lettuce", 
+            "txid": "7cd0c6f9-42c9-470c-8a1d-d783f05dba13", 
+            "note": null, 
+            "evdate": "2011-12-25", 
+            "user": 4, 
+            "txtz": 0, 
+            "text": "", 
+            "ttype": "omhe", 
+            "quantity": 10, 
+            "evdt": "2011-12-25 14:37:31", 
+            "freggie": "romaine lettuce", 
+            "fruit_or_veg": "veg"
+        }
+    }, 
+    {
+        "pk": 18, 
+        "model": "checkin.freggie", 
+        "fields": {
+            "points": 20, 
+            "evtz": -5, 
+            "freggie_other": "", 
+            "photo": "", 
+            "sinceid": null, 
+            "eattext": " Rebecca Callahan just ate mango", 
+            "txid": "39a8c4d8-2934-40b1-84ea-fd28e644bc42", 
+            "note": null, 
+            "evdate": "2011-12-25", 
+            "user": 4, 
+            "txtz": 0, 
+            "text": "", 
+            "ttype": "omhe", 
+            "quantity": 10, 
+            "evdt": "2011-12-25 14:37:17", 
+            "freggie": "mango", 
+            "fruit_or_veg": "fruit"
+        }
+    }, 
+    {
+        "pk": 17, 
+        "model": "checkin.freggie", 
+        "fields": {
+            "points": 20, 
+            "evtz": -5, 
+            "freggie_other": "", 
+            "photo": "", 
+            "sinceid": null, 
+            "eattext": " Rebecca Callahan just ate apple", 
+            "txid": "7f00718d-a310-4e67-8827-d94d99c88a8d", 
+            "note": null, 
+            "evdate": "2011-12-25", 
+            "user": 4, 
+            "txtz": 0, 
+            "text": "", 
+            "ttype": "omhe", 
+            "quantity": 10, 
+            "evdt": "2011-12-25 14:37:08", 
+            "freggie": "apple", 
+            "fruit_or_veg": "fruit"
+        }
+    }, 
+    {
+        "pk": 16, 
+        "model": "checkin.freggie", 
+        "fields": {
+            "points": 2, 
+            "evtz": -5, 
+            "freggie_other": "", 
+            "photo": "", 
+            "sinceid": null, 
+            "eattext": " Admi Nister just ate corn", 
+            "txid": "8dc581e3-f19e-4c5c-a3be-1592830ce22d", 
+            "note": null, 
+            "evdate": "2011-12-25", 
+            "user": 1, 
+            "txtz": 0, 
+            "text": "This doesn't fully digest!", 
+            "ttype": "omhe", 
+            "quantity": 1, 
+            "evdt": "2011-12-25 14:36:06", 
+            "freggie": "corn", 
+            "fruit_or_veg": "veg"
+        }
+    }, 
+    {
+        "pk": 15, 
+        "model": "checkin.freggie", 
+        "fields": {
+            "points": 20, 
+            "evtz": -5, 
+            "freggie_other": "", 
+            "photo": "", 
+            "sinceid": null, 
+            "eattext": " Alan Viars just ate tangerine", 
+            "txid": "b593c91f-4c99-4c0e-b8ab-f6fc48cad21b", 
+            "note": null, 
+            "evdate": "2011-12-25", 
+            "user": 2, 
+            "txtz": 0, 
+            "text": "Very chirstmas-eee", 
+            "ttype": "omhe", 
+            "quantity": 10, 
+            "evdt": "2011-12-25 14:31:09", 
+            "freggie": "tangerine", 
+            "fruit_or_veg": "fruit"
+        }
+    }, 
+    {
+        "pk": 14, 
+        "model": "checkin.freggie", 
+        "fields": {
+            "points": 20, 
+            "evtz": -5, 
+            "freggie_other": "", 
+            "photo": "", 
+            "sinceid": null, 
+            "eattext": " Alan Viars just ate pineapple", 
+            "txid": "bdc7e70d-8604-4630-a90d-4c21cb45c928", 
+            "note": null, 
+            "evdate": "2011-12-25", 
+            "user": 2, 
+            "txtz": 0, 
+            "text": "I mixed it with grain, does that still count", 
+            "ttype": "omhe", 
+            "quantity": 10, 
+            "evdt": "2011-12-25 14:29:54", 
+            "freggie": "pineapple", 
+            "fruit_or_veg": "fruit"
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "checkin.freggie", 
+        "fields": {
+            "points": 20, 
+            "evtz": -5, 
+            "freggie_other": "", 
+            "photo": "", 
+            "sinceid": null, 
+            "eattext": " Ben Dorkthal just ate beets", 
+            "txid": "ce0d1666-0cdc-4805-a97f-3f49e0b40b86", 
+            "note": null, 
+            "evdate": "2011-12-25", 
+            "user": 3, 
+            "txtz": 0, 
+            "text": "It looks like there is blood in my stool but its just red from all the beets", 
+            "ttype": "omhe", 
+            "quantity": 10, 
+            "evdt": "2011-12-25 14:27:52", 
+            "freggie": "beets", 
+            "fruit_or_veg": "veg"
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "checkin.freggie", 
+        "fields": {
+            "points": 20, 
+            "evtz": -5, 
+            "freggie_other": "", 
+            "photo": "", 
+            "sinceid": null, 
+            "eattext": " Ben Dorkthal just ate asparagus", 
+            "txid": "6e2cfad2-ff60-4892-8d55-75a13bdc4da3", 
+            "note": null, 
+            "evdate": "2011-12-25", 
+            "user": 3, 
+            "txtz": 0, 
+            "text": "My pee smells wierd", 
+            "ttype": "omhe", 
+            "quantity": 10, 
+            "evdt": "2011-12-25 14:27:15", 
+            "freggie": "asparagus", 
+            "fruit_or_veg": "veg"
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "checkin.freggie", 
+        "fields": {
+            "points": 20, 
+            "evtz": -5, 
+            "freggie_other": "", 
+            "photo": "", 
+            "sinceid": null, 
+            "eattext": " Ben Dorkthal just ate potatoes", 
+            "txid": "9b19a98b-2cc6-42d6-96d4-4d100b1405a7", 
+            "note": null, 
+            "evdate": "2011-12-25", 
+            "user": 3, 
+            "txtz": 0, 
+            "text": "I'm starting to look like a potato", 
+            "ttype": "omhe", 
+            "quantity": 10, 
+            "evdt": "2011-12-25 14:26:54", 
+            "freggie": "potatoes", 
+            "fruit_or_veg": "veg"
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "checkin.freggie", 
+        "fields": {
+            "points": 4, 
+            "evtz": -5, 
+            "freggie_other": "", 
+            "photo": "", 
+            "sinceid": null, 
+            "eattext": " Ben Dorkthal just ate apple", 
+            "txid": "a10b78ae-38ee-4148-b72f-e07ae398fecd", 
+            "note": null, 
+            "evdate": "2011-12-25", 
+            "user": 3, 
+            "txtz": 0, 
+            "text": "", 
+            "ttype": "omhe", 
+            "quantity": 2, 
+            "evdt": "2011-12-25 14:26:22", 
+            "freggie": "apple", 
+            "fruit_or_veg": "fruit"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "checkin.freggie", 
+        "fields": {
+            "points": 4, 
+            "evtz": -5, 
+            "freggie_other": "", 
+            "photo": "", 
+            "sinceid": null, 
+            "eattext": " Alan Viars just ate cucumbers", 
+            "txid": "0743a31d-c16a-4685-831d-3e5fdb6ef4d2", 
+            "note": null, 
+            "evdate": "2011-12-25", 
+            "user": 2, 
+            "txtz": 0, 
+            "text": "", 
+            "ttype": "omhe", 
+            "quantity": 2, 
+            "evdt": "2011-12-25 14:18:10", 
+            "freggie": "cucumbers", 
+            "fruit_or_veg": "veg"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "checkin.freggie", 
+        "fields": {
+            "points": 2, 
+            "evtz": -5, 
+            "freggie_other": "", 
+            "photo": "", 
+            "sinceid": null, 
+            "eattext": " Alan Viars just ate carrots", 
+            "txid": "a1f3c7d0-b502-473f-a119-536ea1c2661e", 
+            "note": null, 
+            "evdate": "2011-12-25", 
+            "user": 2, 
+            "txtz": 0, 
+            "text": "", 
+            "ttype": "omhe", 
+            "quantity": 1, 
+            "evdt": "2011-12-25 14:17:13", 
+            "freggie": "carrots", 
+            "fruit_or_veg": "veg"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "checkin.freggie", 
+        "fields": {
+            "points": 2, 
+            "evtz": -5, 
+            "freggie_other": "", 
+            "photo": "", 
+            "sinceid": null, 
+            "eattext": " Alan Viars just ate banana", 
+            "txid": "225ffa1b-748d-4997-9193-47273a033e88", 
+            "note": null, 
+            "evdate": "2011-12-25", 
+            "user": 2, 
+            "txtz": 0, 
+            "text": "", 
+            "ttype": "omhe", 
+            "quantity": 1, 
+            "evdt": "2011-12-25 14:16:30", 
+            "freggie": "banana", 
+            "fruit_or_veg": "fruit"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "checkin.freggie", 
+        "fields": {
+            "points": 2, 
+            "evtz": -5, 
+            "freggie_other": "", 
+            "photo": "", 
+            "sinceid": null, 
+            "eattext": " Alan Viars just ate apple", 
+            "txid": "19e0a8c5-4e2e-4190-a65a-ccc7fb341fc0", 
+            "note": null, 
+            "evdate": "2011-12-25", 
+            "user": 2, 
+            "txtz": 0, 
+            "text": "", 
+            "ttype": "omhe", 
+            "quantity": 1, 
+            "evdt": "2011-12-25 14:16:24", 
+            "freggie": "apple", 
+            "fruit_or_veg": "fruit"
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "checkin.freggie", 
+        "fields": {
+            "points": 2, 
+            "evtz": -5, 
+            "freggie_other": "", 
+            "photo": "", 
+            "sinceid": null, 
+            "eattext": " Alan Viars just ate coconut", 
+            "txid": "bab08b62-9142-42ed-94ae-12471133a74e", 
+            "note": null, 
+            "evdate": "2011-12-24", 
+            "user": 2, 
+            "txtz": 0, 
+            "text": "Coconut water", 
+            "ttype": "omhe", 
+            "quantity": 1, 
+            "evdt": "2011-12-24 14:20:30", 
+            "freggie": "coconut", 
+            "fruit_or_veg": "fruit"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "checkin.freggie", 
+        "fields": {
+            "points": 2, 
+            "evtz": -5, 
+            "freggie_other": "", 
+            "photo": "", 
+            "sinceid": null, 
+            "eattext": " Alan Viars just ate apple", 
+            "txid": "43e0c30a-d84d-437f-8f3e-16c4deb3f99c", 
+            "note": null, 
+            "evdate": "2011-12-24", 
+            "user": 2, 
+            "txtz": 0, 
+            "text": "", 
+            "ttype": "omhe", 
+            "quantity": 1, 
+            "evdt": "2011-12-24 14:20:13", 
+            "freggie": "apple", 
+            "fruit_or_veg": "fruit"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "checkin.freggie", 
+        "fields": {
+            "points": 4, 
+            "evtz": -5, 
+            "freggie_other": "", 
+            "photo": "", 
+            "sinceid": null, 
+            "eattext": " Alan Viars just ate banana", 
+            "txid": "eec7e0b4-9841-4779-a8aa-85b9bda57b07", 
+            "note": null, 
+            "evdate": "2011-12-24", 
+            "user": 2, 
+            "txtz": 0, 
+            "text": "", 
+            "ttype": "omhe", 
+            "quantity": 2, 
+            "evdt": "2011-12-24 14:20:07", 
+            "freggie": "banana", 
+            "fruit_or_veg": "fruit"
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "checkin.freggie", 
+        "fields": {
+            "points": 6, 
+            "evtz": -5, 
+            "freggie_other": "", 
+            "photo": "", 
+            "sinceid": null, 
+            "eattext": " Alan Viars just ate cherry", 
+            "txid": "43e7249e-b4c2-44f5-9018-f503c9897095", 
+            "note": null, 
+            "evdate": "2011-12-23", 
+            "user": 2, 
+            "txtz": 0, 
+            "text": "", 
+            "ttype": "omhe", 
+            "quantity": 3, 
+            "evdt": "2011-12-23 14:21:44", 
+            "freggie": "cherry", 
+            "fruit_or_veg": "fruit"
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "checkin.freggie", 
+        "fields": {
+            "points": 20, 
+            "evtz": -5, 
+            "freggie_other": "", 
+            "photo": "", 
+            "sinceid": null, 
+            "eattext": " Alan Viars just ate lemon", 
+            "txid": "8723e4b3-bd8a-4074-addf-eadf1be0bf77", 
+            "note": null, 
+            "evdate": "2011-12-23", 
+            "user": 2, 
+            "txtz": 0, 
+            "text": "", 
+            "ttype": "omhe", 
+            "quantity": 10, 
+            "evdt": "2011-12-23 14:21:33", 
+            "freggie": "lemon", 
+            "fruit_or_veg": "fruit"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "checkin.comment", 
+        "fields": {
+            "evtz": -5, 
+            "txdt": "2011-12-23 14:22:00", 
+            "text": "Thai Salad", 
+            "sinceid": null, 
+            "txid": "", 
+            "points": 1, 
+            "user": 2, 
+            "txtz": 0, 
+            "ttype": "txt", 
+            "evdt": "2011-12-23 14:22:00", 
+            "freggie": 4
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "checkin.badgepoints", 
+        "fields": {
+            "evdate": "2011-12-25", 
+            "badge": "president", 
+            "user": 4, 
+            "points": 5
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "checkin.badgepoints", 
+        "fields": {
+            "evdate": "2011-12-25", 
+            "badge": "vegdean", 
+            "user": 3, 
+            "points": 3
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "checkin.badgepoints", 
+        "fields": {
+            "evdate": "2011-12-25", 
+            "badge": "fruitdean", 
+            "user": 2, 
+            "points": 3
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "checkin.badgepoints", 
+        "fields": {
+            "evdate": "2011-12-25", 
+            "badge": "professor", 
+            "user": 4, 
+            "points": 1
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "checkin.badgepoints", 
+        "fields": {
+            "evdate": "2011-12-25", 
+            "badge": "professor", 
+            "user": 2, 
+            "points": 1
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "checkin.badgepoints", 
+        "fields": {
+            "evdate": "2011-12-25", 
+            "badge": "professor", 
+            "user": 2, 
+            "points": 1
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "checkin.badgepoints", 
+        "fields": {
+            "evdate": "2011-12-25", 
+            "badge": "professor", 
+            "user": 2, 
+            "points": 1
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "checkin.badgepoints", 
+        "fields": {
+            "evdate": "2011-12-25", 
+            "badge": "professor", 
+            "user": 2, 
+            "points": 1
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "checkin.badgepoints", 
+        "fields": {
+            "evdate": "2011-12-25", 
+            "badge": "professor", 
+            "user": 4, 
+            "points": 1
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "checkin.badgepoints", 
+        "fields": {
+            "evdate": "2011-12-25", 
+            "badge": "professor", 
+            "user": 2, 
+            "points": 1
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "checkin.badgepoints", 
+        "fields": {
+            "evdate": "2011-12-25", 
+            "badge": "professor", 
+            "user": 2, 
+            "points": 1
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "checkin.badgepoints", 
+        "fields": {
+            "evdate": "2011-12-25", 
+            "badge": "professor", 
+            "user": 3, 
+            "points": 1
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "checkin.badgepoints", 
+        "fields": {
+            "evdate": "2011-12-25", 
+            "badge": "professor", 
+            "user": 3, 
+            "points": 1
+        }
+    }, 
+    {
+        "pk": 14, 
+        "model": "checkin.badgepoints", 
+        "fields": {
+            "evdate": "2011-12-25", 
+            "badge": "professor", 
+            "user": 4, 
+            "points": 1
+        }
+    }, 
+    {
+        "pk": 15, 
+        "model": "checkin.badgepoints", 
+        "fields": {
+            "evdate": "2011-12-25", 
+            "badge": "professor", 
+            "user": 2, 
+            "points": 1
+        }
+    }, 
+    {
+        "pk": 16, 
+        "model": "checkin.badgepoints", 
+        "fields": {
+            "evdate": "2011-12-25", 
+            "badge": "professor", 
+            "user": 1, 
+            "points": 1
+        }
+    }, 
+    {
+        "pk": 17, 
+        "model": "checkin.badgepoints", 
+        "fields": {
+            "evdate": "2011-12-25", 
+            "badge": "professor", 
+            "user": 2, 
+            "points": 1
+        }
+    }, 
+    {
+        "pk": 18, 
+        "model": "checkin.badgepoints", 
+        "fields": {
+            "evdate": "2011-12-25", 
+            "badge": "professor", 
+            "user": 4, 
+            "points": 1
+        }
+    }, 
+    {
+        "pk": 19, 
+        "model": "checkin.badgepoints", 
+        "fields": {
+            "evdate": "2011-12-25", 
+            "badge": "professor", 
+            "user": 4, 
+            "points": 1
+        }
+    }, 
+    {
+        "pk": 20, 
+        "model": "checkin.badgepoints", 
+        "fields": {
+            "evdate": "2011-12-25", 
+            "badge": "professor", 
+            "user": 3, 
+            "points": 1
+        }
+    }, 
+    {
+        "pk": 21, 
+        "model": "checkin.badgepoints", 
+        "fields": {
+            "evdate": "2011-12-25", 
+            "badge": "professor", 
+            "user": 4, 
+            "points": 1
+        }
+    }, 
+    {
+        "pk": 22, 
+        "model": "checkin.badgepoints", 
+        "fields": {
+            "evdate": "2011-12-25", 
+            "badge": "professor", 
+            "user": 4, 
+            "points": 1
+        }
+    }, 
+    {
+        "pk": 23, 
+        "model": "checkin.badgepoints", 
+        "fields": {
+            "evdate": "2011-12-25", 
+            "badge": "professor", 
+            "user": 4, 
+            "points": 1
         }
     }
 ]

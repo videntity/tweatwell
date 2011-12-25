@@ -167,7 +167,6 @@ def account_settings(request):
             request.user.save()
             #update the user profile
             up.twitter            = data['twitter']
-            up.mobile_phone_number= data['mobile_phone_number']
             up.daily_freggie_goal= data['daily_freggie_goal']
             up.save()
             messages.success(request,'Your account settings have been updated.')  
@@ -189,7 +188,6 @@ def account_settings(request):
                                 'first_name':request.user.first_name,
                                 'twitter':up.twitter,
                                 'daily_freggie_goal': up.daily_freggie_goal,
-                                'mobile_phone_number':up.mobile_phone_number,
                                 })},
                               RequestContext(request))
 

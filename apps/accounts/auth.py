@@ -63,28 +63,6 @@ class SMSBackend(BasicBackend):
         if user.check_password(password):
             return user
 
-class MobilePINBackend(BasicBackend):
-    supports_anonymous_user=False
-    supports_object_permissions=False
-    def authenticate(self, username=None, password=None):
-        try:
-            up = UserProfile.objects.get(mobile_phone_number=username)
-        except UserProfile.DoesNotExist:
-            return None
-        
-        #We have a non-email address username we should try username
-        try:
-            user = User.objects.get(username=up.user.username)
-        except User.DoesNotExist:
-            return None
-
-        if str(up.pin)==str(password):
-            return user
-        else:
-            return None
-
-
-
 class HTTPAuthBackend(BasicBackend):
     supports_anonymous_user=False
     supports_object_permissions=False

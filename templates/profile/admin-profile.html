@@ -1,5 +1,4 @@
 {% extends "layouts/2-column-sidebar-right.html" %}
-{% block active_nav_tab  %}profile-active{% endblock %}
 
 {% block extra_head %}
 
@@ -11,7 +10,7 @@
 
 {% block middle %}
 
-<h1>Profile For <em>{{ user.first_name }} {{ user.last_name }}</em></h1>
+<h1>Profile For <em>{{ u.first_name }} {{ u.last_name }}</em></h1>
 
 
 {% include "profile/_eating-history.html" %}

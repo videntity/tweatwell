@@ -15,7 +15,7 @@
             {% avatar president.user 50 %}
         </div>
         <p>
-            The President is {{president.user.first_name}}  {{president.user.first_name}}
+            The President is <a href="/profile/admin-profile/{{ president.user }}">{{president.user.first_name}} {{president.user.first_name}}</a>
         </p>
     {% else %}
         <p>No one is President at the moment.</p>
@@ -29,7 +29,7 @@
             {% avatar dean_veggie.user 50 %}
         </div>
         <p>
-            The Dean of Veggies is {{dean_veggie.user.first_name}}  {{dean_veggie.user.first_name}}
+            The Dean of Veggies is <a href="/profile/admin-profile/{{ dean_veggie.user }}">{{dean_veggie.user.first_name}} {{dean_veggie.user.first_name}}</a>
         </p>
     {% else %}
         <p>No one is Dean of Veggies  at the moment.</p>
@@ -43,7 +43,7 @@
             {% avatar dean_fruit.user 50 %}
         </div>
         <p>
-            The Dean of Fruits is {{dean_fruit.user.first_name}}  {{dean_fruit.user.first_name}}
+            The Dean of Fruits is <a href="/profile/admin-profile/{{ dean_fruit.user }}">{{dean_fruit.user.first_name}} {{dean_fruit.user.first_name}}</a>
         </p>
     {% else %}
         <p>No one is Dean of Fruits at the moment.</p>
@@ -56,7 +56,7 @@
     {% if professors %}
         {% for p in professors %}
             <p>
-                {{p.user.first_name}} {{p.user.last_name}} is the professor of {{p.professor_of_freggie}}
+                <a href="/profile/admin-profile/{{ p.user }}">{{p.user.first_name}} {{p.user.last_name}}</a> is the professor of {{p.professor_of_freggie}}
             </p>
         {% endfor %}
     {% else %}
@@ -70,7 +70,7 @@
     {% if jokers %}
         {% for j in jokers %}
             <p>
-                {{j.user.first_name}} {{j.user.last_name}} is a Joker and gets FREE stuff at the farmer's market.
+                <a href="/profile/admin-profile/{{ j.user }}">{{j.user.first_name}} {{j.user.last_name}}</a> is a Joker and gets FREE stuff at the farmer's market.
             </p>
         {% endfor %}
     {% else %}

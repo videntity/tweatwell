@@ -44,13 +44,13 @@
     @include pie-clearfix;
     border-bottom:1px dotted #cccccc;
     margin-bottom:20px;
-    padding:10px 10px 20px 10px;
+    padding:0 10px 20px 10px;
     position:relative;
     .user-avatar {
 	    float: left;
 	    background: #e6e6e6;
         background: image-url('layout/shadow-sm.png') no-repeat right bottom;
-        margin: 10px 4px 0 2px;
+        margin: 8px 8px 0 2px;
 	    img {
 	        display:block;
             background-color: #FFFFFF;
@@ -63,7 +63,7 @@
     .tweat-content {
         float:left;
         width:500px;
-        padding-top:5px;
+        padding-top:8px;
     }
     .tweat-txt {
         font-size:16px;
@@ -72,6 +72,7 @@
     .tweat-quote {
         font-size:14px;
         margin-bottom:8px;
+        line-height:1.2em;
     }
     .tweat-photo {
         margin-bottom:8px;

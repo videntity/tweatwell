@@ -1,61 +1,108 @@
 {% extends "layouts/2-column-sidebar-right.html" %}
-{% block active_nav_tab  %}qow-active{% endblock %}
+{% block active_nav_tab  %}board-active{% endblock %}
 
 {% block middle %}
+
+{% load avatar_tags %}
+
 <h1>Leaderboard</h1>
  
- <h2>This Week's Badge Holders</h2>
+<h2>This Week's Badge Holders</h2>
+
+<div class="lb-instance">
     {% if president %}
-        <p>The President is {{president.user.first_name}}  {{president.user.first_name}} </p>
+        <div class="user-avatar">
+            {% avatar president.user 50 %}
+        </div>
+        <p>
+            The President is {{president.user.first_name}}  {{president.user.first_name}}
+        </p>
     {% else %}
         <p>No one is President at the moment.</p>
     {% endif %}
-    
+</div>
+
+
+<div class="lb-instance">
     {% if dean_veggie %}
-        <p>The Dean of Veggies is {{dean_veggie.user.first_name}}  {{dean_veggie.user.last_name}}</p> 
+        <div class="user-avatar">
+            {% avatar dean_veggie.user 50 %}
+        </div>
+        <p>
+            The Dean of Veggies is {{dean_veggie.user.first_name}}  {{dean_veggie.user.first_name}}
+        </p>
     {% else %}
-        <p>No one is Dean of Veggies at the moment.</p>
+        <p>No one is Dean of Veggies  at the moment.</p>
     {% endif %}
-    
+</div>
+
+
+<div class="lb-instance">
     {% if dean_fruit %}
-        <p>The Dean of Fruits is {{dean_fruit.user.first_name}}  {{dean_fruit.user.last_name}}.</p>
+        <div class="user-avatar">
+            {% avatar dean_fruit.user 50 %}
+        </div>
+        <p>
+            The Dean of Fruits is {{dean_fruit.user.first_name}}  {{dean_fruit.user.first_name}}
+        </p>
     {% else %}
         <p>No one is Dean of Fruits at the moment.</p>
     {% endif %}
+</div>
 
 
+<div class="lb-instance-minor">
+    <h3>Professor</h3>
     {% if professors %}
-        {% for p in professors %}  
-            <p>{{p.user.first_name}} {{p.user.last_name}} is the professor of {{p.professor_of_freggie}} </p>
-        {% endfor %}     
-    
+        {% for p in professors %}
+            <p>
+                {{p.user.first_name}} {{p.user.last_name}} is the professor of {{p.professor_of_freggie}}
+            </p>
+        {% endfor %}
     {% else %}
         <p>There are no Professors yet.</p>
     {% endif %}
-    
-    {% if jokers %}
-        {% for j in jokers %}  
-            <p>{{j.user.first_name}} {{j.user.last_name}} is a Joker and gets FREE stuff at the farmer's market. </p>
-        {% endfor %}     
-    
-    {% else %}
-        <p>There are no Jokers yet.</p>
-    {% endif %}    
-    
-    
+</div>
 
-<h2>This Week's Freggie Standings</h2>
-    
-    {% if rankings %}
-        {% for r in rankings %}  
-            {{r.rankuser.user.first_name}} {{r.rankuser.user.last_name}} ate {{r.quantity}} freggies. </br>
+
+<div class="lb-instance-minor">
+    <h3>Joker</h3>
+    {% if jokers %}
+        {% for j in jokers %}
+            <p>
+                {{j.user.first_name}} {{j.user.last_name}} is a Joker and gets FREE stuff at the farmer's market.
+            </p>
         {% endfor %}
     {% else %}
-        There are no ranks yet.
+        <p>There are no Jokers yet.</p>
     {% endif %}
+</div>
 
 
+<br/>
+<h2>This Week's Freggie Standings</h2>
+{% if rankings %}
 
+<table class="tw-data-table">
+    <tr>
+        <th>Rank</th>
+        <th>Freggie Count</th>
+        <th>Name</th>
+    </tr>
+    {% for r in rankings %}
+    <tr class="{% cycle 'even-row' 'odd-row'%}">
+        <td style="white-space: nowrap;">{{ forloop.counter }}</td>
+        <td style="white-space: nowrap;">{{ r.quantity}}</td>
+        <td style="width:70%;">{{ r.rankuser.user.first_name }} {{ r.rankuser.user.last_name }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% else %}
+
+    <p>There are no rankings yet.</p>
+
+{% endif %}    
 
 {% endblock %}
 

@@ -1,0 +1,23 @@
+.tw-data-table {
+    border: 1px solid #EEEEEE;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    th {
+        font-size:1em;
+        font-weight: bold;
+        padding: 8px 5px 8px 15px;
+        border: 1px solid #EEEEEE;
+        @include background-image(linear-gradient(white,  #cccccc));
+
+    }
+    td {
+        font-size:1em;
+        border: 1px solid #EEEEEE;
+        padding: 8px 5px 8px 15px;
+        vertical-align: middle;
+    }
+    .odd-row {
+        background:#FAFAFA;
+    }
+}

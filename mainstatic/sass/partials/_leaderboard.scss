@@ -1,0 +1,48 @@
+.lb-instance {
+    @include pie-clearfix;
+    @include border-radius(5px);
+    margin:10px 0 25px 0;
+    border:1px solid #cccccc;
+    background:#F5F5F5;
+    padding:8px;
+    position:relative;
+    .user-avatar {
+	    float: left;
+	    background: #e6e6e6;
+        background: image-url('layout/shadow-sm.png') no-repeat right bottom;
+        margin: 8px 8px 0 2px;
+	    img {
+	        display:block;
+            background-color: #FFFFFF;
+            display: block;
+            margin: -4px 4px 4px -4px;
+            padding:2px;
+            position: relative;
+	    }
+    }
+    p {
+        margin:20px 0 .4em 0;
+        padding:0px;
+        font-size:14px;
+        font-weight:bold;
+    }
+
+}
+
+
+.lb-instance-minor {
+    @include pie-clearfix;
+    @include border-radius(5px);
+    margin:10px 0 25px 0;
+    border:1px solid #cccccc;
+    padding:8px;
+    position:relative;
+    h3 {
+        font-size:14px;
+    }
+    p {
+        font-size:12px;
+        padding:0;
+        margin-bottom:.4em;
+    }
+}

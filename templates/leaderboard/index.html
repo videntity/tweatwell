@@ -15,7 +15,7 @@
             {% avatar president.user 50 %}
         </div>
         <p>
-            The President is <a href="/profile/admin-profile/{{ president.user }}">{{president.user.first_name}} {{president.user.first_name}}</a>
+            The President is <a href="/profile/admin-profile/{{ president.user }}">{{president.user.first_name}} {{president.user.last_name}}</a>
         </p>
     {% else %}
         <p>No one is President at the moment.</p>
@@ -29,7 +29,7 @@
             {% avatar dean_veggie.user 50 %}
         </div>
         <p>
-            The Dean of Veggies is <a href="/profile/admin-profile/{{ dean_veggie.user }}">{{dean_veggie.user.first_name}} {{dean_veggie.user.first_name}}</a>
+            The Dean of Veggies is <a href="/profile/admin-profile/{{ dean_veggie.user }}">{{dean_veggie.user.first_name}} {{dean_veggie.user.last_name}}</a>
         </p>
     {% else %}
         <p>No one is Dean of Veggies  at the moment.</p>
@@ -43,7 +43,7 @@
             {% avatar dean_fruit.user 50 %}
         </div>
         <p>
-            The Dean of Fruits is <a href="/profile/admin-profile/{{ dean_fruit.user }}">{{dean_fruit.user.first_name}} {{dean_fruit.user.first_name}}</a>
+            The Dean of Fruits is <a href="/profile/admin-profile/{{ dean_fruit.user }}">{{dean_fruit.user.first_name}} {{dean_fruit.user.last_name}}</a>
         </p>
     {% else %}
         <p>No one is Dean of Fruits at the moment.</p>
@@ -52,7 +52,7 @@
 
 
 <div class="lb-instance-minor">
-    <h3>Professor</h3>
+    <h3>Professors</h3>
     {% if professors %}
         {% for p in professors %}
             <p>
@@ -66,7 +66,7 @@
 
 
 <div class="lb-instance-minor">
-    <h3>Joker</h3>
+    <h3>Jokers</h3>
     {% if jokers %}
         {% for j in jokers %}
             <p>

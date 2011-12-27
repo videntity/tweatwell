@@ -1,8 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
+class CurrentQuestion(models.Model):
+    question_index = models.IntegerField(max_length=3, default=1)
+    
+    def __unicode__(self):
+        return '%s' % (self.question_index)
+
 class Question(models.Model):
-    test = models.CharField(max_length=128)
+    test = models.CharField(max_length=1024)
     
     def __unicode__(self):
         return '%s' % (self.test)

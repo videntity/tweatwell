@@ -9,12 +9,17 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from forms import quiz_form_factory
-from models import Question, Answer, CorrectAnswerPoints
+from models import Question, Answer, CorrectAnswerPoints, CurrentQuestion
 from ..accounts.models import UserProfile
 @login_required
 def question_answer(request):
-    # start with a random question
-    question = Question.objects.all().order_by('?')[0]    
+    # get this week's question
+    this_weeks_qtn = CurrentQuestion.objects.get(pk=1)
+    
+    try:
+        question = Question.objects.get(pk=this_weeks_qtn.question_index)
+    except(Question.DoesNotExist):
+        question = Question.objects.all().order_by('?')[0]
     QuizForm = quiz_form_factory(question)
     profile=request.user.get_profile()
     

@@ -13,6 +13,7 @@ from django.contrib import messages
 from ..accounts.models import UserProfile
 from ..checkin.models import Freggie, BadgePoints
 from ..checkin.freggies import fruit_tuple, veg_tuple
+from ..questions.models import CurrentQuestion
 from datetime import date, timedelta
 
 
@@ -24,7 +25,7 @@ def score(request):
     # reset all badges
     up = UserProfile.objects.all()
     for u in up:
-        u.qow_status            = False
+        u.qow_status            = "NO_ANSWER"
         u.joker_badge           = False
         u.dean_veggie_badge     = False
         u.dean_fruit_badge      = False
@@ -32,6 +33,11 @@ def score(request):
         u.professor_badge       = False
         u.professor_of_freggie  = None
         u.save()
+    
+    #increment the question of the week
+    cq=CurrentQuestion.objects.get(pk=1)
+    cq.question_index=cq.question_index+1
+    cq.save()
     
     # who had the most freggies of all (president)?
     agg = Freggie.objects.filter(evdate__gte=a_week_ago).values('user').annotate(Sum('quantity')).order_by('-quantity__sum')

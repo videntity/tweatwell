@@ -23,5 +23,12 @@
             "is_correct": false, 
             "question": 1
         }
+    }, 
+    {
+        "pk": 1, 
+        "model": "questions.currentquestion", 
+        "fields": {
+            "question_index": 1
+        }
     }
 ]

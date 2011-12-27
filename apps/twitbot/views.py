@@ -16,7 +16,11 @@ import json, sys, StringIO, pycurl
 
 from django.forms.models import model_to_dict
 
-def executetwitsearchbot(request):
+def executetwitsearchbot(request, cron_key):
+    
+    if cron_key != settings.CRON_KEY:
+        return HttpResponse("Forbidden", status=401)
+    
     freggielist=[]
     #get the most recent since_id from db
     tb=TwitBot.objects.get(pk=1)

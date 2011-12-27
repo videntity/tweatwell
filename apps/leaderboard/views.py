@@ -17,7 +17,10 @@ from ..questions.models import CurrentQuestion
 from datetime import date, timedelta
 
 
-def score(request):
+def score(request, cron_key):
+    
+    if cron_key != settings.CRON_KEY:
+        return HttpResponse("Forbidden", status=401)
     
     today=date.today()
     a_week_ago = today - timedelta(days=7)

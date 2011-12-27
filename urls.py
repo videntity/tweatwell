@@ -44,7 +44,7 @@ urlpatterns = patterns('',
     url(r'^profile/',       include('tweatwell.apps.profile.urls')),
     url(r'^leaderboard/',   include('tweatwell.apps.leaderboard.urls')),
     #Twitter searchbot
-    url(r'^twitsearchbot/', executetwitsearchbot, name="executetwitsearchbot"),
+    url(r'^twitsearchbot/(?P<cron_key>[^/]+)/$', executetwitsearchbot, name="executetwitsearchbot"),
     
 
     # enable the admin interface:

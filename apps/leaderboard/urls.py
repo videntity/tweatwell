@@ -8,6 +8,6 @@ from views import *
 urlpatterns = patterns('',
 
     url(r'^$', leaderboard, name='leaderboard'),
-    url(r'^score/?P<cron_key>[^/]+)/$', score, name='score'),
+    url(r'^score/(?P<cron_key>[^/]+)/$', score, name='score'),
     
     )

@@ -39,6 +39,7 @@ def joker_results(request):
             data = form.cleaned_data
             #if data['joker_badge']=="true" or data['joker_badge']==True:
             up.joker_badge=True
+            Roulette.objects.create(user=request.user)
             up.save()
             return HttpResponse("OK", status=200)
 

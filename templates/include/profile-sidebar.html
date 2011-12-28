@@ -42,15 +42,17 @@
 <div class="sbar-module">
     <h3>Badges</h3>
 
-    joker_badge         {{user.get_profile.joker_badge}}<br/>
-    dean_veggie_badge   {{user.get_profile.dean_veggie_badge}}<br/>
-    dean_fruit_badge    {{user.get_profile.dean_fruit_badge}}<br/>
-    president_badge     {{user.get_profile.president_badge}}<br/>
-    professor_badge     {{user.get_profile.professor_badge}}<br/>
+    <div class="icon-badge icon-prez-{{ user.get_profile.president_badge|yesno:"on,off" }}" title="President: Eat the most Freggies and you could be the President of all fruits and vegetables for the week."></div>
+    <div class="icon-badge icon-prof-{{ user.get_profile.professor_badge|yesno:"on,off" }}" title="Professor: Eat the most bananas, or broccoli, or any other specific Freggie and you could be the Professor of that specific Freggie for the week."></div>
+    <div class="icon-badge icon-deanfruit-{{ user.get_profile.dean_fruit_badge|yesno:"on,off" }}" title="Dean Of Fruits: Eat the most fruits and you could be the Dean of fruits for the week."></div>
+    <div class="icon-badge icon-deanveg-{{ user.get_profile.dean_veggie_badge|yesno:"on,off" }}" title="Dean of Veggies:  Eat the most veggies and you could be the Dean of veggies for the week."></div>
+    <div class="icon-badge icon-joker-{{ user.get_profile.joker_badge|yesno:"on,off" }}" title="Joker: You have won the joker by playing spin to win."></div>
+    
+    <p class="badge-subtext">
+        Any badges won will be in color. Roll-over each badge to learn
+        what they mean, or read more in the <a href="/faq">FAQ</a>
+    </p>
 
-{#    <div class="icon-badge icon-dean-{{ DeanAward|yesno:"on,off" }}" title="Dean"></div>#}
-{#    <div class="icon-badge icon-professor-{{ ProfessorAward|yesno:"on,off" }}" title="Professor"></div>#}
-{#    <div class="icon-badge icon-president-{{ PresidentAward|yesno:"on,off" }}" title="President"></div>#}
 </div>
 
 <div class="sbar-module">

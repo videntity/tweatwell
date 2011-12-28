@@ -7,9 +7,15 @@
 }
 
 .icon-badge {
-    width:30px;
-    height:30px;
+    width:45px;
+    height:45px;
     display:inline-block;
+}
+
+p.badge-subtext {
+    color:#333333;
+    margin:1em 0 3em 0;
+    font-size:11px;
 }
 
 .profile {

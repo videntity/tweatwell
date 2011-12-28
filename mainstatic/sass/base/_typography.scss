@@ -66,3 +66,12 @@ h3.sub {
     padding-bottom:3px;
 }
 
+ol.disc {
+    list-style-type: disc;
+    li {
+        padding-bottom:.5em;
+        line-height:1.2em;
+        margin-left:1em;
+    }
+}
+

@@ -10,5 +10,7 @@
 
 $(function() {
     $('a.tw-lightbox').fancybox();
+
+    $('a.tw-modal').fancybox();
 });
 

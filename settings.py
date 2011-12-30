@@ -201,8 +201,8 @@ AVATAR_CACHE_TIMEOUT=1
 EMAIL_HOST_USER = 'tweatwell@videntity.com'
 HOSTNAME_URL = 'http://127.0.0.1:8000'
 EMAIL_BACKEND = 'django_ses.SESBackend'
-AWS_ACCESS_KEY_ID = 'AKIAIU6C5F7PYXMGXKWA'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = 'foo'
+AWS_SECRET_ACCESS_KEY = 'bar'
 
 
 RESTCAT_SERVER="127.0.0.1"
@@ -221,7 +221,8 @@ ORGANIZATION_NAME           = "WVU:Tweatwell"
 
 # Twitter Hash Tag.  Only fetch tweets with this hash.
 # To turn off set to None: TWITTERHASH=None
-TWITTERHASH="#freggie"
+# note that %23 is to escape the #
+TWITTERHASH="%23freggie"
 
 
 #Cron key required to run scoreing and twitbot urls.

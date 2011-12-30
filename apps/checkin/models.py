@@ -8,7 +8,14 @@ import uuid
 from freggies import fruit_choices, fruit_tuple, veg_choices, veg_tuple
 
 FOV_CHOICES = (('fruit', 'fruit'),('veg','veg'))
-FREGGIE_CHOICES=tuple(list(fruit_choices) + list(veg_choices))
+
+FREGGIE_CHOICES=list(fruit_choices) + list(veg_choices)
+
+FREGGIE_CHOICES.sort()
+FREGGIE_CHOICES.insert(0, ("other_veg", "Other Veggie"),)
+FREGGIE_CHOICES.insert(0, ("other_fruit", "Other Fruit"),)
+
+
 FREGGIE_QTY_CHOICES = ( (1,'1'), (2,'2'),(3,'3'), (4,'4'), (5,'5'),
                          (6,'6'), (7,'7'),(8,'8'), (9,'9'), (10,'10'))
 
@@ -29,7 +36,7 @@ class Freggie(models.Model):
     txid            = models.CharField(max_length=36, blank=True)
     user            = models.ForeignKey(User)
     photo           = ImageField(upload_to=update_filename, null=True, blank=True,
-                       verbose_name="Upload a photo of your freggie for 5 extra points.")
+                       verbose_name="Upload a photo of your freggie (+5 points)")
     freggie         = models.CharField(max_length=50, choices=FREGGIE_CHOICES,
                             verbose_name="Freggie (+2 Points)")
     freggie_other   = models.CharField(max_length=50, blank=True, null=True)

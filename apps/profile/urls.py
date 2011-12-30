@@ -6,7 +6,6 @@ from views import *
 
 
 urlpatterns = patterns('',
-    url(r'nonveg/$', nonveg, name='nonveg'),
     
     url(r'^$', profile, name='profile'),
     

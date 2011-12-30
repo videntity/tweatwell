@@ -11,9 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 from ..accounts.models import UserProfile
-from forms import NonVegForm
-from models import NonVeg
-from ..checkin.models import Freggie, FreggieGoal
+from ..checkin.models import Freggie, FreggieGoal, NonVeg
 from itertools import chain
 from operator import attrgetter, itemgetter
 from django.forms.models import model_to_dict
@@ -62,8 +60,7 @@ def profile(request):
             {'goallist':goallist,
             'freggies': freggies,
             'nonvegs': nonvegs,
-            'combolist':combolist,
-            'nonvegform': NonVegForm(),},
+            'combolist':combolist},
             context_instance = RequestContext(request),)
 
 
@@ -83,21 +80,4 @@ def admin_profile(request, username):
                      },
             context_instance = RequestContext(request),)
 
-
-@login_required
-def nonveg(request):
-    
-    if request.method == 'POST':
-
-        form = NonVegForm(request.POST)
-        
-        if form.is_valid():  
-            data = form.cleaned_data
-            newnonveg=form.save(commit=False)
-            newnonveg.text=data['text']
-            newnonveg.nonveg=data['nonveg']
-            newnonveg.user=request.user
-            newnonveg.save()
-            messages.success(request, "Successfuly added a non-freggie item.")
-            return HttpResponseRedirect(reverse('profile'))
 

@@ -15,7 +15,7 @@ from ..roulette.models import Roulette
 from ..tips.models import CurrentTip
 from ..upload.forms import PickFruitForm, PickVeggieForm
 import datetime
-from forms import FreggieForm, CommentForm
+from forms import FreggieForm, CommentForm, NonVegForm
 from models import Comment, Freggie
 from itertools import chain
 from operator import attrgetter
@@ -75,13 +75,33 @@ def checkin(request):
             return render_to_response('checkin/checkin.html',
                 {'form':form,
                  'commentform': CommentForm(),
+                 'nonvegform': NonVegForm(),
                  'tweatlist': tweatlist,
                  'freggies': freggies,},
                 context_instance = RequestContext(request),)
 
     return render_to_response('checkin/checkin.html',
             {'form': FreggieForm(),
+                 'nonvegform': NonVegForm(),
                  'commentform': CommentForm(),
                 'tweatlist': tweatlist,
                 'freggies': freggies,},
             context_instance = RequestContext(request),)
+    
+    
+@login_required
+def nonveg(request):
+    
+    if request.method == 'POST':
+
+        form = NonVegForm(request.POST)
+        
+        if form.is_valid():  
+            data = form.cleaned_data
+            newnonveg=form.save(commit=False)
+            newnonveg.text=data['text']
+            newnonveg.nonveg=data['nonveg']
+            newnonveg.user=request.user
+            newnonveg.save()
+            messages.success(request, "Successfuly added a non-freggie item.")
+            return HttpResponseRedirect(reverse('checkin'))

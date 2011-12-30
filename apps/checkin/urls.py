@@ -10,4 +10,6 @@ urlpatterns = patterns('',
     url(r'comment/(?P<freggie_id>[^/]+)/$', freggie_comment,
         name='freggie_comment'),
     
+    url(r'nonveg/$', nonveg, name='nonveg'),
+    
     )

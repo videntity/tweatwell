@@ -75,15 +75,7 @@ Hover over a date to see if you have completed your freggie goal for that day.
 {% endif %}
     
 <br/>
-<div class="tweat-form">
-    <h3 class="sub">Eating Something Else? Add it:</h3>
 
-    <form action='/profile/nonveg/' method='POST' class="tw-form">
-        {{ nonvegform.as_p }}
-        {% csrf_token %}
-        <input type="submit" value="Submit" class="button" />
-    </form>
-</div>
 
 {% include "profile/_eating-history.html" %}
 

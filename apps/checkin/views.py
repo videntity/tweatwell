@@ -16,7 +16,7 @@ from ..tips.models import CurrentTip
 from ..upload.forms import PickFruitForm, PickVeggieForm
 import datetime
 from forms import FreggieForm, CommentForm, NonVegForm
-from models import Comment, Freggie
+from models import Comment, Freggie, create_tweatlist
 from itertools import chain
 from operator import attrgetter
    
@@ -50,17 +50,6 @@ def checkin(request):
     u=User.objects.get(username=request.user)
     p=get_object_or_404(UserProfile, user=u)
     
-    #fetch total freggies -----------------------------------------------------
-    
-    freggies=Freggie.objects.filter(user=request.user).count()
-
-    #fetch tweats and comments ------------------------------------------------
-    tweats = Freggie.objects.all()[:50]
-    tweatlist=[]
-    for t in tweats:
-        c=Comment.objects.filter(freggie=t)
-        tweatitem = {'tweat': t, 'comments':c}
-        tweatlist.append(tweatitem)
     
     if request.method == 'POST':
         form = FreggieForm(request.POST, request.FILES)
@@ -68,7 +57,7 @@ def checkin(request):
             f=form.save(commit=False)
             f.user=request.user
             f.save()
-            messages.success(request, "Status updated.")
+            messages.success(request, "Your freggie was recorded.")
             return HttpResponseRedirect(reverse('checkin'))
         else:
             #the form had errors.
@@ -76,16 +65,14 @@ def checkin(request):
                 {'form':form,
                  'commentform': CommentForm(),
                  'nonvegform': NonVegForm(),
-                 'tweatlist': tweatlist,
-                 'freggies': freggies,},
+                 'tweatlist': create_tweatlist()},
                 context_instance = RequestContext(request),)
 
     return render_to_response('checkin/checkin.html',
             {'form': FreggieForm(),
                  'nonvegform': NonVegForm(),
                  'commentform': CommentForm(),
-                'tweatlist': tweatlist,
-                'freggies': freggies,},
+                'tweatlist': create_tweatlist()},
             context_instance = RequestContext(request),)
     
     
@@ -105,3 +92,19 @@ def nonveg(request):
             newnonveg.save()
             messages.success(request, "Successfuly added a non-freggie item.")
             return HttpResponseRedirect(reverse('checkin'))
+        else:
+            # the form had errors.
+            messages.error(request, "Oops. I didn't get that. Please enter a name for your non-freggie item.  ")
+            return render_to_response('checkin/checkin.html',
+                {'form':FreggieForm(),
+                 'nonvegform':form,
+                 'commentform': CommentForm(),
+                 'tweatlist': create_tweatlist()},
+                context_instance = RequestContext(request),)
+    
+    return render_to_response('checkin/checkin.html',
+                {'form': FreggieForm(),
+                 'nonvegform': NonVegForm(),
+                 'commentform': CommentForm(),
+                'tweatlist': create_tweatlist()},
+            context_instance = RequestContext(request),)

@@ -178,3 +178,15 @@ class NonVeg(models.Model):
         return '%s %s ate %s and said "%s" on %s' % (self.user.first_name,
                                         self.user.last_name, self.nonveg,
                                         self.text, self.evdt)
+
+
+#utils
+
+def create_tweatlist():
+    tweats = Freggie.objects.all()[:50]
+    tweatlist=[]
+    for t in tweats:
+        c=Comment.objects.filter(freggie=t)
+        tweatitem = {'tweat': t, 'comments':c}
+        tweatlist.append(tweatitem)
+    return tweatlist

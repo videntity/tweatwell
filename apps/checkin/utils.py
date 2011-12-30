@@ -3,7 +3,6 @@ import pycurl
 from datetime import datetime, timedelta
 import os
 
-
 def update_filename(instance, filename):
     print "here"
     path = "freggie-pics/"

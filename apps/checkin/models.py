@@ -86,8 +86,9 @@ class Freggie(models.Model):
         if self.freggie=="other_fruit" or self.freggie=="other_veg":
             self.freggie=self.freggie_other
         
-        self.eattext=" %s %s just ate %s" % (self.user.first_name,
-                                          self.user.last_name, self.freggie )
+        self.eattext=" %s %s just ate: %s" % (self.user.first_name,
+                                          self.user.last_name,
+                                          self.freggie.capitalize() )
         
         try:
             f=FreggieGoal.objects.get(user=self.user, evdate=date.today())

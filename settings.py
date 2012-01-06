@@ -210,9 +210,8 @@ RESTCAT_USER=""
 RESTCAT_PASS=""
 # Registration  & Password Reset Settings --------------------------------------
 # Only allow a person to registeration from this domain
-# Set to None to allow any
-# RESTRICT_REG_DOMAIN_TO="mix.wvu.edu"
-RESTRICT_REG_DOMAIN_TO      = None
+
+RESTRICT_REG_DOMAIN_TO      = ('mix.wvu.edu',)
 MIN_PASSWORD_LEN            = 8
 SIGNUP_TIMEOUT_DAYS         = 7
 PASSWORD_RESET_TIMEOUT_DAYS = 2 

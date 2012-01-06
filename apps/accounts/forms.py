@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 from django import forms
 from  models import *
-#from django.contrib.admin import widgets
 from django.contrib.auth.models import User
 from django.forms.util import ErrorList
 from django.contrib.localflavor.us.forms import *
@@ -36,9 +35,6 @@ class LoginForm(forms.Form):
 
 
 
-
-
-
 class SignupForm(forms.Form):
     username = forms.CharField(max_length=30, label="Username")
     email = forms.EmailField(max_length=75, label="Email")
@@ -48,7 +44,6 @@ class SignupForm(forms.Form):
     daily_freggie_goal = forms.TypedChoiceField(choices = FREGGIE_GOAL_CHOICES,
                             label='Daily Fruit and Vegetable "Freggie" Goal',
                                             initial=5)    
-    
     password1 = forms.CharField(widget=forms.PasswordInput, max_length=30,
                                 label="Password")
     password2 = forms.CharField(widget=forms.PasswordInput, max_length=30,
@@ -70,6 +65,12 @@ class SignupForm(forms.Form):
         username = self.cleaned_data.get('username')
         if email and User.objects.filter(email=email).exclude(username=username).count():
             raise forms.ValidationError(u'This email address is already registered.')
+        
+        for i in settings.RESTRICT_REG_DOMAIN_TO:
+            domain = email.split(i)
+            if len(domain)==1:
+                er="You must have a '%s' email to register." % (i)
+                raise forms.ValidationError(er)
         return email
 
     def clean_username(self):
@@ -120,6 +121,13 @@ class AccountSettingsForm(forms.Form):
         username = self.cleaned_data.get('username')
         if email and User.objects.filter(email=email).exclude(email=email).count():
             raise forms.ValidationError(u'This email address is already registered.')
+        
+        for i in settings.RESTRICT_REG_DOMAIN_TO:
+            domain = email.split(i)
+            if len(domain)==1:
+                er="You must have a '%s' email to register." % (i)
+                raise forms.ValidationError(er)
+        
         return email
 
     def clean_username(self):

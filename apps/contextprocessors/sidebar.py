@@ -5,7 +5,7 @@ from django.db.models import Sum
 from ..checkin.models import Freggie, Comment, BadgePoints
 from ..questions.models import CorrectAnswerPoints
 from ..roulette.models import Roulette
-from ..tips.models import CurrentTip
+from ..tips.models import CurrentTip, Tip
 
 def sidebar(request):
     '''
@@ -14,10 +14,16 @@ def sidebar(request):
     
     #get the current tip
     try:
-        ct=CurrentTip.objects.all()[0]
-        tip_text=ct.tip.text
+        ct=CurrentTip.objects.get(pk=1)
+        t=Tip.objects.get(pk=ct.index)
+        tip_text=t.text
+    except(Tip.DoesNotExist):
+        tip_text="No tip to display"
     except(CurrentTip.DoesNotExist):
         tip_text="No tip to display"
+    except:
+        tip_text="No tip to display"
+    
     
     #fetch points
     

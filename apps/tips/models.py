@@ -12,10 +12,7 @@ class Tip(models.Model):
 
 
 class CurrentTip(models.Model):
-    tip          = models.ForeignKey(Tip)
-    date         = models.DateField(auto_now_add=True)
-    class Meta:
-        ordering = ['-date']
+    index        = models.IntegerField(max_length=4,default=0)
     
     def __unicode__(self):
-        return '%s ' % (self.tip)
+        return '%s ' % (self.index)

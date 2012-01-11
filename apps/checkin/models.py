@@ -64,13 +64,13 @@ class Freggie(models.Model):
     def save(self, **kwargs):
         self.txid=str(uuid.uuid4())
         #profile=self.user.get_profile()
-        now = datetime.now()
+        now = datetime.utcnow()
         if self.evdt:
             #assuming we are getting this from twitter which reports in UTC time.
             #adjust accordingly.
             self.evdt=self.evdt + timedelta(hours=settings.TIMEZONE_OFFSET)
         else:
-            self.evdt=now
+            self.evdt=now + timedelta(hours=settings.TIMEZONE_OFFSET)
             
         if self.quantity > 1:
             self.points=self.points * self.quantity

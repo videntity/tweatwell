@@ -56,7 +56,7 @@ define(function() {
     rules.joker = function(points) {
         return {
             'points' : "joker",
-            'resultTxt' : "You Won The Joker Badge"
+            'resultTxt' : "Congratulations! You are now automatically entered into a raffle with the other Joker winners for a free gift basket!"
         };
     };
 

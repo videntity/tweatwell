@@ -45,7 +45,7 @@ class Freggie(models.Model):
     quantity        = models.IntegerField(max_length=2, default=1,
                                           choices=FREGGIE_QTY_CHOICES)
     note            = models.TextField(max_length=140, blank=True, null=True)
-    evdate          = models.DateField(auto_now_add=True)
+    evdate          = models.DateField(default=date.today)
     evdt            = models.DateTimeField(blank=True)
     evtz            = models.IntegerField(max_length=3, default=-5)
     txtz            = models.IntegerField(max_length=3, default=0)
@@ -64,13 +64,13 @@ class Freggie(models.Model):
     def save(self, **kwargs):
         self.txid=str(uuid.uuid4())
         #profile=self.user.get_profile()
-        now = datetime.utcnow()
+        now = datetime.now()
         if self.evdt:
             #assuming we are getting this from twitter which reports in UTC time.
             #adjust accordingly.
             self.evdt=self.evdt + timedelta(hours=settings.TIMEZONE_OFFSET)
         else:
-            self.evdt=now + timedelta(hours=settings.TIMEZONE_OFFSET)
+            self.evdt=now #+ timedelta(hours=settings.TIMEZONE_OFFSET)
             
         if self.quantity > 1:
             self.points=self.points * self.quantity

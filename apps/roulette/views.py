@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 from forms import RouletteSpinForm, RouletteJokerForm
-from ..checkin.models import Comment, Freggie
+from ..checkin.models import Comment, Freggie, BadgePoints
 from ..questions.models import CorrectAnswerPoints
 from models import Roulette, last_spin_date, can_spin
 from django.db.models import Sum
@@ -39,6 +39,7 @@ def joker_results(request):
             data = form.cleaned_data
             #if data['joker_badge']=="true" or data['joker_badge']==True:
             up.joker_badge=True
+            BadgePoints.objects.create(user=request.user, badge='joker')
             Roulette.objects.create(user=request.user)
             up.save()
             return HttpResponse("OK", status=200)

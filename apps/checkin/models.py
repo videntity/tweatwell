@@ -64,7 +64,7 @@ class Freggie(models.Model):
     def save(self, **kwargs):
         self.txid=str(uuid.uuid4())
         #profile=self.user.get_profile()
-        now = datetime.now()
+        now = datetime.utcnow()
         if self.evdt:
             #assuming we are getting this from twitter which reports in UTC time.
             #adjust accordingly.

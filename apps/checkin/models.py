@@ -70,7 +70,7 @@ class Freggie(models.Model):
             #adjust accordingly.
             self.evdt=self.evdt + timedelta(hours=settings.TIMEZONE_OFFSET)
         else:
-            self.evdt=now #+ timedelta(hours=settings.TIMEZONE_OFFSET)
+            self.evdt=now + timedelta(hours=settings.TIMEZONE_OFFSET)
             
         if self.quantity > 1:
             self.points=self.points * self.quantity
@@ -128,12 +128,13 @@ class Comment(models.Model):
         
         
 BADGE_CHOICES=(('fruitdean','fruitdean'),('vegdean','vegdean'),
-                ('president','president'),('professor','professor'))
+                ('president','president'),('professor','professor'),
+                ('joker','joker'))
 
 class BadgePoints(models.Model):
     user            = models.ForeignKey(User)
     badge           = models.CharField(max_length=20, choices=BADGE_CHOICES)
-    evdate            = models.DateField(auto_now_add=True)
+    evdate          = models.DateField(auto_now_add=True)
     points          = models.IntegerField(max_length=2, default=0)
     class Meta:
         ordering = ['-evdate']
@@ -149,6 +150,8 @@ class BadgePoints(models.Model):
         if self.badge=="fruitdean" or self.badge=="vegdean":
             self.points=3
         if self.badge=="professor":
+            self.points=1
+        if self.badge=="joker":
             self.points=1
         super(BadgePoints, self).save(**kwargs)
         

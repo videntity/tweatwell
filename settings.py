@@ -150,7 +150,6 @@ INSTALLED_APPS = (
     'django.contrib.markup',
     'tweatwell.apps.twitbot',
     'tweatwell.apps.checkin',
-    'tweatwell.apps.questions',
     'tweatwell.apps.roulette',
     'tweatwell.apps.recipes',
     'tweatwell.apps.tips',

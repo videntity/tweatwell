@@ -22,6 +22,12 @@ def score(request, cron_key):
     if cron_key != settings.CRON_KEY:
         return HttpResponse("Forbidden", status=401)
     
+    dean_fruit = None
+    dean_veggie= None         
+    president=None         
+    professor_list =[]
+    
+    
     today=date.today()
     a_week_ago = today - timedelta(days=7)
     
@@ -43,37 +49,50 @@ def score(request, cron_key):
     cq.save()
     
     # who had the most freggies of all (president)?
-    agg = Freggie.objects.filter(evdate__gte=a_week_ago).values('user').annotate(Sum('quantity')).order_by('-quantity__sum')
-    presuser_pk= agg[0]['user']
-    president=UserProfile.objects.get(user=presuser_pk)
-    president.president_badge = True
-    president.save()
-    # Give 5 points to the president
-    BadgePoints.objects.create(user=president.user, badge='president')
+    agg = Freggie.objects.filter(evdate__gte=a_week_ago, user__email__iendswith="mix.wvu.edu").values('user').annotate(Sum('quantity')).order_by('-quantity__sum')
+    
+    if agg:   
+    
+        presuser_pk= agg[0]['user']
+        president=UserProfile.objects.get(user=presuser_pk)
+        president.president_badge = True
+        president.save()
+        # Give 5 points to the president
+        BadgePoints.objects.create(user=president.user, badge='president')
     
     
-    # who had the most veggies (excluding the president) ?  - dean of veg 
-    agg = Freggie.objects.filter(fruit_or_veg="veg", evdate__gte=a_week_ago).exclude(user=presuser_pk).values('user').annotate(Sum('quantity')).order_by('-quantity__sum')
-    dean_veggie_pk= agg[0]['user']
-    dean_veggie=UserProfile.objects.get(user=dean_veggie_pk)
-    dean_veggie.dean_veggie_badge = True
-    dean_veggie.save()
-    # Give 5 points to the dean
-    BadgePoints.objects.create(user=dean_veggie.user, badge='vegdean')
+        # who had the most veggies (excluding the president) ?  - dean of veg 
+        agg = Freggie.objects.filter(fruit_or_veg="veg",
+                                 evdate__gte=a_week_ago,
+                                 user__email__iendswith="mix.wvu.edu").exclude(user=presuser_pk).values('user').annotate(Sum('quantity')).order_by('-quantity__sum')
     
-    # who had the most fruits (excluding the president & veg dean)?  - dean of fruit
-    agg = Freggie.objects.filter(fruit_or_veg="fruit", evdate__gte=a_week_ago).exclude(user=presuser_pk).exclude(user=dean_veggie_pk).values('user').annotate(Sum('quantity')).order_by('-quantity__sum')
-    dean_fruit_pk= agg[0]['user']
-    dean_fruit=UserProfile.objects.get(user=dean_fruit_pk)
-    dean_fruit.dean_fruit_badge = True
-    dean_fruit.save()
-    # Give 5 points to the dean
-    BadgePoints.objects.create(user=dean_fruit.user, badge='fruitdean')
+        if agg:
+            dean_veggie_pk= agg[0]['user']
+            dean_veggie=UserProfile.objects.get(user=dean_veggie_pk)
+            dean_veggie.dean_veggie_badge = True
+            dean_veggie.save()
+            # Give 5 points to the dean
+            BadgePoints.objects.create(user=dean_veggie.user, badge='vegdean')
+    
+            # who had the most fruits (excluding the president & veg dean)?  - dean of fruit
+            agg = Freggie.objects.filter(fruit_or_veg="fruit",
+                                 evdate__gte=a_week_ago,
+                                 user__email__iendswith="mix.wvu.edu").exclude(user=presuser_pk).exclude(user=dean_veggie_pk).values('user').annotate(Sum('quantity')).order_by('-quantity__sum')
+    
+            if agg:
+                dean_fruit_pk= agg[0]['user']
+                dean_fruit=UserProfile.objects.get(user=dean_fruit_pk)
+                dean_fruit.dean_fruit_badge = True
+                dean_fruit.save()
+                # Give 5 points to the dean
+                BadgePoints.objects.create(user=dean_fruit.user, badge='fruitdean')
 
     professor_list=[]
     for f in fruit_tuple:
         
-        agg = Freggie.objects.filter(freggie=f, evdate__gte=a_week_ago).values('user').annotate(Sum('quantity')).order_by('-quantity__sum')
+        agg = Freggie.objects.filter(freggie=f,
+                                     evdate__gte=a_week_ago,
+                                     user__email__iendswith="mix.wvu.edu").values('user').annotate(Sum('quantity')).order_by('-quantity__sum')
         if agg:
             print "Professor of ", f, " is ", agg[0]['user']
             professor_pk = agg[0]['user']

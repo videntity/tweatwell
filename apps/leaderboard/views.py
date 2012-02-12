@@ -40,9 +40,9 @@ def score(request, cron_key):
         u.dean_fruit_badge      = False
         u.president_badge       = False
         u.professor_badge       = False
-        u.professor_of_freggie  = None
+        u.professor_of_freggie  = None        
         u.save()
-    
+
     #increment the question of the week
     cq=CurrentQuestion.objects.get(pk=1)
     cq.question_index=cq.question_index+1
@@ -105,7 +105,8 @@ def score(request, cron_key):
 
     for v in veg_tuple:
         
-        agg = Freggie.objects.filter(freggie=v).values('user').annotate(Sum('quantity')).order_by('-quantity__sum')
+        agg = Freggie.objects.filter(freggie=v,evdate__gte=a_week_ago,
+                                     user__email__iendswith="mix.wvu.edu").values('user').annotate(Sum('quantity')).order_by('-quantity__sum')
         if agg:
             print "Professor of ", v, " is ", agg[0]['user']
             professor_pk = agg[0]['user']

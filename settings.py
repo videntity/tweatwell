@@ -154,7 +154,7 @@ INSTALLED_APPS = (
     'tweatwell.apps.recipes',
     'tweatwell.apps.tips',
     'tweatwell.apps.accounts',
-    'tweatwell.apps.quiz',
+    'tweatwell.apps.questions',
     'tweatwell.apps.profile',
     'tweatwell.apps.leaderboard',
     'avatar',
@@ -224,7 +224,7 @@ TWITTERHASH="%23freggie"
 
 
 #Cron key required to run scoreing and twitbot urls.
-CRON_KEY="c8751d86-b82e-474f-89a7-098ffdf26bdb"
+CRON_KEY="c8751d86-b82e-474f-89a7-098ffdf26bzz"
 
 # TIMEZONE OFFSET
 TIMEZONE_OFFSET=-5

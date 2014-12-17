@@ -210,7 +210,7 @@ RESTCAT_PASS=""
 # Registration  & Password Reset Settings --------------------------------------
 # Only allow a person to registeration from this domain
 
-RESTRICT_REG_DOMAIN_TO      = ('wvu.edu',)
+RESTRICT_REG_DOMAIN_TO      = ()
 MIN_PASSWORD_LEN            = 8
 SIGNUP_TIMEOUT_DAYS         = 7
 PASSWORD_RESET_TIMEOUT_DAYS = 2 
@@ -224,7 +224,7 @@ TWITTERHASH="%23freggie"
 
 
 #Cron key required to run scoreing and twitbot urls.
-CRON_KEY="c8751d86-b82e-474f-89a7-098ffdf26bzz"
+CRON_KEY="c8751d86-b82e-474f-89a7-098ffdf26bdb"
 
 # TIMEZONE OFFSET
 TIMEZONE_OFFSET=-5

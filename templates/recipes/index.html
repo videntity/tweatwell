@@ -10,14 +10,18 @@
 {% load markup %}
 
 <h1>Recipes</h1>
-
+    <ul>
+        {% for r in recipelist %}
+            <li><a href="#{{r.recipe.id}}">{{ r.recipe.name }}</a></li>
+        {% endfor %}
+    </ul>
 {% for r in recipelist %}
 
 
 <div class="recipe-instance">
     <div class="recipe-content">
 
-        <h2>{{ r.recipe.name }}</h2>
+        <h2 id={{r.recipe.id}} >{{ r.recipe.name }}</h2>
 
         {% autoescape off %}
         {% if r.recipe.ingredients %}

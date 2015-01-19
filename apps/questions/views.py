@@ -27,7 +27,7 @@ def question_answer(request):
         form = QuizForm(request.POST)
         if form.is_valid():  
             data = form.cleaned_data
-            
+            print data
             #is the question correct or not?
             if data['answers'].is_correct==True:
                 messages.success(request,"You got the question right!")
@@ -35,8 +35,12 @@ def question_answer(request):
                 CorrectAnswerPoints.objects.create(user=request.user)
                 
             else:
-                messages.success(request,
-                    "You got the question wrong. Better luck next week!")
+                
+                correct_answer = Answer.objects.get(question=question, is_correct=True)
+                msg = "Sorry.  %s is incorrect. The correct answer is: %s. Be sure and try again next week!" % \
+                        (data['answers'], correct_answer)
+                
+                messages.success(request,msg)
                 profile.qow_status="INCORRECT"
             profile.save()
             return HttpResponseRedirect(reverse('checkin'))

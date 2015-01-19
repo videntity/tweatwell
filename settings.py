@@ -224,7 +224,7 @@ TWITTERHASH="%23freggie"
 
 
 #Cron key required to run scoreing and twitbot urls.
-CRON_KEY="c8751d86-b82e-474f-89a7-098ffdf26bzz"
+CRON_KEY="c8751d86-b82e-474f-89a7-098ffdf26bdb"
 
 # TIMEZONE OFFSET
 TIMEZONE_OFFSET=-5

@@ -3,7 +3,7 @@ from django import forms
 from  models import *
 from django.contrib.auth.models import User
 from django.forms.util import ErrorList
-from django.contrib.localflavor.us.forms import *
+from localflavor.us.forms import *
 from django.conf import settings
 
 

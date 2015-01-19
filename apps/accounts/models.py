@@ -6,7 +6,7 @@ from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import date, datetime, timedelta
-from django.contrib.localflavor.us.models import PhoneNumberField
+from localflavor.us.models import PhoneNumberField
 import string, random, uuid
 from emails import send_password_reset_url_via_email, send_signup_key_via_email
 from django.utils.safestring import mark_safe

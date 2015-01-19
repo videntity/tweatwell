@@ -8,7 +8,8 @@ import os, sys
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 THUMBNAIL_DEBUG = True
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
 
 ADMINS = (
     ('Alan Viars', 'aviars@videntity.com'),
@@ -129,7 +130,7 @@ TEMPLATE_LOADERS = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-    "tweatwell.apps.contextprocessors.sidebar.sidebar", 
+    "apps.contextprocessors.sidebar.sidebar", 
     'django.core.context_processors.debug',
     'django.core.context_processors.i18n',
     'django.core.context_processors.media',
@@ -147,16 +148,16 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.markup',
-    'tweatwell.apps.twitbot',
-    'tweatwell.apps.checkin',
-    'tweatwell.apps.roulette',
-    'tweatwell.apps.recipes',
-    'tweatwell.apps.tips',
-    'tweatwell.apps.accounts',
-    'tweatwell.apps.questions',
-    'tweatwell.apps.profile',
-    'tweatwell.apps.leaderboard',
+    #'django.contrib.markup',
+    'apps.twitbot',
+    'apps.checkin',
+    'apps.roulette',
+    'apps.recipes',
+    'apps.tips',
+    'apps.accounts',
+    'apps.questions',
+    'apps.profile',
+    'apps.leaderboard',
     'avatar',
     'django_ses',
     'sorl.thumbnail',

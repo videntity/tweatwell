@@ -11,7 +11,6 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.http import HttpResponseNotAllowed,  HttpResponseForbidden
 from django.views.decorators.http import require_POST
-from django.views.generic.list_detail import object_list
 from django.db.models import Sum
 from models import *
 from forms import *

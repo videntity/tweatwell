@@ -57,6 +57,10 @@ class UserProfile(models.Model):
         unique_together = (("user", "user_type"),
             ("professor_badge","professor_of_freggie"))
 
+
+    def last_login(self):
+        return self.user.last_login
+
     def save(self, **kwargs):
         if not self.anonymous_patient_id:
             self.anonymous_patient_id = str(uuid.uuid4())[0:30]

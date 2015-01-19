@@ -4,7 +4,7 @@ from models import UserProfile, Permission, ValidPasswordResetKey, \
 
 
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ('user','twitter', 'dean_fruit_badge',
+    list_display = ('user', 'last_login',  'twitter', 'dean_fruit_badge',
                     'dean_veggie_badge', 'joker_badge',
                     'president_badge')
     search_fields = ['user__email', 'twitter']

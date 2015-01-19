@@ -2,7 +2,6 @@
 from django import forms
 from models import Quiz
 from django.forms.util import ErrorList
-from django.contrib.localflavor.us.forms import *
 import types
 
 

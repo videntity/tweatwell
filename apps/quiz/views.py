@@ -11,7 +11,6 @@ from django import forms
 from models import *
 from forms import TakeQuizForm
 import types
-from django.views.generic.simple import direct_to_template
 from django.db.models import Avg, Count
 
 

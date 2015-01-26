@@ -4,4 +4,4 @@ media/*
 *.db
 *.kpf
 uploads/*
-config/settings_local.py
+settings_local.py

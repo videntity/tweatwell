@@ -1,37 +1,28 @@
 Tweatwell: Food Tracking Microblog Game
 =======================================
 
-Copyright 2011 Videntity Systems, Inc.
+Copyright 2011-2015 Videntity Systems, Inc.
 
 
 Tweatwell is a web-based food microblog tracking game written in Django.
 The goal of the game is to encourage a plant based diet amongst a college
-student population. Eat Healthy, Live Long, and TweatWell.
+student population. Eat Healthy, Live Long, and Tweat Well.
 
 
 Installation:
 =============
 
-Tweatwell is written in Python 2.7 and Django 1.3.1 and has some other
-dependencies. RESTCat, an external RESTful service for activity tracking, is
-used in this application to develop custom reports in Excel format.  The
-dependencies will be installed using the pip command below.
-
-To install pip on Ubuntu, do the following.
-::
-    sudo apt-get install python-setuptools
-    sudo easy_install pip
-
-
-
+Tweatwell is written in Python 2.7 and Django 1.6.1 and has some other
+dependencies.
 
 Here is a quickstart guide to setup a development environment. 
-::
+
+
+    sudo apt-get install git-core python-dev python-imaging build-essential python-pip memcached libmemcached-dev zlib1g-dev
     git clone git://github.com/aviars/tweatwell.git
-    git clone git://github.com/aviars/RESTCat.git
-    sudo easy_install pip
     cd tweatwell
-    sudo pip install -r config/requirements.txt
+    sudo pip install -r tweatwell/requirements.txt
+
 
 Running the Development Server:
 ===============================
@@ -39,12 +30,9 @@ Running the Development Server:
 Here's how to create the database and start the Django's devlopment server
 environment.  You should also use virtualenv and virtualenvwrapper when
 developing in Python.
-::
-    sudo apt-get install git-core python-imaging build-essential python-setuptools memcached libmemcached-dev
-    sudo easy_install pip
-    cd config
-    sudo pip install -r requirements.txt
-    cd tweatwell
+
+
+
     python manage.py syncdb
     python manage.py runserver
 
@@ -61,30 +49,35 @@ Production Django configuration can be done in many ways and an exhaustive
 explanation is beyond the scope of these setup instructions.  The information
 provided here is just provided as a quick jumpstart. More detailed documentation
 may be found at http://djangoproject.org.  
-::
+
+
     sudo apt-get install apache2 libapache2-mod-wsgi
     cd tweatwell
     cp config/settings_local.py .
 
 You need to modify the file '/etc/apache2/sites-available/default'. You need to
 add this line to the VirtualHost on which you want to run the application.
-::
+
+
     WSGIScriptAlias / /home/ubuntu/django-apps/tweatwell/config/apache/django.wsgi
 
 If you are using SQLite, make sure the db folder is readable and writeable by
 the webserver.
-::
+
+
     cd tweatwell
     python manage.py syncdb
     sudo chmod -R 777 db
 
 Restart the Apache webserver:
-::
+
+
     sudo apache2ctl restart
 
 License:
 ========
-Tweatwell is avaliable under a dual license. You may use either GPL or a
+
+Tweatwell has a dual license. You may use either GPL or a
 commercial license.  You may use this software for free under the GPL for 
 educational and non-profit activities only.  If you want to use this software,
 its direvative works, for commercial purposes you must use the commercial

@@ -8,6 +8,7 @@ django-ses
 pycurl
 pylibmc
 -e git+https://github.com/videntity/python-omhe.git@404ae2a0aa473fc56572c37e55b2799f5abc2b26#egg=python_omhe-dev
-sorl-thumbnail==11.12
+sorl-thumbnail
 wsgiref
 xlwt==0.7.5
+django=localflavor

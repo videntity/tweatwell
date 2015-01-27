@@ -48,7 +48,7 @@ def checkin(request):
         return anon_home_index(request)
     
     u=User.objects.get(username=request.user)
-    p=get_object_or_404(UserProfile, user=u)
+    p, created =UserProfile.objects.get_or_create(user=u)
     
     
     if request.method == 'POST':

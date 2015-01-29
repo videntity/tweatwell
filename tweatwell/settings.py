@@ -148,7 +148,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #'django.contrib.markup',
+    'markup_deprecated',
     'apps.twitbot',
     'apps.checkin',
     'apps.roulette',

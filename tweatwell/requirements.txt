@@ -12,3 +12,4 @@ sorl-thumbnail
 wsgiref
 xlwt==0.7.5
 django=localflavor
+django-markup-deprecated

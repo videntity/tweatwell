@@ -79,7 +79,7 @@ License:
 
 Tweatwell has a dual license. You may use either GPL or a
 commercial license.  You may use this software for free under the GPL for 
-educational and non-profit activities only.  If you want to use this software,
-its direvative works, for commercial purposes you must use the commercial
+educational and non-profit activities only.  If you want to use this software, or
+it's derivative works, for commercial purposes, you must use the commercial
 license agreement.  The commercial license comes with support and allows greater
 freedoms than the GPL.
